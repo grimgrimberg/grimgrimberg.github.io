@@ -25,23 +25,23 @@ platforms :mingw, :x64_mingw, :mswin, :jruby do
   gem "tzinfo-data"
 end
 
-<<<<<<< HEAD
-=======
+# <<<<<<< HEAD
+# =======
 
 
->>>>>>> 4ae33f1 (Update site content)
+# >>>>>>> 4ae33f1 (Update site content)
 # Performance-booster for watching directories on Windows
 gem "wdm", "~> 0.1", :platforms => [:mingw, :x64_mingw, :mswin]
 
 # Lock `http_parser.rb` gem to `v0.6.x` on JRuby builds since newer versions of the gem
 # do not have a Java counterpart.
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
-<<<<<<< HEAD
-=======
+# <<<<<<< HEAD
+# =======
 
 
 gem "csv", "~> 3.2"
 gem "logger", "~> 1.4"
 gem "base64"
 
->>>>>>> 4ae33f1 (Update site content)
+# >>>>>>> 4ae33f1 (Update site content)
