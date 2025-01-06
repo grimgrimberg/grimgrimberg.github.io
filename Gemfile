@@ -48,3 +48,5 @@ gem "base64"
 gem "minimal-mistakes-jekyll"
 
 gem "fiddle"
+gem "jekyll-remote-theme"
+
