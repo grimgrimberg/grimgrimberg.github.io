@@ -46,3 +46,5 @@ gem "base64"
 
 # >>>>>>> 4ae33f1 (Update site content)
 gem "minimal-mistakes-jekyll"
+
+gem "fiddle"

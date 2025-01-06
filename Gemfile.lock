@@ -19,6 +19,7 @@ GEM
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
     ffi (1.17.1-x64-mingw-ucrt)
+    fiddle (1.1.6)
     forwardable-extended (2.6.0)
     google-protobuf (4.29.2)
       bigdecimal
@@ -116,6 +117,7 @@ PLATFORMS
 DEPENDENCIES
   base64
   csv (~> 3.2)
+  fiddle
   http_parser.rb (~> 0.6.0)
   jekyll (~> 4.3.4)
   jekyll-feed (~> 0.12)
