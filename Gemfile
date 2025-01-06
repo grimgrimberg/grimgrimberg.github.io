@@ -49,4 +49,7 @@ gem "minimal-mistakes-jekyll"
 
 gem "fiddle"
 gem "jekyll-remote-theme"
+gem "faraday-retry"
+
+gem "github-pages", group: :jekyll_plugins
 
