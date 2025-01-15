@@ -1,0 +1,22 @@
+<nav class="nav">
+    <div class="container nav__container">
+        {% raw %}{% assign sections = "About,Projects,Blog,Contact" | split: "," %}{% endraw %}
+        
+        <div class="nav__logo">
+            <a href="{{ '/' | relative_url }}">
+                {{ site.title | slice: 0 }}
+            </a>
+        </div>
+
+        <ul class="nav__links">
+            {% raw %}{% for section in sections %}{% endraw %}
+                <li>
+                    <a href="#{{ section | downcase }}" class="nav__link">
+                        <span class="nav__link-number">0{{ forloop.index }}.</span>
+                        {{ section }}
+                    </a>
+                </li>
+            {% raw %}{% endfor %}{% endraw %}
+        </ul>
+    </div>
+</nav> 
