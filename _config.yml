@@ -1,12 +1,12 @@
-title: Your Name
+title: Grimgrimberg
 description: Software Developer | Problem Solver | Tech Enthusiast
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # your site's URL
+baseurl: ""
+url: "https://grimgrimberg.github.io"
 
 # Social links
-github_username: your-username
-linkedin_username: your-username
-email: your.email@example.com
+github_username: grimgrimberg
+linkedin_username: yuval-grimberg-933215173  # LinkedIn username
+email: your.email@example.com  # Add your email here
 
 # Build settings
 markdown: kramdown
@@ -15,4 +15,4 @@ plugins:
   - jekyll-seo-tag
 
 # Theme settings
-show_downloads: false
+show_downloads: false 
