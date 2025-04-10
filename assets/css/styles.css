@@ -4,6 +4,9 @@
 /* Custom styles */
 body {
   font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298); /* Cool blue gradient */
+  background-attachment: fixed; /* Ensure the background stays fixed during scrolling */
+  color: #fff; /* Adjust text color for better contrast */
 }
 
 /* Enhanced styles for a modern look */
@@ -68,17 +71,17 @@ footer {
   padding: 20px 0;
 }
 
-.social-links a {
+social-links a {
   color: #fff;
   margin: 0 10px;
   transition: color 0.3s;
 }
 
-.social-links a:hover {
+social-links a:hover {
   color: #ffd700;
 }
 
-.social-links {
+social-links {
   position: relative;
   z-index: 2000; /* Ensure links are above the goose */
 }
