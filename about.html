@@ -13,9 +13,10 @@ title: About Me
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- Flowbite CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Clippy CSS -->
+    <link rel="stylesheet" type="text/css" href="https://gitcdn.xyz/repo/pi0/clippyjs/master/assets/clippy.css">
     
     <body class="font-roboto text-gray-800">
         <header>
@@ -58,9 +59,16 @@ title: About Me
                     <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank" class="text-white hover:text-blue-400"><i class="fab fa-linkedin text-2xl"></i></a>
                 </div>
             </div>
-        </footer>
-
-        <script src="assets/js/scripts.js"></script>
+        </footer>        <script src="assets/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+        
+        <!-- Clippy Scripts -->
+        <script src="https://unpkg.com/jquery@3.2.1"></script>
+        <script src="https://unpkg.com/clippyjs@latest"></script>
+        <script type="text/javascript">
+            clippy.load('Merlin', function(agent){
+                agent.show();
+            });
+        </script>
     </body>
 </html>

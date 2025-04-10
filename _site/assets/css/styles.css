@@ -7,25 +7,124 @@ body {
   background: linear-gradient(135deg, #1e3c72, #2a5298); /* Cool blue gradient */
   background-attachment: fixed; /* Ensure the background stays fixed during scrolling */
   color: #fff; /* Adjust text color for better contrast */
-  margin: 0;
-  padding: 0;
 }
 
-/* Ensure typography is accessible */
+/* Enhanced styles for a modern look */
+
+/* Typography */
 h1, h2, h3 {
   font-family: 'Playfair Display', serif;
-  color: #1a202c;
-  line-height: 1.5;
 }
 
 p {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: #8b8e93;
+  margin-bottom: 1.5em;
+  position: relative;
 }
 
-/* Add responsive container */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+/* Buttons */
+.btn {
+  background-color: #1a202c;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+  background-color: #4a5568;
+  transform: scale(1.05);
+}
+
+/* Navigation */
+nav a {
+  color: #1a202c;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #4a5568;
+}
+
+/* Sections */
+section {
+  padding: 60px 20px;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #1a202c, #4a5568);
+  color: #fff;
+}
+
+/* Footer */
+footer {
+  background-color: #1a202c;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+social-links a {
+  color: #fff;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+social-links a:hover {
+  color: #ffd700;
+}
+
+social-links {
+  position: relative;
+  z-index: 2000; /* Ensure links are above the goose */
+}
+
+#goose-animation {
+  z-index: 1000; /* Keep the goose below the links */
+}
+
+/* Ensure consistent h1 color across all pages */
+h1 {
+  color: #bdb7c7; /* Bright green */
+}
+
+/* Enable smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll Animations */
+.scroll-animation {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: none;
+  will-change: transform, opacity;
+}
+
+.scroll-animation.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+/* Add zoom-in-out animation for paragraphs */
+@keyframes zoomInOut {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

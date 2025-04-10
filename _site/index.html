@@ -50,119 +50,66 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: #333;
-        }
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
-        .btn {
-            background-color: #1a202c;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        .btn:hover {
-            background-color: #4a5568;
-            transform: scale(1.05);
-        }
-        footer {
-            background-color: #1a202c;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }        .social-links a {
-            color: #fff;
-            margin: 0 10px;
-            padding: 10px;
-            font-size: 24px;
-            display: inline-block;
-            transition: color 0.3s, transform 0.3s;
-            cursor: pointer;
-        }
-        .social-links a:hover {
-            color: #ffd700;
-            transform: scale(1.2);
-        }
-        .social-links {
-            margin: 15px 0;
-        }
-        .gradient-bg {
-            background: linear-gradient(135deg, #1a202c, #4a5568);
-            color: #fff;
-        }
-        .carousel img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
+        /* Removed inline styles to switch to Tailwind CSS */
     </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="index.html">Home</a> |
-            <a href="about.html">About Me</a> |
-            <a href="projects.html">Projects</a>
-        </nav>
-    </header>
+    <body class="font-roboto text-gray-800">
+        <header>
+            <nav class="flex justify-center space-x-4">
+                <a href="index.html" class="text-blue-500 hover:underline">Home</a>
+                <a href="about.html" class="text-blue-500 hover:underline">About Me</a>
+                <a href="projects.html" class="text-blue-500 hover:underline">Projects</a>
+            </nav>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="gradient-bg py-20">
-        <div class="container mx-auto text-center">
-            <h1 class="text-6xl font-bold mb-4">Hi, I'm Yuval Grimberg</h1>
-            <p class="text-xl mb-6">Mechanical Engineer | Control Theory Enthusiast | Autonomous Vehicles Specialist</p>
-            <a href="about.html" class="btn">Learn More About Me</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-4">About Me</h2>
-            <p class="text-lg">I'm a passionate mechanical engineer with a deep interest in control theory and autonomous vehicles. I love solving complex problems and creating innovative solutions.</p>
-        </div>
-    </section>
-
-    <!-- Reviews Section -->
-    <section id="reviews" class="py-20 bg-white">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-4">What People Are Saying</h2>
-            <div class="text-lg">
-                <blockquote class="mb-6">"This page is the best thing I've ever seen." - Ray Charles</blockquote>
-                <blockquote class="mb-6">"Absolutely groundbreaking!" - Albert Einstein</blockquote>
-                <blockquote class="mb-6">"I can't believe how amazing this is." - Nikola Tesla</blockquote>
+        <section class="bg-gradient-to-r from-gray-800 to-gray-500 text-white py-20">
+            <div class="container mx-auto text-center">
+                <h1 class="text-6xl font-bold mb-4">Hi, I'm Yuval Grimberg</h1>
+                <p class="text-xl mb-6">Mechanical Engineer | Control Theory Enthusiast | Autonomous Vehicles Specialist</p>
+                <a href="about.html" class="btn">Learn More About Me</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-100">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-4">Contact Me</h2>
-            <form class="max-w-lg mx-auto">
-                <input type="text" placeholder="Your Name" class="w-full p-3 mb-4 border rounded">
-                <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 border rounded">
-                <textarea placeholder="Your Message" class="w-full p-3 mb-4 border rounded"></textarea>
-                <button type="submit" class="btn">Send Message</button>
-            </form>
-        </div>
-    </section>
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-4">About Me</h2>
+                <p class="text-lg">I'm a passionate mechanical engineer with a deep interest in control theory and autonomous vehicles. I love solving complex problems and creating innovative solutions.</p>
+            </div>
+        </section>
 
-    <!-- Footer -->    <footer>
-        <p>&copy; 2025 Yuval. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://github.com/grimgrimberg" target="_blank" onclick="window.open(this.href, '_blank'); return false;"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank" onclick="window.open(this.href, '_blank'); return false;"><i class="fab fa-linkedin"></i></a>
-        </div>
-    </footer>
+        <section id="reviews" class="py-20 bg-white">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-4">What People Are Saying</h2>
+                <div class="text-lg">
+                    <blockquote class="mb-6">"This page is the best thing I've ever seen." - Ray Charles</blockquote>
+                    <blockquote class="mb-6">"Absolutely groundbreaking!" - Albert Einstein</blockquote>
+                    <blockquote class="mb-6">"I can't believe how amazing this is." - Nikola Tesla</blockquote>
+                </div>
+            </div>
+        </section>
 
-    <script src="assets/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-</body>
+        <section id="contact" class="py-20 bg-gray-100">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-4">Contact Me</h2>
+                <form class="max-w-lg mx-auto">
+                    <input type="text" placeholder="Your Name" class="w-full p-3 mb-4 border rounded">
+                    <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 border rounded">
+                    <textarea placeholder="Your Message" class="w-full p-3 mb-4 border rounded"></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Yuval. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/grimgrimberg" target="_blank" onclick="window.open(this.href, '_blank'); return false;"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank" onclick="window.open(this.href, '_blank'); return false;"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </footer>
+
+        <script src="assets/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    </body>
 </html>
 
     </main>
