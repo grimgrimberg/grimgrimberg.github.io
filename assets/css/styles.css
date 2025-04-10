@@ -19,7 +19,7 @@ h1, h2, h3 {
 p {
   font-size: 1.125rem;
   line-height: 1.75rem;
-  color: #4a5568;
+  color: #8b8e93;
   margin-bottom: 1.5em;
   position: relative;
 }
@@ -91,7 +91,7 @@ social-links {
 
 /* Ensure consistent h1 color across all pages */
 h1 {
-  color: #41b32b; /* Bright green */
+  color: #bdb7c7; /* Bright green */
 }
 
 /* Enable smooth scrolling for the entire page */
