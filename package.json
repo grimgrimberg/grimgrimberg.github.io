@@ -18,7 +18,7 @@
     "url": "https://github.com/grimgrimberg/grimgrimberg.github.io/issues"
   },
   "homepage": "https://github.com/grimgrimberg/grimgrimberg.github.io#readme",
-  "dependencies": {
+  "devDependencies": {
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.4"
