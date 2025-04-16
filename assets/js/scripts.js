@@ -35,7 +35,7 @@ modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justif
 modal.innerHTML = `
   <div class="bg-white p-6 rounded-lg">
     <h2 class="text-2xl font-bold mb-4">Welcome!</h2>
-    <p class="mb-4">This is a modal window. You can add more content here.</p>
+    <p class="mb-4">Click me Till youll find your true self.</p>
     <button id="closeModal" class="btn">Close</button>
   </div>
 `;
@@ -71,7 +71,7 @@ openModalButton.addEventListener('click', () => {
     }, 3000);
 
     // Play sound effects
-    const clickSound = new Audio('/assets/sounds/click.mp3');
+    const clickSound = new Audio('/assets/sounds/honk-sound.mp3');
     clickSound.play();
 
     if (clickCount === 69) {
