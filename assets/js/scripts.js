@@ -110,12 +110,12 @@ document.addEventListener('DOMContentLoaded', function() {
   //     }, 5000); // Navigate to Projects after 5 seconds
   // }
 
-  // Include Lottie Web Player for the goose animation
+  // Ensure Lottie.js is loaded for the goose animation
   const lottieScript = document.createElement('script');
-  // lottieScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js';
+  lottieScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js';
   document.head.appendChild(lottieScript);
 
-  // Wait for Clippy.js and Lottie.js to be available before using them
+  // Wait for Lottie.js to be available before using it
   function waitForGlobal(name, cb) {
     if (window[name]) {
       cb(window[name]);
