@@ -136,14 +136,12 @@ document.addEventListener('DOMContentLoaded', function() {
     gooseContainer.style.top = 'auto';
     gooseContainer.style.bottom = '15%';
     gooseContainer.style.transform = 'translateX(-50%)';
-    document.body.appendChild(gooseContainer);
-
-    lottie.loadAnimation({
+    document.body.appendChild(gooseContainer);    lottie.loadAnimation({
       container: gooseContainer,
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: '/assets/images/jumpy-goose.json'
+      path: './assets/images/jumpy-goose.json'
     });
   });
 

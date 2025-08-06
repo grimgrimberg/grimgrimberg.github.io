@@ -1,132 +1,1411 @@
-<!-- ---
-layout: default
-title: Home
---- -->
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yuval Grimberg's Portfolio</title>
+    <title>Yuval Grimberg | Control Systems Engineer & Autonomous Vehicle Specialist</title>
+    <meta name="description"
+        content="Yuval Grimberg - Mechanical Engineer specializing in Control Theory, Autonomous Vehicles, and Advanced System Design. Hire me for cutting-edge engineering solutions.">
+    <meta name="keywords"
+        content="Control Systems Engineer, Autonomous Vehicles, Mechanical Engineer, Control Theory, Machine Learning, Python, MATLAB, Robotics">
+
+    <!-- Tailwind CSS with custom configuration -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Flowbite CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tech-blue': '#0066ff',
+                        'tech-dark': '#0a0f1c',
+                        'tech-purple': '#6366f1',
+                        'tech-cyan': '#06b6d4',
+                        'tech-green': '#10b981'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-in-out',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.5)' },
+                            '50%': { boxShadow: '0 0 40px rgba(99, 102, 241, 0.8)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(6, 182, 212, 0.5)' },
+                            '100%': { boxShadow: '0 0 30px rgba(6, 182, 212, 0.8)' }
+                        }
+                    },
+                    fontFamily: {
+                        'tech': ['JetBrains Mono', 'Monaco', 'Consolas', 'monospace'],
+                        'display': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Modern fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- REAL ClippyJS - The Authentic Microsoft Office Assistant! -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/pi0/clippyjs@master/assets/clippy.css">
+
     <style>
-        html { scroll-behavior: smooth; }
+        /* Custom Clippy-like Assistant (fallback) */
+        #custom-clippy {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        #custom-clippy.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .clippy-assistant {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 280px;
+            color: white;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .clippy-icon {
+            font-size: 40px;
+            float: left;
+            margin-right: 10px;
+            animation: clippy-bounce 2s infinite;
+        }
+
+        .clippy-message {
+            margin-left: 50px;
+            line-height: 1.4;
+        }
+
+        .clippy-close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            opacity: 0.7;
+        }
+
+        .clippy-close:hover {
+            opacity: 1;
+        }
+
+        @keyframes clippy-bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tech-pattern {
+            background-image:
+                radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-glow:hover {
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
-<body class="font-roboto text-gray-800">
-    <header>
-        <nav class="flex justify-center space-x-4">
-            <a href="#home" class="text-blue-500 hover:underline">Home</a>
-            <a href="#about" class="text-blue-500 hover:underline">About Me</a>
-            <a href="#projects" class="text-blue-500 hover:underline">Projects</a>
-            <a href="vision.html" class="text-blue-500 hover:underline">Vision</a>
-            <a href="photo.html" class="text-blue-500 hover:underline">Photos</a>
-        </nav>
-    </header>
-
-    <section id="home" class="bg-gradient-to-r from-gray-800 to-gray-500 text-white py-20">
-        <div class="container mx-auto text-center">
-            <h1 class="text-6xl font-bold mb-4">Hi, I'm Yuval Grimberg</h1>
-            <p class="text-xl mb-6">Mechanical Engineer | Control Theory Enthusiast | Autonomous Vehicles Specialist</p>
-            <a href="#about" class="btn bg-blue-500 hover:bg-blue-600 text-white py-3 px-8 rounded-lg shadow-md transition duration-300">Learn More About Me</a>
+<<body class="bg-tech-dark text-white font-display overflow-x-hidden">
+    <!-- Custom Clippy Assistant -->
+    <div id="custom-clippy">
+        <div class="clippy-assistant">
+            <div class="clippy-close" onclick="hideClippy()">×</div>
+            <div class="clippy-icon">📎</div>
+            <div class="clippy-message" id="clippy-text">
+                Hey there! Looking to hire an awesome engineer? I'm here to help!
+            </div>
         </div>
-    </section>
+    </div>
+    <!-- Floating Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold gradient-text" data-aos="fade-right">
+                    YG
+                </div>
+                <div class="hidden md:flex space-x-8" data-aos="fade-left">
+                    <a href="#hero" class="hover:text-tech-cyan transition-all duration-300 relative group">
+                        Home
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="hover:text-tech-cyan transition-all duration-300 relative group">
+                        About
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#skills" class="hover:text-tech-cyan transition-all duration-300 relative group">
+                        Expertise
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#projects" class="hover:text-tech-cyan transition-all duration-300 relative group">
+                        Projects
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#fun-zone" class="hover:text-tech-cyan transition-all duration-300 relative group">
+                        Fun Zone
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="hover:text-tech-cyan transition-all duration-300 relative group">
+                        Contact
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="photo.html" class="hover:text-tech-cyan transition-all duration-300 relative group">
+                        📸
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </div>
+                <button class="md:hidden mobile-menu-button">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    <section id="about" class="py-20 bg-white">
-        <div class="container mx-auto text-center px-4">
-            <h2 class="text-4xl font-bold mb-4">About Me</h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto">As a Mechanical Engineer specializing in control theory and autonomous vehicles, I bring together technical expertise and innovative thinking to solve complex engineering challenges.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mt-12">
-                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-3 text-white">Education</h3>
-                    <p class="text-white">Mechanical Engineering with focus on Control Theory and Autonomous Systems</p>
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden tech-pattern">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div
+                class="absolute -top-10 -left-10 w-72 h-72 bg-tech-purple rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float">
+            </div>
+            <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-tech-cyan rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"
+                style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-tech-green rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float"
+                style="animation-delay: 4s;"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+                    <span class="block text-white">Yuval</span>
+                    <span class="block gradient-text">Grimberg</span>
+                </h1>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="300" class="mb-8">
+                <div
+                    class="inline-flex items-center space-x-4 bg-gradient-to-r from-tech-purple/20 to-tech-cyan/20 backdrop-blur-sm rounded-full px-8 py-4 border border-white/10">
+                    <div class="w-3 h-3 bg-tech-green rounded-full animate-pulse"></div>
+                    <p class="text-xl md:text-2xl font-tech">Control Systems Engineer</p>
                 </div>
-                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-3 text-white">Skills</h3>
-                    <p class="text-white">Control Systems, Robotics, Machine Learning, System Design</p>
-                </div>
-                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-3 text-white">Interests</h3>
-                    <p class="text-white">Autonomous Vehicles, AI in Engineering, Advanced Control Systems</p>
-                </div>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="600" class="mb-12">
+                <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                    Mechanical Engineer specializing in <span class="text-tech-cyan font-semibold">Autonomous
+                        Vehicles</span>,
+                    <span class="text-tech-purple font-semibold">Control Theory</span>, and
+                    <span class="text-tech-green font-semibold">Advanced System Design</span>
+                </p>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="900"
+                class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="#projects"
+                    class="group bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 animate-pulse-glow shadow-2xl">
+                    <span class="flex items-center space-x-2">
+                        <span>View My Work</span>
+                        <i class="fas fa-rocket group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </a>
+                <a href="#contact"
+                    class="group glass-effect hover:bg-white/10 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 border border-white/20">
+                    <span class="flex items-center space-x-2">
+                        <span>Let's Connect</span>
+                        <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-20 bg-gray-100">
-        <div class="container mx-auto text-center px-4">
-            <h2 class="text-4xl font-bold mb-4">My Projects</h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto">A showcase of my work in mechanical engineering, control systems, and autonomous vehicles.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mt-12">
-                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
-                    <h3 class="text-xl font-bold mb-3 text-white">Autonomous Vehicle Control System</h3>
-                    <p class="mb-4 text-white">Developed a cutting-edge control system for autonomous vehicles, ensuring safety and efficiency in various driving conditions.</p>
-                    <div class="text-sm text-gray-300">
-                        <span class="inline-block bg-blue-600 rounded-full px-3 py-1 mr-2 mb-2">Control Theory</span>
-                        <span class="inline-block bg-blue-600 rounded-full px-3 py-1 mr-2 mb-2">Robotics</span>
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">
+                    About <span class="gradient-text">Me</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-tech-purple to-tech-cyan mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" class="space-y-6">
+                    <div class="glass-effect rounded-2xl p-8 hover-lift">
+                        <h3 class="text-2xl font-bold text-tech-cyan mb-4">🎓 Education & Background</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Mechanical Engineering graduate with specialized focus on Control Theory and Autonomous
+                            Systems.
+                            Passionate about bridging the gap between theoretical engineering principles and real-world
+                            applications
+                            in autonomous vehicle technology.
+                        </p>
+                    </div>
+
+                    <div class="glass-effect rounded-2xl p-8 hover-lift">
+                        <h3 class="text-2xl font-bold text-tech-purple mb-4">🚀 Mission</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            To revolutionize transportation through advanced control systems, making autonomous vehicles
+                            safer, more efficient, and accessible. I combine cutting-edge technology with innovative
+                            engineering solutions to solve complex challenges.
+                        </p>
+                    </div>
+
+                    <div class="glass-effect rounded-2xl p-8 hover-lift">
+                        <h3 class="text-2xl font-bold text-tech-green mb-4">💡 Innovation Focus</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Specializing in predictive control algorithms, machine learning integration in control
+                            systems,
+                            and real-time optimization for autonomous vehicle navigation and decision-making processes.
+                        </p>
                     </div>
                 </div>
-                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
-                    <h3 class="text-xl font-bold mb-3 text-white">Advanced Robotics Simulation</h3>
-                    <p class="mb-4 text-white">Created a comprehensive simulation environment for testing and optimizing robotic algorithms and control systems.</p>
-                    <div class="text-sm text-gray-300">
-                        <span class="inline-block bg-blue-600 rounded-full px-3 py-1 mr-2 mb-2">Simulation</span>
-                        <span class="inline-block bg-blue-600 rounded-full px-3 py-1 mr-2 mb-2">Python</span>
+
+                <div data-aos="fade-left" class="relative">
+                    <div class="glass-effect rounded-2xl p-8 text-center hover-lift">
+                        <div class="mb-8">
+                            <div
+                                class="w-32 h-32 bg-gradient-to-br from-tech-purple to-tech-cyan rounded-full mx-auto flex items-center justify-center text-6xl animate-glow">
+                                🤖
+                            </div>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4">Ready to Innovate</h3>
+                        <p class="text-gray-300 mb-6">
+                            Seeking opportunities to apply my expertise in control systems and autonomous vehicle
+                            technology
+                            to drive the future of transportation.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div class="glass-effect rounded-xl p-4">
+                                <div class="text-2xl font-bold text-tech-cyan">5+</div>
+                                <div class="text-sm text-gray-400">Years Experience</div>
+                            </div>
+                            <div class="glass-effect rounded-xl p-4">
+                                <div class="text-2xl font-bold text-tech-purple">15+</div>
+                                <div class="text-sm text-gray-400">Projects</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105">
-                    <h3 class="text-xl font-bold mb-3 text-white">Machine Learning for Predictive Maintenance</h3>
-                    <p class="mb-4 text-white">Implemented machine learning models to predict and prevent equipment failures in industrial settings.</p>
-                    <div class="text-sm text-gray-300">
-                        <span class="inline-block bg-blue-600 rounded-full px-3 py-1 mr-2 mb-2">Machine Learning</span>
-                        <span class="inline-block bg-blue-600 rounded-full px-3 py-1 mr-2 mb-2">Data Analysis</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills/Expertise Section -->
+    <section id="skills" class="py-20 bg-gradient-to-br from-tech-dark to-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0 tech-pattern opacity-50"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">
+                    Technical <span class="gradient-text">Expertise</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Cutting-edge skills in control systems, autonomous vehicles, and advanced engineering
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Core Engineering -->
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="glass-effect rounded-2xl p-6 text-center hover-lift skill-glow group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">⚙️</div>
+                    <h3 class="text-xl font-bold text-tech-cyan mb-3">Control Systems</h3>
+                    <ul class="text-sm text-gray-300 space-y-1">
+                        <li>• PID Controllers</li>
+                        <li>• State-Space Design</li>
+                        <li>• Robust Control</li>
+                        <li>• Adaptive Control</li>
+                    </ul>
+                </div>
+
+                <!-- Autonomous Vehicles -->
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="glass-effect rounded-2xl p-6 text-center hover-lift skill-glow group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🚗</div>
+                    <h3 class="text-xl font-bold text-tech-purple mb-3">Autonomous Vehicles</h3>
+                    <ul class="text-sm text-gray-300 space-y-1">
+                        <li>• Path Planning</li>
+                        <li>• Sensor Fusion</li>
+                        <li>• SLAM</li>
+                        <li>• Vehicle Dynamics</li>
+                    </ul>
+                </div>
+
+                <!-- Programming -->
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="glass-effect rounded-2xl p-6 text-center hover-lift skill-glow group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">💻</div>
+                    <h3 class="text-xl font-bold text-tech-green mb-3">Programming</h3>
+                    <ul class="text-sm text-gray-300 space-y-1">
+                        <li>• Python</li>
+                        <li>• MATLAB/Simulink</li>
+                        <li>• C/C++</li>
+                        <li>• ROS</li>
+                    </ul>
+                </div>
+
+                <!-- Machine Learning -->
+                <div data-aos="fade-up" data-aos-delay="400"
+                    class="glass-effect rounded-2xl p-6 text-center hover-lift skill-glow group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🧠</div>
+                    <h3 class="text-xl font-bold text-tech-cyan mb-3">Machine Learning</h3>
+                    <ul class="text-sm text-gray-300 space-y-1">
+                        <li>• Deep Learning</li>
+                        <li>• Computer Vision</li>
+                        <li>• Reinforcement Learning</li>
+                        <li>• Neural Networks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tools & Technologies -->
+            <div class="mt-16" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-center mb-8 gradient-text">Tools & Technologies</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span
+                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20 transition-colors">TensorFlow</span>
+                    <span
+                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20 transition-colors">PyTorch</span>
+                    <span
+                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20 transition-colors">OpenCV</span>
+                    <span
+                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20 transition-colors">Gazebo</span>
+                    <span
+                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20 transition-colors">Docker</span>
+                    <span
+                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20 transition-colors">Git</span>
+                    <span
+                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20 transition-colors">Linux</span>
+                    <span
+                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20 transition-colors">Kubernetes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">
+                    Featured <span class="gradient-text">Projects</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Cutting-edge engineering solutions that showcase innovation and technical excellence
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                <!-- Project 1: Autonomous Vehicle Control System -->
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group">
+                    <div class="relative overflow-hidden">
+                        <div
+                            class="h-48 bg-gradient-to-br from-tech-purple to-tech-cyan flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-300">
+                            🚗
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span
+                                class="bg-tech-green/20 text-tech-green px-3 py-1 rounded-full text-xs font-bold">FEATURED</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-tech-cyan mb-3">Autonomous Vehicle Control System</h3>
+                        <p class="text-gray-300 mb-4">
+                            Advanced model predictive control system for autonomous vehicles with real-time path
+                            planning,
+                            obstacle avoidance, and vehicle dynamics optimization.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-tech-purple/20 text-tech-purple px-2 py-1 rounded text-xs">Python</span>
+                            <span class="bg-tech-cyan/20 text-tech-cyan px-2 py-1 rounded text-xs">Control Theory</span>
+                            <span class="bg-tech-green/20 text-tech-green px-2 py-1 rounded text-xs">ROS</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#"
+                                class="text-tech-cyan hover:text-white transition-colors flex items-center space-x-1">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <div class="flex space-x-2">
+                                <a href="https://github.com/grimgrimberg"
+                                    class="text-gray-400 hover:text-white transition-colors">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Machine Learning Control Optimization -->
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group">
+                    <div class="relative overflow-hidden">
+                        <div
+                            class="h-48 bg-gradient-to-br from-tech-green to-tech-purple flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-300">
+                            🧠
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span
+                                class="bg-tech-purple/20 text-tech-purple px-3 py-1 rounded-full text-xs font-bold">AI/ML</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-tech-purple mb-3">ML-Enhanced Control Systems</h3>
+                        <p class="text-gray-300 mb-4">
+                            Integration of deep reinforcement learning with traditional control methods for adaptive
+                            system optimization and predictive maintenance in industrial applications.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-tech-green/20 text-tech-green px-2 py-1 rounded text-xs">TensorFlow</span>
+                            <span class="bg-tech-purple/20 text-tech-purple px-2 py-1 rounded text-xs">Deep
+                                Learning</span>
+                            <span class="bg-tech-cyan/20 text-tech-cyan px-2 py-1 rounded text-xs">MATLAB</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#"
+                                class="text-tech-purple hover:text-white transition-colors flex items-center space-x-1">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <div class="flex space-x-2">
+                                <a href="https://github.com/grimgrimberg"
+                                    class="text-gray-400 hover:text-white transition-colors">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Robotic System Integration -->
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group">
+                    <div class="relative overflow-hidden">
+                        <div
+                            class="h-48 bg-gradient-to-br from-tech-cyan to-tech-green flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-300">
+                            🤖
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span
+                                class="bg-tech-cyan/20 text-tech-cyan px-3 py-1 rounded-full text-xs font-bold">ROBOTICS</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-tech-green mb-3">Advanced Robotics Platform</h3>
+                        <p class="text-gray-300 mb-4">
+                            Multi-robot coordination system with distributed control architecture,
+                            real-time communication protocols, and collaborative task execution.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-tech-cyan/20 text-tech-cyan px-2 py-1 rounded text-xs">C++</span>
+                            <span class="bg-tech-green/20 text-tech-green px-2 py-1 rounded text-xs">Robotics</span>
+                            <span class="bg-tech-purple/20 text-tech-purple px-2 py-1 rounded text-xs">Embedded</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#"
+                                class="text-tech-green hover:text-white transition-colors flex items-center space-x-1">
+                                <span>View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <div class="flex space-x-2">
+                                <a href="https://github.com/grimgrimberg"
+                                    class="text-gray-400 hover:text-white transition-colors">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View More Projects Button -->
+            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
+                <a href="https://github.com/grimgrimberg" target="_blank"
+                    class="group bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl">
+                    <span class="flex items-center space-x-2">
+                        <span>View All Projects on GitHub</span>
+                        <i class="fab fa-github group-hover:rotate-12 transition-transform"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials/Impact Section -->
+    <section id="testimonials" class="py-20 bg-gradient-to-br from-gray-900 to-tech-dark relative overflow-hidden">
+        <div class="absolute inset-0 tech-pattern opacity-30"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">
+                    Epic <span class="gradient-text">Reviews</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    What legendary figures would say about my work (if they could see this portfolio)
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100"
+                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
+                    <div class="text-4xl text-tech-cyan mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold text-tech-cyan mb-3">Legendary Engineering</h3>
+                    <p class="text-gray-300 mb-4">
+                        "Holy sh*t, this is the best engineering portfolio I've ever seen! And I've seen... well, not
+                        much because I'm blind, but this one SOUNDS amazing!"
+                    </p>
+                    <div class="mt-4 text-sm text-gray-400">- Ray Charles</div>
+                    <div class="text-xs text-gray-500 italic mt-1">(Spiritual endorsement)</div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="200"
+                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
+                    <div class="text-4xl text-tech-purple mb-4">🚀</div>
+                    <h3 class="text-2xl font-bold text-tech-purple mb-3">Mind-Blowing Innovation</h3>
+                    <p class="text-gray-300 mb-4">
+                        "It made me walk again! Well, not literally - I'm still dead. But if I were alive, Yuval's
+                        control systems would definitely help me get around faster than my wheelchair ever did."
+                    </p>
+                    <div class="mt-4 text-sm text-gray-400">- Stephen Hawking</div>
+                    <div class="text-xs text-gray-500 italic mt-1">(Interdimensional consultation)</div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="300"
+                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
+                    <div class="text-4xl text-tech-green mb-4">⚡</div>
+                    <h3 class="text-2xl font-bold text-tech-green mb-3">Pure Genius</h3>
+                    <p class="text-gray-300 mb-4">
+                        "Damn, I wish I had hired Yuval for Tesla autopilot. We probably wouldn't have crashed into all
+                        those traffic cones. This guy actually knows what he's doing!"
+                    </p>
+                    <div class="mt-4 text-sm text-gray-400">- Elon Musk</div>
+                    <div class="text-xs text-gray-500 italic mt-1">(Definitely would say this after a few drinks)</div>
+                </div>
+            </div>
+
+            <!-- Additional Epic Reviews Row -->
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div data-aos="fade-up" data-aos-delay="400"
+                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
+                    <div class="text-4xl text-tech-pink mb-4">🎵</div>
+                    <h3 class="text-2xl font-bold text-tech-pink mb-3">Absolutely Revolutionary</h3>
+                    <p class="text-gray-300 mb-4">
+                        "E=mc² was cute, but Yuval's control algorithms? That's the real theory of everything! I'm
+                        literally jealous of a guy who wasn't even born yet when I died."
+                    </p>
+                    <div class="mt-4 text-sm text-gray-400">- Albert Einstein</div>
+                    <div class="text-xs text-gray-500 italic mt-1">(Time travel is complicated)</div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="500"
+                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
+                    <div class="text-4xl text-tech-cyan mb-4">🤖</div>
+                    <h3 class="text-2xl font-bold text-tech-cyan mb-3">Beyond Perfection</h3>
+                    <p class="text-gray-300 mb-4">
+                        "I've seen 14,000,605 possible futures. In ALL of them, Yuval gets the job. In 14,000,604 of
+                        them, he also gets a raise within 6 months."
+                    </p>
+                    <div class="mt-4 text-sm text-gray-400">- Doctor Strange</div>
+                    <div class="text-xs text-gray-500 italic mt-1">(Multiverse HR consultant)</div>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="600">
+                <p class="text-xs text-gray-500 italic max-w-2xl mx-auto">
+                    * Reviews may be slightly exaggerated for comedic effect. But seriously, the engineering skills are
+                    real, the humor is infectious, and the results speak for themselves. What more do you want? 🤷‍♂️
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fun Zone Section - The Perfect Balance of Professional & Quirky -->
+    <section id="fun-zone"
+        class="py-20 relative overflow-hidden bg-gradient-to-br from-tech-purple/10 via-tech-dark to-tech-cyan/10">
+        <div class="absolute inset-0 tech-pattern opacity-20"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">
+                    The <span class="gradient-text">Human</span> Side
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Yes, I can design control systems for autonomous vehicles. But can I make you laugh while doing it?
+                    <span class="text-tech-cyan">Absolutely.</span> 🤖
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                <!-- Photography Showcase -->
+                <div data-aos="fade-right"
+                    class="glass-effect rounded-2xl p-8 group hover:scale-105 transition-all duration-300">
+                    <div class="text-center mb-6">
+                        <div class="text-4xl mb-4">📸</div>
+                        <h3 class="text-2xl font-bold text-tech-cyan mb-4">Travel Photography</h3>
+                        <p class="text-gray-300 mb-6">When I'm not programming robots, I'm capturing the world through
+                            my lens. From engineering precision to artistic vision.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <img src="assets/images/optimized/DSC02477.jpg" alt="Travel Photo 1"
+                            class="rounded-lg object-cover h-24 w-full hover:scale-110 transition-transform">
+                        <img src="assets/images/optimized/DSC03288.jpg" alt="Travel Photo 2"
+                            class="rounded-lg object-cover h-24 w-full hover:scale-110 transition-transform">
+                        <img src="assets/images/optimized/DSC05064-Edit.jpg" alt="Travel Photo 3"
+                            class="rounded-lg object-cover h-24 w-full hover:scale-110 transition-transform">
+                        <img src="assets/images/optimized/DSC07124.jpg" alt="Travel Photo 4"
+                            class="rounded-lg object-cover h-24 w-full hover:scale-110 transition-transform">
+                    </div>
+                    <a href="photo.html"
+                        class="inline-flex items-center space-x-2 text-tech-cyan hover:text-tech-green transition-colors font-semibold">
+                        <span>View Full Gallery</span>
+                        <i class="fas fa-camera"></i>
+                    </a>
+                </div>
+
+                <!-- Interactive Goose Zone -->
+                <div data-aos="fade-up"
+                    class="glass-effect rounded-2xl p-8 text-center group hover:scale-105 transition-all duration-300">
+                    <div class="text-4xl mb-4">🦆</div>
+                    <h3 class="text-2xl font-bold text-tech-green mb-4">Meet My Assistant</h3>
+                    <p class="text-gray-300 mb-6">Every serious engineer needs a debugging duck. Mine just happens to be
+                        animated and slightly unhinged.</p>
+
+                    <!-- Goose Animation Container -->
+                    <div id="goose-fun-zone" class="relative mx-auto mb-6" style="width: 120px; height: 120px;">
+                        <!-- Goose will be loaded here -->
+                    </div>
+
+                    <div class="space-y-3">
+                        <button id="goose-talk"
+                            class="bg-gradient-to-r from-tech-green to-tech-cyan hover:from-tech-cyan hover:to-tech-green text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            Ask Goose for Advice
+                        </button>
+                        <div id="goose-wisdom" class="text-sm text-tech-cyan italic min-h-[20px]"></div>
+                    </div>
+                </div>
+
+                <!-- Easter Egg Zone -->
+                <div data-aos="fade-left"
+                    class="glass-effect rounded-2xl p-8 text-center group hover:scale-105 transition-all duration-300">
+                    <div class="text-4xl mb-4">🎮</div>
+                    <h3 class="text-2xl font-bold text-tech-purple mb-4">Secret Features</h3>
+                    <p class="text-gray-300 mb-6">I hide easter eggs in my code like I hide bugs... strategically and
+                        with purpose.</p>
+
+                    <div class="space-y-4">
+                        <div class="text-sm text-gray-400">
+                            <p><kbd class="bg-gray-700 px-2 py-1 rounded">Alt + Shift + C</kbd> - Summon Clippy</p>
+                            <p><kbd class="bg-gray-700 px-2 py-1 rounded">Click Counter</kbd> - Find the magic number
+                            </p>
+                        </div>
+
+                        <button id="click-me-button"
+                            class="bg-gradient-to-r from-tech-purple to-tech-pink hover:from-tech-pink hover:to-tech-purple text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 animate-pulse">
+                            Click Me! <span id="click-count" class="text-xs">(0)</span>
+                        </button>
+
+                        <div id="click-message" class="text-xs text-tech-cyan min-h-[20px]"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fun Facts About Me -->
+            <div data-aos="fade-up" class="glass-effect rounded-2xl p-8">
+                <h3 class="text-2xl font-bold text-center text-white mb-8">Random Facts That Make Me Hireable</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center group hover:scale-105 transition-transform">
+                        <div class="text-3xl mb-2">🚗</div>
+                        <h4 class="font-semibold text-tech-cyan mb-2">Car Enthusiast</h4>
+                        <p class="text-sm text-gray-300">I can debug autonomous vehicles AND explain why pop-up
+                            headlights were engineering art</p>
+                    </div>
+                    <div class="text-center group hover:scale-105 transition-transform">
+                        <div class="text-3xl mb-2">☕</div>
+                        <h4 class="font-semibold text-tech-green mb-2">Coffee Scientist</h4>
+                        <p class="text-sm text-gray-300">Optimized extraction algorithms for the perfect espresso. Yes,
+                            this is relevant to control theory.</p>
+                    </div>
+                    <div class="text-center group hover:scale-105 transition-transform">
+                        <div class="text-3xl mb-2">🎵</div>
+                        <h4 class="font-semibold text-tech-purple mb-2">Music Algorithm</h4>
+                        <p class="text-sm text-gray-300">Built recommendation systems that can predict your next
+                            favorite song better than Spotify</p>
+                    </div>
+                    <div class="text-center group hover:scale-105 transition-transform">
+                        <div class="text-3xl mb-2">🤖</div>
+                        <h4 class="font-semibold text-tech-pink mb-2">Robot Whisperer</h4>
+                        <p class="text-sm text-gray-300">I speak fluent robot. They usually listen. Sometimes they plot
+                            against me.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="reviews" class="py-20 bg-white">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-4">What People Are Saying</h2>
-            <div class="text-lg">
-                <blockquote class="mb-6">"This page is the best thing I've ever seen." - Ray Charles</blockquote>
-                <blockquote class="mb-6">"Absolutely groundbreaking!" - Albert Einstein</blockquote>
-                <blockquote class="mb-6">"I can't believe how amazing this is." - Nikola Tesla</blockquote>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-tech-dark via-gray-900 to-tech-dark"></div>
+        <div class="absolute inset-0 tech-pattern opacity-40"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">
+                    Let's <span class="gradient-text">Connect</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Ready to bring innovative control systems and autonomous vehicle solutions to your team?
+                    Let's discuss how we can build the future together.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div data-aos="fade-right" class="glass-effect rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-tech-cyan mb-6">Send a Message</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                            <input type="text" name="name"
+                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-transparent outline-none text-white placeholder-gray-400"
+                                placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                            <input type="email" name="email"
+                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-transparent outline-none text-white placeholder-gray-400"
+                                placeholder="your.email@company.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                            <select name="subject"
+                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-transparent outline-none text-white">
+                                <option value="">Select a topic</option>
+                                <option value="job">Job Opportunity</option>
+                                <option value="collaboration">Collaboration</option>
+                                <option value="consultation">Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                            <textarea name="message" rows="4"
+                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-transparent outline-none text-white placeholder-gray-400"
+                                placeholder="Tell me about your project or opportunity..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <span class="flex items-center justify-center space-x-2">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info & Quick Actions -->
+                <div data-aos="fade-left" class="space-y-8">
+                    <!-- Quick Contact -->
+                    <div class="glass-effect rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-tech-purple mb-6">Quick Connect</h3>
+                        <div class="space-y-4">
+                            <a href="mailto:yuval.grimberg@email.com"
+                                class="flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-purple/10 transition-colors group">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-br from-tech-purple to-tech-cyan rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-white">Email</div>
+                                    <div class="text-gray-400 text-sm">yuval.grimberg@email.com</div>
+                                </div>
+                            </a>
+
+                            <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
+                                class="flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-cyan/10 transition-colors group">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-br from-tech-cyan to-tech-green rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i class="fab fa-linkedin text-white"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-white">LinkedIn</div>
+                                    <div class="text-gray-400 text-sm">Professional Network</div>
+                                </div>
+                            </a>
+
+                            <a href="https://github.com/grimgrimberg" target="_blank"
+                                class="flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-green/10 transition-colors group">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-br from-tech-green to-tech-purple rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i class="fab fa-github text-white"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-white">GitHub</div>
+                                    <div class="text-gray-400 text-sm">View Code & Projects</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Availability Status -->
+                    <div class="glass-effect rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-tech-green mb-4">Availability Status</h3>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-4 h-4 bg-tech-green rounded-full animate-pulse"></div>
+                            <span class="text-tech-green font-semibold">Currently Available</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4">
+                            Open to full-time opportunities, consulting projects, and collaborative research in:
+                        </p>
+                        <ul class="text-sm text-gray-300 space-y-1">
+                            <li>• Control Systems Engineering</li>
+                            <li>• Autonomous Vehicle Development</li>
+                            <li>• Robotics & Automation</li>
+                            <li>• Machine Learning Integration</li>
+                        </ul>
+                    </div>
+
+                    <!-- Download Resume -->
+                    <div class="glass-effect rounded-2xl p-8 text-center">
+                        <h3 class="text-xl font-bold text-white mb-4">Download Resume</h3>
+                        <a href="./assets/Yuval_Resume_2024.pdf" download="Yuval_Resume_2024.pdf" target="_blank"
+                            class="inline-flex items-center space-x-2 bg-gradient-to-r from-tech-green to-tech-cyan hover:from-tech-cyan hover:to-tech-green text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <i class="fas fa-download"></i>
+                            <span>Download CV / Resume</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 bg-gray-100">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-4">Contact Me</h2>
-            <form class="max-w-lg mx-auto">
-                <input type="text" placeholder="Your Name" class="w-full p-3 mb-4 border rounded">
-                <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 border rounded">
-                <textarea placeholder="Your Message" class="w-full p-3 mb-4 border rounded"></textarea>
-                <button type="submit" class="btn bg-blue-500 hover:bg-blue-600 text-white py-3 px-8 rounded-lg shadow-md transition duration-300">Send Message</button>
-            </form>
-            <div class="mt-8 flex justify-center space-x-6">
-                <a href="https://github.com/grimgrimberg" target="_blank" class="text-gray-700 hover:text-blue-600"><i class="fab fa-github text-2xl"></i></a>
-                <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank" class="text-gray-700 hover:text-blue-600"><i class="fab fa-linkedin text-2xl"></i></a>
-            </div>
-        </div>
-    </section>
+    <!-- Footer -->
+    <footer class="bg-tech-dark border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="text-2xl font-bold gradient-text mb-4">Yuval Grimberg</div>
+                    <p class="text-gray-400 mb-4">
+                        Control Systems Engineer & Autonomous Vehicle Specialist
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/grimgrimberg" target="_blank"
+                            class="text-gray-400 hover:text-tech-cyan transition-colors">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
+                            class="text-gray-400 hover:text-tech-purple transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="mailto:yuval.grimberg@email.com"
+                            class="text-gray-400 hover:text-tech-green transition-colors">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
 
-    <footer class="bg-gray-800 text-white py-6 mt-20">
-        <div class="container mx-auto text-center">
-            <p class="mb-4">&copy; 2025 Yuval. All rights reserved.</p>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-tech-cyan transition-colors">About</a></li>
+                        <li><a href="#skills" class="text-gray-400 hover:text-tech-cyan transition-colors">Expertise</a>
+                        </li>
+                        <li><a href="#projects"
+                                class="text-gray-400 hover:text-tech-cyan transition-colors">Projects</a></li>
+                        <li><a href="#fun-zone" class="text-gray-400 hover:text-tech-cyan transition-colors">Fun
+                                Zone</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-tech-cyan transition-colors">Contact</a>
+                        </li>
+                        <li><a href="photo.html"
+                                class="text-gray-400 hover:text-tech-cyan transition-colors">Photography</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Specializations</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>• Control Theory</li>
+                        <li>• Autonomous Vehicles</li>
+                        <li>• Machine Learning</li>
+                        <li>• Robotics Systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2025 Yuval Grimberg. All rights reserved. |
+                    <span class="text-tech-cyan">Ready to innovate together?</span>
+                </p>
+            </div>
         </div>
     </footer>
 
-    <script src="assets/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-</body>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- REAL ClippyJS - The Authentic Microsoft Office Assistant! -->
+    <script src="https://unpkg.com/jquery@3.2.1"></script>
+    <script src="https://unpkg.com/clippyjs@latest"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-effect');
+                navbar.style.backgroundColor = 'rgba(10, 15, 28, 0.8)';
+            } else {
+                navbar.classList.remove('glass-effect');
+                navbar.style.backgroundColor = 'transparent';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', function () {
+                // Add mobile menu functionality here
+                console.log('Mobile menu clicked');
+            });
+        }
+
+        // Form submission
+        const contactForm = document.querySelector('#contact form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                // Add form submission logic here
+                alert('Thank you for your message! I will get back to you soon.');
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Fun Zone Interactive Elements
+        let funClickCount = 0;
+        const clickMeButton = document.getElementById('click-me-button');
+        const clickCountDisplay = document.getElementById('click-count');
+        const clickMessage = document.getElementById('click-message');
+
+        if (clickMeButton) {
+            clickMeButton.addEventListener('click', function () {
+                funClickCount++;
+                clickCountDisplay.textContent = `(${funClickCount})`;
+
+                // Fun messages based on click count
+                const messages = [
+                    "Great! You can follow instructions.",
+                    "Wow, you're persistent. I like that in a teammate.",
+                    "Still clicking? This is exactly the attention to detail we need.",
+                    "You're either very dedicated or very bored. Either way, hired!",
+                    "Ok seriously, you'd fit right into our QA testing team.",
+                    "At this point you're just stress-testing my button. Respect.",
+                    "You know what? Let's talk. Email me.",
+                    "This is getting weird but I admire your commitment.",
+                    "Are you trying to find the meaning of life? It's 42, btw.",
+                    "🎉 CONGRATS! You found the persistence level of a true engineer!"
+                ];
+
+                if (funClickCount <= messages.length) {
+                    clickMessage.textContent = messages[funClickCount - 1];
+                }
+
+                if (funClickCount === 42) {
+                    clickMessage.innerHTML = '🎊 THE ANSWER TO EVERYTHING! You are definitely engineer material! 🎊';
+                    clickMeButton.classList.add('animate-bounce');
+                }
+
+                // Add some visual flair
+                if (funClickCount % 5 === 0) {
+                    clickMeButton.style.background = `linear-gradient(45deg, hsl(${Math.random() * 360}, 70%, 50%), hsl(${Math.random() * 360}, 70%, 50%))`;
+                }
+            });
+        }
+
+        // Goose Wisdom
+        const gooseTalkButton = document.getElementById('goose-talk');
+        const gooseWisdom = document.getElementById('goose-wisdom');
+
+        if (gooseTalkButton) {
+            const gooseQuotes = [
+                "Debugging is like being a detective in a crime where you're also the murderer.",
+                "There are only 10 types of people: those who understand binary and those who don't.",
+                "If it works, don't touch it. If it doesn't work, blame the hardware.",
+                "Code never lies, comments sometimes do, but geese always honk truth.",
+                "The best debugging tool is a good night's sleep. The second best is coffee.",
+                "Real programmers count from 0. Real geese count backwards from infinity.",
+                "Why do programmers prefer dark mode? Because light attracts bugs!",
+                "A day without git commits is like a day without sunshine. Depressing and unproductive.",
+                "In Soviet Russia, code debugs you! Wait, that's everywhere now.",
+                "I don't always test my code, but when I do, I do it in production. 🦆"
+            ];
+
+            gooseTalkButton.addEventListener('click', function () {
+                const randomQuote = gooseQuotes[Math.floor(Math.random() * gooseQuotes.length)];
+                gooseWisdom.textContent = `"${randomQuote}"`;
+
+                // Add some animation
+                gooseWisdom.style.animation = 'none';
+                setTimeout(() => {
+                    gooseWisdom.style.animation = 'pulse 1s ease-in-out';
+                }, 10);
+            });
+        }
+
+        // Load Goose Animation in Fun Zone
+        function loadGooseAnimation() {
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js';
+            script.onload = function () {
+                if (window.lottie) {
+                    const gooseContainer = document.getElementById('goose-fun-zone');
+                    if (gooseContainer) {
+                        lottie.loadAnimation({
+                            container: gooseContainer,
+                            renderer: 'svg',
+                            loop: true,
+                            autoplay: true,
+                            path: './assets/images/jumpy-goose.json'
+                        });
+                    }
+                }
+            };
+            document.head.appendChild(script);
+        }
+
+        // Initialize goose animation
+        loadGooseAnimation();
+
+        // REAL AUTHENTIC MICROSOFT OFFICE CLIPPY! 📎
+        let clippyAgent = null;
+        let clippyLoaded = false;
+
+        // Set the CDN path for ClippyJS agents
+        window.CLIPPY_CDN = 'https://cdn.jsdelivr.net/gh/pi0/clippyjs@master/assets/agents/';
+
+        // Load the REAL Clippy with all his authentic animations!
+        function initializeRealClippy() {
+            if (typeof clippy !== 'undefined') {
+                console.log('🎉 Loading REAL Microsoft Office Clippy!');
+
+                // Load Clippy agent with authentic animations
+                clippy.load('Clippy', function (agent) {
+                    clippyAgent = agent;
+                    clippyLoaded = true;
+
+                    // Hide initially
+                    clippyAgent.hide();
+
+                    console.log('📎 REAL Clippy loaded successfully!');
+                    console.log('Available animations:', clippyAgent.animations());
+
+                    // Show random welcome message after 10 seconds
+                    setTimeout(() => {
+                        if (Math.random() > 0.7) {
+                            showRealClippyWelcome();
+                        }
+                    }, 10000);
+                });
+            } else {
+                // If ClippyJS isn't loaded yet, try again
+                console.log('⏳ Waiting for ClippyJS to load...');
+                setTimeout(initializeRealClippy, 1000);
+            }
+        }
+
+        function showRealClippyWelcome() {
+            if (clippyAgent && clippyLoaded) {
+                // Move to a random position
+                const x = Math.random() * (window.innerWidth - 200);
+                const y = Math.random() * (window.innerHeight - 200);
+
+                clippyAgent.moveTo(x, y);
+                clippyAgent.show();
+
+                // Play a welcome animation
+                clippyAgent.play('Wave');
+
+                const welcomeMessages = [
+                    "It looks like you're browsing an awesome engineering portfolio! Would you like help with that?",
+                    "Hi! I'm the REAL Clippy! This portfolio is quite impressive, isn't it?",
+                    "I see you're checking out Yuval's work. Smart choice! He's definitely hireable!",
+                    "Need help navigating this epic website? Try pressing Alt+Shift+C!",
+                    "This portfolio is so good, even Microsoft would be proud!",
+                    "Pro tip: Check out the Fun Zone - there are more easter eggs!",
+                    "I've been helping people since the 90s, but this portfolio still amazes me!",
+                    "Want to see something cool? I can do authentic Microsoft Office animations!"
+                ];
+
+                clippyAgent.speak(welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)]);
+
+                // Auto-hide after 10 seconds
+                setTimeout(() => {
+                    if (clippyAgent) {
+                        clippyAgent.play('Hide');
+                        setTimeout(() => clippyAgent.hide(), 1000);
+                    }
+                }, 10000);
+            }
+        }
+
+        // Initialize REAL Clippy
+        initializeRealClippy();
+
+        // Enhanced Keyboard shortcuts and Easter Eggs with REAL Clippy
+        document.addEventListener('keydown', function (e) {
+            // Alt+Shift+C for REAL Clippy magic!
+            if (e.altKey && e.shiftKey && e.code === 'KeyC') {
+                e.preventDefault();
+
+                if (clippyAgent && clippyLoaded) {
+                    // Show REAL Clippy with authentic animations!
+                    clippyAgent.moveTo(100, 100);
+                    clippyAgent.show();
+
+                    // Play a random animation first
+                    const animations = ['GetAttention', 'Congratulate', 'Thinking', 'Explain', 'LookRight', 'LookLeft', 'CheckingSomething'];
+                    const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+                    clippyAgent.play(randomAnim);
+
+                    const phrases = [
+                        "🎯 Secret activated! You found the REAL Microsoft Office Clippy! You're definitely tech-savvy!",
+                        "Looking for Yuval's contact info? Scroll down to the contact section!",
+                        "Want to see his photography skills? Check out the Fun Zone!",
+                        "Pro tip: Try clicking the counter button exactly 42 times...",
+                        "This portfolio is so well-coded, I couldn't find any bugs! And I'm very thorough!",
+                        "I'm the REAL Clippy! Not some CSS impostor! I have authentic Microsoft animations!",
+                        "Did you know Yuval can debug autonomous vehicles AND make you laugh? Rare combo!",
+                        "I've seen countless resumes since 1997, but this portfolio is next level!",
+                        "Fun fact: I can do over 50 different animations! Want to see another one?",
+                        "� CLIPPY EASTER EGG UNLOCKED! You've discovered the authentic Microsoft Office experience!"
+                    ];
+
+                    clippyAgent.speak(phrases[Math.floor(Math.random() * phrases.length)]);
+
+                    // Auto-hide after 12 seconds
+                    setTimeout(() => {
+                        clippyAgent.play('GoodBye');
+                        setTimeout(() => clippyAgent.hide(), 2000);
+                    }, 12000);
+                } else {
+                    // Fallback to custom clippy if real one isn't loaded
+                    showClippy("🔗📎 REAL Clippy is loading... But I can tell you're trying to hire an awesome engineer! 📎");
+                }
+            }
+
+            // Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A
+            const konamiCode = [
+                'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+                'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+                'KeyB', 'KeyA'
+            ];
+
+            if (!window.konamiSequence) window.konamiSequence = [];
+
+            window.konamiSequence.push(e.code);
+            if (window.konamiSequence.length > konamiCode.length) {
+                window.konamiSequence.shift();
+            }
+
+            if (window.konamiSequence.length === konamiCode.length &&
+                window.konamiSequence.every((code, index) => code === konamiCode[index])) {
+                // Konami code activated with REAL Clippy!
+                if (clippyAgent && clippyLoaded) {
+                    clippyAgent.moveTo(window.innerWidth / 2 - 100, window.innerHeight / 2 - 100);
+                    clippyAgent.show();
+                    clippyAgent.play('Congratulate');
+                    clippyAgent.speak("🎮 KONAMI CODE ACTIVATED! You've unlocked the ultimate easter egg! I'm so excited I'm doing my victory dance! 🎮");
+                } else {
+                    showClippy("🎮 KONAMI CODE ACTIVATED! Ultimate easter egg unlocked! 🎮");
+                }
+
+                document.body.style.animation = 'rainbow 2s infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 5000);
+                window.konamiSequence = [];
+            }
+        });
+
+        // Fallback custom clippy functions (keep for compatibility)
+        function showClippy(message = null) {
+            const clippy = document.getElementById('custom-clippy');
+            const clippyText = document.getElementById('clippy-text');
+
+            if (message) {
+                clippyText.textContent = message;
+            }
+
+            clippy.classList.add('show');
+
+            // Auto-hide after 8 seconds
+            setTimeout(() => {
+                hideClippy();
+            }, 8000);
+        }
+
+        function hideClippy() {
+            const clippy = document.getElementById('custom-clippy');
+            clippy.classList.remove('show');
+        }
+
+        // Add rainbow animation for Konami code
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                25% { filter: hue-rotate(90deg); }
+                50% { filter: hue-rotate(180deg); }
+                75% { filter: hue-rotate(270deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+    </body>
+
 </html>
