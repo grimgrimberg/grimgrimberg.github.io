@@ -1,0 +1,262 @@
+# Page snapshot
+
+```yaml
+- text: < × 📎 Hey there! Looking to hire an awesome engineer? I'm here to help!
+- navigation:
+  - text: YG
+  - link "Home":
+    - /url: "#hero"
+  - link "About":
+    - /url: "#about"
+  - link "Expertise":
+    - /url: "#skills"
+  - link "Projects":
+    - /url: "#projects"
+  - link "Fun Zone":
+    - /url: "#fun-zone"
+  - link "🎮 Retro Games":
+    - /url: "#retro-games"
+  - link "Contact":
+    - /url: "#contact"
+  - link "📸":
+    - /url: photo.html
+- heading "Yuval Grimberg" [level=1]
+- paragraph: Control Systems Engineer
+- paragraph: Mechanical Engineer specializing in Autonomous Vehicles, Control Theory, and Advanced System Design
+- link "View My Work ":
+  - /url: "#projects"
+- link "Let's Connect ":
+  - /url: "#contact"
+- heading "About Me" [level=2]
+- heading "🎓 Education & Background" [level=3]
+- paragraph: Mechanical Engineering graduate with specialized focus on Control Theory and Autonomous Systems. Passionate about bridging the gap between theoretical engineering principles and real-world applications in autonomous vehicle technology.
+- heading "🚀 Mission" [level=3]
+- paragraph: To revolutionize transportation through advanced control systems, making autonomous vehicles safer, more efficient, and accessible. I combine cutting-edge technology with innovative engineering solutions to solve complex challenges.
+- heading "💡 Innovation Focus" [level=3]
+- paragraph: Specializing in predictive control algorithms, machine learning integration in control systems, and real-time optimization for autonomous vehicle navigation and decision-making processes.
+- text: 🤖
+- heading "Ready to Innovate" [level=3]
+- paragraph: Seeking opportunities to apply my expertise in control systems and autonomous vehicle technology to drive the future of transportation.
+- text: 5+ Years Experience 15+ Projects
+- heading "Technical Expertise" [level=2]
+- paragraph: Cutting-edge skills in control systems, autonomous vehicles, and advanced engineering
+- text: ⚙️
+- heading "Control Systems" [level=3]
+- list:
+  - listitem: • PID Controllers
+  - listitem: • State-Space Design
+  - listitem: • Robust Control
+  - listitem: • Adaptive Control
+- text: 🚗
+- heading "Autonomous Vehicles" [level=3]
+- list:
+  - listitem: • Path Planning
+  - listitem: • Sensor Fusion
+  - listitem: • SLAM
+  - listitem: • Vehicle Dynamics
+- text: 💻
+- heading "Programming" [level=3]
+- list:
+  - listitem: • Python
+  - listitem: • MATLAB/Simulink
+  - listitem: • C/C++
+  - listitem: • ROS
+- text: 🧠
+- heading "Machine Learning" [level=3]
+- list:
+  - listitem: • Deep Learning
+  - listitem: • Computer Vision
+  - listitem: • Reinforcement Learning
+  - listitem: • Neural Networks
+- heading "Tools & Technologies" [level=3]
+- text: TensorFlow PyTorch OpenCV Gazebo Docker Git Linux Kubernetes
+- heading "Featured Projects" [level=2]
+- paragraph: Cutting-edge engineering solutions that showcase innovation and technical excellence
+- text: 🚗 FEATURED
+- heading "Autonomous Vehicle Control System" [level=3]
+- paragraph: Advanced model predictive control system for autonomous vehicles with real-time path planning, obstacle avoidance, and vehicle dynamics optimization.
+- text: Python Control Theory ROS
+- link "View Details ":
+  - /url: "#"
+- link "":
+  - /url: https://github.com/grimgrimberg
+- link "":
+  - /url: "#"
+- text: 🧠 AI/ML
+- heading "ML-Enhanced Control Systems" [level=3]
+- paragraph: Integration of deep reinforcement learning with traditional control methods for adaptive system optimization and predictive maintenance in industrial applications.
+- text: TensorFlow Deep Learning MATLAB
+- link "View Details ":
+  - /url: "#"
+- link "":
+  - /url: https://github.com/grimgrimberg
+- link "":
+  - /url: "#"
+- text: 🤖 ROBOTICS
+- heading "Advanced Robotics Platform" [level=3]
+- paragraph: Multi-robot coordination system with distributed control architecture, real-time communication protocols, and collaborative task execution.
+- text: C++ Robotics Embedded
+- link "View Details ":
+  - /url: "#"
+- link "":
+  - /url: https://github.com/grimgrimberg
+- link "":
+  - /url: "#"
+- link "View All Projects on GitHub ":
+  - /url: https://github.com/grimgrimberg
+- heading "Epic Reviews" [level=2]
+- paragraph: What legendary figures would say about my work (if they could see this portfolio)
+- text: 🎯
+- heading "Legendary Engineering" [level=3]
+- paragraph: "\"Holy sh*t, this is the best engineering portfolio I've ever seen! And I've seen... well, not much because I'm blind, but this one SOUNDS amazing!\""
+- text: "- Ray Charles (Spiritual endorsement) 🚀"
+- heading "Mind-Blowing Innovation" [level=3]
+- paragraph: "\"It made me walk again! Well, not literally - I'm still dead. But if I were alive, Yuval's control systems would definitely help me get around faster than my wheelchair ever did.\""
+- text: "- Stephen Hawking (Interdimensional consultation) ⚡"
+- heading "Pure Genius" [level=3]
+- paragraph: "\"Damn, I wish I had hired Yuval for Tesla autopilot. We probably wouldn't have crashed into all those traffic cones. This guy actually knows what he's doing!\""
+- text: "- Elon Musk (Definitely would say this after a few drinks) 🎵"
+- heading "Absolutely Revolutionary" [level=3]
+- paragraph: "\"E=mc² was cute, but Yuval's control algorithms? That's the real theory of everything! I'm literally jealous of a guy who wasn't even born yet when I died.\""
+- text: "- Albert Einstein (Time travel is complicated) 🤖"
+- heading "Beyond Perfection" [level=3]
+- paragraph: "\"I've seen 14,000,605 possible futures. In ALL of them, Yuval gets the job. In 14,000,604 of them, he also gets a raise within 6 months.\""
+- text: "- Doctor Strange (Multiverse HR consultant)"
+- paragraph: "* Reviews may be slightly exaggerated for comedic effect. But seriously, the engineering skills are real, the humor is infectious, and the results speak for themselves. What more do you want? 🤷‍♂️"
+- heading "The Human Side" [level=2]
+- paragraph: Yes, I can design control systems for autonomous vehicles. But can I make you laugh while doing it? Absolutely. 🤖
+- text: 📸
+- heading "Travel Photography" [level=3]
+- paragraph: When I'm not programming robots, I'm capturing the world through my lens. From engineering precision to artistic vision.
+- img "Travel Photo 1"
+- img "Travel Photo 2"
+- img "Travel Photo 3"
+- img "Travel Photo 4"
+- link "View Full Gallery ":
+  - /url: photo.html
+- text: 🦆
+- heading "Meet My Assistant" [level=3]
+- paragraph: Every serious engineer needs a debugging duck. Mine just happens to be animated and slightly unhinged.
+- img
+- button "Ask Goose for Advice"
+- text: 🎮
+- heading "Secret Features" [level=3]
+- paragraph: I hide easter eggs in my code like I hide bugs... strategically and with purpose.
+- paragraph: Alt + Shift + C - Summon Clippy
+- paragraph: Click Counter - Find the magic number
+- button "Click Me! (0)"
+- heading "Random Facts That Make Me Hireable" [level=3]
+- text: 🚗
+- heading "Car Enthusiast" [level=4]
+- paragraph: I can debug autonomous vehicles AND explain why pop-up headlights were engineering art
+- text: ☕
+- heading "Coffee Scientist" [level=4]
+- paragraph: Optimized extraction algorithms for the perfect espresso. Yes, this is relevant to control theory.
+- text: 🎵
+- heading "Music Algorithm" [level=4]
+- paragraph: Built recommendation systems that can predict your next favorite song better than Spotify
+- text: 🤖
+- heading "Robot Whisperer" [level=4]
+- paragraph: I speak fluent robot. They usually listen. Sometimes they plot against me.
+- heading "Retro Gaming Zone" [level=2]
+- paragraph: Nostalgic classics from the golden age of PC gaming 🕹️ Download and relive the 90s gaming magic!
+- text: 🥋
+- heading "Little Fighter 2" [level=3]
+- paragraph: The legendary 2D fighting game that defined multiplayer fun. Up to 8 players, epic battles, and unforgettable characters!
+- text: Fighting Multiplayer
+- button " Download (5MB)"
+- text: 🛸
+- heading "Airxonix" [level=3]
+- paragraph: Modern remake of the classic Xonix. Cut through space, avoid aliens, and claim territory in this addictive arcade game!
+- text: Arcade Strategy
+- button " Download (3MB)"
+- text: 🏍️
+- heading "Elastomania" [level=3]
+- paragraph: The ultimate motorcycle physics game! Master impossible tracks with realistic bike physics that will test your skills.
+- text: Racing Physics
+- button " Download (2MB)"
+- text: 🎮
+- heading "More Classics" [level=3]
+- paragraph: Got more vintage games to share? Submit your favorites and let's build the ultimate retro collection!
+- text: Coming Soon
+- button "+ Request Game"
+- text: 0 Downloads 90s Era Games 100% Nostalgia ∞ Fun Hours
+- heading "Engineering Meets Gaming" [level=3]
+- paragraph: "\"These games taught me more about physics, timing, and problem-solving than any textbook ever could. From the precise motorcycle physics in Elastomania to the strategic territory control in Airxonix, each game was a masterclass in engineering principles disguised as pure fun.\""
+- text:  Games = Interactive Engineering Simulations
+- heading "Let's Connect" [level=2]
+- paragraph: Ready to bring innovative control systems and autonomous vehicle solutions to your team? Let's discuss how we can build the future together.
+- heading "Send a Message" [level=3]
+- text: Name *
+- textbox "Your Name"
+- text: Email *
+- textbox "your.email@company.com"
+- text: Subject
+- combobox:
+  - option "General Inquiry" [selected]
+  - option "Job Opportunity"
+  - option "Collaboration Proposal"
+  - option "Consultation Request"
+  - option "Technical Discussion"
+  - option "Other"
+- text: Message *
+- textbox "Tell me about your project or opportunity..."
+- button "Open Email Client "
+- paragraph: "Or email me directly:"
+- link " yuval.grimberg@example.com":
+  - /url: mailto:yuval.grimberg@example.com?subject=Portfolio%20Contact&body=Hi%20Yuval,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20discuss...
+- heading "Quick Connect" [level=3]
+- link " Email yuval.grimberg@email.com":
+  - /url: mailto:yuval.grimberg@email.com
+- link " LinkedIn Professional Network":
+  - /url: https://www.linkedin.com/in/yuval-grimberg-933215173
+- link " GitHub View Code & Projects":
+  - /url: https://github.com/grimgrimberg
+- heading "Availability Status" [level=3]
+- text: Currently Available
+- paragraph: "Open to full-time opportunities, consulting projects, and collaborative research in:"
+- list:
+  - listitem: • Control Systems Engineering
+  - listitem: • Autonomous Vehicle Development
+  - listitem: • Robotics & Automation
+  - listitem: • Machine Learning Integration
+- heading "Download Resume" [level=3]
+- link " Download CV / Resume":
+  - /url: ./assets/CV - Yuval Grimberg Aug 25.pdf
+- contentinfo:
+  - text: Yuval Grimberg
+  - paragraph: Control Systems Engineer & Autonomous Vehicle Specialist
+  - link "":
+    - /url: https://github.com/grimgrimberg
+  - link "":
+    - /url: https://www.linkedin.com/in/yuval-grimberg-933215173
+  - link "":
+    - /url: mailto:yuval.grimberg@email.com
+  - heading "Quick Links" [level=3]
+  - list:
+    - listitem:
+      - link "About":
+        - /url: "#about"
+    - listitem:
+      - link "Expertise":
+        - /url: "#skills"
+    - listitem:
+      - link "Projects":
+        - /url: "#projects"
+    - listitem:
+      - link "Fun Zone":
+        - /url: "#fun-zone"
+    - listitem:
+      - link "Contact":
+        - /url: "#contact"
+    - listitem:
+      - link "Photography":
+        - /url: photo.html
+  - heading "Specializations" [level=3]
+  - list:
+    - listitem: • Control Theory
+    - listitem: • Autonomous Vehicles
+    - listitem: • Machine Learning
+    - listitem: • Robotics Systems
+  - paragraph: © 2025 Yuval Grimberg. All rights reserved. | Ready to innovate together?
+```

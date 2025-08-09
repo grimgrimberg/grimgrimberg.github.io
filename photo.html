@@ -120,9 +120,78 @@
       background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
       backdrop-filter: blur(20px);
     }
+
+    .dynamic-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .dynamic-bg.active {
+      opacity: 0.20;
+    }
+
+    .dynamic-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(10, 15, 28, 0.85), rgba(10, 15, 28, 0.7));
+      z-index: 1;
+    }
+
+    .exif-panel {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      transition: all 0.4s ease;
+    }
+
+    .exif-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .exif-item:last-child {
+      border-bottom: none;
+    }
+
+    .exif-label {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .exif-value {
+      color: #f1f5f9;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .camera-icon {
+      color: #06b6d4;
+    }
   </style>
 </head>
-<<body class="bg-tech-dark text-white font-display overflow-x-hidden">
+
+<body class="bg-tech-dark text-white font-display overflow-x-hidden">
+  <!-- Dynamic Background -->
+  <div id="dynamic-bg" class="dynamic-bg"></div>
+
   <!-- Floating Navigation -->
   <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -201,7 +270,7 @@
   <section class="py-20 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Main Swiper Gallery -->
-      <div class="w-full flex justify-center mb-16" data-aos="fade-up">
+      <div class="w-full flex justify-center mb-8" data-aos="fade-up" id="main-gallery">
         <div class="swiper w-full max-w-4xl rounded-2xl glass-effect p-6">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -250,6 +319,23 @@
           <!-- Add Navigation -->
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+
+      <!-- EXIF Data Panel -->
+      <div class="w-full max-w-4xl mx-auto mb-16" data-aos="fade-up" data-aos-delay="200">
+        <div class="exif-panel p-6">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-camera camera-icon text-2xl mr-3"></i>
+            <h3 class="text-xl font-bold gradient-text">Camera Details</h3>
+          </div>
+          <div id="exif-data" class="grid md:grid-cols-2 gap-4">
+            <!-- EXIF data will be populated here -->
+            <div class="text-center text-gray-400 md:col-span-2 py-8">
+              <i class="fas fa-camera text-4xl mb-4 opacity-50"></i>
+              <p>Select a photo to view camera settings</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -408,43 +494,280 @@
       }
     });
 
-    // Initialize Swiper
-    const swiper = new Swiper('.swiper', {
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      },
-      keyboard: { enabled: true },
-      spaceBetween: 30,
-      effect: 'slide',
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      on: {
-        init: function () { setGalleryBg(this); },
-        slideChange: function () { setGalleryBg(this); }
+    // Initialize everything when page loads
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('🚀 Page loaded, initializing...');
+
+      // Ensure dynamic background element exists
+      let bgElement = document.getElementById('dynamic-bg');
+      if (!bgElement) {
+        console.log('⚠️ Dynamic background element missing, creating it...');
+        bgElement = document.createElement('div');
+        bgElement.id = 'dynamic-bg';
+        bgElement.className = 'dynamic-bg';
+        document.body.insertBefore(bgElement, document.body.firstChild);
+        console.log('✅ Dynamic background element created');
+      } else {
+        console.log('✅ Dynamic background element found');
       }
+
+      // Set initial background immediately
+      initializeBackground();
+
+      // Initialize Swiper after a short delay
+      setTimeout(() => {
+        console.log('🔄 Initializing Swiper');
+
+        const swiper = new Swiper('.swiper', {
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          },
+          keyboard: { enabled: true },
+          spaceBetween: 30,
+          effect: 'slide',
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+          },
+          on: {
+            init: function () {
+              console.log('🎯 Swiper initialized - real index:', this.realIndex);
+              updateBackgroundImage(this);
+            },
+            slideChange: function () {
+              console.log('🔄 Slide changed to real index:', this.realIndex);
+              updateBackgroundImage(this);
+            }
+          }
+        });
+
+        // Make swiper globally available
+        window.swiperInstance = swiper;
+        console.log('✅ Swiper setup complete');
+
+      }, 500); // Give the page time to fully load
     });
 
-    function setGalleryBg(swiper) {
-      // Optional: Add dynamic background effect
-      const activeSlide = swiper.slides[swiper.activeIndex];
-      const img = activeSlide.querySelector('img');
-      if (img) {
-        // Could add background blur effect here if desired
-        console.log('Active slide:', img.src);
+    // Array of photo sources for background matching (must match slide order exactly)
+    const photoSources = [
+      'assets/images/optimized/DSC02477.jpg',
+      'assets/images/optimized/DSC03288.jpg',
+      'assets/images/optimized/DSC03631-HDR-2.jpg',
+      'assets/images/optimized/DSC03675.jpg',
+      'assets/images/optimized/DSC05064-Edit.jpg',
+      'assets/images/optimized/DSC05396.jpg',
+      'assets/images/optimized/DSC06545.jpg',
+      'assets/images/optimized/DSC07124.jpg',
+      'assets/images/optimized/DSC0676.jpg',
+      'assets/images/optimized/DSC0865.jpg'
+    ];
+
+    // Real EXIF data extracted from actual photos
+    const exifData = [
+      {
+        camera: "Sony α7 II",
+        model: "16mm F1.4 DC DN | Contemporary 017",
+        focal: "16mm",
+        aperture: "f/1.4",
+        shutter: "1/160s",
+        iso: "ISO 3200"
+      },
+      {
+        camera: "Sony α7 II",
+        model: "FE 28-70mm F3.5-5.6 OSS",
+        focal: "55mm",
+        aperture: "f/5.0",
+        shutter: "1/125s",
+        iso: "ISO 1600"
+      },
+      {
+        camera: "Sony α7 II",
+        model: "E 28-75mm F2.8-2.8",
+        focal: "28mm",
+        aperture: "f/2.8",
+        shutter: "1/1250s",
+        iso: "ISO 1600"
+      },
+      {
+        camera: "Sony α7 II",
+        model: "E 28-75mm F2.8-2.8",
+        focal: "75mm",
+        aperture: "f/2.8",
+        shutter: "1/800s",
+        iso: "ISO 1600"
+      },
+      {
+        camera: "Sony α7 II",
+        model: "E 28-75mm F2.8-2.8",
+        focal: "28mm",
+        aperture: "f/6.3",
+        shutter: "1/400s",
+        iso: "ISO 400"
+      },
+      {
+        camera: "Sony α7 II",
+        model: "E 28-75mm F2.8-2.8",
+        focal: "28mm",
+        aperture: "f/2.8",
+        shutter: "1/800s",
+        iso: "ISO 500"
+      },
+      {
+        camera: "Sony α7 II",
+        model: "E 28-75mm F2.8-2.8",
+        focal: "75mm",
+        aperture: "f/2.8",
+        shutter: "1/4000s",
+        iso: "ISO 200"
+      },
+      {
+        camera: "Sony α7 II",
+        model: "E 28-75mm F2.8-2.8",
+        focal: "75mm",
+        aperture: "f/2.8",
+        shutter: "1/250s",
+        iso: "ISO 400"
+      },
+      {
+        camera: "Sony α7 II",
+        model: "E 28-75mm F2.8-2.8",
+        focal: "75mm",
+        aperture: "f/2.8",
+        shutter: "1/1250s",
+        iso: "ISO 250"
+      },
+      {
+        camera: "Sony α7 II",
+        model: "E 28-75mm F2.8-2.8",
+        focal: "28mm",
+        aperture: "f/2.8",
+        shutter: "1/160s",
+        iso: "ISO 1250"
+      }
+    ];
+
+    function updateBackgroundImage(swiper) {
+      const dynamicBg = document.getElementById('dynamic-bg');
+      if (!dynamicBg) {
+        console.error('❌ Dynamic background element not found');
+        return;
+      }
+
+      let realIndex = swiper.realIndex || 0;
+
+      // Ensure realIndex is within bounds
+      realIndex = Math.max(0, Math.min(realIndex, photoSources.length - 1));
+
+      const photoSrc = photoSources[realIndex];
+
+      console.log(`🎨 Setting background - Index: ${realIndex}, Photo: ${photoSrc}`);
+
+      if (photoSrc) {
+        // Update background with smooth transition
+        dynamicBg.style.backgroundImage = `url('${photoSrc}')`;
+        dynamicBg.classList.add('active');
+
+        // Update EXIF data
+        updateExifData(realIndex);
+
+        console.log(`✅ Background set: ${photoSrc}`);
+      } else {
+        console.error(`❌ No photo source for index: ${realIndex}`);
       }
     }
 
+    // Function to update EXIF data display
+    function updateExifData(index) {
+      const exifContainer = document.getElementById('exif-data');
+      if (!exifContainer || !exifData[index]) return;
+
+      const data = exifData[index];
+
+      exifContainer.innerHTML = `
+        <div class="space-y-2">
+          <div class="exif-item">
+            <span class="exif-label"><i class="fas fa-camera mr-2"></i>Camera</span>
+            <span class="exif-value">${data.camera}</span>
+          </div>
+          <div class="exif-item">
+            <span class="exif-label"><i class="fas fa-eye mr-2"></i>Lens</span>
+            <span class="exif-value">${data.model}</span>
+          </div>
+          <div class="exif-item">
+            <span class="exif-label"><i class="fas fa-search-plus mr-2"></i>Focal Length</span>
+            <span class="exif-value">${data.focal}</span>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <div class="exif-item">
+            <span class="exif-label"><i class="fas fa-adjust mr-2"></i>Aperture</span>
+            <span class="exif-value">${data.aperture}</span>
+          </div>
+          <div class="exif-item">
+            <span class="exif-label"><i class="fas fa-clock mr-2"></i>Shutter Speed</span>
+            <span class="exif-value">${data.shutter}</span>
+          </div>
+          <div class="exif-item">
+            <span class="exif-label"><i class="fas fa-sun mr-2"></i>ISO</span>
+            <span class="exif-value">${data.iso}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    // Initialize background immediately
+    function initializeBackground() {
+      const dynamicBg = document.getElementById('dynamic-bg');
+      if (dynamicBg && photoSources.length > 0) {
+        console.log('🎨 Setting initial background');
+        dynamicBg.style.backgroundImage = `url('${photoSources[0]}')`;
+        dynamicBg.classList.add('active');
+
+        // Set initial EXIF data
+        updateExifData(0);
+
+        console.log(`✅ Initial background set: ${photoSources[0]}`);
+      }
+    }
+
+    // Enhanced function for thumbnails with scroll behavior
     function goToSlide(idx) {
-      swiper.slideToLoop(idx, 500);
+      if (window.swiperInstance) {
+        console.log(`🔄 Manually going to slide ${idx}`);
+
+        // Smooth scroll to gallery first
+        const gallery = document.getElementById('main-gallery');
+        if (gallery) {
+          gallery.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'nearest'
+          });
+        }
+
+        // Small delay to ensure scroll starts, then change slide
+        setTimeout(() => {
+          window.swiperInstance.slideToLoop(idx, 500);
+
+          // Force background and EXIF update
+          setTimeout(() => {
+            const dynamicBg = document.getElementById('dynamic-bg');
+            if (dynamicBg && photoSources[idx]) {
+              dynamicBg.style.backgroundImage = `url('${photoSources[idx]}')`;
+              dynamicBg.classList.add('active');
+              updateExifData(idx);
+              console.log(`🎯 Manual background update: ${photoSources[idx]}`);
+            }
+          }, 100);
+        }, 300);
+      }
     }
 
     // Smooth scrolling for navigation links
@@ -461,6 +784,6 @@
       });
     });
   </script>
-  </body>
+</body>
 
 </html>

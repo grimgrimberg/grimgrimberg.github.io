@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Yuval Grimberg</title>
+    <meta name="description" content="Thank you for contacting Yuval Grimberg. Your message has been received.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tech-blue': '#0066ff',
+                        'tech-dark': '#0a0f1c',
+                        'tech-purple': '#6366f1',
+                        'tech-cyan': '#06b6d4',
+                        'tech-green': '#10b981'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1c 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <div class="min-h-screen flex items-center justify-center px-4">
+        <div class="max-w-2xl mx-auto text-center">
+            <!-- Success Icon -->
+            <div class="mb-8">
+                <div
+                    class="w-24 h-24 mx-auto bg-gradient-to-r from-tech-green to-tech-cyan rounded-full flex items-center justify-center">
+                    <i class="fas fa-check text-4xl text-white"></i>
+                </div>
+            </div>
+
+            <!-- Thank You Message -->
+            <div class="glass-effect rounded-2xl p-8 mb-8">
+                <h1 class="text-4xl md:text-5xl font-black mb-6">
+                    <span class="gradient-text">Thank You!</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-6">
+                    Your message has been successfully received. I'll get back to you within 24 hours.
+                </p>
+                <p class="text-gray-400">
+                    <i class="fas fa-envelope mr-2 text-tech-cyan"></i>
+                    In the meantime, feel free to explore my portfolio or connect with me on social media.
+                </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html"
+                    class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-home mr-2"></i>
+                    Back to Portfolio
+                </a>
+                <a href="mailto:your.email@example.com"
+                    class="inline-flex items-center justify-center px-6 py-3 glass-effect hover:bg-white/20 text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-envelope mr-2"></i>
+                    Email Me Directly
+                </a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="mt-8 flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-tech-cyan transition-colors duration-300">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-tech-cyan transition-colors duration-300">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-tech-cyan transition-colors duration-300">
+                    <i class="fab fa-twitter text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auto redirect after 10 seconds -->
+    <script>
+        // Optional: Auto redirect to homepage after 10 seconds
+        setTimeout(() => {
+            const redirect = confirm("Would you like to return to the portfolio homepage?");
+            if (redirect) {
+                window.location.href = 'index.html';
+            }
+        }, 10000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+# Page snapshot
+
+```yaml
+- text: <
+- navigation:
+  - text: YG
+  - link "Home":
+    - /url: index.html
+  - link "About":
+    - /url: index.html#about
+  - link "Projects":
+    - /url: index.html#projects
+  - link "📸 Photography":
+    - /url: photo.html
+- heading "Photography Portfolio" [level=1]
+- paragraph: Engineering Precision Meets Artistic Vision
+- paragraph: Capturing moments from my journeys around the world - where technical precision meets creative expression
+- group "1 / 10":
+  - img "Travel Photo 1"
+- group "2 / 10":
+  - img "Travel Photo 2"
+- group "3 / 10":
+  - img "Travel Photo 3"
+- group "4 / 10":
+  - img "Travel Photo 4"
+- group "5 / 10":
+  - img "Travel Photo 5"
+- group "6 / 10":
+  - img "Travel Photo 6"
+- group "7 / 10":
+  - img "Travel Photo 7"
+- group "8 / 10":
+  - img "Travel Photo 8"
+- group "9 / 10":
+  - img "Travel Photo 9"
+- group "10 / 10":
+  - img "Travel Photo 10"
+- button "Go to slide 1"
+- button "Go to slide 2"
+- button "Go to slide 3"
+- button "Go to slide 4"
+- button "Go to slide 5"
+- button "Go to slide 6"
+- button "Go to slide 7"
+- button "Go to slide 8"
+- button "Go to slide 9"
+- button "Go to slide 10"
+- button "Next slide": next
+- button "Previous slide": prev
+- heading "Select Photo" [level=3]
+- button "Photo 1":
+  - img "Photo 1"
+- button "Photo 2":
+  - img "Photo 2"
+- button "Photo 3":
+  - img "Photo 3"
+- button "Photo 4":
+  - img "Photo 4"
+- button "Photo 5":
+  - img "Photo 5"
+- button "Photo 6":
+  - img "Photo 6"
+- button "Photo 7":
+  - img "Photo 7"
+- button "Photo 8":
+  - img "Photo 8"
+- button "Photo 9":
+  - img "Photo 9"
+- button "Photo 10":
+  - img "Photo 10"
+- heading "Engineering Meets Art" [level=3]
+- paragraph: Just like in control systems engineering, photography is about capturing the perfect moment with precision. Every shot is calculated, every composition optimized, and every frame tells a story of technical mastery combined with creative vision.
+- text: 📷 Precision Focus 🌍 Global Perspective ⚡ Perfect Timing
+- contentinfo:
+  - text: Yuval Grimberg
+  - paragraph: Control Systems Engineer & Photography Enthusiast
+  - link "":
+    - /url: https://github.com/grimgrimberg
+  - link "":
+    - /url: https://www.linkedin.com/in/yuval-grimberg-933215173
+  - link "":
+    - /url: mailto:yuval.grimberg@email.com
+  - heading "Quick Links" [level=3]
+  - list:
+    - listitem:
+      - link "Home":
+        - /url: index.html
+    - listitem:
+      - link "About":
+        - /url: index.html#about
+    - listitem:
+      - link "Projects":
+        - /url: index.html#projects
+    - listitem:
+      - link "Contact":
+        - /url: index.html#contact
+  - heading "Photography" [level=3]
+  - list:
+    - listitem: • Travel Photography
+    - listitem: • Engineering Precision
+    - listitem: • Creative Vision
+    - listitem: • Global Perspective
+  - paragraph: © 2025 Yuval Grimberg. All rights reserved. | Capturing the world through an engineer's lens
+```
