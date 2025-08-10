@@ -335,29 +335,40 @@
                     <div class="glass-effect rounded-2xl p-8 hover-lift">
                         <h3 class="text-2xl font-bold text-tech-cyan mb-4">🎓 Education & Background</h3>
                         <p class="text-gray-300 leading-relaxed">
-                            Mechanical Engineering graduate with specialized focus on Control Theory and Autonomous
+                            <!-- Mechanical Engineering graduate with specialized focus on Control Theory and Autonomous
                             Systems.
                             Passionate about bridging the gap between theoretical engineering principles and real-world
                             applications
-                            in autonomous vehicle technology.
+                            in autonomous vehicle technology. -->
+                            <!-- Mechanical Engineering graduate (B.Sc.) from Ben-Gurion University. Head of Path Planning & Control for the BGRacing Formula Student team, where we delivered the team’s first autonomous car that actually drives.
+                                Beyond racecars, I’m deep into space and perception: I built a learning-based LQI controller for the Hill equations, an orbiter propagator, and a robotics computer-vision project focused on perception.
+                                Broad, systems-minded generalist—comfortable across control, dynamics, and CV—good at connecting disciplines and shipping working systems. -->
+                            <!-- Mechanical Engineering B.Sc. (BGU); led Path Planning & Control for BGRacing (Formula Student) and delivered the team’s first self-driving car. Projects span a learning-based LQI for Hill’s equations, an orbiter propagator, and a robotics CV build—broad generalist across control, dynamics, and perception. -->
+                            <!-- B.Sc. Mechanical Engineering (BGU). I led Path Planning & Control for BGRacing (Formula Student), delivering the team’s first self-driving car. I built a learning-based LQI controller for Hill’s equations, an animated orbital propagator, and a robotics computer-vision system—broad, systems-minded generalist across control, dynamics, and perception. -->
+                            A systems-minded generalist (B.Sc. Mechanical Engineering, BGU) with broad experience across
+                            control, dynamics, and perception.
+                            I led the Path Planning & Control team for BGRacing (Formula Student) to deliver its first
+                            self-driving car and have built projects including a learning-based LQI controller,
+                            an orbital propagator, and a robotics computer-vision system.
                         </p>
                     </div>
 
                     <div class="glass-effect rounded-2xl p-8 hover-lift">
                         <h3 class="text-2xl font-bold text-tech-purple mb-4">🚀 Mission</h3>
                         <p class="text-gray-300 leading-relaxed">
-                            To revolutionize transportation through advanced control systems, making autonomous vehicles
-                            safer, more efficient, and accessible. I combine cutting-edge technology with innovative
-                            engineering solutions to solve complex challenges.
+                            To solve complex problems at the intersection of hardware, software, and systems thinking.
+                            My strength is in seeing the big picture, connecting dots that others miss,
+                            and collaborating with teams to transform ambitious, ambiguous ideas into reality.
                         </p>
                     </div>
 
                     <div class="glass-effect rounded-2xl p-8 hover-lift">
                         <h3 class="text-2xl font-bold text-tech-green mb-4">💡 Innovation Focus</h3>
                         <p class="text-gray-300 leading-relaxed">
-                            Specializing in predictive control algorithms, machine learning integration in control
-                            systems,
-                            and real-time optimization for autonomous vehicle navigation and decision-making processes.
+                            I specialize in the seams and gaps where different technologies meet.
+                            My focus is on integrating complex systems by bridging the divide between mechanical design,
+                            control theory, and AI. By identifying the core, shared principles between them,
+                            I simplify challenges and accelerate the development of novel solutions.
                         </p>
                     </div>
                 </div>
@@ -372,13 +383,13 @@
                         </div>
                         <h3 class="text-3xl font-bold mb-4">Ready to Innovate</h3>
                         <p class="text-gray-300 mb-6">
-                            Seeking opportunities to apply my expertise in control systems and autonomous vehicle
+                            Seeking opportunities to apply my expertise in control systems, AI and autonomous vehicle
                             technology
-                            to drive the future of transportation.
+                            to drive the future of humanity.
                         </p>
                         <div class="grid grid-cols-2 gap-4 text-center">
                             <div class="glass-effect rounded-xl p-4">
-                                <div class="text-2xl font-bold text-tech-cyan">5+</div>
+                                <div class="text-2xl font-bold text-tech-cyan">2+</div>
                                 <div class="text-sm text-gray-400">Years Experience</div>
                             </div>
                             <div class="glass-effect rounded-xl p-4">
@@ -441,7 +452,7 @@
                         <li>• Python</li>
                         <li>• MATLAB/Simulink</li>
                         <li>• C/C++</li>
-                        <li>• ROS</li>
+                        <li>• ROS2</li>
                     </ul>
                 </div>
 
@@ -1258,528 +1269,83 @@
 
         // Simple Email Client Function - No external services needed!
         function openEmailClient() {
-            const name = document.getElementById('contact-name').value;
-            const email = document.getElementById('contact-email').value;
-            const subject = document.getElementById('contact-subject').value;
-            const message = document.getElementById('contact-message').value;
+            const nameEl = document.getElementById('contact-name');
+            const emailEl = document.getElementById('contact-email');
+            const subjectEl = document.getElementById('contact-subject');
+            const messageEl = document.getElementById('contact-message');
+            if (!nameEl || !emailEl || !subjectEl || !messageEl) {
+                console.warn('Contact form elements not found');
+                return;
+            }
+            const name = nameEl.value.trim();
+            const email = emailEl.value.trim();
+            const subject = subjectEl.value.trim() || 'General Inquiry';
+            const message = messageEl.value.trim();
 
-            // Validate required fields
-            if (!name || !email || !message) {
-                alert('Please fill in all required fields (Name, Email, and Message)');
+            // Basic validation
+            const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            if (!name || !emailOk || !message) {
+                alert('Please provide Name, a valid Email, and a Message.');
                 return;
             }
 
-            // Create email content
+            // Use CRLF for better compatibility in some clients
+            const bodyLines = [
+                'Hi Yuval,',
+                '',
+                message,
+                '',
+                '---',
+                `Name: ${name}`,
+                `Email: ${email}`,
+                `Subject: ${subject}`,
+                '',
+                'Sent from your portfolio website.'
+            ];
             const emailSubject = `Portfolio Contact: ${subject}`;
-            const emailBody = `Hi Yuval,
+            const emailBody = bodyLines.join('\r\n');
+            const mailtoLink = `mailto:yuval.grimgrimberg@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
-Name: ${name}
-Email: ${email}
-Subject: ${subject}
+            // Prefer using a temporary anchor (some browsers ignore location change for mailto)
+            const a = document.createElement('a');
+            a.href = mailtoLink;
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            // Clean up shortly after
+            setTimeout(() => document.body.removeChild(a), 5000);
 
-Message:
-${message}
-
----
-This message was sent from your portfolio website.
-
-Best regards,
-${name}`;
-
-            // Create mailto link with encoded content
-            const mailtoLink = `mailto:yuval.grimberg@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-
-            // Open email client
-            window.location.href = mailtoLink;
-
-            // Show success message
-            document.getElementById('simple-contact-form').innerHTML = `
-                <div class="text-center py-8">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-tech-green to-tech-cyan rounded-full flex items-center justify-center">
-                        <i class="fas fa-check text-2xl text-white"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-tech-cyan mb-2">Email Client Opened!</h4>
-                    <p class="text-gray-300 mb-4">Your email client should now be open with a pre-filled message.</p>
-                    <p class="text-gray-400 text-sm">If your email client didn't open, please email me directly at:</p>
-                    <a href="mailto:yuval.grimberg@gmail.com" class="text-tech-cyan hover:text-tech-purple font-medium">
-                        yuval.grimberg@gmail.com
-                    </a>
+            // Show a non-destructive success panel (do not erase form immediately)
+            let panel = document.getElementById('email-success-panel');
+            if (!panel) {
+                panel = document.createElement('div');
+                panel.id = 'email-success-panel';
+                panel.className = 'mt-6 p-6 glass-effect rounded-xl text-center border border-tech-cyan/30';
+                document.getElementById('simple-contact-form').appendChild(panel);
+            }
+            panel.innerHTML = `
+                <div class="w-14 h-14 mx-auto mb-4 bg-gradient-to-r from-tech-green to-tech-cyan rounded-full flex items-center justify-center">
+                    <i class="fas fa-check text-xl text-white"></i>
                 </div>
+                <h4 class="text-lg font-bold text-tech-cyan mb-2">Attempted to open your email client</h4>
+                <p class="text-gray-300 text-sm mb-3">If it did not open, your browser or system may not have a default mail client configured.</p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                    <a href="${mailtoLink}" class="bg-tech-purple/30 hover:bg-tech-purple/50 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">Try Again</a>
+                    <button type="button" onclick="copyPortfolioEmail()" class="bg-tech-cyan/30 hover:bg-tech-cyan/50 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">Copy Email Address</button>
+                </div>
+                <p class="text-gray-400 text-xs mt-4">Direct email: <a href="mailto:yuval.grimgrimberg@gmail.com" class="text-tech-cyan hover:text-tech-purple">yuval.grimgrimberg@gmail.com</a></p>
             `;
         }
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all project cards
-        document.querySelectorAll('.project-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Fun Zone Interactive Elements
-        let funClickCount = 0;
-        const clickMeButton = document.getElementById('click-me-button');
-        const clickCountDisplay = document.getElementById('click-count');
-        const clickMessage = document.getElementById('click-message');
-
-        if (clickMeButton) {
-            clickMeButton.addEventListener('click', function () {
-                funClickCount++;
-                clickCountDisplay.textContent = `(${funClickCount})`;
-
-                // Fun messages based on click count
-                const messages = [
-                    "Great! You can follow instructions.",
-                    "Wow, you're persistent. I like that in a teammate.",
-                    "Still clicking? This is exactly the attention to detail we need.",
-                    "You're either very dedicated or very bored. Either way, hired!",
-                    "Ok seriously, you'd fit right into our QA testing team.",
-                    "At this point you're just stress-testing my button. Respect.",
-                    "You know what? Let's talk. Email me.",
-                    "This is getting weird but I admire your commitment.",
-                    "Are you trying to find the meaning of life? It's 42, btw.",
-                    "🎉 CONGRATS! You found the persistence level of a true engineer!"
-                ];
-
-                if (funClickCount <= messages.length) {
-                    clickMessage.textContent = messages[funClickCount - 1];
-                }
-
-                if (funClickCount === 42) {
-                    clickMessage.innerHTML = '🎊 THE ANSWER TO EVERYTHING! You are definitely engineer material! 🎊';
-                    clickMeButton.classList.add('animate-bounce');
-                }
-
-                // Special sound effect at 69 clicks
-                if (funClickCount === 69) {
-                    playGodDamnSound();
-                    clickMessage.innerHTML = '🔥 NICE! You triggered the legendary "god damn" sound! 🔥';
-                    clickMeButton.style.background = 'linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff, #9c88ff)';
-                    clickMeButton.style.animation = 'rainbow 2s infinite';
-                }
-
-                // Add some visual flair
-                if (funClickCount % 5 === 0 && funClickCount !== 69) {
-                    clickMeButton.style.background = `linear-gradient(45deg, hsl(${Math.random() * 360}, 70%, 50%), hsl(${Math.random() * 360}, 70%, 50%))`;
-                }
+        function copyPortfolioEmail() {
+            const addr = 'yuval.grimberg@gmail.com';
+            navigator.clipboard?.writeText(addr).then(() => {
+                alert('Email address copied to clipboard. Paste into your mail client.');
+            }).catch(() => {
+                prompt('Copy the email address manually:', addr);
             });
         }
-
-        // Sound effect functions
-        function playGodDamnSound() {
-            try {
-                const audio = new Audio('./assets/sounds/god-dam.mp3');
-                audio.volume = 0.7;
-                audio.play().catch(e => {
-                    console.log('🔊 Sound play blocked by browser policy (need user interaction first)');
-                });
-            } catch (error) {
-                console.log('🔊 Sound file not found or failed to load');
-            }
-        }
-
-        function playHonkSound() {
-            try {
-                const audio = new Audio('./assets/sounds/honk-sound.mp3');
-                audio.volume = 0.6;
-                audio.play().catch(e => {
-                    console.log('🦆 Honk sound play blocked by browser policy');
-                });
-            } catch (error) {
-                console.log('🦆 Honk sound file not found or failed to load');
-            }
-        }
-
-        // Goose Wisdom
-        const gooseTalkButton = document.getElementById('goose-talk');
-        const gooseWisdom = document.getElementById('goose-wisdom');
-
-        if (gooseTalkButton) {
-            const gooseQuotes = [
-                "Debugging is like being a detective in a crime where you're also the murderer.",
-                "There are only 10 types of people: those who understand binary and those who don't.",
-                "If it works, don't touch it. If it doesn't work, blame the hardware.",
-                "Code never lies, comments sometimes do, but geese always honk truth.",
-                "The best debugging tool is a good night's sleep. The second best is coffee.",
-                "Real programmers count from 0. Real geese count backwards from infinity.",
-                "Why do programmers prefer dark mode? Because light attracts bugs!",
-                "A day without git commits is like a day without sunshine. Depressing and unproductive.",
-                "In Soviet Russia, code debugs you! Wait, that's everywhere now.",
-                "I don't always test my code, but when I do, I do it in production. 🦆"
-            ];
-
-            gooseTalkButton.addEventListener('click', function () {
-                // Play honk sound when asking goose for advice
-                playHonkSound();
-
-                const randomQuote = gooseQuotes[Math.floor(Math.random() * gooseQuotes.length)];
-                gooseWisdom.textContent = `"${randomQuote}"`;
-
-                // Add some animation
-                gooseWisdom.style.animation = 'none';
-                setTimeout(() => {
-                    gooseWisdom.style.animation = 'pulse 1s ease-in-out';
-                }, 10);
-            });
-        }
-
-        // Load Goose Animation in Fun Zone
-        function loadGooseAnimation() {
-            const script = document.createElement('script');
-            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js';
-            script.onload = function () {
-                if (window.lottie) {
-                    const gooseContainer = document.getElementById('goose-fun-zone');
-                    if (gooseContainer) {
-                        lottie.loadAnimation({
-                            container: gooseContainer,
-                            renderer: 'svg',
-                            loop: true,
-                            autoplay: true,
-                            path: './assets/images/jumpy-goose.json'
-                        });
-                    }
-                }
-            };
-            document.head.appendChild(script);
-        }
-
-        // Initialize goose animation
-        loadGooseAnimation();
-
-        // REAL AUTHENTIC MICROSOFT OFFICE CLIPPY! 📎
-        let clippyAgent = null;
-        let clippyLoaded = false;
-
-        // Set the CDN path for ClippyJS agents
-        window.CLIPPY_CDN = 'https://cdn.jsdelivr.net/gh/pi0/clippyjs@master/assets/agents/';
-
-        // Load the REAL Clippy with all his authentic animations!
-        function initializeRealClippy() {
-            if (typeof clippy !== 'undefined') {
-                console.log('🎉 Loading REAL Microsoft Office Clippy!');
-
-                // Load Clippy agent with authentic animations
-                clippy.load('Clippy', function (agent) {
-                    clippyAgent = agent;
-                    clippyLoaded = true;
-
-                    // Hide initially
-                    clippyAgent.hide();
-
-                    console.log('📎 REAL Clippy loaded successfully!');
-                    console.log('Available animations:', clippyAgent.animations());
-
-                    // Show random welcome message after 10 seconds
-                    setTimeout(() => {
-                        if (Math.random() > 0.7) {
-                            showRealClippyWelcome();
-                        }
-                    }, 10000);
-                });
-            } else {
-                // If ClippyJS isn't loaded yet, try again
-                console.log('⏳ Waiting for ClippyJS to load...');
-                setTimeout(initializeRealClippy, 1000);
-            }
-        }
-
-        function showRealClippyWelcome() {
-            if (clippyAgent && clippyLoaded) {
-                // Move to a random position
-                const x = Math.random() * (window.innerWidth - 200);
-                const y = Math.random() * (window.innerHeight - 200);
-
-                clippyAgent.moveTo(x, y);
-                clippyAgent.show();
-
-                // Play a welcome animation
-                clippyAgent.play('Wave');
-
-                const welcomeMessages = [
-                    "It looks like you're browsing an awesome engineering portfolio! Would you like help with that?",
-                    "Hi! I'm the REAL Clippy! This portfolio is quite impressive, isn't it?",
-                    "I see you're checking out Yuval's work. Smart choice! He's definitely hireable!",
-                    "Need help navigating this epic website? Try pressing Alt+Shift+C!",
-                    "This portfolio is so good, even Microsoft would be proud!",
-                    "Pro tip: Check out the Fun Zone - there are more easter eggs!",
-                    "I've been helping people since the 90s, but this portfolio still amazes me!",
-                    "Want to see something cool? I can do authentic Microsoft Office animations!"
-                ];
-
-                clippyAgent.speak(welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)]);
-
-                // Auto-hide after 10 seconds
-                setTimeout(() => {
-                    if (clippyAgent) {
-                        clippyAgent.play('Hide');
-                        setTimeout(() => clippyAgent.hide(), 1000);
-                    }
-                }, 10000);
-            }
-        }
-
-        // Initialize REAL Clippy
-        initializeRealClippy();
-
-        // Enhanced Keyboard shortcuts and Easter Eggs with REAL Clippy
-        document.addEventListener('keydown', function (e) {
-            // Alt+Shift+C for REAL Clippy magic!
-            if (e.altKey && e.shiftKey && e.code === 'KeyC') {
-                e.preventDefault();
-
-                if (clippyAgent && clippyLoaded) {
-                    // Show REAL Clippy with authentic animations!
-                    clippyAgent.moveTo(100, 100);
-                    clippyAgent.show();
-
-                    // Play a random animation first
-                    const animations = ['GetAttention', 'Congratulate', 'Thinking', 'Explain', 'LookRight', 'LookLeft', 'CheckingSomething'];
-                    const randomAnim = animations[Math.floor(Math.random() * animations.length)];
-                    clippyAgent.play(randomAnim);
-
-                    const phrases = [
-                        "🎯 Secret activated! You found the REAL Microsoft Office Clippy! You're definitely tech-savvy!",
-                        "Looking for Yuval's contact info? Scroll down to the contact section!",
-                        "Want to see his photography skills? Check out the Fun Zone!",
-                        "Pro tip: Try clicking the counter button exactly 42 times...",
-                        "This portfolio is so well-coded, I couldn't find any bugs! And I'm very thorough!",
-                        "I'm the REAL Clippy! Not some CSS impostor! I have authentic Microsoft animations!",
-                        "Did you know Yuval can debug autonomous vehicles AND make you laugh? Rare combo!",
-                        "I've seen countless resumes since 1997, but this portfolio is next level!",
-                        "Fun fact: I can do over 50 different animations! Want to see another one?",
-                        "� CLIPPY EASTER EGG UNLOCKED! You've discovered the authentic Microsoft Office experience!"
-                    ];
-
-                    clippyAgent.speak(phrases[Math.floor(Math.random() * phrases.length)]);
-
-                    // Auto-hide after 12 seconds
-                    setTimeout(() => {
-                        clippyAgent.play('GoodBye');
-                        setTimeout(() => clippyAgent.hide(), 2000);
-                    }, 12000);
-                } else {
-                    // Fallback to custom clippy if real one isn't loaded
-                    showClippy("🔗📎 REAL Clippy is loading... But I can tell you're trying to hire an awesome engineer! 📎");
-                }
-            }
-
-            // Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A
-            const konamiCode = [
-                'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-                'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-                'KeyB', 'KeyA'
-            ];
-
-            if (!window.konamiSequence) window.konamiSequence = [];
-
-            window.konamiSequence.push(e.code);
-            if (window.konamiSequence.length > konamiCode.length) {
-                window.konamiSequence.shift();
-            }
-
-            if (window.konamiSequence.length === konamiCode.length &&
-                window.konamiSequence.every((code, index) => code === konamiCode[index])) {
-                // Konami code activated with REAL Clippy!
-                if (clippyAgent && clippyLoaded) {
-                    clippyAgent.moveTo(window.innerWidth / 2 - 100, window.innerHeight / 2 - 100);
-                    clippyAgent.show();
-                    clippyAgent.play('Congratulate');
-                    clippyAgent.speak("🎮 KONAMI CODE ACTIVATED! You've unlocked the ultimate easter egg! I'm so excited I'm doing my victory dance! 🎮");
-                } else {
-                    showClippy("🎮 KONAMI CODE ACTIVATED! Ultimate easter egg unlocked! 🎮");
-                }
-
-                document.body.style.animation = 'rainbow 2s infinite';
-                setTimeout(() => {
-                    document.body.style.animation = '';
-                }, 5000);
-                window.konamiSequence = [];
-            }
-        });
-
-        // Fallback custom clippy functions (keep for compatibility)
-        function showClippy(message = null) {
-            const clippy = document.getElementById('custom-clippy');
-            const clippyText = document.getElementById('clippy-text');
-
-            if (message) {
-                clippyText.textContent = message;
-            }
-
-            clippy.classList.add('show');
-
-            // Auto-hide after 8 seconds
-            setTimeout(() => {
-                hideClippy();
-            }, 8000);
-        }
-
-        function hideClippy() {
-            const clippy = document.getElementById('custom-clippy');
-            clippy.classList.remove('show');
-        }
-
-        // Add rainbow animation for Konami code
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes rainbow {
-                0% { filter: hue-rotate(0deg); }
-                25% { filter: hue-rotate(90deg); }
-                50% { filter: hue-rotate(180deg); }
-                75% { filter: hue-rotate(270deg); }
-                100% { filter: hue-rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Retro Gaming Functions
-        let downloadCount = parseInt(localStorage.getItem('retroDownloadCount') || '0');
-        updateDownloadCounter();
-
-        function downloadGame(gameId) {
-            // Game download links - Replace these with your actual download URLs
-            const gameLinks = {
-                'little-fighter-2': 'https://lf2.net/download_lf2_en.html',
-                'airxonix': 'https://www.myabandonware.com/download/mc1f-airxonix',
-                'elastomania': 'https://archive.org/details/elmav10'
-            };
-
-            const gameNames = {
-                'little-fighter-2': 'Little Fighter 2',
-                'airxonix': 'Airxonix',
-                'elastomania': 'Elastomania'
-            };
-
-            // For now, show a modal with download instructions
-            // Replace this with actual download when you provide the links
-            if (gameLinks[gameId] === `https://your-server.com/games/${gameId.split('-').map(word =>
-                word.charAt(0).toUpperCase() + word.slice(1)).join('')}.zip`) {
-
-                showGameDownloadModal(gameNames[gameId]);
-            } else {
-                // Actual download
-                const link = document.createElement('a');
-                link.href = gameLinks[gameId];
-                link.download = `${gameNames[gameId]}.zip`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-
-                // Update download counter
-                downloadCount++;
-                localStorage.setItem('retroDownloadCount', downloadCount.toString());
-                updateDownloadCounter();
-
-                // Show success message
-                if (clippyAgent && clippyLoaded) {
-                    clippyAgent.moveTo(200, 300);
-                    clippyAgent.show();
-                    clippyAgent.play('Congratulate');
-                    clippyAgent.speak(`Excellent choice! ${gameNames[gameId]} is downloading. Get ready for some serious nostalgia! 🎮`);
-                    setTimeout(() => clippyAgent.hide(), 8000);
-                }
-            }
-        }
-
-        function showGameDownloadModal(gameName) {
-            // Create modal for game download instructions
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
-            modal.innerHTML = `
-                <div class="bg-tech-dark border border-gray-600 rounded-2xl p-8 max-w-md mx-4 glass-effect">
-                    <div class="text-center">
-                        <div class="text-4xl mb-4">🎮</div>
-                        <h3 class="text-2xl font-bold text-tech-cyan mb-4">${gameName}</h3>
-                        <p class="text-gray-300 mb-6">
-                            This classic game is ready for download! 
-                            <br><br>
-                            <strong>Note:</strong> You'll need to provide the actual download links for these games in the JavaScript code.
-                        </p>
-                        <div class="space-y-3">
-                            <button onclick="this.closest('.fixed').remove()" 
-                                    class="w-full bg-gradient-to-r from-tech-cyan to-tech-green text-white font-bold py-3 px-6 rounded-lg">
-                                Got It!
-                            </button>
-                            <div class="text-xs text-gray-400">
-                                Contact Yuval for the actual download links
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-
-            // Remove modal when clicking outside
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.remove();
-                }
-            });
-        }
-
-        function showRetroGameRequest() {
-            // Show game request modal
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
-            modal.innerHTML = `
-                <div class="bg-tech-dark border border-gray-600 rounded-2xl p-8 max-w-md mx-4 glass-effect">
-                    <div class="text-center">
-                        <div class="text-4xl mb-4">🕹️</div>
-                        <h3 class="text-2xl font-bold text-tech-purple mb-4">Request a Retro Game</h3>
-                        <p class="text-gray-300 mb-6">
-                            Have a favorite 90s game you'd like to see here? 
-                            <br><br>
-                            Send me an email with your request!
-                        </p>
-                        <div class="space-y-3">
-                            <a href="mailto:yuval.grimberg@gmail.com?subject=Retro Game Request&body=Hi Yuval! I'd love to see this game in your retro collection: " 
-                               class="block w-full bg-gradient-to-r from-tech-purple to-tech-pink text-white font-bold py-3 px-6 rounded-lg text-center">
-                                Send Request
-                            </a>
-                            <button onclick="this.closest('.fixed').remove()" 
-                                    class="w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg">
-                                Maybe Later
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-
-            // Remove modal when clicking outside
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.remove();
-                }
-            });
-        }
-
-        function updateDownloadCounter() {
-            const counter = document.getElementById('download-count');
-            if (counter) {
-                counter.textContent = downloadCount;
-
-                // Add some animation when counter updates
-                if (downloadCount > 0) {
-                    counter.style.animation = 'pulse 1s ease-in-out';
-                    setTimeout(() => {
-                        counter.style.animation = '';
-                    }, 1000);
-                }
-            }
-        }
+        // ...existing code after function...
     </script>
     </body>
 
