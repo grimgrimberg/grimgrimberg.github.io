@@ -186,6 +186,11 @@
             box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
             transition: all 0.3s ease;
         }
+
+        /* Prevent horizontal overflow on very small devices by hiding large decorative blobs */
+        @media (max-width: 380px) {
+            .hero-blob { display: none; }
+        }
     </style>
 </head>
 
@@ -351,11 +356,11 @@
         <!-- Animated Background Elements -->
         <div class="absolute inset-0 overflow-hidden">
             <div
-                class="absolute -top-10 -left-10 w-72 h-72 bg-tech-purple rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float">
+                class="hero-blob absolute -top-10 -left-10 w-72 h-72 bg-tech-purple rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float">
             </div>
-            <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-tech-cyan rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"
+            <div class="hero-blob absolute -bottom-10 -right-10 w-72 h-72 bg-tech-cyan rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"
                 style="animation-delay: 2s;"></div>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-tech-green rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float"
+            <div class="hero-blob absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-tech-green rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float"
                 style="animation-delay: 4s;"></div>
         </div>
 
