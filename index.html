@@ -204,10 +204,10 @@
     <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
             <div class="flex justify-between items-center py-4 gap-4">
-                <div class="text-2xl font-bold gradient-text flex-shrink-0" data-aos="fade-right">
+                <div class="text-2xl font-bold gradient-text flex-shrink-0">
                     YG
                 </div>
-                <div class="hidden md:flex space-x-8" data-aos="fade-left">
+                <div class="hidden md:flex space-x-8">
                     <a href="#hero" class="hover:text-tech-cyan transition-all duration-300 relative group">
                         Home
                         <span
@@ -249,23 +249,23 @@
                             class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
                     </a>
                 </div>
-                <!-- Mobile Menu Button - Enhanced positioning for better accessibility -->
-                <button class="md:hidden mobile-menu-button flex items-center justify-center w-10 h-10 rounded-lg bg-tech-cyan/10 hover:bg-tech-cyan/20 border border-tech-cyan/30 transition-all duration-300 flex-shrink-0" 
-                        aria-label="Toggle mobile menu" 
-                        aria-expanded="false"
-                        id="mobile-menu-button">
+                <!-- Mobile Menu Button - Fixed positioning without AOS animations -->
+                <button
+                    class="md:hidden mobile-menu-button flex items-center justify-center w-10 h-10 rounded-lg bg-tech-cyan/10 hover:bg-tech-cyan/20 border border-tech-cyan/30 transition-all duration-300 flex-shrink-0"
+                    aria-label="Toggle mobile menu" aria-expanded="false" id="mobile-menu-button">
                     <i class="fas fa-bars text-tech-cyan text-lg transition-transform duration-300"></i>
                 </button>
             </div>
         </div>
-        
+
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
             <!-- Backdrop -->
             <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
-            
+
             <!-- Menu Panel -->
-            <div class="absolute top-0 right-0 h-full w-80 max-w-sm bg-tech-dark/95 backdrop-blur-lg border-l border-tech-cyan/20 transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu-panel">
+            <div class="absolute top-0 right-0 h-full w-80 max-w-sm bg-tech-dark/95 backdrop-blur-lg border-l border-tech-cyan/20 transform translate-x-full transition-transform duration-300 ease-in-out"
+                id="mobile-menu-panel">
                 <!-- Header -->
                 <div class="flex items-center justify-between p-6 border-b border-tech-cyan/20">
                     <div class="text-xl font-bold gradient-text">Navigation</div>
@@ -273,61 +273,69 @@
                         <i class="fas fa-times text-xl"></i>
                     </button>
                 </div>
-                
+
                 <!-- Navigation Links -->
                 <nav class="p-6">
                     <ul class="space-y-4">
                         <li>
-                            <a href="#hero" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                            <a href="#hero"
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
                                 <i class="fas fa-home w-6"></i>
                                 <span class="ml-3">Home</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#about" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                            <a href="#about"
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
                                 <i class="fas fa-user w-6"></i>
                                 <span class="ml-3">About</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#skills" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                            <a href="#skills"
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
                                 <i class="fas fa-cogs w-6"></i>
                                 <span class="ml-3">Expertise</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#projects" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                            <a href="#projects"
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
                                 <i class="fas fa-rocket w-6"></i>
                                 <span class="ml-3">Projects</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#fun-zone" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                            <a href="#fun-zone"
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
                                 <i class="fas fa-gamepad w-6"></i>
                                 <span class="ml-3">Fun Zone</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#retro-games" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                            <a href="#retro-games"
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
                                 <i class="fas fa-gamepad w-6"></i>
                                 <span class="ml-3">🎮 Retro Games</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#contact" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                            <a href="#contact"
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
                                 <i class="fas fa-envelope w-6"></i>
                                 <span class="ml-3">Contact</span>
                             </a>
                         </li>
                         <li>
-                            <a href="photo.html" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                            <a href="photo.html"
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
                                 <i class="fas fa-camera w-6"></i>
                                 <span class="ml-3">📸 Photography</span>
                             </a>
                         </li>
                     </ul>
                 </nav>
-                
+
                 <!-- Footer -->
                 <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-tech-cyan/20">
                     <p class="text-sm text-gray-400 text-center">
@@ -1427,13 +1435,13 @@
         function openMobileMenu() {
             mobileMenu.classList.remove('hidden');
             mobileMenuButton.setAttribute('aria-expanded', 'true');
-            
+
             // Animate menu in
             requestAnimationFrame(() => {
                 mobileMenuPanel.style.transform = 'translateX(0)';
                 hamburgerIcon?.classList.replace('fa-bars', 'fa-times');
             });
-            
+
             // Prevent body scroll
             document.body.style.overflow = 'hidden';
         }
@@ -1442,7 +1450,7 @@
             mobileMenuPanel.style.transform = 'translateX(100%)';
             mobileMenuButton.setAttribute('aria-expanded', 'false');
             hamburgerIcon?.classList.replace('fa-times', 'fa-bars');
-            
+
             // Hide after animation
             setTimeout(() => {
                 mobileMenu.classList.add('hidden');

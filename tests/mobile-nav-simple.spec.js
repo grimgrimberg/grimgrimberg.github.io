@@ -15,11 +15,11 @@ test.describe('Mobile Navigation - Basic Tests', () => {
     test('should show hamburger menu button on mobile', async ({ page }) => {
         // Set mobile viewport (iPhone size)
         await page.setViewportSize({ width: 375, height: 667 });
-        
+
         // Check hamburger button exists and is visible
         const mobileMenuButton = page.locator('.mobile-menu-button');
         await expect(mobileMenuButton).toBeVisible();
-        
+
         // Check it contains a hamburger icon
         const iconElement = mobileMenuButton.locator('i.fa-bars');
         await expect(iconElement).toBeVisible();
@@ -27,7 +27,7 @@ test.describe('Mobile Navigation - Basic Tests', () => {
 
     test('should hide desktop navigation on mobile', async ({ page }) => {
         await page.setViewportSize({ width: 375, height: 667 });
-        
+
         // Desktop navigation should be hidden on mobile
         const desktopNav = page.locator('nav .hidden.md\\:flex');
         await expect(desktopNav).not.toBeVisible();
@@ -35,11 +35,11 @@ test.describe('Mobile Navigation - Basic Tests', () => {
 
     test('should show desktop navigation on desktop', async ({ page }) => {
         await page.setViewportSize({ width: 1920, height: 1080 });
-        
+
         // Desktop navigation should be visible
         const desktopNav = page.locator('nav .hidden.md\\:flex');
         await expect(desktopNav).toBeVisible();
-        
+
         // Mobile menu button should be hidden
         const mobileMenuButton = page.locator('.mobile-menu-button');
         await expect(mobileMenuButton).not.toBeVisible();
@@ -47,14 +47,14 @@ test.describe('Mobile Navigation - Basic Tests', () => {
 
     test('should respond to hamburger button click', async ({ page }) => {
         await page.setViewportSize({ width: 375, height: 667 });
-        
+
         // Track console logs to see if click is registered
         const consoleLogs = [];
         page.on('console', msg => consoleLogs.push(msg.text()));
-        
+
         const mobileMenuButton = page.locator('.mobile-menu-button');
         await mobileMenuButton.click();
-        
+
         // Should log mobile menu click (current implementation)
         expect(consoleLogs).toContain('Mobile menu clicked');
     });
@@ -69,11 +69,11 @@ test.describe('Mobile Navigation - Basic Tests', () => {
 
         for (const size of mobileSizes) {
             await page.setViewportSize(size);
-            
+
             // Mobile menu should be visible on all mobile sizes
             const mobileMenuButton = page.locator('.mobile-menu-button');
             await expect(mobileMenuButton).toBeVisible();
-            
+
             // Desktop nav should be hidden
             const desktopNav = page.locator('nav .hidden.md\\:flex');
             await expect(desktopNav).not.toBeVisible();
@@ -82,14 +82,14 @@ test.describe('Mobile Navigation - Basic Tests', () => {
 
     test('should have clickable navigation links in desktop mode', async ({ page }) => {
         await page.setViewportSize({ width: 1920, height: 1080 });
-        
+
         // Test that navigation links work in desktop mode
         const navLinks = ['#hero', '#about', '#skills', '#projects', '#contact'];
-        
+
         for (const link of navLinks) {
             await page.click(`a[href="${link}"]`);
             await page.waitForTimeout(500); // Wait for smooth scroll
-            
+
             // Check if section is in viewport
             const section = page.locator(link);
             await expect(section).toBeInViewport();
@@ -99,11 +99,11 @@ test.describe('Mobile Navigation - Basic Tests', () => {
     test('should handle navigation in tablet viewport', async ({ page }) => {
         // Test tablet viewport (768px is the md breakpoint)
         await page.setViewportSize({ width: 768, height: 1024 });
-        
+
         // At 768px, should show desktop navigation (md:flex kicks in)
         const desktopNav = page.locator('nav .hidden.md\\:flex');
         await expect(desktopNav).toBeVisible();
-        
+
         // Mobile menu should be hidden
         const mobileMenuButton = page.locator('.mobile-menu-button');
         await expect(mobileMenuButton).not.toBeVisible();

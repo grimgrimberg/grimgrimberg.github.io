@@ -190,7 +190,7 @@ test.describe('Mobile & Desktop Responsive Tests', () => {
             // Test closing menu via backdrop click
             await hamburgerBtn.click(); // Open menu again
             await expect(mobileMenu).toBeVisible();
-            
+
             await backdrop.click(); // Click backdrop to close
             await expect(mobileMenu).toHaveClass(/hidden/);
 

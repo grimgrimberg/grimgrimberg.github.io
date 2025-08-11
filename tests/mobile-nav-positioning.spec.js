@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 test.describe('Mobile Navigation Positioning Tests', () => {
-    
+
     test.beforeEach(async ({ page }) => {
         await page.goto('http://localhost:8000');
         await page.waitForLoadState('networkidle');
@@ -18,7 +18,7 @@ test.describe('Mobile Navigation Positioning Tests', () => {
         // Check button is within viewport bounds
         const buttonBox = await mobileMenuButton.boundingBox();
         const viewport = page.viewportSize();
-        
+
         expect(buttonBox.x).toBeGreaterThanOrEqual(0);
         expect(buttonBox.x + buttonBox.width).toBeLessThanOrEqual(viewport.width);
         expect(buttonBox.y).toBeGreaterThanOrEqual(0);
@@ -30,11 +30,11 @@ test.describe('Mobile Navigation Positioning Tests', () => {
 
         // Test button click functionality
         await mobileMenuButton.click();
-        
+
         // Verify menu opens
         const mobileMenu = page.locator('#mobile-menu');
         await expect(mobileMenu).toBeVisible();
-        
+
         // Verify aria-expanded changes
         await expect(mobileMenuButton).toHaveAttribute('aria-expanded', 'true');
     });
@@ -57,7 +57,7 @@ test.describe('Mobile Navigation Positioning Tests', () => {
         // Check that the navigation doesn't cause horizontal scroll
         const bodyScrollWidth = await page.evaluate(() => document.body.scrollWidth);
         const viewportWidth = page.viewportSize().width;
-        
+
         expect(bodyScrollWidth).toBeLessThanOrEqual(viewportWidth);
     });
 });
