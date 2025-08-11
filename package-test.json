@@ -1,0 +1,36 @@
+{
+    "name": "portfolio-responsive-testing",
+    "version": "1.0.0",
+    "description": "Comprehensive mobile and desktop testing for Yuval's portfolio",
+    "scripts": {
+        "test": "playwright test",
+        "test:headed": "playwright test --headed",
+        "test:mobile": "playwright test --project=\"iPhone 12\" --project=\"Galaxy S9+\" --project=\"Pixel 5\"",
+        "test:desktop": "playwright test --project=\"Desktop Chrome\" --project=\"Desktop Firefox\" --project=\"Desktop Safari\"",
+        "test:responsive": "playwright test responsive-mobile-desktop.spec.js",
+        "test:touch": "playwright test mobile-touch-gestures.spec.js",
+        "test:all-devices": "playwright test --project=\"iPhone 12\" --project=\"Galaxy S9+\" --project=\"Desktop Chrome\" --project=\"iPad Pro\"",
+        "test:slow": "playwright test --project=\"Mobile Slow 3G\"",
+        "test:accessibility": "playwright test --project=\"Mobile Accessibility\"",
+        "test:dark-mode": "playwright test --project=\"Dark Mode Mobile\" --project=\"Dark Mode Desktop\"",
+        "test:breakpoints": "playwright test --project=\"Mobile Portrait 375px\" --project=\"Tablet Landscape 1024px\" --project=\"Desktop Large 1920px\"",
+        "test:report": "playwright show-report",
+        "test:debug": "playwright test --debug",
+        "install-browsers": "playwright install",
+        "serve": "python -m http.server 8000",
+        "test:ci": "playwright test --reporter=junit"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.40.0"
+    },
+    "keywords": [
+        "testing",
+        "playwright",
+        "responsive",
+        "mobile",
+        "desktop",
+        "portfolio"
+    ],
+    "author": "Yuval Grimberg",
+    "license": "MIT"
+}

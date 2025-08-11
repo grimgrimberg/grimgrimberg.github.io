@@ -202,9 +202,9 @@
     </div>
     <!-- Floating Navigation -->
     <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="text-2xl font-bold gradient-text" data-aos="fade-right">
+        <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+            <div class="flex justify-between items-center py-4 gap-4">
+                <div class="text-2xl font-bold gradient-text flex-shrink-0" data-aos="fade-right">
                     YG
                 </div>
                 <div class="hidden md:flex space-x-8" data-aos="fade-left">
@@ -249,9 +249,91 @@
                             class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
                     </a>
                 </div>
-                <button class="md:hidden mobile-menu-button">
-                    <i class="fas fa-bars text-xl"></i>
+                <!-- Mobile Menu Button - Enhanced positioning for better accessibility -->
+                <button class="md:hidden mobile-menu-button flex items-center justify-center w-10 h-10 rounded-lg bg-tech-cyan/10 hover:bg-tech-cyan/20 border border-tech-cyan/30 transition-all duration-300 flex-shrink-0" 
+                        aria-label="Toggle mobile menu" 
+                        aria-expanded="false"
+                        id="mobile-menu-button">
+                    <i class="fas fa-bars text-tech-cyan text-lg transition-transform duration-300"></i>
                 </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
+            
+            <!-- Menu Panel -->
+            <div class="absolute top-0 right-0 h-full w-80 max-w-sm bg-tech-dark/95 backdrop-blur-lg border-l border-tech-cyan/20 transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu-panel">
+                <!-- Header -->
+                <div class="flex items-center justify-between p-6 border-b border-tech-cyan/20">
+                    <div class="text-xl font-bold gradient-text">Navigation</div>
+                    <button class="mobile-menu-close text-tech-cyan hover:text-white transition-colors">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Navigation Links -->
+                <nav class="p-6">
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="#hero" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                <i class="fas fa-home w-6"></i>
+                                <span class="ml-3">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#about" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                <i class="fas fa-user w-6"></i>
+                                <span class="ml-3">About</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#skills" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                <i class="fas fa-cogs w-6"></i>
+                                <span class="ml-3">Expertise</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#projects" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                <i class="fas fa-rocket w-6"></i>
+                                <span class="ml-3">Projects</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#fun-zone" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                <i class="fas fa-gamepad w-6"></i>
+                                <span class="ml-3">Fun Zone</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#retro-games" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                <i class="fas fa-gamepad w-6"></i>
+                                <span class="ml-3">🎮 Retro Games</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                <i class="fas fa-envelope w-6"></i>
+                                <span class="ml-3">Contact</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="photo.html" class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                <i class="fas fa-camera w-6"></i>
+                                <span class="ml-3">📸 Photography</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <!-- Footer -->
+                <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-tech-cyan/20">
+                    <p class="text-sm text-gray-400 text-center">
+                        © 2025 Yuval Grimberg
+                    </p>
+                </div>
             </div>
         </div>
     </nav>
@@ -472,22 +554,25 @@
             </div>
 
             <!-- Tools & Technologies -->
-             <!-- Tools & Technologies (short) -->
-<div class="mt-16" data-aos="fade-up">
-  <h3 class="text-2xl font-bold text-center mb-8 gradient-text">Tools & Technologies</h3>
-  <div class="flex flex-wrap justify-center gap-4">
-    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20">ROS2</span>
-    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">OpenCV</span>
-    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">YOLO</span>
-    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">Stable Diffusion</span>
-    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">ESP32/Arduino</span>
-    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">PlatformIO</span>
-    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">LangChain</span>
-    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">TensorFlow</span>
-    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20">Scipy/Sklearn</span>
-    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">MATLAB/Simulink</span>
-  </div>
-</div>
+            <!-- Tools & Technologies (short) -->
+            <div class="mt-16" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-center mb-8 gradient-text">Tools & Technologies</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20">ROS2</span>
+                    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">OpenCV</span>
+                    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">YOLO</span>
+                    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">Stable
+                        Diffusion</span>
+                    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">ESP32/Arduino</span>
+                    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">PlatformIO</span>
+                    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">LangChain</span>
+                    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">TensorFlow</span>
+                    <span
+                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20">Scipy/Sklearn</span>
+                    <span
+                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">MATLAB/Simulink</span>
+                </div>
+            </div>
             <!-- <div class="mt-16" data-aos="fade-up">
                 <h3 class="text-2xl font-bold text-center mb-8 gradient-text">Tools & Technologies</h3>
                 <div class="flex flex-wrap justify-center gap-4">
@@ -541,7 +626,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-tech-cyan mb-3">Autonomous Vehicle Control System</h3>
                         <p class="text-gray-300 mb-4">
-                            Built a path-planning & control stack for BGRacing’s autonomous racer—GNC
+                            Built a path-planning & control stack for BGRacing’s autonomous racer GNC Piepline with an
                             end-to-end from simulation to track. The pipeline runs on an AirSim-based simulator with
                             interactive telemetry and logging,
                             and the same code deploys on-car with full sensor/actuator integration.
@@ -637,10 +722,11 @@
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-tech-green mb-3">Advanced Robotics Platform</h3>
+                        <h3 class="text-xl font-bold text-tech-green mb-3">Advanced Robotics Platform - HW monitoring
+                            and CV piepline</h3>
                         <p class="text-gray-300 mb-4">
-                            This repository contains a comprehensive AI robotics system developed for Ben-Gurion
-                            University, featuring advanced computer vision, real-time hardware monitoring, and
+                            This repository contains a comprehensive AI robotics system
+                            , featuring advanced computer vision, real-time hardware monitoring, and
                             intelligent robot control capabilities. The system demonstrates modern ROS2 integration with
                             state-of-the-art AI technologies.
                             <!-- Multi-robot coordination system with distributed control architecture,
@@ -795,7 +881,8 @@
                     <div class="text-center mb-6">
                         <div class="text-4xl mb-4">📸</div>
                         <h3 class="text-2xl font-bold text-tech-cyan mb-4">Travel Photography</h3>
-                        <p class="text-gray-300 mb-6">A collection of moments captured from travels near and far. This is the world as I see it
+                        <p class="text-gray-300 mb-6">A collection of moments captured from travels near and far. This
+                            is the world as I see it
                             .</p>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mb-4">
@@ -1054,27 +1141,30 @@
 
             <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Contact Form -->
-                <div data-aos="fade-right" class="glass-effect rounded-2xl p-8">
-                    <h3 class="text-2xl font-bold text-tech-cyan mb-6">Send a Message</h3>
+                <div data-aos="fade-right" class="glass-effect rounded-2xl p-8 backdrop-blur-xl">
+                    <div class="text-center mb-8">
+                        <h3 class="text-3xl font-bold text-tech-cyan mb-3">Send a Message</h3>
+                        <p class="text-gray-300">Ready to collaborate? Let's build something amazing together!</p>
+                    </div>
 
                     <!-- Simple Email Form (No External Services Needed) -->
                     <form class="space-y-6" id="simple-contact-form" novalidate>
                         <div>
                             <label class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
                             <input type="text" name="name" id="contact-name" required
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-transparent outline-none text-white placeholder-gray-400"
+                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500"
                                 placeholder="Your Name">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
                             <input type="email" name="email" id="contact-email" required
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-transparent outline-none text-white placeholder-gray-400"
+                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500"
                                 placeholder="your.email@company.com">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
                             <select name="subject" id="contact-subject"
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-transparent outline-none text-white">
+                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white transition-all duration-300 hover:border-gray-500">
                                 <option value="General Inquiry">General Inquiry</option>
                                 <option value="Job Opportunity">Job Opportunity</option>
                                 <option value="Collaboration Proposal">Collaboration Proposal</option>
@@ -1086,27 +1176,60 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-300 mb-2">Message *</label>
                             <textarea name="message" id="contact-message" rows="4" required
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-transparent outline-none text-white placeholder-gray-400"
+                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500 resize-vertical"
                                 placeholder="Tell me about your project or opportunity..."></textarea>
                         </div>
 
                         <!-- Email Button - Opens user's email client with pre-filled content -->
                         <button type="button" onclick="openEmailClient()" id="open-email-client-btn"
-                            class="w-full bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                            <span class="flex items-center justify-center space-x-2">
-                                <span>Open Email Client</span>
-                                <i class="fas fa-envelope"></i>
+                            class="w-full bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                            <span class="flex items-center justify-center space-x-3">
+                                <span class="text-lg">Open Email Client</span>
+                                <i class="fas fa-envelope text-lg"></i>
                             </span>
                         </button>
+
+                        <!-- Success Message - Shows after email is opened -->
+                        <div id="email-success" style="display: none;"
+                            class="mt-6 p-6 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl shadow-md">
+                            <div class="text-center">
+                                <div class="flex justify-center mb-3">
+                                    <i class="fas fa-check-circle text-3xl text-green-600"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-green-800 mb-2">Email Client Opened!</h3>
+                                <p class="text-sm text-green-700 mb-4">Your email should now be open with a pre-filled
+                                    message.</p>
+
+                                <div class="bg-white p-4 rounded-lg shadow-inner mb-4">
+                                    <p class="text-xs text-gray-600 mb-2">Preview of email content:</p>
+                                    <div class="text-left">
+                                        <p class="text-sm font-semibold text-gray-800">To: yuval.grimberg@gmail.com</p>
+                                        <p class="text-sm font-semibold text-gray-800" id="email-subject-preview">
+                                            Subject: </p>
+                                        <p class="text-sm text-gray-700 mt-2" id="email-body-preview"></p>
+                                    </div>
+                                </div>
+
+                                <button type="button" onclick="copyEmailContent()"
+                                    class="bg-tech-cyan hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg">
+                                    <span class="flex items-center justify-center space-x-2">
+                                        <i class="fas fa-copy"></i>
+                                        <span>Copy Email Content</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
                         <div id="contact-status" class="sr-only" aria-live="polite"></div>
 
                         <!-- Alternative: Direct email link -->
-                        <div class="text-center">
-                            <p class="text-gray-400 text-sm mb-2">Or email me directly:</p>
+                        <div class="text-center mt-8 p-6 glass-effect rounded-xl border border-gray-600/50">
+                            <p class="text-gray-300 text-sm mb-4 font-medium">Prefer a direct approach?</p>
                             <a href="mailto:yuval.grimberg@gmail.com?subject=Portfolio%20Contact&body=Hi%20Yuval,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20discuss..."
-                                class="text-tech-cyan hover:text-tech-purple font-medium transition-colors duration-300">
-                                <i class="fas fa-envelope mr-2"></i>
-                                yuval.grimberg@gmail.com
+                                class="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-tech-cyan/20 to-tech-purple/20 hover:from-tech-cyan/30 hover:to-tech-purple/30 border border-tech-cyan/50 rounded-lg text-tech-cyan hover:text-white font-medium transition-all duration-300 transform hover:scale-105">
+                                <i class="fas fa-envelope text-lg"></i>
+                                <span>yuval.grimberg@gmail.com</span>
+                                <i class="fas fa-external-link-alt text-sm opacity-70"></i>
                             </a>
                         </div>
                     </form>
@@ -1294,12 +1417,67 @@
 
         // Mobile menu toggle
         const mobileMenuButton = document.querySelector('.mobile-menu-button');
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', function () {
-                // Add mobile menu functionality here
-                console.log('Mobile menu clicked');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+        const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        const hamburgerIcon = mobileMenuButton?.querySelector('i');
+
+        function openMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', 'true');
+            
+            // Animate menu in
+            requestAnimationFrame(() => {
+                mobileMenuPanel.style.transform = 'translateX(0)';
+                hamburgerIcon?.classList.replace('fa-bars', 'fa-times');
             });
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
         }
+
+        function closeMobileMenu() {
+            mobileMenuPanel.style.transform = 'translateX(100%)';
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            hamburgerIcon?.classList.replace('fa-times', 'fa-bars');
+            
+            // Hide after animation
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // Mobile menu event listeners
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', openMobileMenu);
+        }
+
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileMenuBackdrop) {
+            mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+        }
+
+        // Close menu when navigation link is clicked
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                closeMobileMenu();
+            }
+        });
+
+        console.log('Mobile navigation initialized successfully');
 
         // Simple Email Client Function - No external services needed!
         function openEmailClient() {
