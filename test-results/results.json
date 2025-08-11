@@ -102,7 +102,7 @@
         "testIgnore": [],
         "testMatch": [
           "**/responsive-mobile-desktop.spec.js",
-          "**/mobile-touch-gestures.spec.js"
+          "**/mobile-nav-positioning.spec.js"
         ],
         "timeout": 30000
       },
@@ -119,7 +119,7 @@
         "testIgnore": [],
         "testMatch": [
           "**/responsive-mobile-desktop.spec.js",
-          "**/mobile-touch-gestures.spec.js"
+          "**/mobile-nav-positioning.spec.js"
         ],
         "timeout": 30000
       },
@@ -136,7 +136,7 @@
         "testIgnore": [],
         "testMatch": [
           "**/responsive-mobile-desktop.spec.js",
-          "**/mobile-touch-gestures.spec.js"
+          "**/mobile-nav-positioning.spec.js"
         ],
         "timeout": 30000
       },
@@ -153,7 +153,7 @@
         "testIgnore": [],
         "testMatch": [
           "**/responsive-mobile-desktop.spec.js",
-          "**/mobile-touch-gestures.spec.js"
+          "**/mobile-nav-positioning.spec.js"
         ],
         "timeout": 30000
       },
@@ -333,1554 +333,363 @@
   },
   "suites": [
     {
-      "title": "responsive-mobile-desktop.spec.js",
-      "file": "responsive-mobile-desktop.spec.js",
+      "title": "mobile-nav-positioning.spec.js",
+      "file": "mobile-nav-positioning.spec.js",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Mobile & Desktop Responsive Tests",
-          "file": "responsive-mobile-desktop.spec.js",
-          "line": 8,
+          "title": "Mobile Navigation Positioning Tests",
+          "file": "mobile-nav-positioning.spec.js",
+          "line": 3,
           "column": 6,
-          "specs": [],
-          "suites": [
+          "specs": [
             {
-              "title": "Mobile Functionality Tests",
-              "file": "responsive-mobile-desktop.spec.js",
-              "line": 101,
-              "column": 10,
-              "specs": [
+              "title": "navigation container should not cause excessive horizontal overflow",
+              "ok": false,
+              "tags": [],
+              "tests": [
                 {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iPhone 12",
+                  "projectName": "iPhone 12",
+                  "results": [
                     {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "Desktop Chrome",
-                      "projectName": "Desktop Chrome",
-                      "results": [
-                        {
-                          "workerIndex": 0,
-                          "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 38617,
-                          "error": {
-                            "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n",
-                            "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 40,
-                              "line": 159
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:34:38.255Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome\\test-failed-1.png"
-                            },
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome\\video.webm"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome\\error-context.md"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 40,
-                            "line": 159
-                          }
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 41051,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:5:10",
+                        "location": {
+                          "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                          "column": 10,
+                          "line": 5
                         },
+                        "snippet": "\u001b[0m \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile Navigation Positioning Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 4 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
                         {
-                          "workerIndex": 7,
-                          "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 56276,
-                          "error": {
-                            "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n",
-                            "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 40,
-                              "line": 159
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            },
-                            {
-                              "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
-                            },
-                            {
-                              "message": "Error: browserContext._wrapApiCall: Target page, context or browser has been closed"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:35:37.670Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome-retry1\\test-failed-1.png"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome-retry1\\error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome-retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 40,
-                            "line": 159
-                          }
-                        }
-                      ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-668fc79e201b5474ac1a",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "Desktop Firefox",
-                      "projectName": "Desktop Firefox",
-                      "results": [
-                        {
-                          "workerIndex": 1,
-                          "parallelIndex": 1,
-                          "status": "timedOut",
-                          "duration": 39397,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 10,
-                              "line": 10
-                            },
-                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 10,
-                                "line": 10
-                              },
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10\u001b[22m"
-                            },
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 20,
-                                "line": 13
-                              },
-                              "message": "Error: page.waitForLoadState: Test timeout of 30000ms exceeded.\n\n\u001b[0m \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 15 |\u001b[39m\n \u001b[90m 16 |\u001b[39m     test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Desktop Functionality Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:13:20\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:34:38.399Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox\\test-failed-1.png"
-                            },
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox\\video.webm"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
+                          "location": {
+                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
                             "column": 10,
-                            "line": 10
-                          }
+                            "line": 5
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile Navigation Positioning Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 4 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:5:10\u001b[22m"
                         },
                         {
-                          "workerIndex": 6,
-                          "parallelIndex": 1,
-                          "status": "timedOut",
-                          "duration": 60288,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 10,
-                              "line": 10
-                            },
-                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                          "location": {
+                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                            "column": 20,
+                            "line": 6
                           },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 10,
-                                "line": 10
-                              },
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10\u001b[22m"
-                            },
-                            {
-                              "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
-                            },
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 20,
-                                "line": 13
-                              },
-                              "message": "Error: page.waitForLoadState: Test timeout of 30000ms exceeded.\n\n\u001b[0m \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 15 |\u001b[39m\n \u001b[90m 16 |\u001b[39m     test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Desktop Functionality Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:13:20\u001b[22m"
-                            },
-                            {
-                              "message": "Error: browserContext._wrapApiCall: Test timeout of 30000ms exceeded.\nBrowser logs:\n\n<launching> C:\\Users\\yuval\\AppData\\Local\\ms-playwright\\firefox-1489\\firefox\\firefox.exe -no-remote -headless -profile C:\\Users\\yuval\\AppData\\Local\\Temp\\playwright_firefoxdev_profile-YybS5z -juggler-pipe -silent\n<launched> pid=17904\n[pid=17904][err] *** You are running in headless mode.\n[pid=17904][err] JavaScript warning: resource://services-settings/Utils.sys.mjs, line 116: unreachable code after return statement\n[pid=17904][out] console.warn: services.settings: Ignoring preference override of remote settings server\n[pid=17904][out] console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment\n[pid=17904][out] \n[pid=17904][out] Juggler listening to the pipe\n[pid=17904][out] Crash Annotation GraphicsCriticalError: |[0][GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt (t=71.9493) [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt\n[pid=17904][err] JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]\n[pid=17904][out] console.error: SearchEngineSelector: \"Received empty search configuration!\"\n[pid=17904][out] console.error: \"Received empty top sites configuration!\"\n[pid=17904][out] console.error: SearchEngineSelector: \"Received empty search configuration!\"\n[pid=17904][out] console.error: SearchService: \"#init: failure initializing search:\" [Exception... \"Failed to get engine data from Remote Settings\"  nsresult: \"0x8000ffff (NS_ERROR_UNEXPECTED)\"  location: \"JS frame :: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs :: getEngineConfiguration :: line 105\"  data: no]\n[pid=17904][out] console.error: WebExtensions: \n[pid=17904][out]   Message: [Exception... \"Failed to get engine data from Remote Settings\"  nsresult: \"0x8000ffff (NS_ERROR_UNEXPECTED)\"  location: \"JS frame :: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs :: getEngineConfiguration :: line 105\"  data: no]\n[pid=17904][out]   Stack:\n[pid=17904][out]     getEngineConfiguration@moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs:105:24\n[pid=17904][out] \n[pid=17904][out] console.error: \"Received empty top sites configuration!\"\n[pid=17904][err] JavaScript error: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs, line 105: NS_ERROR_UNEXPECTED: Failed to get engine data from Remote Settings\n[pid=17904][err] JavaScript error: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs, line 105: NS_ERROR_UNEXPECTED: Failed to get engine data from Remote Settings\n[pid=17904][err] JavaScript error: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs, line 105: NS_ERROR_UNEXPECTED: Failed to get engine data from Remote Settings\n[pid=17904][err] JavaScript error: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs, line 105: NS_ERROR_UNEXPECTED: Failed to get engine data from Remote Settings\n[pid=17904][out] console.error: \"Search service failed to init\"\n[pid=17904][out] console.error: URLBar - Provider.UrlbarProviderSearchTips: [Exception... \"Failed to get engine data from Remote Settings\"  nsresult: \"0x8000ffff (NS_ERROR_UNEXPECTED)\"  location: \"JS frame :: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs :: getEngineConfiguration :: line 105\"  data: no]\n[pid=17904][out] console.error: [Exception... \"Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIWinTaskbar.getTaskbarProgress]\"  nsresult: \"0x80070057 (NS_ERROR_ILLEGAL_VALUE)\"  location: \"JS frame :: resource:///modules/DownloadsTaskbar.sys.mjs :: _attachIndicator :: line 127\"  data: no]\n[pid=17904][out] console.error: SearchSettings: \"_write: Could not write to settings file:\" (new Error(\"cannot write without any engine.\", \"moz-src:///toolkit/components/search/SearchSettings.sys.mjs\", 328))\n[pid=17904][out] console.error: CustomizableUI: \n[pid=17904][out]   Could not localize property 'fxms-bmb-button.tooltiptext'.\n[pid=17904][err] JavaScript warning: resource://gre/modules/UpdateService.sys.mjs, line 3878: unreachable code after return statement\n[pid=17904] <gracefully close start>\n[pid=17904][err] JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:35:35.653Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox-retry1\\test-failed-1.png"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox-retry1\\error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox-retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 10,
-                            "line": 10
-                          }
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 4 |\u001b[39m\n \u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 9 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:6:20\u001b[22m"
                         }
                       ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-4ba7c0f38a431b89e514",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-11T15:31:43.716Z",
                       "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "Desktop Safari",
-                      "projectName": "Desktop Safari",
-                      "results": [
+                      "attachments": [
                         {
-                          "workerIndex": 2,
-                          "parallelIndex": 2,
-                          "status": "timedOut",
-                          "duration": 41360,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 10,
-                              "line": 10
-                            },
-                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 10,
-                                "line": 10
-                              },
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10\u001b[22m"
-                            },
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 20,
-                                "line": 12
-                              },
-                              "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 15 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:12:20\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:34:38.244Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Safari\\video.webm"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 10,
-                            "line": 10
-                          }
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12\\video.webm"
                         },
                         {
-                          "workerIndex": 4,
-                          "parallelIndex": 2,
-                          "status": "timedOut",
-                          "duration": 60115,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 10,
-                              "line": 10
-                            },
-                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 10,
-                                "line": 10
-                              },
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10\u001b[22m"
-                            },
-                            {
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:35:34.702Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Safari-retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 10,
-                            "line": 10
-                          }
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12\\error-context.md"
                         }
                       ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-d96e0ace905b8ee9e343",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
+                      "errorLocation": {
+                        "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                        "column": 10,
+                        "line": 5
+                      }
+                    },
                     {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "iPhone 12",
-                      "projectName": "iPhone 12",
-                      "results": [
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 35690,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:82:26",
+                        "location": {
+                          "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                          "column": 26,
+                          "line": 82
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 80 |\u001b[39m             console\u001b[33m.\u001b[39mlog(\u001b[32m'Horizontal overflow offenders:'\u001b[39m\u001b[33m,\u001b[39m offenders)\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m         }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 82 |\u001b[39m         expect(overflow)\u001b[33m.\u001b[39mtoBeLessThanOrEqual(\u001b[35m40\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 83 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 84 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 85 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
                         {
-                          "workerIndex": 3,
-                          "parallelIndex": 3,
-                          "status": "timedOut",
-                          "duration": 44501,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 10,
-                              "line": 10
-                            },
-                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                          "location": {
+                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                            "column": 26,
+                            "line": 82
                           },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 10,
-                                "line": 10
-                              },
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10\u001b[22m"
-                            },
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 20,
-                                "line": 12
-                              },
-                              "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 15 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:12:20\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:34:38.333Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-12\\video.webm"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 10,
-                            "line": 10
-                          }
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m\n\n\u001b[0m \u001b[90m 80 |\u001b[39m             console\u001b[33m.\u001b[39mlog(\u001b[32m'Horizontal overflow offenders:'\u001b[39m\u001b[33m,\u001b[39m offenders)\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m         }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 82 |\u001b[39m         expect(overflow)\u001b[33m.\u001b[39mtoBeLessThanOrEqual(\u001b[35m40\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 83 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 84 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 85 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:82:26\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Horizontal overflow offenders: [\n  { tag: \u001b[32m'DIV'\u001b[39m, cls: \u001b[32m'relative aos-init'\u001b[39m, right: \u001b[33m404\u001b[39m, w: \u001b[33m288\u001b[39m },\n  {\n    tag: \u001b[32m'DIV'\u001b[39m,\n    cls: \u001b[32m'glass-effect rounded-2xl p-8 text-center hover-lift'\u001b[39m,\n    right: \u001b[33m404\u001b[39m,\n    w: \u001b[33m288\u001b[39m\n  },\n  { tag: \u001b[32m'DIV'\u001b[39m, cls: \u001b[32m'mb-8'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m },\n  {\n    tag: \u001b[32m'DIV'\u001b[39m,\n    cls: \u001b[32m'w-32 h-32 bg-gradient-to-br from-tech-purple to-tech-cyan rounded-full mx-auto flex items-center justify-center text-6xl animate-glow'\u001b[39m,\n    right: \u001b[33m324\u001b[39m,\n    w: \u001b[33m128\u001b[39m\n  },\n  { tag: \u001b[32m'H3'\u001b[39m, cls: \u001b[32m'text-3xl font-bold mb-4'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m },\n  { tag: \u001b[32m'P'\u001b[39m, cls: \u001b[32m'text-gray-300 mb-6'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m }\n]\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-11T15:32:29.502Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\\test-failed-1.png"
                         },
                         {
-                          "workerIndex": 5,
-                          "parallelIndex": 3,
-                          "status": "timedOut",
-                          "duration": 60223,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 10,
-                              "line": 10
-                            },
-                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 10,
-                                "line": 10
-                              },
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10\u001b[22m"
-                            },
-                            {
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                            },
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 20,
-                                "line": 12
-                              },
-                              "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 15 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:12:20\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:35:34.982Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-12-retry1\\error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-12-retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 10,
-                            "line": 10
-                          }
-                        }
-                      ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-4bf91773131c57faa599",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "iPhone SE",
-                      "projectName": "iPhone SE",
-                      "results": [
-                        {
-                          "workerIndex": 8,
-                          "parallelIndex": 2,
-                          "status": "timedOut",
-                          "duration": 37695,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 10,
-                              "line": 10
-                            },
-                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 10,
-                                "line": 10
-                              },
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10\u001b[22m"
-                            },
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 20,
-                                "line": 12
-                              },
-                              "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 15 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:12:20\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:37:01.885Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-SE\\video.webm"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-SE\\error-context.md"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 10,
-                            "line": 10
-                          }
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\\video.webm"
                         },
                         {
-                          "workerIndex": 12,
-                          "parallelIndex": 2,
-                          "status": "timedOut",
-                          "duration": 60914,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 10,
-                              "line": 10
-                            },
-                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 10,
-                                "line": 10
-                              },
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10\u001b[22m"
-                            },
-                            {
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                            },
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 20,
-                                "line": 12
-                              },
-                              "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 15 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:12:20\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:37:45.212Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-SE-retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 10,
-                            "line": 10
-                          }
-                        }
-                      ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-70ce864faa39598ced2b",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "Galaxy S9+",
-                      "projectName": "Galaxy S9+",
-                      "results": [
-                        {
-                          "workerIndex": 9,
-                          "parallelIndex": 3,
-                          "status": "failed",
-                          "duration": 30484,
-                          "error": {
-                            "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n",
-                            "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 40,
-                              "line": 159
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:37:03.788Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-S9-\\video.webm"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 40,
-                            "line": 159
-                          }
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\\error-context.md"
                         },
                         {
-                          "workerIndex": 13,
-                          "parallelIndex": 3,
-                          "status": "failed",
-                          "duration": 53212,
-                          "error": {
-                            "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n",
-                            "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 40,
-                              "line": 159
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            },
-                            {
-                              "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
-                            },
-                            {
-                              "message": "Error: browserContext._wrapApiCall: Target page, context or browser has been closed"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:37:46.020Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-S9--retry1\\error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-S9--retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 40,
-                            "line": 159
-                          }
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\\trace.zip"
                         }
                       ],
-                      "status": "unexpected"
+                      "errorLocation": {
+                        "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                        "column": 26,
+                        "line": 82
+                      }
                     }
                   ],
-                  "id": "264a8a6371e52d1f4123-11e5e13ec09f4d543959",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "Pixel 5",
-                      "projectName": "Pixel 5",
-                      "results": [
-                        {
-                          "workerIndex": 10,
-                          "parallelIndex": 1,
-                          "status": "failed",
-                          "duration": 31224,
-                          "error": {
-                            "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n",
-                            "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 40,
-                              "line": 159
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:37:04.423Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5\\video.webm"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5\\error-context.md"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 40,
-                            "line": 159
-                          }
-                        },
-                        {
-                          "workerIndex": 14,
-                          "parallelIndex": 1,
-                          "status": "failed",
-                          "duration": 56202,
-                          "error": {
-                            "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n",
-                            "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 40,
-                              "line": 159
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            },
-                            {
-                              "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
-                            },
-                            {
-                              "message": "Error: browserContext._wrapApiCall: Target page, context or browser has been closed"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:37:46.537Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5-retry1\\error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5-retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 40,
-                            "line": 159
-                          }
-                        }
-                      ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-57fcca0a5379da894691",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "iPad Pro",
-                      "projectName": "iPad Pro",
-                      "results": [
-                        {
-                          "workerIndex": 11,
-                          "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 24364,
-                          "error": {
-                            "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n",
-                            "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 40,
-                              "line": 159
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:37:13.844Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro\\test-failed-1.png"
-                            },
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro\\video.webm"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro\\error-context.md"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 40,
-                            "line": 159
-                          }
-                        },
-                        {
-                          "workerIndex": 15,
-                          "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 59463,
-                          "error": {
-                            "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n",
-                            "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 40,
-                              "line": 159
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            },
-                            {
-                              "message": "\u001b[31mTearing down \"context\" exceeded the test timeout of 30000ms.\u001b[39m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:37:48.429Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro-retry1\\test-failed-1.png"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro-retry1\\error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro-retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 40,
-                            "line": 159
-                          }
-                        }
-                      ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-b83590209781dbbcf699",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "Galaxy Tab S4",
-                      "projectName": "Galaxy Tab S4",
-                      "results": [
-                        {
-                          "workerIndex": 16,
-                          "parallelIndex": 2,
-                          "status": "failed",
-                          "duration": 38163,
-                          "error": {
-                            "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n",
-                            "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 40,
-                              "line": 159
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:39:09.494Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-Tab-S4\\video.webm"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-Tab-S4\\error-context.md"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 40,
-                            "line": 159
-                          }
-                        },
-                        {
-                          "workerIndex": 22,
-                          "parallelIndex": 2,
-                          "status": "timedOut",
-                          "duration": 47993,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                          },
-                          "errors": [
-                            {
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                            },
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            },
-                            {
-                              "message": "Error: End of central directory record signature not found. Either not a zip file, or file is truncated."
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:39:58.469Z",
-                          "annotations": [],
-                          "attachments": []
-                        }
-                      ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-8a12b78870019e99ed2a",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "Mobile Portrait 375px",
-                      "projectName": "Mobile Portrait 375px",
-                      "results": [
-                        {
-                          "workerIndex": 17,
-                          "parallelIndex": 3,
-                          "status": "timedOut",
-                          "duration": 42719,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 10,
-                              "line": 10
-                            },
-                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 10,
-                                "line": 10
-                              },
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10\u001b[22m"
-                            },
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 20,
-                                "line": 12
-                              },
-                              "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 15 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:12:20\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:39:09.377Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Mobile-Portrait-375px\\video.webm"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 10,
-                            "line": 10
-                          }
-                        },
-                        {
-                          "workerIndex": 23,
-                          "parallelIndex": 3,
-                          "status": "timedOut",
-                          "duration": 42938,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 10,
-                              "line": 10
-                            },
-                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 10,
-                                "line": 10
-                              },
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10\u001b[22m"
-                            },
-                            {
-                              "message": "Error: browserContext.newPage: Test timeout of 30000ms exceeded."
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:39:58.839Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Mobile-Portrait-375px-retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 10,
-                            "line": 10
-                          }
-                        }
-                      ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-376b69314f84eeec6151",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "Tablet Landscape 1024px",
-                      "projectName": "Tablet Landscape 1024px",
-                      "results": [
-                        {
-                          "workerIndex": 18,
-                          "parallelIndex": 1,
-                          "status": "failed",
-                          "duration": 34709,
-                          "error": {
-                            "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n",
-                            "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 40,
-                              "line": 159
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:39:10.918Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px\\test-failed-1.png"
-                            },
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px\\video.webm"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px\\error-context.md"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 40,
-                            "line": 159
-                          }
-                        },
-                        {
-                          "workerIndex": 20,
-                          "parallelIndex": 1,
-                          "status": "timedOut",
-                          "duration": 48754,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                          },
-                          "errors": [
-                            {
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                            },
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:39:57.951Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px-retry1\\error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px-retry1\\trace.zip"
-                            }
-                          ]
-                        }
-                      ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-b38634ef2ca620166cf5",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": false,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "Desktop Large 1920px",
-                      "projectName": "Desktop Large 1920px",
-                      "results": [
-                        {
-                          "workerIndex": 19,
-                          "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 30581,
-                          "error": {
-                            "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n",
-                            "stack": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 40,
-                              "line": 159
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 40,
-                                "line": 159
-                              },
-                              "message": "Error: \u001b[31mTimed out 5000ms waiting for \u001b[39m\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m\n\nLocator: locator('#mobile-menu-button')\nExpected: visible\nReceived: <element(s) not found>\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mobile-menu-button')\u001b[22m\n\n\n\u001b[0m \u001b[90m 157 |\u001b[39m             \u001b[90m// Check that hamburger menu is visible on mobile\u001b[39m\n \u001b[90m 158 |\u001b[39m             \u001b[36mconst\u001b[39m hamburgerBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu-button'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m             \u001b[36mawait\u001b[39m expect(hamburgerBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m             \u001b[90m// Verify mobile menu is initially hidden\u001b[39m\n \u001b[90m 162 |\u001b[39m             \u001b[36mconst\u001b[39m mobileMenu \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#mobile-menu'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:159:40\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 0,
-                          "startTime": "2025-08-11T13:39:15.834Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px\\test-failed-1.png"
-                            },
-                            {
-                              "name": "video",
-                              "contentType": "video/webm",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px\\video.webm"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px\\error-context.md"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 40,
-                            "line": 159
-                          }
-                        },
-                        {
-                          "workerIndex": 21,
-                          "parallelIndex": 0,
-                          "status": "timedOut",
-                          "duration": 47979,
-                          "error": {
-                            "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                            "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10",
-                            "location": {
-                              "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                              "column": 10,
-                              "line": 10
-                            },
-                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                                "column": 10,
-                                "line": 10
-                              },
-                              "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m  8 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile & Desktop Responsive Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m         \u001b[90m// Start local server for testing\u001b[39m\n \u001b[90m 12 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js:10:10\u001b[22m"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2025-08-11T13:39:58.183Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px-retry1\\test-failed-1.png"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px-retry1\\error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px-retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\responsive-mobile-desktop.spec.js",
-                            "column": 10,
-                            "line": 10
-                          }
-                        }
-                      ],
-                      "status": "unexpected"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-2bd57f36699a493ad613",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": true,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "Mobile Slow 3G",
-                      "projectName": "Mobile Slow 3G",
-                      "results": [],
-                      "status": "skipped"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-b769ea7bbd6293a412d5",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
-                },
-                {
-                  "title": "should handle mobile navigation menu functionality",
-                  "ok": true,
-                  "tags": [],
-                  "tests": [
-                    {
-                      "timeout": 30000,
-                      "annotations": [],
-                      "expectedStatus": "passed",
-                      "projectId": "Dark Mode Desktop",
-                      "projectName": "Dark Mode Desktop",
-                      "results": [],
-                      "status": "skipped"
-                    }
-                  ],
-                  "id": "264a8a6371e52d1f4123-e13f9ffe05ddb444b551",
-                  "file": "responsive-mobile-desktop.spec.js",
-                  "line": 153,
-                  "column": 9
+                  "status": "unexpected"
                 }
-              ]
+              ],
+              "id": "238a6eb52e3c8ef0a0e0-c6bd8523594ac3998f38",
+              "file": "mobile-nav-positioning.spec.js",
+              "line": 54,
+              "column": 5
+            },
+            {
+              "title": "navigation container should not cause excessive horizontal overflow",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iPhone SE",
+                  "projectName": "iPhone SE",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 40815,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:5:10",
+                        "location": {
+                          "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                          "column": 10,
+                          "line": 5
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile Navigation Positioning Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 4 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                            "column": 10,
+                            "line": 5
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile Navigation Positioning Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 4 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:5:10\u001b[22m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                            "column": 20,
+                            "line": 6
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 4 |\u001b[39m\n \u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 9 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:6:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-11T15:31:43.734Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                        "column": 10,
+                        "line": 5
+                      }
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 32557,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:82:26",
+                        "location": {
+                          "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                          "column": 26,
+                          "line": 82
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 80 |\u001b[39m             console\u001b[33m.\u001b[39mlog(\u001b[32m'Horizontal overflow offenders:'\u001b[39m\u001b[33m,\u001b[39m offenders)\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m         }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 82 |\u001b[39m         expect(overflow)\u001b[33m.\u001b[39mtoBeLessThanOrEqual(\u001b[35m40\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 83 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 84 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 85 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                            "column": 26,
+                            "line": 82
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m\n\n\u001b[0m \u001b[90m 80 |\u001b[39m             console\u001b[33m.\u001b[39mlog(\u001b[32m'Horizontal overflow offenders:'\u001b[39m\u001b[33m,\u001b[39m offenders)\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m         }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 82 |\u001b[39m         expect(overflow)\u001b[33m.\u001b[39mtoBeLessThanOrEqual(\u001b[35m40\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 83 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 84 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 85 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:82:26\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Horizontal overflow offenders: [\n  { tag: \u001b[32m'DIV'\u001b[39m, cls: \u001b[32m'relative aos-init'\u001b[39m, right: \u001b[33m404\u001b[39m, w: \u001b[33m288\u001b[39m },\n  {\n    tag: \u001b[32m'DIV'\u001b[39m,\n    cls: \u001b[32m'glass-effect rounded-2xl p-8 text-center hover-lift'\u001b[39m,\n    right: \u001b[33m404\u001b[39m,\n    w: \u001b[33m288\u001b[39m\n  },\n  { tag: \u001b[32m'DIV'\u001b[39m, cls: \u001b[32m'mb-8'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m },\n  {\n    tag: \u001b[32m'DIV'\u001b[39m,\n    cls: \u001b[32m'w-32 h-32 bg-gradient-to-br from-tech-purple to-tech-cyan rounded-full mx-auto flex items-center justify-center text-6xl animate-glow'\u001b[39m,\n    right: \u001b[33m324\u001b[39m,\n    w: \u001b[33m128\u001b[39m\n  },\n  { tag: \u001b[32m'H3'\u001b[39m, cls: \u001b[32m'text-3xl font-bold mb-4'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m },\n  { tag: \u001b[32m'P'\u001b[39m, cls: \u001b[32m'text-gray-300 mb-6'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m }\n]\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2025-08-11T15:32:29.473Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
+                        "column": 26,
+                        "line": 82
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "238a6eb52e3c8ef0a0e0-56706779845b6d1be61b",
+              "file": "mobile-nav-positioning.spec.js",
+              "line": 54,
+              "column": 5
+            },
+            {
+              "title": "navigation container should not cause excessive horizontal overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Galaxy S9+",
+                  "projectName": "Galaxy S9+",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 29819,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-11T15:31:43.737Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "238a6eb52e3c8ef0a0e0-f0446e76599c0b1c1a6a",
+              "file": "mobile-nav-positioning.spec.js",
+              "line": 54,
+              "column": 5
+            },
+            {
+              "title": "navigation container should not cause excessive horizontal overflow",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Pixel 5",
+                  "projectName": "Pixel 5",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 30188,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-08-11T15:31:43.769Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "238a6eb52e3c8ef0a0e0-734942d1addea0790f70",
+              "file": "mobile-nav-positioning.spec.js",
+              "line": 54,
+              "column": 5
             }
           ]
         }
@@ -1889,11 +698,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-11T13:34:28.999Z",
-    "duration": 390406.923,
-    "expected": 0,
-    "skipped": 2,
-    "unexpected": 12,
+    "startTime": "2025-08-11T15:31:34.821Z",
+    "duration": 95777.73,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 2,
     "flaky": 0
   }
 }

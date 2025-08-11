@@ -1,0 +1,246 @@
+# Page snapshot
+
+```yaml
+- text: × 📎 Hey there! Looking to hire an awesome engineer? I'm here to help!
+- navigation:
+  - text: YG
+  - button "Toggle mobile menu": 
+- heading "Yuval Grimberg" [level=1]
+- paragraph: Control Systems Engineer
+- paragraph: Mechanical Engineer specializing in Autonomous Vehicles, Control Theory, and Advanced System Design
+- link "View My Work ":
+  - /url: "#projects"
+- link "Let's Connect ":
+  - /url: "#contact"
+- heading "About Me" [level=2]
+- heading "🎓 Education & Background" [level=3]
+- paragraph: A systems-minded generalist (B.Sc. Mechanical Engineering, BGU) with broad experience across control, dynamics, and perception. I led the Path Planning & Control team for BGRacing (Formula Student) to deliver its first self-driving car and have built projects including a learning-based LQI controller, an orbital propagator, and a robotics computer-vision system.
+- heading "🚀 Mission" [level=3]
+- paragraph: To solve complex problems at the intersection of hardware, software, and systems thinking. My strength is in seeing the big picture, connecting dots that others miss, and collaborating with teams to transform ambitious, ambiguous ideas into reality.
+- heading "💡 Innovation Focus" [level=3]
+- paragraph: I specialize in the seams and gaps where different technologies meet. My focus is on integrating complex systems by bridging the divide between mechanical design, control theory, and AI. By identifying the core, shared principles between them, I simplify challenges and accelerate the development of novel solutions.
+- text: 🤖
+- heading "Ready to Innovate" [level=3]
+- paragraph: Seeking opportunities to apply my expertise in control systems, AI and autonomous vehicle technology to drive the future of humanity.
+- text: 2+ Years Experience 15+ Projects
+- heading "Technical Expertise" [level=2]
+- paragraph: Cutting-edge skills in control systems, autonomous vehicles, and advanced engineering
+- text: ⚙️
+- heading "Control Systems" [level=3]
+- list:
+  - listitem: • Optimal Controllers
+  - listitem: • State-Space Design
+  - listitem: • Robust Control
+  - listitem: • Adaptive Control
+- text: 🚗
+- heading "Autonomous Vehicles" [level=3]
+- list:
+  - listitem: • Path Planning
+  - listitem: • Sensor Fusion
+  - listitem: • SLAM
+  - listitem: • Vehicle Dynamics
+- text: 💻
+- heading "Programming" [level=3]
+- list:
+  - listitem: • Python
+  - listitem: • MATLAB/Simulink
+  - listitem: • C/C++
+  - listitem: • ROS2
+- text: 🧠
+- heading "Machine Learning" [level=3]
+- list:
+  - listitem: • Deep Learning
+  - listitem: • Computer Vision
+  - listitem: • Reinforcement Learning
+  - listitem: • Neural Networks
+- heading "Tools & Technologies" [level=3]
+- text: ROS2 OpenCV YOLO Stable Diffusion ESP32/Arduino PlatformIO LangChain TensorFlow Scipy/Sklearn MATLAB/Simulink
+- heading "Featured Projects" [level=2]
+- paragraph: Cutting-edge engineering solutions that showcase innovation and technical excellence
+- text: 🚗 FEATURED
+- heading "Autonomous Vehicle Control System" [level=3]
+- paragraph: Built a path-planning & control stack for BGRacing’s autonomous racer GNC Piepline with an end-to-end from simulation to track. The pipeline runs on an AirSim-based simulator with interactive telemetry and logging, and the same code deploys on-car with full sensor/actuator integration.
+- text: Python Control Theory ROS2
+- link "View Details ":
+  - /url: "#"
+- link "":
+  - /url: https://github.com/grimgrimberg/BGR_PathPlanning_Control
+- link "":
+  - /url: "#"
+- text: 🧠 AI/ML
+- heading "ML-Enhanced Control Systems for Satellites Rendezvous" [level=3]
+- paragraph: Python-based project that simulates orbital mechanics and robust control for satellite rendezvous using the Clohessy-Wiltshire (CW) equations. This project includes various animations and visualizations to illustrate the dynamics of the rendezvous process.
+- text: Scipy Deep Learning Matplotlib
+- link "View Details ":
+  - /url: "#"
+- link "":
+  - /url: https://github.com/grimgrimberg/Space_GNC_Pipeline
+- link "":
+  - /url: "#"
+- text: 🤖 ROBOTICS
+- heading "Advanced Robotics Platform - HW monitoring and CV piepline" [level=3]
+- paragraph: This repository contains a comprehensive AI robotics system , featuring advanced computer vision, real-time hardware monitoring, and intelligent robot control capabilities. The system demonstrates modern ROS2 integration with state-of-the-art AI technologies.
+- text: OpenCV Robotics ROS2
+- link "View Details ":
+  - /url: "#"
+- link "":
+  - /url: https://github.com/grimgrimberg
+- link "":
+  - /url: "#"
+- link "View All Projects on GitHub ":
+  - /url: https://github.com/grimgrimberg
+- heading "Epic Reviews" [level=2]
+- paragraph: What legendary figures would say about my work (if they could see this portfolio)
+- text: 🎯
+- heading "Legendary Engineering" [level=3]
+- paragraph: "\"Holy sh*t, this is the best engineering portfolio I've ever seen! And I've seen... well, not much because I'm blind, but this one SOUNDS amazing!\""
+- text: "- Ray Charles (Spiritual endorsement) 🚀"
+- heading "Mind-Blowing Innovation" [level=3]
+- paragraph: "\"It made me walk again! Well, not literally - I'm still dead. But if I were alive, Yuval's control systems would definitely help me get around faster than my wheelchair ever did.\""
+- text: "- Stephen Hawking (Interdimensional consultation) ⚡"
+- heading "Pure Genius" [level=3]
+- paragraph: "\"Damn, I wish I had hired Yuval for Tesla autopilot. We probably wouldn't have crashed into all those traffic cones. This guy actually knows what he's doing!\""
+- text: "- Elon Musk (Definitely would say this after a few drinks) 🎵"
+- heading "Absolutely Revolutionary" [level=3]
+- paragraph: "\"E=mc² was cute, but Yuval's control algorithms? That's the real theory of everything! I'm literally jealous of a guy who wasn't even born yet when I died.\""
+- text: "- Albert Einstein (Time travel is complicated) 🤖"
+- heading "Beyond Perfection" [level=3]
+- paragraph: "\"I've seen 14,000,605 possible futures. In ALL of them, Yuval gets the job. In 14,000,604 of them, he also gets a raise within 6 months.\""
+- text: "- Doctor Strange (Multiverse HR consultant)"
+- paragraph: "* Reviews may be slightly exaggerated for comedic effect. But seriously, the engineering skills are real, the humor is infectious, and the results speak for themselves. What more do you want? 🤷‍♂️"
+- heading "The Human Side" [level=2]
+- paragraph: Yes, I can design control systems for autonomous vehicles. But can I make you laugh while doing it? Absolutely. 🤖
+- text: 📸
+- heading "Travel Photography" [level=3]
+- paragraph: A collection of moments captured from travels near and far. This is the world as I see it .
+- img "Travel Photo 1"
+- img "Travel Photo 2"
+- img "Travel Photo 3"
+- img "Travel Photo 4"
+- link "View Full Gallery ":
+  - /url: photo.html
+- text: 🦆
+- heading "Meet My Assistant" [level=3]
+- paragraph: Every serious engineer needs a debugging duck. Mine just happens to be animated and slightly unhinged.
+- img
+- button "Ask Goose for Advice"
+- text: 🎮
+- heading "Secret Features" [level=3]
+- paragraph: I hide easter eggs in my code like I hide bugs... strategically and with purpose.
+- paragraph: Alt + Shift + C - Summon Clippy
+- paragraph: Click Counter - Find the magic number
+- button "Click Me! (0)"
+- heading "Random Facts That Make Me Hireable" [level=3]
+- text: 🚗
+- heading "Car Enthusiast" [level=4]
+- paragraph: I can debug autonomous vehicles AND explain why pop-up headlights were engineering art
+- text: 🧠
+- heading "Neuroscience & Biomimicry" [level=4]
+- paragraph: Obsessed with how brains perceive and control. I borrow those patterns (attention, feedback, redundancy) to build simpler, more robust systems. Broad horizons, cross-pollinated ideas.
+- text: 🎸
+- heading "Musician at Large" [level=4]
+- paragraph: Guitar, drums, and an awkward French-horn phase—like a classic ADHD kid, I can’t stick to just one instrument. Music’s been my long-term jam session for timing, coordination, and creative flow.
+- text: 🤖
+- heading "Robot Whisperer" [level=4]
+- paragraph: I speak fluent robot. They usually listen. Sometimes they plot against me.
+- heading "Retro Gaming Zone" [level=2]
+- paragraph: Nostalgic classics from the golden age of PC gaming 🕹️ Download and relive the 90s gaming magic!
+- text: 🥋
+- heading "Little Fighter 2" [level=3]
+- paragraph: The legendary 2D fighting game that defined multiplayer fun. Up to 8 players, epic battles, and unforgettable characters!
+- text: Fighting Multiplayer
+- button " Download (5MB)"
+- text: 🛸
+- heading "Airxonix" [level=3]
+- paragraph: Modern remake of the classic Xonix. Cut through space, avoid aliens, and claim territory in this addictive arcade game!
+- text: Arcade Strategy
+- button " Download (3MB)"
+- text: 🏍️
+- heading "Elastomania" [level=3]
+- paragraph: The ultimate motorcycle physics game! Master impossible tracks with realistic bike physics that will test your skills.
+- text: Racing Physics
+- button " Download (2MB)"
+- text: 🎮
+- heading "More Classics" [level=3]
+- paragraph: Got more vintage games to share? Submit your favorites and let's build the ultimate retro collection!
+- text: Coming Soon
+- button "+ Request Game"
+- text: 0 Downloads 90s Era Games 100% Nostalgia ∞ Fun Hours
+- heading "Let's Connect" [level=2]
+- paragraph: Ready to bring innovative control systems and autonomous vehicle solutions to your team? Let's discuss how we can build the future together.
+- heading "Send a Message" [level=3]
+- paragraph: Ready to collaborate? Let's build something amazing together!
+- text: Name *
+- textbox "Your Name"
+- text: Email *
+- textbox "your.email@company.com"
+- text: Subject
+- combobox:
+  - option "General Inquiry" [selected]
+  - option "Job Opportunity"
+  - option "Collaboration Proposal"
+  - option "Consultation Request"
+  - option "Technical Discussion"
+  - option "Other"
+- text: Message *
+- textbox "Tell me about your project or opportunity..."
+- button "Open Email Client "
+- paragraph: Prefer a direct approach?
+- link " yuval.grimberg@gmail.com ":
+  - /url: mailto:yuval.grimberg@gmail.com?subject=Portfolio%20Contact&body=Hi%20Yuval,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20discuss...
+- heading "Quick Connect" [level=3]
+- link " Email yuval.grimberg@gmail.com":
+  - /url: mailto:yuval.grimberg@gmail.com
+- link " LinkedIn Professional Network":
+  - /url: https://www.linkedin.com/in/yuval-grimberg-933215173
+- link " GitHub View Code & Projects":
+  - /url: https://github.com/grimgrimberg
+- heading "Availability Status" [level=3]
+- text: Currently Available
+- paragraph: "Open to full-time opportunities, consulting projects, and collaborative research in:"
+- list:
+  - listitem: • Control Systems Engineering
+  - listitem: • Autonomous Vehicle Development
+  - listitem: • Robotics & Automation
+  - listitem: • Machine Learning Integration
+- heading "Download Resume" [level=3]
+- link " Download CV / Resume":
+  - /url: ./assets/CV - Yuval Grimberg Aug 25.pdf
+- contentinfo:
+  - text: Yuval Grimberg
+  - paragraph: Control Systems Engineer & Autonomous Vehicle Specialist
+  - link "":
+    - /url: https://github.com/grimgrimberg
+  - link "":
+    - /url: https://www.linkedin.com/in/yuval-grimberg-933215173
+  - link "":
+    - /url: mailto:yuval.grimberg@gmail.com
+  - heading "Quick Links" [level=3]
+  - list:
+    - listitem:
+      - link "About":
+        - /url: "#about"
+    - listitem:
+      - link "Expertise":
+        - /url: "#skills"
+    - listitem:
+      - link "Projects":
+        - /url: "#projects"
+    - listitem:
+      - link "Fun Zone":
+        - /url: "#fun-zone"
+    - listitem:
+      - link "Contact":
+        - /url: "#contact"
+    - listitem:
+      - link "Photography":
+        - /url: photo.html
+  - heading "Specializations" [level=3]
+  - list:
+    - listitem: • Control Theory
+    - listitem: • Autonomous Vehicles
+    - listitem: • Machine Learning
+    - listitem: • Robotics Systems
+  - paragraph: © 2025 Yuval Grimberg. All rights reserved. | Ready to innovate together?
+- text: Need help navigating
+```

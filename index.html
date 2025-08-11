@@ -189,9 +189,15 @@
 
         /* Prevent horizontal overflow on very small devices by hiding large decorative blobs */
         @media (max-width: 380px) {
-            .hero-blob { display: none; }
+            .hero-blob {
+                display: none;
+            }
+
             /* Remove AOS horizontal translations that can cause overflow */
-            [data-aos="fade-left"], [data-aos="fade-right"] { transform: none !important; }
+            [data-aos="fade-left"],
+            [data-aos="fade-right"] {
+                transform: none !important;
+            }
         }
     </style>
 </head>

@@ -1,1007 +1,222 @@
-<testsuites id="" name="" tests="14" failures="12" skipped="2" errors="0" time="390.406923">
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="Desktop Chrome" tests="1" failures="1" skipped="0" time="94.893" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="94.893">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [Desktop Chrome] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome\error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    Tearing down "context" exceeded the test timeout of 30000ms.
-
-    Error: browserContext._wrapApiCall: Target page, context or browser has been closed
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome-retry1\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome-retry1\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome\test-failed-1.png]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome\video.webm]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome-retry1\test-failed-1.png]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome-retry1\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Chrome-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="Desktop Firefox" tests="1" failures="1" skipped="0" time="99.685" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="99.685">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [Desktop Firefox] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
+<testsuites id="" name="" tests="4" failures="2" skipped="0" errors="0" time="95.77772999999999">
+<testsuite name="mobile-nav-positioning.spec.js" timestamp="2025-08-11T15:31:38.088Z" hostname="iPhone 12" tests="1" failures="1" skipped="0" time="76.741" errors="0">
+<testcase name="Mobile Navigation Positioning Tests › navigation container should not cause excessive horizontal overflow" classname="mobile-nav-positioning.spec.js" time="76.741">
+<failure message="mobile-nav-positioning.spec.js:54:5 navigation container should not cause excessive horizontal overflow" type="FAILURE">
+<![CDATA[  [iPhone 12] › mobile-nav-positioning.spec.js:54:5 › Mobile Navigation Positioning Tests › navigation container should not cause excessive horizontal overflow 
 
     Test timeout of 30000ms exceeded while running "beforeEach" hook.
 
-       8 | test.describe('Mobile & Desktop Responsive Tests', () => {
-       9 |
-    > 10 |     test.beforeEach(async ({ page }) => {
-         |          ^
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-      13 |         await page.waitForLoadState('networkidle');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:10:10
-
-    Error: page.waitForLoadState: Test timeout of 30000ms exceeded.
-
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-    > 13 |         await page.waitForLoadState('networkidle');
-         |                    ^
-      14 |     });
-      15 |
-      16 |     test.describe('Desktop Functionality Tests', () => {
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:13:20
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Test timeout of 30000ms exceeded while running "beforeEach" hook.
-
-       8 | test.describe('Mobile & Desktop Responsive Tests', () => {
-       9 |
-    > 10 |     test.beforeEach(async ({ page }) => {
-         |          ^
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-      13 |         await page.waitForLoadState('networkidle');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:10:10
-
-    Tearing down "context" exceeded the test timeout of 30000ms.
-
-    Error: page.waitForLoadState: Test timeout of 30000ms exceeded.
-
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-    > 13 |         await page.waitForLoadState('networkidle');
-         |                    ^
-      14 |     });
-      15 |
-      16 |     test.describe('Desktop Functionality Tests', () => {
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:13:20
-
-    Error: browserContext._wrapApiCall: Test timeout of 30000ms exceeded.
-    Browser logs:
-
-    <launching> C:\Users\yuval\AppData\Local\ms-playwright\firefox-1489\firefox\firefox.exe -no-remote -headless -profile C:\Users\yuval\AppData\Local\Temp\playwright_firefoxdev_profile-YybS5z -juggler-pipe -silent
-    <launched> pid=17904
-    [pid=17904][err] *** You are running in headless mode.
-    [pid=17904][err] JavaScript warning: resource://services-settings/Utils.sys.mjs, line 116: unreachable code after return statement
-    [pid=17904][out] console.warn: services.settings: Ignoring preference override of remote settings server
-    [pid=17904][out] console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
-    [pid=17904][out] 
-    [pid=17904][out] Juggler listening to the pipe
-    [pid=17904][out] Crash Annotation GraphicsCriticalError: |[0][GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt (t=71.9493) [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
-    [pid=17904][err] JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]
-    [pid=17904][out] console.error: SearchEngineSelector: "Received empty search configuration!"
-    [pid=17904][out] console.error: "Received empty top sites configuration!"
-    [pid=17904][out] console.error: SearchEngineSelector: "Received empty search configuration!"
-    [pid=17904][out] console.error: SearchService: "#init: failure initializing search:" [Exception... "Failed to get engine data from Remote Settings"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs :: getEngineConfiguration :: line 105"  data: no]
-    [pid=17904][out] console.error: WebExtensions: 
-    [pid=17904][out]   Message: [Exception... "Failed to get engine data from Remote Settings"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs :: getEngineConfiguration :: line 105"  data: no]
-    [pid=17904][out]   Stack:
-    [pid=17904][out]     getEngineConfiguration@moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs:105:24
-    [pid=17904][out] 
-    [pid=17904][out] console.error: "Received empty top sites configuration!"
-    [pid=17904][err] JavaScript error: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs, line 105: NS_ERROR_UNEXPECTED: Failed to get engine data from Remote Settings
-    [pid=17904][err] JavaScript error: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs, line 105: NS_ERROR_UNEXPECTED: Failed to get engine data from Remote Settings
-    [pid=17904][err] JavaScript error: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs, line 105: NS_ERROR_UNEXPECTED: Failed to get engine data from Remote Settings
-    [pid=17904][err] JavaScript error: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs, line 105: NS_ERROR_UNEXPECTED: Failed to get engine data from Remote Settings
-    [pid=17904][out] console.error: "Search service failed to init"
-    [pid=17904][out] console.error: URLBar - Provider.UrlbarProviderSearchTips: [Exception... "Failed to get engine data from Remote Settings"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: moz-src:///toolkit/components/search/SearchEngineSelector.sys.mjs :: getEngineConfiguration :: line 105"  data: no]
-    [pid=17904][out] console.error: [Exception... "Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIWinTaskbar.getTaskbarProgress]"  nsresult: "0x80070057 (NS_ERROR_ILLEGAL_VALUE)"  location: "JS frame :: resource:///modules/DownloadsTaskbar.sys.mjs :: _attachIndicator :: line 127"  data: no]
-    [pid=17904][out] console.error: SearchSettings: "_write: Could not write to settings file:" (new Error("cannot write without any engine.", "moz-src:///toolkit/components/search/SearchSettings.sys.mjs", 328))
-    [pid=17904][out] console.error: CustomizableUI: 
-    [pid=17904][out]   Could not localize property 'fxms-bmb-button.tooltiptext'.
-    [pid=17904][err] JavaScript warning: resource://gre/modules/UpdateService.sys.mjs, line 3878: unreachable code after return statement
-    [pid=17904] <gracefully close start>
-    [pid=17904][err] JavaScript error: chrome://juggler/content/Helper.js, line 82: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIWebProgress.removeProgressListener]
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox-retry1\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox-retry1\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox\test-failed-1.png]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox\video.webm]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox-retry1\test-failed-1.png]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox-retry1\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Firefox-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="Desktop Safari" tests="1" failures="1" skipped="0" time="101.475" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="101.475">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [Desktop Safari] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
-
-    Test timeout of 30000ms exceeded while running "beforeEach" hook.
-
-       8 | test.describe('Mobile & Desktop Responsive Tests', () => {
-       9 |
-    > 10 |     test.beforeEach(async ({ page }) => {
-         |          ^
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-      13 |         await page.waitForLoadState('networkidle');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:10:10
+      3 | test.describe('Mobile Navigation Positioning Tests', () => {
+      4 |
+    > 5 |     test.beforeEach(async ({ page }) => {
+        |          ^
+      6 |         await page.goto('http://localhost:8000');
+      7 |         await page.waitForLoadState('networkidle');
+      8 |     });
+        at C:\Users\yuval\grimgrimberg.github.io\tests\mobile-nav-positioning.spec.js:5:10
 
     Error: page.goto: Test timeout of 30000ms exceeded.
     Call log:
       - navigating to "http://localhost:8000/", waiting until "load"
 
 
-      10 |     test.beforeEach(async ({ page }) => {
-      11 |         // Start local server for testing
-    > 12 |         await page.goto('http://localhost:8000');
-         |                    ^
-      13 |         await page.waitForLoadState('networkidle');
-      14 |     });
-      15 |
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:12:20
+      4 |
+      5 |     test.beforeEach(async ({ page }) => {
+    > 6 |         await page.goto('http://localhost:8000');
+        |                    ^
+      7 |         await page.waitForLoadState('networkidle');
+      8 |     });
+      9 |
+        at C:\Users\yuval\grimgrimberg.github.io\tests\mobile-nav-positioning.spec.js:6:20
 
     attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Safari\video.webm
+    ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12\video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12\error-context.md
 
     Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
 
-    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+    Error: expect(received).toBeLessThanOrEqual(expected)
 
-       8 | test.describe('Mobile & Desktop Responsive Tests', () => {
-       9 |
-    > 10 |     test.beforeEach(async ({ page }) => {
-         |          ^
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-      13 |         await page.waitForLoadState('networkidle');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:10:10
+    Expected: <= 40
+    Received:    84
 
-    Test timeout of 30000ms exceeded.
+      80 |             console.log('Horizontal overflow offenders:', offenders);
+      81 |         }
+    > 82 |         expect(overflow).toBeLessThanOrEqual(40);
+         |                          ^
+      83 |     });
+      84 | });
+      85 |
+        at C:\Users\yuval\grimgrimberg.github.io\tests\mobile-nav-positioning.spec.js:82:26
 
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Safari-retry1\trace.zip
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\trace.zip
     Usage:
 
-        npx playwright show-trace ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Safari-retry1\trace.zip
+        npx playwright show-trace ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\trace.zip
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 ]]>
 </failure>
 <system-out>
 <![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Safari\video.webm]]
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12\video.webm]]
 
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Safari-retry1\trace.zip]]
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12\error-context.md]]
+Horizontal overflow offenders: [
+  { tag: [32m'DIV'[39m, cls: [32m'relative aos-init'[39m, right: [33m404[39m, w: [33m288[39m },
+  {
+    tag: [32m'DIV'[39m,
+    cls: [32m'glass-effect rounded-2xl p-8 text-center hover-lift'[39m,
+    right: [33m404[39m,
+    w: [33m288[39m
+  },
+  { tag: [32m'DIV'[39m, cls: [32m'mb-8'[39m, right: [33m371[39m, w: [33m222[39m },
+  {
+    tag: [32m'DIV'[39m,
+    cls: [32m'w-32 h-32 bg-gradient-to-br from-tech-purple to-tech-cyan rounded-full mx-auto flex items-center justify-center text-6xl animate-glow'[39m,
+    right: [33m324[39m,
+    w: [33m128[39m
+  },
+  { tag: [32m'H3'[39m, cls: [32m'text-3xl font-bold mb-4'[39m, right: [33m371[39m, w: [33m222[39m },
+  { tag: [32m'P'[39m, cls: [32m'text-gray-300 mb-6'[39m, right: [33m371[39m, w: [33m222[39m }
+]
+
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\test-failed-1.png]]
+
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\video.webm]]
+
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\error-context.md]]
+
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\trace.zip]]
 ]]>
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="iPhone 12" tests="1" failures="1" skipped="0" time="104.724" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="104.724">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [iPhone 12] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
+<testsuite name="mobile-nav-positioning.spec.js" timestamp="2025-08-11T15:31:38.088Z" hostname="iPhone SE" tests="1" failures="1" skipped="0" time="73.372" errors="0">
+<testcase name="Mobile Navigation Positioning Tests › navigation container should not cause excessive horizontal overflow" classname="mobile-nav-positioning.spec.js" time="73.372">
+<failure message="mobile-nav-positioning.spec.js:54:5 navigation container should not cause excessive horizontal overflow" type="FAILURE">
+<![CDATA[  [iPhone SE] › mobile-nav-positioning.spec.js:54:5 › Mobile Navigation Positioning Tests › navigation container should not cause excessive horizontal overflow 
 
     Test timeout of 30000ms exceeded while running "beforeEach" hook.
 
-       8 | test.describe('Mobile & Desktop Responsive Tests', () => {
-       9 |
-    > 10 |     test.beforeEach(async ({ page }) => {
-         |          ^
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-      13 |         await page.waitForLoadState('networkidle');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:10:10
+      3 | test.describe('Mobile Navigation Positioning Tests', () => {
+      4 |
+    > 5 |     test.beforeEach(async ({ page }) => {
+        |          ^
+      6 |         await page.goto('http://localhost:8000');
+      7 |         await page.waitForLoadState('networkidle');
+      8 |     });
+        at C:\Users\yuval\grimgrimberg.github.io\tests\mobile-nav-positioning.spec.js:5:10
 
     Error: page.goto: Test timeout of 30000ms exceeded.
     Call log:
       - navigating to "http://localhost:8000/", waiting until "load"
 
 
-      10 |     test.beforeEach(async ({ page }) => {
-      11 |         // Start local server for testing
-    > 12 |         await page.goto('http://localhost:8000');
-         |                    ^
-      13 |         await page.waitForLoadState('networkidle');
-      14 |     });
-      15 |
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:12:20
+      4 |
+      5 |     test.beforeEach(async ({ page }) => {
+    > 6 |         await page.goto('http://localhost:8000');
+        |                    ^
+      7 |         await page.waitForLoadState('networkidle');
+      8 |     });
+      9 |
+        at C:\Users\yuval\grimgrimberg.github.io\tests\mobile-nav-positioning.spec.js:6:20
 
     attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-12\video.webm
+    ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE\video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE\error-context.md
 
     Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
 
-    Test timeout of 30000ms exceeded while running "beforeEach" hook.
-
-       8 | test.describe('Mobile & Desktop Responsive Tests', () => {
-       9 |
-    > 10 |     test.beforeEach(async ({ page }) => {
-         |          ^
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-      13 |         await page.waitForLoadState('networkidle');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:10:10
-
-    Test timeout of 30000ms exceeded.
-
-    TimeoutError: page.goto: Timeout 60000ms exceeded.
-    Call log:
-      - navigating to "http://localhost:8000/", waiting until "load"
-
-
-      10 |     test.beforeEach(async ({ page }) => {
-      11 |         // Start local server for testing
-    > 12 |         await page.goto('http://localhost:8000');
-         |                    ^
-      13 |         await page.waitForLoadState('networkidle');
-      14 |     });
-      15 |
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:12:20
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-12-retry1\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-12-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-12-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-12\video.webm]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-12-retry1\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-12-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="iPhone SE" tests="1" failures="1" skipped="0" time="98.609" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="98.609">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [iPhone SE] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
-
-    Test timeout of 30000ms exceeded while running "beforeEach" hook.
-
-       8 | test.describe('Mobile & Desktop Responsive Tests', () => {
-       9 |
-    > 10 |     test.beforeEach(async ({ page }) => {
-         |          ^
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-      13 |         await page.waitForLoadState('networkidle');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:10:10
-
-    Error: page.goto: Test timeout of 30000ms exceeded.
-    Call log:
-      - navigating to "http://localhost:8000/", waiting until "load"
-
-
-      10 |     test.beforeEach(async ({ page }) => {
-      11 |         // Start local server for testing
-    > 12 |         await page.goto('http://localhost:8000');
-         |                    ^
-      13 |         await page.waitForLoadState('networkidle');
-      14 |     });
-      15 |
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:12:20
-
-    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-SE\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-SE\error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Test timeout of 30000ms exceeded while running "beforeEach" hook.
-
-       8 | test.describe('Mobile & Desktop Responsive Tests', () => {
-       9 |
-    > 10 |     test.beforeEach(async ({ page }) => {
-         |          ^
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-      13 |         await page.waitForLoadState('networkidle');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:10:10
-
-    Test timeout of 30000ms exceeded.
-
-    TimeoutError: page.goto: Timeout 60000ms exceeded.
-    Call log:
-      - navigating to "http://localhost:8000/", waiting until "load"
-
-
-      10 |     test.beforeEach(async ({ page }) => {
-      11 |         // Start local server for testing
-    > 12 |         await page.goto('http://localhost:8000');
-         |                    ^
-      13 |         await page.waitForLoadState('networkidle');
-      14 |     });
-      15 |
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:12:20
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-SE-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-SE-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-SE\video.webm]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-SE\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPhone-SE-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="Galaxy S9+" tests="1" failures="1" skipped="0" time="83.696" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="83.696">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [Galaxy S9+] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-S9-\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    Tearing down "context" exceeded the test timeout of 30000ms.
-
-    Error: browserContext._wrapApiCall: Target page, context or browser has been closed
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-S9--retry1\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-S9--retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-S9--retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-S9-\video.webm]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-S9--retry1\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-S9--retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="Pixel 5" tests="1" failures="1" skipped="0" time="87.426" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="87.426">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [Pixel 5] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5\error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    Tearing down "context" exceeded the test timeout of 30000ms.
-
-    Error: browserContext._wrapApiCall: Target page, context or browser has been closed
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5-retry1\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5\video.webm]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5-retry1\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Pixel-5-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="iPad Pro" tests="1" failures="1" skipped="0" time="83.827" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="83.827">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [iPad Pro] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 40
+    Received:    84
+
+      80 |             console.log('Horizontal overflow offenders:', offenders);
+      81 |         }
+    > 82 |         expect(overflow).toBeLessThanOrEqual(40);
+         |                          ^
+      83 |     });
+      84 | });
+      85 |
+        at C:\Users\yuval\grimgrimberg.github.io\tests\mobile-nav-positioning.spec.js:82:26
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro\test-failed-1.png
+    ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro\video.webm
+    ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro\error-context.md
+    Error Context: ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\error-context.md
 
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    Tearing down "context" exceeded the test timeout of 30000ms.
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro-retry1\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro-retry1\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro-retry1\trace.zip
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\trace.zip
     Usage:
 
-        npx playwright show-trace ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro-retry1\trace.zip
+        npx playwright show-trace ..\test-results\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\trace.zip
 
     ────────────────────────────────────────────────────────────────────────────────────────────────
 ]]>
 </failure>
 <system-out>
 <![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro\test-failed-1.png]]
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE\video.webm]]
 
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro\video.webm]]
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE\error-context.md]]
+Horizontal overflow offenders: [
+  { tag: [32m'DIV'[39m, cls: [32m'relative aos-init'[39m, right: [33m404[39m, w: [33m288[39m },
+  {
+    tag: [32m'DIV'[39m,
+    cls: [32m'glass-effect rounded-2xl p-8 text-center hover-lift'[39m,
+    right: [33m404[39m,
+    w: [33m288[39m
+  },
+  { tag: [32m'DIV'[39m, cls: [32m'mb-8'[39m, right: [33m371[39m, w: [33m222[39m },
+  {
+    tag: [32m'DIV'[39m,
+    cls: [32m'w-32 h-32 bg-gradient-to-br from-tech-purple to-tech-cyan rounded-full mx-auto flex items-center justify-center text-6xl animate-glow'[39m,
+    right: [33m324[39m,
+    w: [33m128[39m
+  },
+  { tag: [32m'H3'[39m, cls: [32m'text-3xl font-bold mb-4'[39m, right: [33m371[39m, w: [33m222[39m },
+  { tag: [32m'P'[39m, cls: [32m'text-gray-300 mb-6'[39m, right: [33m371[39m, w: [33m222[39m }
+]
 
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro\error-context.md]]
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\test-failed-1.png]]
 
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro-retry1\test-failed-1.png]]
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\video.webm]]
 
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro-retry1\error-context.md]]
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\error-context.md]]
 
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-iPad-Pro-retry1\trace.zip]]
+[[ATTACHMENT|mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\trace.zip]]
 ]]>
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="Galaxy Tab S4" tests="1" failures="1" skipped="0" time="86.156" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="86.156">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [Galaxy Tab S4] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-Tab-S4\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-Tab-S4\error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Test timeout of 30000ms exceeded.
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    Error: End of central directory record signature not found. Either not a zip file, or file is truncated.
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-Tab-S4\video.webm]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Galaxy-Tab-S4\error-context.md]]
-]]>
-</system-out>
+<testsuite name="mobile-nav-positioning.spec.js" timestamp="2025-08-11T15:31:38.088Z" hostname="Galaxy S9+" tests="1" failures="0" skipped="0" time="29.819" errors="0">
+<testcase name="Mobile Navigation Positioning Tests › navigation container should not cause excessive horizontal overflow" classname="mobile-nav-positioning.spec.js" time="29.819">
 </testcase>
 </testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="Mobile Portrait 375px" tests="1" failures="1" skipped="0" time="85.657" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="85.657">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [Mobile Portrait 375px] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
-
-    Test timeout of 30000ms exceeded while running "beforeEach" hook.
-
-       8 | test.describe('Mobile & Desktop Responsive Tests', () => {
-       9 |
-    > 10 |     test.beforeEach(async ({ page }) => {
-         |          ^
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-      13 |         await page.waitForLoadState('networkidle');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:10:10
-
-    Error: page.goto: Test timeout of 30000ms exceeded.
-    Call log:
-      - navigating to "http://localhost:8000/", waiting until "load"
-
-
-      10 |     test.beforeEach(async ({ page }) => {
-      11 |         // Start local server for testing
-    > 12 |         await page.goto('http://localhost:8000');
-         |                    ^
-      13 |         await page.waitForLoadState('networkidle');
-      14 |     });
-      15 |
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:12:20
-
-    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Mobile-Portrait-375px\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Test timeout of 30000ms exceeded while running "beforeEach" hook.
-
-       8 | test.describe('Mobile & Desktop Responsive Tests', () => {
-       9 |
-    > 10 |     test.beforeEach(async ({ page }) => {
-         |          ^
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-      13 |         await page.waitForLoadState('networkidle');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:10:10
-
-    Error: browserContext.newPage: Test timeout of 30000ms exceeded.
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Mobile-Portrait-375px-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Mobile-Portrait-375px-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Mobile-Portrait-375px\video.webm]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Mobile-Portrait-375px-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="Tablet Landscape 1024px" tests="1" failures="1" skipped="0" time="83.463" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="83.463">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [Tablet Landscape 1024px] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px\error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Test timeout of 30000ms exceeded.
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px-retry1\error-context.md
-
-    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px\test-failed-1.png]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px\video.webm]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px-retry1\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Tablet-Landscape-1024px-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="Desktop Large 1920px" tests="1" failures="1" skipped="0" time="78.56" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="78.56">
-<failure message="responsive-mobile-desktop.spec.js:153:9 should handle mobile navigation menu functionality" type="FAILURE">
-<![CDATA[  [Desktop Large 1920px] › responsive-mobile-desktop.spec.js:153:9 › Mobile & Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality 
-
-    Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
-
-    Locator: locator('#mobile-menu-button')
-    Expected: visible
-    Received: <element(s) not found>
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('#mobile-menu-button')
-
-
-      157 |             // Check that hamburger menu is visible on mobile
-      158 |             const hamburgerBtn = page.locator('#mobile-menu-button');
-    > 159 |             await expect(hamburgerBtn).toBeVisible();
-          |                                        ^
-      160 |
-      161 |             // Verify mobile menu is initially hidden
-      162 |             const mobileMenu = page.locator('#mobile-menu');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:159:40
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px\error-context.md
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Test timeout of 30000ms exceeded while running "beforeEach" hook.
-
-       8 | test.describe('Mobile & Desktop Responsive Tests', () => {
-       9 |
-    > 10 |     test.beforeEach(async ({ page }) => {
-         |          ^
-      11 |         // Start local server for testing
-      12 |         await page.goto('http://localhost:8000');
-      13 |         await page.waitForLoadState('networkidle');
-        at C:\Users\yuval\grimgrimberg.github.io\tests\responsive-mobile-desktop.spec.js:10:10
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px-retry1\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px-retry1\error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px-retry1\trace.zip
-    Usage:
-
-        npx playwright show-trace ..\test-results\responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px-retry1\trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px\test-failed-1.png]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px\video.webm]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px-retry1\test-failed-1.png]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px-retry1\error-context.md]]
-
-[[ATTACHMENT|responsive-mobile-desktop--cbd3e-vigation-menu-functionality-Desktop-Large-1920px-retry1\trace.zip]]
-]]>
-</system-out>
-</testcase>
-</testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="Mobile Slow 3G" tests="1" failures="0" skipped="1" time="0" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-</testsuite>
-<testsuite name="responsive-mobile-desktop.spec.js" timestamp="2025-08-11T13:34:30.059Z" hostname="Dark Mode Desktop" tests="1" failures="0" skipped="1" time="0" errors="0">
-<testcase name="Mobile &amp; Desktop Responsive Tests › Mobile Functionality Tests › should handle mobile navigation menu functionality" classname="responsive-mobile-desktop.spec.js" time="0">
-<skipped>
-</skipped>
+<testsuite name="mobile-nav-positioning.spec.js" timestamp="2025-08-11T15:31:38.088Z" hostname="Pixel 5" tests="1" failures="0" skipped="0" time="30.188" errors="0">
+<testcase name="Mobile Navigation Positioning Tests › navigation container should not cause excessive horizontal overflow" classname="mobile-nav-positioning.spec.js" time="30.188">
 </testcase>
 </testsuite>
 </testsuites>
