@@ -190,6 +190,8 @@
         /* Prevent horizontal overflow on very small devices by hiding large decorative blobs */
         @media (max-width: 380px) {
             .hero-blob { display: none; }
+            /* Remove AOS horizontal translations that can cause overflow */
+            [data-aos="fade-left"], [data-aos="fade-right"] { transform: none !important; }
         }
     </style>
 </head>
@@ -207,12 +209,12 @@
     </div>
     <!-- Floating Navigation -->
     <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
-            <div class="flex justify-between items-center py-4 gap-4">
+        <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 relative">
+            <div class="flex items-center py-4 gap-4">
                 <div class="text-2xl font-bold gradient-text flex-shrink-0">
                     YG
                 </div>
-                <div class="hidden md:flex space-x-8">
+                <div class="hidden md:flex space-x-8 ml-auto">
                     <a href="#hero" class="hover:text-tech-cyan transition-all duration-300 relative group">
                         Home
                         <span
@@ -256,7 +258,7 @@
                 </div>
                 <!-- Mobile Menu Button - Fixed positioning without AOS animations -->
                 <button
-                    class="md:hidden mobile-menu-button flex items-center justify-center w-10 h-10 rounded-lg bg-tech-cyan/10 hover:bg-tech-cyan/20 border border-tech-cyan/30 transition-all duration-300 flex-shrink-0"
+                    class="md:hidden mobile-menu-button flex items-center justify-center w-10 h-10 rounded-lg bg-tech-cyan/10 hover:bg-tech-cyan/20 border border-tech-cyan/30 transition-all duration-300 flex-shrink-0 absolute top-1/2 right-0 -translate-y-1/2"
                     aria-label="Toggle mobile menu" aria-expanded="false" id="mobile-menu-button">
                     <i class="fas fa-bars text-tech-cyan text-lg transition-transform duration-300"></i>
                 </button>
