@@ -187,8 +187,9 @@
             transition: all 0.3s ease;
         }
 
-        /* Prevent horizontal overflow on very small devices by hiding large decorative blobs */
-        @media (max-width: 380px) {
+          /* Prevent horizontal overflow on small devices by hiding large decorative blobs
+              and neutralizing horizontal AOS transforms that can extend beyond the viewport */
+          @media (max-width: 430px) {
             .hero-blob {
                 display: none;
             }
@@ -220,7 +221,7 @@
                 <div class="text-2xl font-bold gradient-text flex-shrink-0">
                     YG
                 </div>
-                <div class="hidden md:flex space-x-8 ml-auto">
+                <div class="hidden md:flex space-x-8 ml-auto" id="desktop-nav">
                     <a href="#hero" class="hover:text-tech-cyan transition-all duration-300 relative group">
                         Home
                         <span
@@ -277,7 +278,7 @@
             <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
 
             <!-- Menu Panel -->
-            <div class="absolute top-0 right-0 h-full w-80 max-w-sm bg-tech-dark/95 backdrop-blur-lg border-l border-tech-cyan/20 transform translate-x-full transition-transform duration-300 ease-in-out"
+            <div class="absolute top-0 right-0 h-full w-80 max-w-sm bg-tech-dark/95 backdrop-blur-lg border-l border-tech-cyan/20 transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto"
                 id="mobile-menu-panel">
                 <!-- Header -->
                 <div class="flex items-center justify-between p-6 border-b border-tech-cyan/20">
@@ -289,7 +290,7 @@
 
                 <!-- Navigation Links -->
                 <nav class="p-6">
-                    <ul class="space-y-4">
+                    <ul class="space-y-4" id="mobile-nav-list">
                         <li>
                             <a href="#hero"
                                 class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
@@ -1442,7 +1443,35 @@
         const mobileMenuPanel = document.getElementById('mobile-menu-panel');
         const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
         const mobileMenuClose = document.querySelector('.mobile-menu-close');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        const mobileNavList = document.getElementById('mobile-nav-list');
+        const desktopNav = document.getElementById('desktop-nav');
+        let mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        // Build mobile drawer links from desktop links (single source of truth)
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const desktopLinks = desktopNav ? desktopNav.querySelectorAll('a') : [];
+                if (desktopLinks && desktopLinks.length && mobileNavList) {
+                    // Clear any hardcoded items to avoid duplicates
+                    mobileNavList.innerHTML = '';
+                    desktopLinks.forEach(a => {
+                        const href = a.getAttribute('href');
+                        const label = a.textContent.trim();
+                        const li = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = href || '#';
+                        link.className = 'mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan';
+                        link.innerHTML = `<span class="ml-3">${label}</span>`;
+                        li.appendChild(link);
+                        mobileNavList.appendChild(li);
+                    });
+                    // Refresh live NodeList for listeners below
+                    mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+                }
+            } catch (e) {
+                console.log('Mobile menu auto-build skipped', e);
+            }
+        });
         const hamburgerIcon = mobileMenuButton?.querySelector('i');
 
         function openMobileMenu() {
@@ -1485,11 +1514,14 @@
         }
 
         // Close menu when navigation link is clicked
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                closeMobileMenu();
+        function bindMobileLinkClosers() {
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => closeMobileMenu());
             });
-        });
+        }
+        bindMobileLinkClosers();
+        // Re-bind after dynamic build
+        document.addEventListener('DOMContentLoaded', bindMobileLinkClosers);
 
         // Close menu with Escape key
         document.addEventListener('keydown', (e) => {

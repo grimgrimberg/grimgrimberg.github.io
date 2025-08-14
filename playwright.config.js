@@ -48,22 +48,22 @@ export default defineConfig({
         {
             name: 'iPhone 12',
             use: { ...devices['iPhone 12'] },
-            testMatch: ['**/responsive-mobile-desktop.spec.js', '**/mobile-nav-positioning.spec.js']
+            testMatch: ['**/responsive-mobile-desktop.spec.js', '**/mobile-nav-positioning.spec.js', '**/mobile-nav-complete.spec.js']
         },
         {
             name: 'iPhone SE',
             use: { ...devices['iPhone SE'] },
-            testMatch: ['**/responsive-mobile-desktop.spec.js', '**/mobile-nav-positioning.spec.js']
+            testMatch: ['**/responsive-mobile-desktop.spec.js', '**/mobile-nav-positioning.spec.js', '**/mobile-nav-complete.spec.js']
         },
         {
             name: 'Galaxy S9+',
             use: { ...devices['Galaxy S9+'] },
-            testMatch: ['**/responsive-mobile-desktop.spec.js', '**/mobile-nav-positioning.spec.js']
+            testMatch: ['**/responsive-mobile-desktop.spec.js', '**/mobile-nav-positioning.spec.js', '**/mobile-nav-complete.spec.js']
         },
         {
             name: 'Pixel 5',
             use: { ...devices['Pixel 5'] },
-            testMatch: ['**/responsive-mobile-desktop.spec.js', '**/mobile-nav-positioning.spec.js']
+            testMatch: ['**/responsive-mobile-desktop.spec.js', '**/mobile-nav-positioning.spec.js', '**/mobile-nav-complete.spec.js']
         },
 
         // Tablet Testing Projects

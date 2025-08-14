@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 4
+      "actualWorkers": 3
     },
     "preserveOutput": "always",
     "reporter": [
@@ -45,7 +45,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Desktop Chrome",
         "name": "Desktop Chrome",
@@ -62,7 +62,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Desktop Firefox",
         "name": "Desktop Firefox",
@@ -78,7 +78,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Desktop Safari",
         "name": "Desktop Safari",
@@ -94,7 +94,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "iPhone 12",
         "name": "iPhone 12",
@@ -102,7 +102,8 @@
         "testIgnore": [],
         "testMatch": [
           "**/responsive-mobile-desktop.spec.js",
-          "**/mobile-nav-positioning.spec.js"
+          "**/mobile-nav-positioning.spec.js",
+          "**/mobile-nav-complete.spec.js"
         ],
         "timeout": 30000
       },
@@ -111,7 +112,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "iPhone SE",
         "name": "iPhone SE",
@@ -119,7 +120,8 @@
         "testIgnore": [],
         "testMatch": [
           "**/responsive-mobile-desktop.spec.js",
-          "**/mobile-nav-positioning.spec.js"
+          "**/mobile-nav-positioning.spec.js",
+          "**/mobile-nav-complete.spec.js"
         ],
         "timeout": 30000
       },
@@ -128,7 +130,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Galaxy S9+",
         "name": "Galaxy S9+",
@@ -136,7 +138,8 @@
         "testIgnore": [],
         "testMatch": [
           "**/responsive-mobile-desktop.spec.js",
-          "**/mobile-nav-positioning.spec.js"
+          "**/mobile-nav-positioning.spec.js",
+          "**/mobile-nav-complete.spec.js"
         ],
         "timeout": 30000
       },
@@ -145,7 +148,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Pixel 5",
         "name": "Pixel 5",
@@ -153,7 +156,8 @@
         "testIgnore": [],
         "testMatch": [
           "**/responsive-mobile-desktop.spec.js",
-          "**/mobile-nav-positioning.spec.js"
+          "**/mobile-nav-positioning.spec.js",
+          "**/mobile-nav-complete.spec.js"
         ],
         "timeout": 30000
       },
@@ -162,7 +166,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "iPad Pro",
         "name": "iPad Pro",
@@ -178,7 +182,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Galaxy Tab S4",
         "name": "Galaxy Tab S4",
@@ -194,7 +198,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Mobile Portrait 375px",
         "name": "Mobile Portrait 375px",
@@ -210,7 +214,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Tablet Landscape 1024px",
         "name": "Tablet Landscape 1024px",
@@ -226,7 +230,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Desktop Large 1920px",
         "name": "Desktop Large 1920px",
@@ -242,7 +246,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "High DPI Mobile",
         "name": "High DPI Mobile",
@@ -258,7 +262,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Mobile Slow 3G",
         "name": "Mobile Slow 3G",
@@ -274,7 +278,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Mobile Accessibility",
         "name": "Mobile Accessibility",
@@ -290,7 +294,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Dark Mode Desktop",
         "name": "Dark Mode Desktop",
@@ -306,7 +310,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 3
         },
         "id": "Dark Mode Mobile",
         "name": "Dark Mode Mobile",
@@ -346,147 +350,42 @@
           "column": 6,
           "specs": [
             {
-              "title": "navigation container should not cause excessive horizontal overflow",
-              "ok": false,
+              "title": "mobile menu button should be visible and accessible on mobile viewport",
+              "ok": true,
               "tags": [],
               "tests": [
                 {
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "iPhone 12",
-                  "projectName": "iPhone 12",
+                  "projectId": "iPhone SE",
+                  "projectName": "iPhone SE",
                   "results": [
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "timedOut",
-                      "duration": 41051,
-                      "error": {
-                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:5:10",
-                        "location": {
-                          "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                          "column": 10,
-                          "line": 5
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile Navigation Positioning Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 4 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                            "column": 10,
-                            "line": 5
-                          },
-                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile Navigation Positioning Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 4 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:5:10\u001b[22m"
-                        },
-                        {
-                          "location": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                            "column": 20,
-                            "line": 6
-                          },
-                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 4 |\u001b[39m\n \u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 9 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:6:20\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 22400,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-11T15:31:43.716Z",
+                      "startTime": "2025-08-14T10:46:54.305Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                        "column": 10,
-                        "line": 5
-                      }
-                    },
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 35690,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:82:26",
-                        "location": {
-                          "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                          "column": 26,
-                          "line": 82
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 80 |\u001b[39m             console\u001b[33m.\u001b[39mlog(\u001b[32m'Horizontal overflow offenders:'\u001b[39m\u001b[33m,\u001b[39m offenders)\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m         }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 82 |\u001b[39m         expect(overflow)\u001b[33m.\u001b[39mtoBeLessThanOrEqual(\u001b[35m40\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 83 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 84 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 85 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                            "column": 26,
-                            "line": 82
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m\n\n\u001b[0m \u001b[90m 80 |\u001b[39m             console\u001b[33m.\u001b[39mlog(\u001b[32m'Horizontal overflow offenders:'\u001b[39m\u001b[33m,\u001b[39m offenders)\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m         }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 82 |\u001b[39m         expect(overflow)\u001b[33m.\u001b[39mtoBeLessThanOrEqual(\u001b[35m40\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 83 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 84 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 85 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:82:26\u001b[22m"
-                        }
-                      ],
-                      "stdout": [
-                        {
-                          "text": "Horizontal overflow offenders: [\n  { tag: \u001b[32m'DIV'\u001b[39m, cls: \u001b[32m'relative aos-init'\u001b[39m, right: \u001b[33m404\u001b[39m, w: \u001b[33m288\u001b[39m },\n  {\n    tag: \u001b[32m'DIV'\u001b[39m,\n    cls: \u001b[32m'glass-effect rounded-2xl p-8 text-center hover-lift'\u001b[39m,\n    right: \u001b[33m404\u001b[39m,\n    w: \u001b[33m288\u001b[39m\n  },\n  { tag: \u001b[32m'DIV'\u001b[39m, cls: \u001b[32m'mb-8'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m },\n  {\n    tag: \u001b[32m'DIV'\u001b[39m,\n    cls: \u001b[32m'w-32 h-32 bg-gradient-to-br from-tech-purple to-tech-cyan rounded-full mx-auto flex items-center justify-center text-6xl animate-glow'\u001b[39m,\n    right: \u001b[33m324\u001b[39m,\n    w: \u001b[33m128\u001b[39m\n  },\n  { tag: \u001b[32m'H3'\u001b[39m, cls: \u001b[32m'text-3xl font-bold mb-4'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m },\n  { tag: \u001b[32m'P'\u001b[39m, cls: \u001b[32m'text-gray-300 mb-6'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m }\n]\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2025-08-11T15:32:29.502Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-12-retry1\\trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                        "column": 26,
-                        "line": 82
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
-              "id": "238a6eb52e3c8ef0a0e0-c6bd8523594ac3998f38",
+              "id": "238a6eb52e3c8ef0a0e0-ca2992143c90762f9bb8",
               "file": "mobile-nav-positioning.spec.js",
-              "line": 54,
+              "line": 10,
               "column": 5
             },
             {
-              "title": "navigation container should not cause excessive horizontal overflow",
-              "ok": false,
+              "title": "mobile menu button should remain visible on very small screens",
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -499,128 +398,23 @@
                     {
                       "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "timedOut",
-                      "duration": 40815,
-                      "error": {
-                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
-                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:5:10",
-                        "location": {
-                          "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                          "column": 10,
-                          "line": 5
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile Navigation Positioning Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 4 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                            "column": 10,
-                            "line": 5
-                          },
-                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n\u001b[0m \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Mobile Navigation Positioning Tests'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 4 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:5:10\u001b[22m"
-                        },
-                        {
-                          "location": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                            "column": 20,
-                            "line": 6
-                          },
-                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:8000/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 4 |\u001b[39m\n \u001b[90m 5 |\u001b[39m     test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 6 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:8000'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m   |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 7 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 8 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 9 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:6:20\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 13935,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-11T15:31:43.734Z",
+                      "startTime": "2025-08-14T10:46:54.431Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                        "column": 10,
-                        "line": 5
-                      }
-                    },
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 32557,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m\n    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:82:26",
-                        "location": {
-                          "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                          "column": 26,
-                          "line": 82
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 80 |\u001b[39m             console\u001b[33m.\u001b[39mlog(\u001b[32m'Horizontal overflow offenders:'\u001b[39m\u001b[33m,\u001b[39m offenders)\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m         }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 82 |\u001b[39m         expect(overflow)\u001b[33m.\u001b[39mtoBeLessThanOrEqual(\u001b[35m40\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 83 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 84 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 85 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                            "column": 26,
-                            "line": 82
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m40\u001b[39m\nReceived:    \u001b[31m84\u001b[39m\n\n\u001b[0m \u001b[90m 80 |\u001b[39m             console\u001b[33m.\u001b[39mlog(\u001b[32m'Horizontal overflow offenders:'\u001b[39m\u001b[33m,\u001b[39m offenders)\u001b[33m;\u001b[39m\n \u001b[90m 81 |\u001b[39m         }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 82 |\u001b[39m         expect(overflow)\u001b[33m.\u001b[39mtoBeLessThanOrEqual(\u001b[35m40\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 83 |\u001b[39m     })\u001b[33m;\u001b[39m\n \u001b[90m 84 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 85 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js:82:26\u001b[22m"
-                        }
-                      ],
-                      "stdout": [
-                        {
-                          "text": "Horizontal overflow offenders: [\n  { tag: \u001b[32m'DIV'\u001b[39m, cls: \u001b[32m'relative aos-init'\u001b[39m, right: \u001b[33m404\u001b[39m, w: \u001b[33m288\u001b[39m },\n  {\n    tag: \u001b[32m'DIV'\u001b[39m,\n    cls: \u001b[32m'glass-effect rounded-2xl p-8 text-center hover-lift'\u001b[39m,\n    right: \u001b[33m404\u001b[39m,\n    w: \u001b[33m288\u001b[39m\n  },\n  { tag: \u001b[32m'DIV'\u001b[39m, cls: \u001b[32m'mb-8'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m },\n  {\n    tag: \u001b[32m'DIV'\u001b[39m,\n    cls: \u001b[32m'w-32 h-32 bg-gradient-to-br from-tech-purple to-tech-cyan rounded-full mx-auto flex items-center justify-center text-6xl animate-glow'\u001b[39m,\n    right: \u001b[33m324\u001b[39m,\n    w: \u001b[33m128\u001b[39m\n  },\n  { tag: \u001b[32m'H3'\u001b[39m, cls: \u001b[32m'text-3xl font-bold mb-4'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m },\n  { tag: \u001b[32m'P'\u001b[39m, cls: \u001b[32m'text-gray-300 mb-6'\u001b[39m, right: \u001b[33m371\u001b[39m, w: \u001b[33m222\u001b[39m }\n]\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2025-08-11T15:32:29.473Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\yuval\\grimgrimberg.github.io\\test-results\\mobile-nav-positioning-Mob-fbd68-cessive-horizontal-overflow-iPhone-SE-retry1\\trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\yuval\\grimgrimberg.github.io\\tests\\mobile-nav-positioning.spec.js",
-                        "column": 26,
-                        "line": 82
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
-              "id": "238a6eb52e3c8ef0a0e0-56706779845b6d1be61b",
+              "id": "238a6eb52e3c8ef0a0e0-401956b6649154d72573",
               "file": "mobile-nav-positioning.spec.js",
-              "line": 54,
+              "line": 42,
               "column": 5
             },
             {
@@ -632,19 +426,19 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "Galaxy S9+",
-                  "projectName": "Galaxy S9+",
+                  "projectId": "iPhone SE",
+                  "projectName": "iPhone SE",
                   "results": [
                     {
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 29819,
+                      "duration": 13509,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-08-11T15:31:43.737Z",
+                      "startTime": "2025-08-14T10:46:54.435Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -652,41 +446,7 @@
                   "status": "expected"
                 }
               ],
-              "id": "238a6eb52e3c8ef0a0e0-f0446e76599c0b1c1a6a",
-              "file": "mobile-nav-positioning.spec.js",
-              "line": 54,
-              "column": 5
-            },
-            {
-              "title": "navigation container should not cause excessive horizontal overflow",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "Pixel 5",
-                  "projectName": "Pixel 5",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 30188,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-08-11T15:31:43.769Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "238a6eb52e3c8ef0a0e0-734942d1addea0790f70",
+              "id": "238a6eb52e3c8ef0a0e0-56706779845b6d1be61b",
               "file": "mobile-nav-positioning.spec.js",
               "line": 54,
               "column": 5
@@ -698,11 +458,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-08-11T15:31:34.821Z",
-    "duration": 95777.73,
-    "expected": 2,
+    "startTime": "2025-08-14T10:46:49.192Z",
+    "duration": 29237.092,
+    "expected": 3,
     "skipped": 0,
-    "unexpected": 2,
+    "unexpected": 0,
     "flaky": 0
   }
 }

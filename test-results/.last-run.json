@@ -1,7 +1,4 @@
 {
-  "status": "failed",
-  "failedTests": [
-    "238a6eb52e3c8ef0a0e0-c6bd8523594ac3998f38",
-    "238a6eb52e3c8ef0a0e0-56706779845b6d1be61b"
-  ]
+  "status": "passed",
+  "failedTests": []
 }
