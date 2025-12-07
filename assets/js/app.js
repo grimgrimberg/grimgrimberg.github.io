@@ -3,14 +3,32 @@
  * All modules combined for compatibility
  */
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Portfolio System Initializing...');
 
-    try {
-        // ==========================================
-        // ANIMATIONS MODULE
-        // ==========================================
-        function initAnimations() {
+    // CRITICAL FIX: Wait for jQuery and Clippy libraries to load
+    // Since scripts are loaded with defer, they may not be ready immediately
+    function waitForLibraries(callback, attempts = 0) {
+        const maxAttempts = 50; // 5 seconds max wait
+        
+        if (typeof $ !== 'undefined' && typeof clippy !== 'undefined') {
+            console.log('✅ Libraries loaded: jQuery and Clippy ready');
+            callback();
+        } else if (attempts < maxAttempts) {
+            console.log(`⏳ Waiting for libraries... (attempt ${attempts + 1}/${maxAttempts})`);
+            setTimeout(() => waitForLibraries(callback, attempts + 1), 100);
+        } else {
+            console.warn('⚠️ Libraries not loaded, continuing without Clippy');
+            callback();
+        }
+    }
+
+    waitForLibraries(function() {
+        try {
+            // ==========================================
+            // ANIMATIONS MODULE
+            // ==========================================
+            function initAnimations() {
             if (typeof AOS !== 'undefined') {
                 AOS.init({
                     duration: 800,
@@ -681,7 +699,8 @@ ${name}</div>
         loadGooseAnimation();
 
         console.log('✅ Portfolio System Online: grimgrimberg.github.io fully initialized');
-    } catch (error) {
-        console.error('❌ Initialization error:', error);
-    }
+        } catch (error) {
+            console.error('❌ Initialization error:', error);
+        }
+    });
 });

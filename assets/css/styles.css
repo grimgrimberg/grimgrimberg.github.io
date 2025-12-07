@@ -1,20 +1,33 @@
-/* styles.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* styles.css - Tailwind v4 */
+@import "tailwindcss";
+
+/* Custom CSS Variables for Tech Theme */
+@theme {
+  --color-tech-dark: #0a0f1c;
+  --color-tech-blue: #1e3a8a;
+  --color-tech-cyan: #06b6d4;
+  --color-tech-purple: #9333ea;
+  --color-tech-green: #10b981;
+  --color-tech-orange: #f97316;
+  --color-tech-pink: #ec4899;
+
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
 
 /* Custom styles */
 body {
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #1e3c72, #2a5298); /* Cool blue gradient */
-  background-attachment: fixed; /* Ensure the background stays fixed during scrolling */
-  color: #fff; /* Adjust text color for better contrast */
+  font-family: var(--font-display);
+  background: linear-gradient(135deg, #0a0f1c, #1e3a8a);
+  background-attachment: fixed;
+  color: #fff;
 }
 
 /* Enhanced styles for a modern look */
 
 /* Typography */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: 'Playfair Display', serif;
 }
 
@@ -84,16 +97,19 @@ social-links a:hover {
 
 social-links {
   position: relative;
-  z-index: 2000; /* Ensure links are above the goose */
+  z-index: 2000;
+  /* Ensure links are above the goose */
 }
 
 #goose-animation {
-  z-index: 1000; /* Keep the goose below the links */
+  z-index: 1000;
+  /* Keep the goose below the links */
 }
 
 /* Ensure consistent h1 color across all pages */
 h1 {
-  color: #ffffff; /* Bright green */
+  color: #ffffff;
+  /* Bright green */
 }
 
 /* Enable smooth scrolling for the entire page */
@@ -121,10 +137,12 @@ html {
     transform: scale(0.8);
     opacity: 0;
   }
+
   50% {
     transform: scale(1.1);
     opacity: 1;
   }
+
   100% {
     transform: scale(1);
     opacity: 1;

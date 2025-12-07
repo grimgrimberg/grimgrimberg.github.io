@@ -1317,15 +1317,26 @@
     </footer>
 
     <!-- Scripts -->
+    <!-- Load AOS first -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    <!-- Add jQuery (Required for ClippyJS) -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <!-- Add ClippyJS Script -->
+    <!-- Load jQuery BEFORE app.js (Required for ClippyJS) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    
+    <!-- Load ClippyJS AFTER jQuery -->
     <script src="https://cdn.jsdelivr.net/gh/pi0/clippyjs@master/assets/clippy.min.js"></script>
 
+    <!-- CRITICAL: Wait for jQuery and Clippy to be ready before loading app.js -->
+    <script>
+        // Ensure jQuery and Clippy are loaded before app.js
+        window.addEventListener('load', function() {
+            console.log('📦 jQuery loaded:', typeof $ !== 'undefined');
+            console.log('📦 Clippy loaded:', typeof clippy !== 'undefined');
+        });
+    </script>
+
     <!-- Main Application (Bundled version for compatibility) -->
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/app.js" defer></script>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu-overlay"
