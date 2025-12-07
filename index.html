@@ -3,16 +3,68 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yuval Grimberg | Control Systems Engineer & Autonomous Vehicle Specialist</title>
     <meta name="description"
         content="Yuval Grimberg - Mechanical Engineer specializing in Control Theory, Autonomous Vehicles, and Advanced System Design. Hire me for cutting-edge engineering solutions.">
     <meta name="keywords"
         content="Control Systems Engineer, Autonomous Vehicles, Mechanical Engineer, Control Theory, Machine Learning, Python, MATLAB, Robotics">
 
-    <!-- Tailwind CSS (Compiled) -->
-    <link href="./assets/css/output.css" rel="stylesheet">
-
+    <!-- Tailwind CSS with custom configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tech-blue': '#0066ff',
+                        'tech-dark': '#0a0f1c',
+                        'tech-purple': '#6366f1',
+                        'tech-cyan': '#06b6d4',
+                        'tech-green': '#10b981'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-in-out',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.8s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(99, 102, 241, 0.5)' },
+                            '50%': { boxShadow: '0 0 40px rgba(99, 102, 241, 0.8)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(6, 182, 212, 0.5)' },
+                            '100%': { boxShadow: '0 0 30px rgba(6, 182, 212, 0.8)' }
+                        }
+                    },
+                    fontFamily: {
+                        'tech': ['JetBrains Mono', 'Monaco', 'Consolas', 'monospace'],
+                        'display': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 
     <!-- Modern fonts -->
     <link
@@ -29,20 +81,82 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/pi0/clippyjs@master/assets/clippy.css">
 
     <style>
-        html {
-            overflow-x: hidden;
-            /* Prevent iOS zoom quirks and horizontal jank on narrow screens */
-            -webkit-text-size-adjust: 100%;
-            text-size-adjust: 100%;
-            scrollbar-gutter: stable both-edges;
-            overscroll-behavior-x: none;
+        /* Custom Clippy-like Assistant (fallback) */
+        #custom-clippy {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        #custom-clippy.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .clippy-assistant {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 280px;
+            color: white;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .clippy-icon {
+            font-size: 40px;
+            float: left;
+            margin-right: 10px;
+            animation: clippy-bounce 2s infinite;
+        }
+
+        .clippy-message {
+            margin-left: 50px;
+            line-height: 1.4;
+        }
+
+        .clippy-close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            opacity: 0.7;
+        }
+
+        .clippy-close:hover {
+            opacity: 1;
+        }
+
+        @keyframes clippy-bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
         }
 
         body {
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
+            font-family: 'Inter', sans-serif;
         }
-
 
         .gradient-text {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -73,9 +187,9 @@
             transition: all 0.3s ease;
         }
 
-        /* Prevent horizontal overflow on small devices by hiding large decorative blobs
+          /* Prevent horizontal overflow on small devices by hiding large decorative blobs
               and neutralizing horizontal AOS transforms that can extend beyond the viewport */
-        @media (max-width: 768px) {
+          @media (max-width: 430px) {
             .hero-blob {
                 display: none;
             }
@@ -86,44 +200,24 @@
                 transform: none !important;
             }
         }
-
-        /* Safe-area aware fixed positioning for mobile (prevents overlap with notches/gestures) */
-        .safe-fixed {
-            right: calc(env(safe-area-inset-right, 0px) + 1rem);
-            bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
-        }
-
-        /* Ensure in-page anchors aren’t covered by the fixed navbar */
-        :root {
-            --navbar-offset: 80px;
-        }
-
-        section[id] {
-            scroll-margin-top: calc(env(safe-area-inset-top, 0px) + var(--navbar-offset));
-        }
-
-        /* Respect users who prefer reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        /* Ensure tappable targets meet recommended minimums */
-        .mobile-menu-button {
-            min-width: 44px;
-            min-height: 44px;
-        }
     </style>
 </head>
 
 <body class="bg-tech-dark text-white font-display overflow-x-hidden">
+    <!-- Custom Clippy Assistant -->
+    <div id="custom-clippy">
+        <div class="clippy-assistant">
+            <div class="clippy-close" onclick="hideClippy()">×</div>
+            <div class="clippy-icon">📎</div>
+            <div class="clippy-message" id="clippy-text">
+                Hey there! Looking to hire an awesome engineer? I'm here to help!
+            </div>
+        </div>
+    </div>
     <!-- Floating Navigation -->
     <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 relative">
-            <div class="flex min-w-0 items-center py-4 gap-4">
+            <div class="flex items-center py-4 gap-4">
                 <div class="text-2xl font-bold gradient-text flex-shrink-0">
                     YG
                 </div>
@@ -266,13 +360,6 @@
         </div>
     </nav>
 
-    <!-- Mobile Clippy Summon Button (hidden on md and up) -->
-    <button id="clippy-mobile-toggle"
-        class="md:hidden fixed safe-fixed z-40 bg-gradient-to-r from-tech-purple to-tech-cyan text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center border border-white/10 active:scale-95"
-        aria-label="Summon Clippy" title="Summon Clippy">
-        📎
-    </button>
-
     <!-- Hero Section -->
     <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden tech-pattern">
         <!-- Animated Background Elements -->
@@ -298,8 +385,6 @@
                 <div
                     class="inline-flex items-center space-x-4 bg-gradient-to-r from-tech-purple/20 to-tech-cyan/20 backdrop-blur-sm rounded-full px-8 py-4 border border-white/10">
                     <div class="w-3 h-3 bg-tech-green rounded-full animate-pulse"></div>
-                    <p class="text-xl md:text-2xl font-tech">Available for Hire</p>
-                    <span class="text-tech-cyan">•</span>
                     <p class="text-xl md:text-2xl font-tech">Control Systems Engineer</p>
                 </div>
             </div>
@@ -577,7 +662,7 @@
                             <span class="bg-tech-green/20 text-tech-green px-2 py-1 rounded text-xs">ROS2</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="projects.html#autonomous-vehicle"
+                            <a href="#"
                                 class="text-tech-cyan hover:text-white transition-colors flex items-center space-x-1">
                                 <span>View Details</span>
                                 <i class="fas fa-arrow-right"></i>
@@ -627,7 +712,7 @@
                             <span class="bg-tech-cyan/20 text-tech-cyan px-2 py-1 rounded text-xs">Matplotlib</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="projects.html#ml-control"
+                            <a href="#"
                                 class="text-tech-purple hover:text-white transition-colors flex items-center space-x-1">
                                 <span>View Details</span>
                                 <i class="fas fa-arrow-right"></i>
@@ -675,7 +760,7 @@
                             <span class="bg-tech-purple/20 text-tech-purple px-2 py-1 rounded text-xs">ROS2</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="projects.html#robotic-system"
+                            <a href="#"
                                 class="text-tech-green hover:text-white transition-colors flex items-center space-x-1">
                                 <span>View Details</span>
                                 <i class="fas fa-arrow-right"></i>
@@ -839,17 +924,23 @@
                     </a>
                 </div>
 
-                <!-- Interactive Wisdom Zone -->
+                <!-- Interactive Goose Zone -->
                 <div data-aos="fade-up"
                     class="glass-effect rounded-2xl p-8 text-center group hover:scale-105 transition-all duration-300">
                     <div class="text-4xl mb-4">🦆</div>
-                    <h3 class="text-2xl font-bold text-tech-green mb-4">Engineering Wisdom</h3>
-                    <p class="text-gray-300 mb-6">Every serious engineer needs a debugging duck. Click below for some coding truth bombs.</p>
+                    <h3 class="text-2xl font-bold text-tech-green mb-4">Meet My Assistant</h3>
+                    <p class="text-gray-300 mb-6">Every serious engineer needs a debugging duck. Mine just happens to be
+                        animated and slightly unhinged.</p>
+
+                    <!-- Goose Animation Container -->
+                    <div id="goose-fun-zone" class="relative mx-auto mb-6" style="width: 120px; height: 120px;">
+                        <!-- Goose will be loaded here -->
+                    </div>
 
                     <div class="space-y-3">
                         <button id="goose-talk"
                             class="bg-gradient-to-r from-tech-green to-tech-cyan hover:from-tech-cyan hover:to-tech-green text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">
-                            Get Engineering Wisdom
+                            Ask Goose for Advice
                         </button>
                         <div id="goose-wisdom" class="text-sm text-tech-cyan italic min-h-[20px]"></div>
                     </div>
@@ -1081,25 +1172,20 @@
                     <!-- Simple Email Form (No External Services Needed) -->
                     <form class="space-y-6" id="simple-contact-form" novalidate>
                         <div>
-                            <label for="contact-name" class="block text-sm font-medium text-gray-300 mb-2">Name
-                                *</label>
-                            <input type="text" name="name" id="contact-name" required aria-required="true"
-                                autocomplete="name"
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
+                            <input type="text" name="name" id="contact-name" required
                                 class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500"
                                 placeholder="Your Name">
                         </div>
                         <div>
-                            <label for="contact-email" class="block text-sm font-medium text-gray-300 mb-2">Email
-                                *</label>
-                            <input type="email" name="email" id="contact-email" required aria-required="true"
-                                autocomplete="email" inputmode="email"
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
+                            <input type="email" name="email" id="contact-email" required
                                 class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500"
                                 placeholder="your.email@company.com">
                         </div>
                         <div>
-                            <label for="contact-subject"
-                                class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
-                            <select name="subject" id="contact-subject" autocomplete="off"
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                            <select name="subject" id="contact-subject"
                                 class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white transition-all duration-300 hover:border-gray-500">
                                 <option value="General Inquiry">General Inquiry</option>
                                 <option value="Job Opportunity">Job Opportunity</option>
@@ -1110,10 +1196,8 @@
                             </select>
                         </div>
                         <div>
-                            <label for="contact-message" class="block text-sm font-medium text-gray-300 mb-2">Message
-                                *</label>
-                            <textarea name="message" id="contact-message" rows="4" required aria-required="true"
-                                autocomplete="off" spellcheck="true"
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Message *</label>
+                            <textarea name="message" id="contact-message" rows="4" required
                                 class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500 resize-vertical"
                                 placeholder="Tell me about your project or opportunity..."></textarea>
                         </div>
@@ -1313,70 +1397,697 @@
     </footer>
 
     <!-- Scripts -->
-    <!-- Load AOS first -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-    <!-- Load jQuery BEFORE app.js (Required for ClippyJS) -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    
-    <!-- Load ClippyJS AFTER jQuery -->
-    <script src="https://cdn.jsdelivr.net/gh/pi0/clippyjs@master/assets/clippy.min.js"></script>
-
-    <!-- CRITICAL: Wait for jQuery and Clippy to be ready before loading app.js -->
+    <!-- REAL ClippyJS - The Authentic Microsoft Office Assistant! -->
+    <script src="https://unpkg.com/jquery@3.2.1"></script>
+    <script src="https://unpkg.com/clippyjs@latest"></script>
     <script>
-        // Ensure jQuery and Clippy are loaded before app.js
-        window.addEventListener('load', function() {
-            console.log('📦 jQuery loaded:', typeof $ !== 'undefined');
-            console.log('📦 Clippy loaded:', typeof clippy !== 'undefined');
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
         });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-effect');
+                navbar.style.backgroundColor = 'rgba(10, 15, 28, 0.8)';
+            } else {
+                navbar.classList.remove('glass-effect');
+                navbar.style.backgroundColor = 'transparent';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+        const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const mobileNavList = document.getElementById('mobile-nav-list');
+        const desktopNav = document.getElementById('desktop-nav');
+        let mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        // Build mobile drawer links from desktop links (single source of truth)
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const desktopLinks = desktopNav ? desktopNav.querySelectorAll('a') : [];
+                if (desktopLinks && desktopLinks.length && mobileNavList) {
+                    // Clear any hardcoded items to avoid duplicates
+                    mobileNavList.innerHTML = '';
+                    desktopLinks.forEach(a => {
+                        const href = a.getAttribute('href');
+                        const label = a.textContent.trim();
+                        const li = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = href || '#';
+                        link.className = 'mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan';
+                        link.innerHTML = `<span class="ml-3">${label}</span>`;
+                        li.appendChild(link);
+                        mobileNavList.appendChild(li);
+                    });
+                    // Refresh live NodeList for listeners below
+                    mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+                }
+            } catch (e) {
+                console.log('Mobile menu auto-build skipped', e);
+            }
+        });
+        const hamburgerIcon = mobileMenuButton?.querySelector('i');
+
+        function openMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', 'true');
+
+            // Animate menu in
+            requestAnimationFrame(() => {
+                mobileMenuPanel.style.transform = 'translateX(0)';
+                hamburgerIcon?.classList.replace('fa-bars', 'fa-times');
+            });
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenuPanel.style.transform = 'translateX(100%)';
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            hamburgerIcon?.classList.replace('fa-times', 'fa-bars');
+
+            // Hide after animation
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // Mobile menu event listeners
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', openMobileMenu);
+        }
+
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileMenuBackdrop) {
+            mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+        }
+
+        // Close menu when navigation link is clicked
+        function bindMobileLinkClosers() {
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => closeMobileMenu());
+            });
+        }
+        bindMobileLinkClosers();
+        // Re-bind after dynamic build
+        document.addEventListener('DOMContentLoaded', bindMobileLinkClosers);
+
+        // Close menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                closeMobileMenu();
+            }
+        });
+
+        console.log('Mobile navigation initialized successfully');
+
+        // Simple Email Client Function - No external services needed!
+        function openEmailClient() {
+            const nameEl = document.getElementById('contact-name');
+            const emailEl = document.getElementById('contact-email');
+            const subjectEl = document.getElementById('contact-subject');
+            const messageEl = document.getElementById('contact-message');
+            const statusEl = document.getElementById('contact-status');
+
+            const name = nameEl.value.trim();
+            const email = emailEl.value.trim();
+            const subject = subjectEl.value.trim();
+            const message = messageEl.value.trim();
+
+            // Basic validation
+            const invalid = [];
+            if (!name) invalid.push(nameEl);
+            if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) invalid.push(emailEl);
+            if (!message) invalid.push(messageEl);
+            if (invalid.length) {
+                invalid.forEach(el => el.classList.add('ring-2', 'ring-red-500'));
+                setTimeout(() => invalid.forEach(el => el.classList.remove('ring-2', 'ring-red-500')), 1500);
+                alert('Please provide a valid Name, Email and Message.');
+                return;
+            }
+
+            const emailSubject = `Portfolio Contact: ${subject || 'General Inquiry'}`;
+            const emailBody = `Hi Yuval,%0D%0A%0D%0AName: ${name}%0D%0AEmail: ${email}%0D%0ASubject: ${subject || 'N/A'}%0D%0A%0D%0AMessage:%0D%0A${message}%0D%0A%0D%0A---%0D%0AThis message was sent from your portfolio website.%0D%0A%0D%0ABest regards,%0D%0A${name}`;
+            const mailtoLink = `mailto:yuval.grimberg@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${emailBody}`;
+
+            // Render success UI first for reliability & testing
+            const successHtml = `
+                <div class="text-center py-8" id="contact-success" data-contact-sent="true">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-tech-green to-tech-cyan rounded-full flex items-center justify-center">
+                        <i class="fas fa-check text-2xl text-white"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-tech-cyan mb-3">Email Client Opened (or Ready)!</h4>
+                    <p class="text-gray-300 mb-4">If your default email client didn't appear, just click the button below or copy the message manually.</p>
+                    <div class="space-y-4 max-w-xl mx-auto">
+                        <a id="retry-mailto" href="${mailtoLink}" class="inline-flex items-center space-x-2 bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300">
+                            <i class="fas fa-envelope"></i><span>Try Opening Email Again</span>
+                        </a>
+                        <div class="text-left bg-gray-800/60 border border-gray-700 rounded-lg p-4 overflow-y-auto max-h-56 text-sm font-mono" id="email-preview" aria-label="Email preview">Hi Yuval,
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject || 'N/A'}
+
+Message:
+${message}
+
+---
+This message was sent from your portfolio website.
+
+Best regards,
+${name}</div>
+                        <button id="copy-email-content" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-colors">Copy Message to Clipboard</button>
+                        <a href="index.html#contact" class="text-tech-cyan hover:text-tech-purple text-sm inline-block">Send another message</a>
+                    </div>
+                </div>`;
+            const formContainer = document.getElementById('simple-contact-form');
+            formContainer.innerHTML = successHtml;
+            statusEl.textContent = 'Contact form processed – success screen displayed';
+
+            // Copy feature
+            const copyBtn = document.getElementById('copy-email-content');
+            copyBtn?.addEventListener('click', () => {
+                const rawText = document.getElementById('email-preview').textContent;
+                navigator.clipboard.writeText(rawText).then(() => {
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => copyBtn.textContent = 'Copy Message to Clipboard', 1500);
+                });
+            });
+
+            // Attempt mailto after slight delay so DOM updates are testable
+            setTimeout(() => {
+                try {
+                    window.location.href = mailtoLink;
+                } catch (e) {
+                    console.log('mailto navigation failed in this environment');
+                }
+            }, 100);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Fun Zone Interactive Elements
+        let funClickCount = 0;
+        const clickMeButton = document.getElementById('click-me-button');
+        const clickCountDisplay = document.getElementById('click-count');
+        const clickMessage = document.getElementById('click-message');
+
+        if (clickMeButton) {
+            clickMeButton.addEventListener('click', function () {
+                funClickCount++;
+                clickCountDisplay.textContent = `(${funClickCount})`;
+
+                // Fun messages based on click count
+                const messages = [
+                    "Great! You can follow instructions.",
+                    "Wow, you're persistent. I like that in a teammate.",
+                    "Still clicking? This is exactly the attention to detail we need.",
+                    "You're either very dedicated or very bored. Either way, hired!",
+                    "Ok seriously, you'd fit right into our QA testing team.",
+                    "At this point you're just stress-testing my button. Respect.",
+                    "You know what? Let's talk. Email me.",
+                    "This is getting weird but I admire your commitment.",
+                    "Are you trying to find the meaning of life? It's 42, btw.",
+                    "🎉 CONGRATS! You found the persistence level of a true engineer!"
+                ];
+
+                if (funClickCount <= messages.length) {
+                    clickMessage.textContent = messages[funClickCount - 1];
+                }
+
+                if (funClickCount === 42) {
+                    clickMessage.innerHTML = '🎊 THE ANSWER TO EVERYTHING! You are definitely engineer material! 🎊';
+                    clickMeButton.classList.add('animate-bounce');
+                }
+
+                // Special sound effect at 69 clicks
+                if (funClickCount === 69) {
+                    playGodDamnSound();
+                    clickMessage.innerHTML = '🔥 NICE! You triggered the legendary "god damn" sound! 🔥';
+                    clickMeButton.style.background = 'linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff, #9c88ff)';
+                    clickMeButton.style.animation = 'rainbow 2s infinite';
+                }
+
+                // Add some visual flair
+                if (funClickCount % 5 === 0 && funClickCount !== 69) {
+                    clickMeButton.style.background = `linear-gradient(45deg, hsl(${Math.random() * 360}, 70%, 50%), hsl(${Math.random() * 360}, 70%, 50%))`;
+                }
+            });
+        }
+
+        // Sound effect functions
+        function playGodDamnSound() {
+            try {
+                const audio = new Audio('./assets/sounds/god-dam.mp3');
+                audio.volume = 0.7;
+                audio.play().catch(e => {
+                    console.log('🔊 Sound play blocked by browser policy (need user interaction first)');
+                });
+            } catch (error) {
+                console.log('🔊 Sound file not found or failed to load');
+            }
+        }
+
+        function playHonkSound() {
+            try {
+                const audio = new Audio('./assets/sounds/honk-sound.mp3');
+                audio.volume = 0.6;
+                audio.play().catch(e => {
+                    console.log('🦆 Honk sound play blocked by browser policy');
+                });
+            } catch (error) {
+                console.log('🦆 Honk sound file not found or failed to load');
+            }
+        }
+
+        // Goose Wisdom
+        const gooseTalkButton = document.getElementById('goose-talk');
+        const gooseWisdom = document.getElementById('goose-wisdom');
+
+        if (gooseTalkButton) {
+            const gooseQuotes = [
+                "Debugging is like being a detective in a crime where you're also the murderer.",
+                "There are only 10 types of people: those who understand binary and those who don't.",
+                "If it works, don't touch it. If it doesn't work, blame the hardware.",
+                "Code never lies, comments sometimes do, but geese always honk truth.",
+                "The best debugging tool is a good night's sleep. The second best is coffee.",
+                "Real programmers count from 0. Real geese count backwards from infinity.",
+                "Why do programmers prefer dark mode? Because light attracts bugs!",
+                "A day without git commits is like a day without sunshine. Depressing and unproductive.",
+                "In Soviet Russia, code debugs you! Wait, that's everywhere now.",
+                "I don't always test my code, but when I do, I do it in production. 🦆"
+            ];
+
+            gooseTalkButton.addEventListener('click', function () {
+                // Play honk sound when asking goose for advice
+                playHonkSound();
+
+                const randomQuote = gooseQuotes[Math.floor(Math.random() * gooseQuotes.length)];
+                gooseWisdom.textContent = `"${randomQuote}"`;
+
+                // Add some animation
+                gooseWisdom.style.animation = 'none';
+                setTimeout(() => {
+                    gooseWisdom.style.animation = 'pulse 1s ease-in-out';
+                }, 10);
+            });
+        }
+
+        // Load Goose Animation in Fun Zone
+        function loadGooseAnimation() {
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js';
+            script.onload = function () {
+                if (window.lottie) {
+                    const gooseContainer = document.getElementById('goose-fun-zone');
+                    if (gooseContainer) {
+                        lottie.loadAnimation({
+                            container: gooseContainer,
+                            renderer: 'svg',
+                            loop: true,
+                            autoplay: true,
+                            path: './assets/images/jumpy-goose.json'
+                        });
+                    }
+                }
+            };
+            document.head.appendChild(script);
+        }
+
+        // Initialize goose animation
+        loadGooseAnimation();
+
+        // REAL AUTHENTIC MICROSOFT OFFICE CLIPPY! 📎
+        let clippyAgent = null;
+        let clippyLoaded = false;
+
+        // Set the CDN path for ClippyJS agents
+        window.CLIPPY_CDN = 'https://cdn.jsdelivr.net/gh/pi0/clippyjs@master/assets/agents/';
+
+        // Load the REAL Clippy with all his authentic animations!
+        function initializeRealClippy() {
+            if (typeof clippy !== 'undefined') {
+                console.log('🎉 Loading REAL Microsoft Office Clippy!');
+
+                // Load Clippy agent with authentic animations
+                clippy.load('Clippy', function (agent) {
+                    clippyAgent = agent;
+                    clippyLoaded = true;
+
+                    // Hide initially
+                    clippyAgent.hide();
+
+                    console.log('📎 REAL Clippy loaded successfully!');
+                    console.log('Available animations:', clippyAgent.animations());
+
+                    // Show random welcome message after 10 seconds
+                    setTimeout(() => {
+                        if (Math.random() > 0.7) {
+                            showRealClippyWelcome();
+                        }
+                    }, 10000);
+                });
+            } else {
+                // If ClippyJS isn't loaded yet, try again
+                console.log('⏳ Waiting for ClippyJS to load...');
+                setTimeout(initializeRealClippy, 1000);
+            }
+        }
+
+        function showRealClippyWelcome() {
+            if (clippyAgent && clippyLoaded) {
+                // Move to a random position
+                const x = Math.random() * (window.innerWidth - 200);
+                const y = Math.random() * (window.innerHeight - 200);
+
+                clippyAgent.moveTo(x, y);
+                clippyAgent.show();
+
+                // Play a welcome animation
+                clippyAgent.play('Wave');
+
+                const welcomeMessages = [
+                    "It looks like you're browsing an awesome engineering portfolio! Would you like help with that?",
+                    "Hi! I'm the REAL Clippy! This portfolio is quite impressive, isn't it?",
+                    "I see you're checking out Yuval's work. Smart choice! He's definitely hireable!",
+                    "Need help navigating this epic website? Try pressing Alt+Shift+C!",
+                    "This portfolio is so good, even Microsoft would be proud!",
+                    "Pro tip: Check out the Fun Zone - there are more easter eggs!",
+                    "I've been helping people since the 90s, but this portfolio still amazes me!",
+                    "Want to see something cool? I can do authentic Microsoft Office animations!"
+                ];
+
+                clippyAgent.speak(welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)]);
+
+                // Auto-hide after 10 seconds
+                setTimeout(() => {
+                    if (clippyAgent) {
+                        clippyAgent.play('Hide');
+                        setTimeout(() => clippyAgent.hide(), 1000);
+                    }
+                }, 10000);
+            }
+        }
+
+        // Initialize REAL Clippy
+        initializeRealClippy();
+
+        // Enhanced Keyboard shortcuts and Easter Eggs with REAL Clippy
+        document.addEventListener('keydown', function (e) {
+            // Alt+Shift+C for REAL Clippy magic!
+            if (e.altKey && e.shiftKey && e.code === 'KeyC') {
+                e.preventDefault();
+
+                if (clippyAgent && clippyLoaded) {
+                    // Show REAL Clippy with authentic animations!
+                    clippyAgent.moveTo(100, 100);
+                    clippyAgent.show();
+
+                    // Play a random animation first
+                    const animations = ['GetAttention', 'Congratulate', 'Thinking', 'Explain', 'LookRight', 'LookLeft', 'CheckingSomething'];
+                    const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+                    clippyAgent.play(randomAnim);
+
+                    const phrases = [
+                        "🎯 Secret activated! You found the REAL Microsoft Office Clippy! You're definitely tech-savvy!",
+                        "Looking for Yuval's contact info? Scroll down to the contact section!",
+                        "Want to see his photography skills? Check out the Fun Zone!",
+                        "Pro tip: Try clicking the counter button exactly 42 times...",
+                        "This portfolio is so well-coded, I couldn't find any bugs! And I'm very thorough!",
+                        "I'm the REAL Clippy! Not some CSS impostor! I have authentic Microsoft animations!",
+                        "Did you know Yuval can debug autonomous vehicles AND make you laugh? Rare combo!",
+                        "I've seen countless resumes since 1997, but this portfolio is next level!",
+                        "Fun fact: I can do over 50 different animations! Want to see another one?",
+                        "� CLIPPY EASTER EGG UNLOCKED! You've discovered the authentic Microsoft Office experience!"
+                    ];
+
+                    clippyAgent.speak(phrases[Math.floor(Math.random() * phrases.length)]);
+
+                    // Auto-hide after 12 seconds
+                    setTimeout(() => {
+                        clippyAgent.play('GoodBye');
+                        setTimeout(() => clippyAgent.hide(), 2000);
+                    }, 12000);
+                } else {
+                    // Fallback to custom clippy if real one isn't loaded
+                    showClippy("🔗📎 REAL Clippy is loading... But I can tell you're trying to hire an awesome engineer! 📎");
+                }
+            }
+
+            // Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A
+            const konamiCode = [
+                'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+                'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+                'KeyB', 'KeyA'
+            ];
+
+            if (!window.konamiSequence) window.konamiSequence = [];
+
+            window.konamiSequence.push(e.code);
+            if (window.konamiSequence.length > konamiCode.length) {
+                window.konamiSequence.shift();
+            }
+
+            if (window.konamiSequence.length === konamiCode.length &&
+                window.konamiSequence.every((code, index) => code === konamiCode[index])) {
+                // Konami code activated with REAL Clippy!
+                if (clippyAgent && clippyLoaded) {
+                    clippyAgent.moveTo(window.innerWidth / 2 - 100, window.innerHeight / 2 - 100);
+                    clippyAgent.show();
+                    clippyAgent.play('Congratulate');
+                    clippyAgent.speak("🎮 KONAMI CODE ACTIVATED! You've unlocked the ultimate easter egg! I'm so excited I'm doing my victory dance! 🎮");
+                } else {
+                    showClippy("🎮 KONAMI CODE ACTIVATED! Ultimate easter egg unlocked! 🎮");
+                }
+
+                document.body.style.animation = 'rainbow 2s infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 5000);
+                window.konamiSequence = [];
+            }
+        });
+
+        // Fallback custom clippy functions (keep for compatibility)
+        function showClippy(message = null) {
+            const clippy = document.getElementById('custom-clippy');
+            const clippyText = document.getElementById('clippy-text');
+
+            if (message) {
+                clippyText.textContent = message;
+            }
+
+            clippy.classList.add('show');
+
+            // Auto-hide after 8 seconds
+            setTimeout(() => {
+                hideClippy();
+            }, 8000);
+        }
+
+        function hideClippy() {
+            const clippy = document.getElementById('custom-clippy');
+            clippy.classList.remove('show');
+        }
+
+        // Add rainbow animation for Konami code
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                25% { filter: hue-rotate(90deg); }
+                50% { filter: hue-rotate(180deg); }
+                75% { filter: hue-rotate(270deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Retro Gaming Functions
+        let downloadCount = parseInt(localStorage.getItem('retroDownloadCount') || '0');
+        updateDownloadCounter();
+
+        function downloadGame(gameId) {
+            // Game download links - Replace these with your actual download URLs
+            const gameLinks = {
+                'little-fighter-2': 'https://lf2.net/download_lf2_en.html',
+                'airxonix': 'https://www.myabandonware.com/download/mc1f-airxonix',
+                'elastomania': 'https://archive.org/details/elmav10'
+            };
+
+            const gameNames = {
+                'little-fighter-2': 'Little Fighter 2',
+                'airxonix': 'Airxonix',
+                'elastomania': 'Elastomania'
+            };
+
+            // For now, show a modal with download instructions
+            // Replace this with actual download when you provide the links
+            if (gameLinks[gameId] === `https://your-server.com/games/${gameId.split('-').map(word =>
+                word.charAt(0).toUpperCase() + word.slice(1)).join('')}.zip`) {
+
+                showGameDownloadModal(gameNames[gameId]);
+            } else {
+                // Actual download
+                const link = document.createElement('a');
+                link.href = gameLinks[gameId];
+                link.download = `${gameNames[gameId]}.zip`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Update download counter
+                downloadCount++;
+                localStorage.setItem('retroDownloadCount', downloadCount.toString());
+                updateDownloadCounter();
+
+                // Show success message
+                if (clippyAgent && clippyLoaded) {
+                    clippyAgent.moveTo(200, 300);
+                    clippyAgent.show();
+                    clippyAgent.play('Congratulate');
+                    clippyAgent.speak(`Excellent choice! ${gameNames[gameId]} is downloading. Get ready for some serious nostalgia! 🎮`);
+                    setTimeout(() => clippyAgent.hide(), 8000);
+                }
+            }
+        }
+
+        function showGameDownloadModal(gameName) {
+            // Create modal for game download instructions
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="bg-tech-dark border border-gray-600 rounded-2xl p-8 max-w-md mx-4 glass-effect">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🎮</div>
+                        <h3 class="text-2xl font-bold text-tech-cyan mb-4">${gameName}</h3>
+                        <p class="text-gray-300 mb-6">
+                            This classic game is ready for download! 
+                            <br><br>
+                            <strong>Note:</strong> You'll need to provide the actual download links for these games in the JavaScript code.
+                        </p>
+                        <div class="space-y-3">
+                            <button onclick="this.closest('.fixed').remove()" 
+                                    class="w-full bg-gradient-to-r from-tech-cyan to-tech-green text-white font-bold py-3 px-6 rounded-lg">
+                                Got It!
+                            </button>
+                            <div class="text-xs text-gray-400">
+                                Contact Yuval for the actual download links
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // Remove modal when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        function showRetroGameRequest() {
+            // Show game request modal
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="bg-tech-dark border border-gray-600 rounded-2xl p-8 max-w-md mx-4 glass-effect">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🕹️</div>
+                        <h3 class="text-2xl font-bold text-tech-purple mb-4">Request a Retro Game</h3>
+                        <p class="text-gray-300 mb-6">
+                            Have a favorite 90s game you'd like to see here? 
+                            <br><br>
+                            Send me an email with your request!
+                        </p>
+                        <div class="space-y-3">
+                            <a href="mailto:yuval.grimberg@gmail.com?subject=Retro Game Request&body=Hi Yuval! I'd love to see this game in your retro collection: " 
+                               class="block w-full bg-gradient-to-r from-tech-purple to-tech-pink text-white font-bold py-3 px-6 rounded-lg text-center">
+                                Send Request
+                            </a>
+                            <button onclick="this.closest('.fixed').remove()" 
+                                    class="w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg">
+                                Maybe Later
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // Remove modal when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        function updateDownloadCounter() {
+            const counter = document.getElementById('download-count');
+            if (counter) {
+                counter.textContent = downloadCount;
+
+                // Add some animation when counter updates
+                if (downloadCount > 0) {
+                    counter.style.animation = 'pulse 1s ease-in-out';
+                    setTimeout(() => {
+                        counter.style.animation = '';
+                    }, 1000);
+                }
+            }
+        }
     </script>
-
-    <!-- Main Application (Bundled version for compatibility) -->
-    <script src="assets/js/app.js" defer></script>
-
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu-overlay"
-        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300"></div>
-
-    <!-- Mobile Menu Drawer -->
-    <div id="mobile-menu-drawer"
-        class="fixed top-0 right-0 h-full w-64 bg-tech-dark/95 backdrop-blur-md border-l border-white/10 z-50 transform translate-x-full transition-transform duration-300 shadow-2xl">
-        <div class="p-6 flex flex-col h-full">
-            <div class="flex justify-end mb-8">
-                <button id="mobile-menu-close" class="text-white hover:text-tech-cyan transition-colors">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
-            </div>
-            <nav class="flex flex-col space-y-6">
-                <a href="#about"
-                    class="mobile-nav-link text-lg font-medium text-gray-300 hover:text-tech-cyan hover:pl-2 transition-all duration-300">About</a>
-                <a href="#skills"
-                    class="mobile-nav-link text-lg font-medium text-gray-300 hover:text-tech-cyan hover:pl-2 transition-all duration-300">Skills</a>
-                <a href="#projects"
-                    class="mobile-nav-link text-lg font-medium text-gray-300 hover:text-tech-cyan hover:pl-2 transition-all duration-300">Projects</a>
-                <a href="#contact"
-                    class="mobile-nav-link text-lg font-medium text-gray-300 hover:text-tech-cyan hover:pl-2 transition-all duration-300">Contact</a>
-            </nav>
-        </div>
-    </div>
-
-    <!-- Back to Top Button -->
-    <button id="backToTopButton"
-        class="fixed bottom-4 right-4 bg-tech-blue text-white p-3 rounded-full hidden z-50 hover:bg-tech-purple transition-colors shadow-lg hover-lift">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Welcome Modal -->
-    <!-- REMOVED: Welcome Modal -->
-
-    <!-- Click Here Button -->
-    <!-- REMOVED: Click Here Button -->
-
-    <!-- Goose Container -->
-    <!-- REMOVED: Goose Container -->
-
-    <!-- Main Scripts -->
-    <script src="assets/js/scripts.js"></script>
 </body>
 
 </html>
