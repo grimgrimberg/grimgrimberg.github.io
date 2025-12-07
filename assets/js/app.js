@@ -58,24 +58,10 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Animations module initialized');
         }
 
+        // Goose animation removed - keeping function stub for compatibility
         function loadGooseAnimation() {
-            const script = document.createElement('script');
-            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js';
-            script.onload = function () {
-                if (window.lottie) {
-                    const gooseContainer = document.getElementById('goose-fun-zone');
-                    if (gooseContainer) {
-                        lottie.loadAnimation({
-                            container: gooseContainer,
-                            renderer: 'svg',
-                            loop: true,
-                            autoplay: true,
-                            path: './assets/images/jumpy-goose.json'
-                        });
-                    }
-                }
-            };
-            document.head.appendChild(script);
+            // Goose animation container removed from HTML
+            console.log('Goose animation disabled');
         }
 
         // ==========================================
@@ -696,7 +682,7 @@ ${name}</div>
         initClippy();
         initRetroGames();
         initEasterEggs();
-        loadGooseAnimation();
+        loadGooseAnimation(); // Disabled - no longer loads animation
 
         console.log('✅ Portfolio System Online: grimgrimberg.github.io fully initialized');
         } catch (error) {
