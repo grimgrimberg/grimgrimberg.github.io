@@ -6,6 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photography Portfolio | Yuval Grimberg</title>
   <meta name="description" content="Travel Photography by Yuval Grimberg - Engineering precision meets artistic vision">
+  <meta name="theme-color" content="#0a0f1c">
+  <link rel="canonical" href="https://grimgrimberg.github.io/photo.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Photography Portfolio | Yuval Grimberg">
+  <meta property="og:description"
+    content="Travel photography by Yuval Grimberg, where engineering precision meets artistic vision.">
+  <meta property="og:url" content="https://grimgrimberg.github.io/photo.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Photography Portfolio | Yuval Grimberg">
+  <meta name="twitter:description"
+    content="Travel photography by Yuval Grimberg, where engineering precision meets artistic vision.">
 
   <!-- Tailwind CSS with custom configuration -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -107,6 +118,25 @@
       transition: all 0.3s ease;
     }
 
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      z-index: 60;
+      transform: translateY(-200%);
+      border-radius: 0.75rem;
+      background: rgba(10, 15, 28, 0.95);
+      border: 1px solid rgba(6, 182, 212, 0.45);
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
     .swiper {
       max-width: 800px;
     }
@@ -185,10 +215,16 @@
     .camera-icon {
       color: #06b6d4;
     }
+
+    .thumbnail-button:focus-visible {
+      outline: 2px solid #06b6d4;
+      outline-offset: 4px;
+    }
   </style>
 </head>
 
 <body class="bg-tech-dark text-white font-display overflow-x-hidden">
+  <a href="#main-content" class="skip-link">Skip to content</a>
   <!-- Dynamic Background -->
   <div id="dynamic-bg" class="dynamic-bg"></div>
 
@@ -199,7 +235,7 @@
         <div class="text-2xl font-bold gradient-text" data-aos="fade-right">
           YG
         </div>
-        <div class="hidden md:flex space-x-8" data-aos="fade-left">
+        <div class="hidden md:flex space-x-8" data-aos="fade-left" id="desktop-nav">
           <a href="index.html" class="hover:text-tech-cyan transition-all duration-300 relative group">
             Home
             <span
@@ -220,13 +256,33 @@
             <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-tech-cyan"></span>
           </a>
         </div>
-        <button class="md:hidden mobile-menu-button">
+        <button id="mobile-menu-button" class="md:hidden mobile-menu-button" aria-label="Toggle mobile menu"
+          aria-expanded="false" aria-controls="mobile-menu">
           <i class="fas fa-bars text-xl"></i>
         </button>
       </div>
     </div>
+
+    <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
+      <div
+        class="absolute top-0 right-0 h-full w-80 max-w-sm bg-tech-dark/95 backdrop-blur-lg border-l border-tech-cyan/20 transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto"
+        id="mobile-menu-panel">
+        <div class="flex items-center justify-between p-6 border-b border-tech-cyan/20">
+          <div class="text-xl font-bold gradient-text">Navigation</div>
+          <button type="button" class="mobile-menu-close text-tech-cyan hover:text-white transition-colors"
+            aria-label="Close mobile menu">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        <nav class="p-6">
+          <ul class="space-y-4" id="mobile-nav-list"></ul>
+        </nav>
+      </div>
+    </div>
   </nav>
 
+  <main id="main-content">
   <!-- Hero Section -->
   <section class="min-h-screen flex items-center justify-center relative overflow-hidden tech-pattern pt-20">
     <!-- Animated Background Elements -->
@@ -274,43 +330,53 @@
         <div class="swiper w-full max-w-4xl rounded-2xl glass-effect p-6">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="assets/images/optimized/DSC02477.jpg" alt="Travel Photo 1"
+              <img src="assets/images/optimized/DSC02477.jpg" alt="Travel photo 1" width="1200" height="800"
+                decoding="async" fetchpriority="high"
                 class="w-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             <div class="swiper-slide">
-              <img src="assets/images/optimized/DSC03288.jpg" alt="Travel Photo 2"
+              <img src="assets/images/optimized/DSC03288.jpg" alt="Travel photo 2" width="1200" height="800"
+                loading="lazy" decoding="async"
                 class="w-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             <div class="swiper-slide">
-              <img src="assets/images/optimized/DSC03631-HDR-2.jpg" alt="Travel Photo 3"
+              <img src="assets/images/optimized/DSC03631-HDR-2.jpg" alt="Travel photo 3" width="1200" height="800"
+                loading="lazy" decoding="async"
                 class="w-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             <div class="swiper-slide">
-              <img src="assets/images/optimized/DSC03675.jpg" alt="Travel Photo 4"
+              <img src="assets/images/optimized/DSC03675.jpg" alt="Travel photo 4" width="1200" height="800"
+                loading="lazy" decoding="async"
                 class="w-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             <div class="swiper-slide">
-              <img src="assets/images/optimized/DSC05064-Edit.jpg" alt="Travel Photo 5"
+              <img src="assets/images/optimized/DSC05064-Edit.jpg" alt="Travel photo 5" width="1200" height="799"
+                loading="lazy" decoding="async"
                 class="w-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             <div class="swiper-slide">
-              <img src="assets/images/optimized/DSC05396.jpg" alt="Travel Photo 6"
+              <img src="assets/images/optimized/DSC05396.jpg" alt="Travel photo 6" width="1200" height="800"
+                loading="lazy" decoding="async"
                 class="w-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             <div class="swiper-slide">
-              <img src="assets/images/optimized/DSC06545.jpg" alt="Travel Photo 7"
+              <img src="assets/images/optimized/DSC06545.jpg" alt="Travel photo 7" width="1200" height="800"
+                loading="lazy" decoding="async"
                 class="w-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             <div class="swiper-slide">
-              <img src="assets/images/optimized/DSC07124.jpg" alt="Travel Photo 8"
+              <img src="assets/images/optimized/DSC07124.jpg" alt="Travel photo 8" width="1200" height="800"
+                loading="lazy" decoding="async"
                 class="w-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             <div class="swiper-slide">
-              <img src="assets/images/optimized/DSC0676.jpg" alt="Travel Photo 9"
+              <img src="assets/images/optimized/DSC0676.jpg" alt="Travel photo 9" width="1200" height="800"
+                loading="lazy" decoding="async"
                 class="w-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             <div class="swiper-slide">
-              <img src="assets/images/optimized/DSC0865.jpg" alt="Travel Photo 10"
+              <img src="assets/images/optimized/DSC0865.jpg" alt="Travel photo 10" width="1200" height="800"
+                loading="lazy" decoding="async"
                 class="w-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
@@ -343,44 +409,54 @@
       <div class="w-full max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="200">
         <h3 class="text-2xl font-bold text-center mb-8 gradient-text">Select Photo</h3>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          <button onclick="goToSlide(0)" class="focus:outline-none group glass-effect rounded-lg p-2 hover-lift">
-            <img src="assets/images/optimized/DSC02477.jpg" alt="Photo 1"
+          <button onclick="goToSlide(0)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+            <img src="assets/images/optimized/DSC02477.jpg" alt="Photo 1" width="1200" height="800" loading="lazy"
+              decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(1)" class="focus:outline-none group glass-effect rounded-lg p-2 hover-lift">
-            <img src="assets/images/optimized/DSC03288.jpg" alt="Photo 2"
+          <button onclick="goToSlide(1)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+            <img src="assets/images/optimized/DSC03288.jpg" alt="Photo 2" width="1200" height="800" loading="lazy"
+              decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(2)" class="focus:outline-none group glass-effect rounded-lg p-2 hover-lift">
-            <img src="assets/images/optimized/DSC03631-HDR-2.jpg" alt="Photo 3"
+          <button onclick="goToSlide(2)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+            <img src="assets/images/optimized/DSC03631-HDR-2.jpg" alt="Photo 3" width="1200" height="800"
+              loading="lazy" decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(3)" class="focus:outline-none group glass-effect rounded-lg p-2 hover-lift">
-            <img src="assets/images/optimized/DSC03675.jpg" alt="Photo 4"
+          <button onclick="goToSlide(3)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+            <img src="assets/images/optimized/DSC03675.jpg" alt="Photo 4" width="1200" height="800" loading="lazy"
+              decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(4)" class="focus:outline-none group glass-effect rounded-lg p-2 hover-lift">
-            <img src="assets/images/optimized/DSC05064-Edit.jpg" alt="Photo 5"
+          <button onclick="goToSlide(4)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+            <img src="assets/images/optimized/DSC05064-Edit.jpg" alt="Photo 5" width="1200" height="799"
+              loading="lazy" decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(5)" class="focus:outline-none group glass-effect rounded-lg p-2 hover-lift">
-            <img src="assets/images/optimized/DSC05396.jpg" alt="Photo 6"
+          <button onclick="goToSlide(5)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+            <img src="assets/images/optimized/DSC05396.jpg" alt="Photo 6" width="1200" height="800" loading="lazy"
+              decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(6)" class="focus:outline-none group glass-effect rounded-lg p-2 hover-lift">
-            <img src="assets/images/optimized/DSC06545.jpg" alt="Photo 7"
+          <button onclick="goToSlide(6)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+            <img src="assets/images/optimized/DSC06545.jpg" alt="Photo 7" width="1200" height="800" loading="lazy"
+              decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(7)" class="focus:outline-none group glass-effect rounded-lg p-2 hover-lift">
-            <img src="assets/images/optimized/DSC07124.jpg" alt="Photo 8"
+          <button onclick="goToSlide(7)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+            <img src="assets/images/optimized/DSC07124.jpg" alt="Photo 8" width="1200" height="800" loading="lazy"
+              decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(8)" class="focus:outline-none group glass-effect rounded-lg p-2 hover-lift">
-            <img src="assets/images/optimized/DSC0676.jpg" alt="Photo 9"
+          <button onclick="goToSlide(8)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+            <img src="assets/images/optimized/DSC0676.jpg" alt="Photo 9" width="1200" height="800" loading="lazy"
+              decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(9)" class="focus:outline-none group glass-effect rounded-lg p-2 hover-lift">
-            <img src="assets/images/optimized/DSC0865.jpg" alt="Photo 10"
+          <button onclick="goToSlide(9)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+            <img src="assets/images/optimized/DSC0865.jpg" alt="Photo 10" width="1200" height="800" loading="lazy"
+              decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
         </div>
@@ -414,6 +490,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- Footer -->
   <footer class="bg-tech-dark border-t border-gray-800 py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -424,15 +502,18 @@
             Control Systems Engineer & Photography Enthusiast
           </p>
           <div class="flex space-x-4">
-            <a href="https://github.com/grimgrimberg" target="_blank"
+            <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
+              aria-label="Open GitHub profile"
               class="text-gray-400 hover:text-tech-cyan transition-colors">
               <i class="fab fa-github text-xl"></i>
             </a>
             <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
+              rel="noopener noreferrer" aria-label="Open LinkedIn profile"
               class="text-gray-400 hover:text-tech-purple transition-colors">
               <i class="fab fa-linkedin text-xl"></i>
             </a>
-            <a href="mailto:yuval.grimberg@gmail.com" class="text-gray-400 hover:text-tech-green transition-colors">
+            <a href="mailto:yuval.grimberg@gmail.com" aria-label="Send email to Yuval Grimberg"
+              class="text-gray-400 hover:text-tech-green transition-colors">
               <i class="fas fa-envelope text-xl"></i>
             </a>
           </div>
@@ -473,6 +554,7 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="assets/js/site-shell.js" defer></script>
   <script>
     // Initialize AOS
     AOS.init({
@@ -480,18 +562,6 @@
       easing: 'ease-in-out',
       once: true,
       mirror: false
-    });
-
-    // Navbar background on scroll
-    window.addEventListener('scroll', function () {
-      const navbar = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('glass-effect');
-        navbar.style.backgroundColor = 'rgba(10, 15, 28, 0.8)';
-      } else {
-        navbar.classList.remove('glass-effect');
-        navbar.style.backgroundColor = 'transparent';
-      }
     });
 
     // Initialize everything when page loads
@@ -770,19 +840,6 @@
       }
     }
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
   </script>
 </body>
 

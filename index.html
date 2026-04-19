@@ -9,6 +9,17 @@
         content="Yuval Grimberg - Mechanical Engineer specializing in Control Theory, Autonomous Vehicles, and Advanced System Design. Hire me for cutting-edge engineering solutions.">
     <meta name="keywords"
         content="Control Systems Engineer, Autonomous Vehicles, Mechanical Engineer, Control Theory, Machine Learning, Python, MATLAB, Robotics">
+    <meta name="theme-color" content="#0a0f1c">
+    <link rel="canonical" href="https://grimgrimberg.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Yuval Grimberg | Control Systems Engineer & Autonomous Vehicle Specialist">
+    <meta property="og:description"
+        content="Mechanical Engineer specializing in control theory, autonomous vehicles, and advanced system design.">
+    <meta property="og:url" content="https://grimgrimberg.github.io/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Yuval Grimberg | Control Systems Engineer & Autonomous Vehicle Specialist">
+    <meta name="twitter:description"
+        content="Mechanical Engineer specializing in control theory, autonomous vehicles, and advanced system design.">
 
     <!-- Tailwind CSS with custom configuration -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -182,6 +193,29 @@
             transition: all 0.3s ease;
         }
 
+        .skip-link {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            z-index: 60;
+            transform: translateY(-200%);
+            border-radius: 0.75rem;
+            background: rgba(10, 15, 28, 0.95);
+            border: 1px solid rgba(6, 182, 212, 0.45);
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .anchor-section {
+            scroll-margin-top: 6rem;
+        }
+
         .skill-glow:hover {
             box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
             transition: all 0.3s ease;
@@ -204,10 +238,11 @@
 </head>
 
 <body class="bg-tech-dark text-white font-display overflow-x-hidden">
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <!-- Custom Clippy Assistant -->
     <div id="custom-clippy">
         <div class="clippy-assistant">
-            <div class="clippy-close" onclick="hideClippy()">×</div>
+            <button type="button" class="clippy-close" onclick="hideClippy()" aria-label="Dismiss Clippy message">×</button>
             <div class="clippy-icon">📎</div>
             <div class="clippy-message" id="clippy-text">
                 Hey there! Looking to hire an awesome engineer? I'm here to help!
@@ -257,7 +292,8 @@
                         <span
                             class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="photo.html" class="hover:text-tech-cyan transition-all duration-300 relative group">
+                    <a href="photo.html" aria-label="Open photography portfolio"
+                        class="hover:text-tech-cyan transition-all duration-300 relative group">
                         📸
                         <span
                             class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
@@ -360,8 +396,9 @@
         </div>
     </nav>
 
+    <main id="main-content">
     <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden tech-pattern">
+    <section id="hero" class="anchor-section min-h-screen flex items-center justify-center relative overflow-hidden tech-pattern">
         <!-- Animated Background Elements -->
         <div class="absolute inset-0 overflow-hidden">
             <div
@@ -426,7 +463,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 relative">
+    <section id="about" class="anchor-section py-20 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-4xl md:text-5xl font-black mb-6">
@@ -509,7 +546,7 @@
     </section>
 
     <!-- Skills/Expertise Section -->
-    <section id="skills" class="py-20 bg-gradient-to-br from-tech-dark to-gray-900 relative overflow-hidden">
+    <section id="skills" class="anchor-section py-20 bg-gradient-to-br from-tech-dark to-gray-900 relative overflow-hidden">
         <div class="absolute inset-0 tech-pattern opacity-50"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -620,7 +657,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 relative">
+    <section id="projects" class="anchor-section py-20 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-4xl md:text-5xl font-black mb-6">
@@ -662,18 +699,17 @@
                             <span class="bg-tech-green/20 text-tech-green px-2 py-1 rounded text-xs">ROS2</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="#"
+                            <a href="https://github.com/grimgrimberg/BGR_PathPlanning_Control" target="_blank"
+                                rel="noopener noreferrer"
                                 class="text-tech-cyan hover:text-white transition-colors flex items-center space-x-1">
                                 <span>View Details</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                             <div class="flex space-x-2">
-                                <a href="https://github.com/grimgrimberg/BGR_PathPlanning_Control"
+                                <a href="https://github.com/grimgrimberg/BGR_PathPlanning_Control" target="_blank"
+                                    rel="noopener noreferrer" aria-label="Open the BGR Path Planning Control repository"
                                     class="text-gray-400 hover:text-white transition-colors">
                                     <i class="fab fa-github"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                    <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
                         </div>
@@ -712,18 +748,17 @@
                             <span class="bg-tech-cyan/20 text-tech-cyan px-2 py-1 rounded text-xs">Matplotlib</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="#"
+                            <a href="https://github.com/grimgrimberg/Space_GNC_Pipeline" target="_blank"
+                                rel="noopener noreferrer"
                                 class="text-tech-purple hover:text-white transition-colors flex items-center space-x-1">
                                 <span>View Details</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                             <div class="flex space-x-2">
-                                <a href="https://github.com/grimgrimberg/Space_GNC_Pipeline"
+                                <a href="https://github.com/grimgrimberg/Space_GNC_Pipeline" target="_blank"
+                                    rel="noopener noreferrer" aria-label="Open the Space GNC Pipeline repository"
                                     class="text-gray-400 hover:text-white transition-colors">
                                     <i class="fab fa-github"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                    <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
                         </div>
@@ -760,18 +795,17 @@
                             <span class="bg-tech-purple/20 text-tech-purple px-2 py-1 rounded text-xs">ROS2</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <a href="#"
+                            <a href="https://github.com/grimgrimberg/AI_ROBOTICS_BGU" target="_blank"
+                                rel="noopener noreferrer"
                                 class="text-tech-green hover:text-white transition-colors flex items-center space-x-1">
                                 <span>View Details</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                             <div class="flex space-x-2">
-                                <a href="https://github.com/grimgrimberg/AI_ROBOTICS_BGU"
+                                <a href="https://github.com/grimgrimberg/AI_ROBOTICS_BGU" target="_blank"
+                                    rel="noopener noreferrer" aria-label="Open the AI Robotics BGU repository"
                                     class="text-gray-400 hover:text-white transition-colors">
                                     <i class="fab fa-github"></i>
-                                </a>
-                                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                                    <i class="fas fa-external-link-alt"></i>
                                 </a>
                             </div>
                         </div>
@@ -781,7 +815,7 @@
 
             <!-- View More Projects Button -->
             <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                <a href="https://github.com/grimgrimberg" target="_blank"
+                <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
                     class="group bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl">
                     <span class="flex items-center space-x-2">
                         <span>View All Projects on GitHub</span>
@@ -882,7 +916,7 @@
 
     <!-- Fun Zone Section - The Perfect Balance of Professional & Quirky -->
     <section id="fun-zone"
-        class="py-20 relative overflow-hidden bg-gradient-to-br from-tech-purple/10 via-tech-dark to-tech-cyan/10">
+        class="anchor-section py-20 relative overflow-hidden bg-gradient-to-br from-tech-purple/10 via-tech-dark to-tech-cyan/10">
         <div class="absolute inset-0 tech-pattern opacity-20"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -908,13 +942,17 @@
                             .</p>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mb-4">
-                        <img src="assets/images/optimized/DSC02477.jpg" alt="Travel Photo 1"
+                        <img src="assets/images/optimized/DSC02477.jpg" alt="Travel photo gallery preview 1" width="1200"
+                            height="800" loading="lazy" decoding="async"
                             class="rounded-lg object-cover h-24 w-full hover:scale-110 transition-transform">
-                        <img src="assets/images/optimized/DSC03288.jpg" alt="Travel Photo 2"
+                        <img src="assets/images/optimized/DSC03288.jpg" alt="Travel photo gallery preview 2" width="1200"
+                            height="800" loading="lazy" decoding="async"
                             class="rounded-lg object-cover h-24 w-full hover:scale-110 transition-transform">
-                        <img src="assets/images/optimized/DSC05064-Edit.jpg" alt="Travel Photo 3"
+                        <img src="assets/images/optimized/DSC05064-Edit.jpg" alt="Travel photo gallery preview 3"
+                            width="1200" height="799" loading="lazy" decoding="async"
                             class="rounded-lg object-cover h-24 w-full hover:scale-110 transition-transform">
-                        <img src="assets/images/optimized/DSC07124.jpg" alt="Travel Photo 4"
+                        <img src="assets/images/optimized/DSC07124.jpg" alt="Travel photo gallery preview 4" width="1200"
+                            height="800" loading="lazy" decoding="async"
                             class="rounded-lg object-cover h-24 w-full hover:scale-110 transition-transform">
                     </div>
                     <a href="photo.html"
@@ -1008,7 +1046,7 @@
 
     <!-- Retro Gaming Zone Section -->
     <section id="retro-games"
-        class="py-20 bg-gradient-to-br from-purple-900/20 via-tech-dark to-blue-900/20 relative overflow-hidden">
+        class="anchor-section py-20 bg-gradient-to-br from-purple-900/20 via-tech-dark to-blue-900/20 relative overflow-hidden">
         <div class="absolute inset-0 tech-pattern opacity-30"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -1146,7 +1184,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 relative overflow-hidden">
+    <section id="contact" class="anchor-section py-20 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-tech-dark via-gray-900 to-tech-dark"></div>
         <div class="absolute inset-0 tech-pattern opacity-40"></div>
 
@@ -1172,19 +1210,21 @@
                     <!-- Simple Email Form (No External Services Needed) -->
                     <form class="space-y-6" id="simple-contact-form" novalidate>
                         <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
+                            <label for="contact-name" class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
                             <input type="text" name="name" id="contact-name" required
+                                autocomplete="name"
                                 class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500"
                                 placeholder="Your Name">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
+                            <label for="contact-email" class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
                             <input type="email" name="email" id="contact-email" required
+                                autocomplete="email"
                                 class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500"
                                 placeholder="your.email@company.com">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                            <label for="contact-subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
                             <select name="subject" id="contact-subject"
                                 class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white transition-all duration-300 hover:border-gray-500">
                                 <option value="General Inquiry">General Inquiry</option>
@@ -1196,8 +1236,9 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-2">Message *</label>
+                            <label for="contact-message" class="block text-sm font-medium text-gray-300 mb-2">Message *</label>
                             <textarea name="message" id="contact-message" rows="4" required
+                                autocomplete="off"
                                 class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500 resize-vertical"
                                 placeholder="Tell me about your project or opportunity..."></textarea>
                         </div>
@@ -1276,6 +1317,7 @@
                             </a>
 
                             <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
+                                rel="noopener noreferrer"
                                 class="flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-cyan/10 transition-colors group">
                                 <div
                                     class="w-12 h-12 bg-gradient-to-br from-tech-cyan to-tech-green rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -1287,7 +1329,7 @@
                                 </div>
                             </a>
 
-                            <a href="https://github.com/grimgrimberg" target="_blank"
+                            <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
                                 class="flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-green/10 transition-colors group">
                                 <div
                                     class="w-12 h-12 bg-gradient-to-br from-tech-green to-tech-purple rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -1323,7 +1365,7 @@
                     <div class="glass-effect rounded-2xl p-8 text-center">
                         <h3 class="text-xl font-bold text-white mb-4">Download Resume</h3>
                         <a href="./assets/CV - Yuval Grimberg Jan 26.pdf" download="CV - Yuval Grimberg Jan 26.pdf"
-                            target="_blank"
+                            target="_blank" rel="noopener noreferrer"
                             class="inline-flex items-center space-x-2 bg-gradient-to-r from-tech-green to-tech-cyan hover:from-tech-cyan hover:to-tech-green text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                             <i class="fas fa-download"></i>
                             <span>Download CV / Resume</span>
@@ -1333,6 +1375,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="bg-tech-dark border-t border-gray-800 py-12">
@@ -1344,15 +1388,17 @@
                         Control Systems Engineer & Autonomous Vehicle Specialist
                     </p>
                     <div class="flex space-x-4">
-                        <a href="https://github.com/grimgrimberg" target="_blank"
+                        <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
+                            aria-label="Open GitHub profile"
                             class="text-gray-400 hover:text-tech-cyan transition-colors">
                             <i class="fab fa-github text-xl"></i>
                         </a>
                         <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
+                            rel="noopener noreferrer" aria-label="Open LinkedIn profile"
                             class="text-gray-400 hover:text-tech-purple transition-colors">
                             <i class="fab fa-linkedin text-xl"></i>
                         </a>
-                        <a href="mailto:yuval.grimberg@gmail.com"
+                        <a href="mailto:yuval.grimberg@gmail.com" aria-label="Send email to Yuval Grimberg"
                             class="text-gray-400 hover:text-tech-green transition-colors">
                             <i class="fas fa-envelope text-xl"></i>
                         </a>
@@ -1398,6 +1444,7 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/site-shell.js" defer></script>
 
     <!-- REAL ClippyJS - The Authentic Microsoft Office Assistant! -->
     <script src="https://unpkg.com/jquery@3.2.1"></script>
@@ -1410,127 +1457,6 @@
             once: true,
             mirror: false
         });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', function () {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('glass-effect');
-                navbar.style.backgroundColor = 'rgba(10, 15, 28, 0.8)';
-            } else {
-                navbar.classList.remove('glass-effect');
-                navbar.style.backgroundColor = 'transparent';
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.querySelector('.mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuPanel = document.getElementById('mobile-menu-panel');
-        const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
-        const mobileMenuClose = document.querySelector('.mobile-menu-close');
-        const mobileNavList = document.getElementById('mobile-nav-list');
-        const desktopNav = document.getElementById('desktop-nav');
-        let mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-        // Build mobile drawer links from desktop links (single source of truth)
-        document.addEventListener('DOMContentLoaded', () => {
-            try {
-                const desktopLinks = desktopNav ? desktopNav.querySelectorAll('a') : [];
-                if (desktopLinks && desktopLinks.length && mobileNavList) {
-                    // Clear any hardcoded items to avoid duplicates
-                    mobileNavList.innerHTML = '';
-                    desktopLinks.forEach(a => {
-                        const href = a.getAttribute('href');
-                        const label = a.textContent.trim();
-                        const li = document.createElement('li');
-                        const link = document.createElement('a');
-                        link.href = href || '#';
-                        link.className = 'mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan';
-                        link.innerHTML = `<span class="ml-3">${label}</span>`;
-                        li.appendChild(link);
-                        mobileNavList.appendChild(li);
-                    });
-                    // Refresh live NodeList for listeners below
-                    mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-                }
-            } catch (e) {
-                console.log('Mobile menu auto-build skipped', e);
-            }
-        });
-        const hamburgerIcon = mobileMenuButton?.querySelector('i');
-
-        function openMobileMenu() {
-            mobileMenu.classList.remove('hidden');
-            mobileMenuButton.setAttribute('aria-expanded', 'true');
-
-            // Animate menu in
-            requestAnimationFrame(() => {
-                mobileMenuPanel.style.transform = 'translateX(0)';
-                hamburgerIcon?.classList.replace('fa-bars', 'fa-times');
-            });
-
-            // Prevent body scroll
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMobileMenu() {
-            mobileMenuPanel.style.transform = 'translateX(100%)';
-            mobileMenuButton.setAttribute('aria-expanded', 'false');
-            hamburgerIcon?.classList.replace('fa-times', 'fa-bars');
-
-            // Hide after animation
-            setTimeout(() => {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 300);
-        }
-
-        // Mobile menu event listeners
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', openMobileMenu);
-        }
-
-        if (mobileMenuClose) {
-            mobileMenuClose.addEventListener('click', closeMobileMenu);
-        }
-
-        if (mobileMenuBackdrop) {
-            mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
-        }
-
-        // Close menu when navigation link is clicked
-        function bindMobileLinkClosers() {
-            mobileNavLinks.forEach(link => {
-                link.addEventListener('click', () => closeMobileMenu());
-            });
-        }
-        bindMobileLinkClosers();
-        // Re-bind after dynamic build
-        document.addEventListener('DOMContentLoaded', bindMobileLinkClosers);
-
-        // Close menu with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-                closeMobileMenu();
-            }
-        });
-
-        console.log('Mobile navigation initialized successfully');
 
         // Simple Email Client Function - No external services needed!
         function openEmailClient() {

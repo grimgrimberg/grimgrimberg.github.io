@@ -31,7 +31,7 @@ export default defineConfig({
         {
             name: 'Desktop Chrome',
             use: { ...devices['Desktop Chrome'] },
-            testMatch: ['**/responsive-mobile-desktop.spec.js', '**/portfolio-features.spec.js']
+            testMatch: ['**/responsive-mobile-desktop.spec.js', '**/portfolio-features.spec.js', '**/site-hardening-pass1.spec.js']
         },
         {
             name: 'Desktop Firefox',
