@@ -2,12 +2,12 @@
   "name": "grimgrimberg.github.io",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "build": "tailwindcss -i ./assets/css/styles.css -o ./assets/css/output.css --minify",
-    "watch": "tailwindcss -i ./assets/css/styles.css -o ./assets/css/output.css --watch"
+    "watch": "tailwindcss -i ./assets/css/styles.css -o ./assets/css/output.css --watch",
+    "serve": "python -m http.server 8000 --bind 127.0.0.1"
   },
   "repository": {
     "type": "git",

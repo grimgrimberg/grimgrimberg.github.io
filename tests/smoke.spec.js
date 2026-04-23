@@ -1,11 +1,13 @@
 const { test, expect } = require('@playwright/test');
-const { pathToFileURL } = require('url');
-const path = require('path');
 
 const MOBILE_PROJECTS = new Set(['iPhone 12', 'Mobile Narrow 320']);
 
 function siteUrl(relativePath) {
-    return pathToFileURL(path.join(__dirname, '..', relativePath)).href;
+    if (relativePath === 'index.html') {
+        return '/';
+    }
+
+    return `/${relativePath}`;
 }
 
 async function fillContactForm(page, overrides = {}) {
@@ -25,8 +27,8 @@ async function fillContactForm(page, overrides = {}) {
     return fields;
 }
 
-async function openDrawer(page, path) {
-    const relativePath = path === '/' ? 'index.html' : path.replace(/^\//, '');
+async function openDrawer(page, pagePath) {
+    const relativePath = pagePath === '/' ? 'index.html' : pagePath.replace(/^\//, '');
     await page.goto(siteUrl(relativePath), { waitUntil: 'domcontentloaded' });
 
     const button = page.locator('#mobile-menu-button');
@@ -45,6 +47,27 @@ async function openDrawer(page, path) {
 }
 
 test.describe('maintained smoke suite', () => {
+    test('primary pages use local generated CSS instead of Tailwind CDN', async ({ page }) => {
+        for (const target of ['index.html', 'photo.html', 'thank-you.html']) {
+            await page.goto(siteUrl(target), { waitUntil: 'domcontentloaded' });
+            await expect(page.locator('script[src*="cdn.tailwindcss.com"]')).toHaveCount(0);
+            await expect(page.locator('link[href="assets/css/output.css"]')).toHaveCount(1);
+        }
+    });
+
+    test('primary page hero copy stays readable with the local CSS build', async ({ page }) => {
+        const heroChecks = [
+            { target: 'index.html', selector: '#hero p.font-tech' },
+            { target: 'photo.html', selector: 'main section:first-of-type p.font-tech' }
+        ];
+
+        for (const { target, selector } of heroChecks) {
+            await page.goto(siteUrl(target), { waitUntil: 'domcontentloaded' });
+            const color = await page.locator(selector).evaluate((element) => getComputedStyle(element).color);
+            expect(color).not.toBe('rgb(0, 0, 0)');
+        }
+    });
+
     test('homepage loads, navigation works, and core homepage features still respond', async ({ page }, testInfo) => {
         const pageErrors = [];
         page.on('pageerror', (error) => pageErrors.push(error.message));

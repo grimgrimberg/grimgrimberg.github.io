@@ -34,9 +34,9 @@ This repo is not React and is not driven by Jekyll templates in its current main
 
 ## CSS Story
 
-- The primary pages still use the Tailwind CDN in this phase.
-- `npm run build` produces `assets/css/output.css`, which is still used by legacy pages.
-- That means the built CSS is not yet the runtime source of truth for the primary pages.
+- `assets/css/styles.css` is the Tailwind v4 source-of-truth stylesheet.
+- `npm run build` produces the committed `assets/css/output.css` used by the maintained pages and legacy compatibility pages.
+- Primary pages no longer depend on the Tailwind CDN runtime.
 
 ## Local Development
 
@@ -49,13 +49,14 @@ npm install
 2. Start a local static server from the repo root:
 
 ```bash
-python -m http.server 8000
+npm run serve
 ```
 
 3. Open:
 
-- [http://localhost:8000/](http://localhost:8000/)
-- [http://localhost:8000/photo.html](http://localhost:8000/photo.html)
+- [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- [http://127.0.0.1:8000/photo.html](http://127.0.0.1:8000/photo.html)
+- [http://127.0.0.1:8000/thank-you.html](http://127.0.0.1:8000/thank-you.html)
 
 ## Commands
 
@@ -64,10 +65,12 @@ npm test
 npm run test:headed
 npm run build
 npm run watch
+npm run serve
 ```
 
 - `npm test` runs the maintained Playwright smoke suite.
-- `npm run build` rebuilds `assets/css/output.css` for legacy pages and any future migration away from the CDN flow.
+- `npm run build` rebuilds the committed Tailwind CSS used by the site pages.
+- `npm run serve` launches the same local static server shape the smoke suite uses.
 
 ## File Guide
 

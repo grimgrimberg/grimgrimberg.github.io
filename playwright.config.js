@@ -13,6 +13,7 @@ export default defineConfig({
         ['junit', { outputFile: 'test-results/junit.xml' }]
     ],
     use: {
+        baseURL: 'http://127.0.0.1:8000',
         trace: 'on-first-retry',
         screenshot: 'only-on-failure',
         video: 'retain-on-failure',
@@ -40,6 +41,12 @@ export default defineConfig({
             }
         }
     ],
+    webServer: {
+        command: 'npm run serve',
+        url: 'http://127.0.0.1:8000',
+        reuseExistingServer: !process.env.CI,
+        timeout: 30000
+    },
     globalSetup: require.resolve('./tests/global-setup.js'),
     globalTeardown: require.resolve('./tests/global-teardown.js')
 });

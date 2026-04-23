@@ -17,9 +17,9 @@
 
 ## CSS Layout
 
-- Primary pages still use the Tailwind CDN in this phase.
-- `assets/css/output.css` remains relevant for legacy pages.
-- Do not claim the built CSS is the production truth for the primary pages.
+- `assets/css/styles.css` is the Tailwind source stylesheet.
+- `assets/css/output.css` is the committed runtime CSS for the maintained pages and legacy pages.
+- Do not reintroduce `cdn.tailwindcss.com` on the maintained pages unless there is a deliberate rollback.
 
 ## Testing
 

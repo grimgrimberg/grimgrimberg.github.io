@@ -1,18 +1,27 @@
 # Site Audit Pass 1
 
+## Follow-Up Update
+
+The branch has now completed the main deferred follow-ups from pass 1:
+
+- Maintained pages (`index.html`, `photo.html`, and `thank-you.html`) now load the committed local Tailwind build from `assets/css/output.css`.
+- The repo is explicitly root-static with `.nojekyll`, and stale Jekyll leftovers have been removed.
+- The maintained Playwright smoke suite now runs against a served local HTTP URL instead of `file://`.
+- The shared stylesheet no longer leaks legacy global paragraph/section rules into the maintained pages.
+
 ## What The Repo Actually Is
 
-This repo currently behaves as a GitHub Pages friendly static site served directly from root HTML files, not as a clean Jekyll source repo and not as a clean build-output-only repo.
+This repo currently behaves as a GitHub Pages friendly static site served directly from root HTML files, not as a React app and not as an active Jekyll source repo.
 
 Verified signals:
 
 - `index.html`, `photo.html`, and `thank-you.html` are standalone deployable pages in the repo root.
-- Active pages still load Tailwind from `cdn.tailwindcss.com`.
-- `package.json` defines a Tailwind/PostCSS build to `assets/css/output.css`.
-- `_config.yml`, `_includes/`, `_layouts/`, and `Gemfile.lock` are present, but the active site is not being driven by those templates.
+- Active maintained pages now load the local committed Tailwind build from `assets/css/output.css`.
+- `package.json` defines the Tailwind build and local static server commands actually used by the repo.
+- `.nojekyll` is present, and `_config.yml`, `_includes/`, `_layouts/`, and `Gemfile.lock` have been removed from the active tree.
 - `main.js`, `app.js`, and the JS module tree exist, but the active root pages were still carrying large inline scripts before this pass.
 
-Practical conclusion: this is a hybrid static-site repo with stale Jekyll-era scaffolding and a partial Tailwind/tooling refactor that was never fully adopted by the live pages.
+Practical conclusion: this is now a root-static GitHub Pages repo with a maintained primary flow and a smaller set of compatibility pages.
 
 ## Branch Model Reality
 
@@ -38,9 +47,9 @@ Practical conclusion: `dev` is acting as the working canonical branch for source
 
 ### Delivery/build mismatch
 
-- README and tooling described a local Tailwind build flow, but the main active pages still depended on CDN Tailwind.
+- README and tooling used to describe a local Tailwind build flow while the main active pages still depended on CDN Tailwind.
 - Older pages such as `about.html`, `projects.html`, and `vision.html` still depended on `assets/css/output.css`.
-- Because of that split, switching the live root pages off CDN Tailwind in this pass would have been higher risk than justified.
+- The shared stylesheet also contained old global element rules that leaked into the maintained pages after the local CSS migration.
 
 ### Maintainability drift
 
@@ -95,6 +104,14 @@ Practical conclusion: `dev` is acting as the working canonical branch for source
 - Added intrinsic image dimensions for the optimized gallery assets.
 - Added straightforward canonical/social metadata to the primary root pages touched in this pass.
 
+### Follow-up completion
+
+- Migrated `index.html`, `photo.html`, and `thank-you.html` off `cdn.tailwindcss.com` onto the committed local Tailwind build.
+- Switched local development and Playwright smoke coverage to a served `http://127.0.0.1:8000/` flow.
+- Removed stale `tailwind.config.js` and the stale `package.json` `main` entry.
+- Fixed a real regression where legacy global `p` and `section` rules made primary-page copy unreadable after the CSS migration.
+- Aligned the local mobile navigation harness with the served `127.0.0.1` URL.
+
 ### Test coverage
 
 - Added `tests/site-hardening-pass1.spec.js`.
@@ -103,10 +120,9 @@ Practical conclusion: `dev` is acting as the working canonical branch for source
 ## What I Intentionally Did Not Change
 
 - I did not migrate the site to Jekyll, React, Vite, Next, or any other framework.
-- I did not remove the Jekyll-era files yet, because they are stale but not blocking the live-site hardening work.
-- I did not switch the active root pages from CDN Tailwind to the local compiled CSS, because the current live pages still rely on inline Tailwind configuration and that change deserves a separate controlled pass.
 - I did not remove legacy pages like `about.html`, `projects.html`, `vision.html`, or `mobile-nav-test.html`; I only made low-risk fixes where they affected link safety or markup sanity.
-- I did not rewrite the README or stale setup/refactor docs in this pass, even though they are out of date.
+- I did not remove legacy pages like `about.html`, `projects.html`, `vision.html`, or `mobile-nav-test.html`; they are still kept for compatibility.
+- I did not rewrite the site into a framework app or redesign its visual identity.
 
 ## Validation
 
@@ -116,6 +132,8 @@ Verified locally:
   - Result: 3 passed
 - `npm run build`
   - Result: succeeded
+- `npm test`
+  - Result: 18 passed, 3 skipped
 
 Notes:
 
@@ -123,20 +141,11 @@ Notes:
 
 ## Recommended Phase 2
 
-1. Pick one delivery model and finish it.
-   Either keep this as a direct static-root Pages repo and archive/remove Jekyll remnants, or restore a real template-driven source flow.
-
-2. Resolve the Tailwind truth gap.
-   Either migrate the live root pages onto `assets/css/output.css` and shared JS, or explicitly document that CDN Tailwind is the intended runtime path.
-
-3. Prune or archive old pages and manual test harnesses.
+1. Prune or archive old pages and manual test harnesses.
    `about.html`, `projects.html`, `vision.html`, and `mobile-nav-test.html` look legacy or auxiliary.
 
-4. Reconcile docs with reality.
-   `README.md`, `SETUP_INSTRUCTIONS.md`, and `REFACTORING_SUMMARY.md` currently describe workflows and assets that no longer match the tree.
-
-5. Tighten Playwright ownership.
+2. Tighten Playwright ownership.
    Align config, tracked specs, and output handling so only active smoke/regression tests remain in the default path.
 
-6. Clean up branch/deploy ambiguity.
+3. Clean up branch/deploy ambiguity.
    If `dev` is the real source branch, remote defaults and deployment docs should say that explicitly.

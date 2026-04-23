@@ -90,7 +90,7 @@
         initSmoothAnchors();
 
         const closeMobileMenu = () => {
-            mobileMenuPanel.style.transform = 'translateX(100%)';
+            mobileMenuPanel.classList.add('translate-x-full');
             mobileMenu.classList.add('pointer-events-none');
             mobileMenuButton.setAttribute('aria-expanded', 'false');
             hamburgerIcon?.classList.replace('fa-times', 'fa-bars');
@@ -107,7 +107,7 @@
             mobileMenuButton.setAttribute('aria-expanded', 'true');
 
             requestAnimationFrame(() => {
-                mobileMenuPanel.style.transform = 'translateX(0)';
+                mobileMenuPanel.classList.remove('translate-x-full');
                 hamburgerIcon?.classList.replace('fa-bars', 'fa-times');
             });
 

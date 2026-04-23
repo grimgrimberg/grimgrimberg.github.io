@@ -15,13 +15,14 @@ npm install
 2. Start a local static server:
 
 ```bash
-python -m http.server 8000
+npm run serve
 ```
 
 3. Open the maintained pages:
 
-- [http://localhost:8000/](http://localhost:8000/)
-- [http://localhost:8000/photo.html](http://localhost:8000/photo.html)
+- [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- [http://127.0.0.1:8000/photo.html](http://127.0.0.1:8000/photo.html)
+- [http://127.0.0.1:8000/thank-you.html](http://127.0.0.1:8000/thank-you.html)
 
 ## Optional CSS Build
 
@@ -29,7 +30,7 @@ python -m http.server 8000
 npm run build
 ```
 
-Use this when you need to rebuild `assets/css/output.css` for legacy pages or future migration work. The primary pages still rely on the Tailwind CDN in this phase.
+Use this when you change Tailwind classes, theme tokens, or shared site styles. The primary pages now load the generated local CSS directly.
 
 ## Testing
 

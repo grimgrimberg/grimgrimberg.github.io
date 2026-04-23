@@ -20,3 +20,11 @@
 - Contact form labels/autocomplete were tightened.
 - Non-critical gallery images now use intrinsic dimensions plus lazy/async loading hints.
 - Added a focused Playwright smoke spec for this pass and verified it locally.
+
+## Follow-Up Completion
+
+- Maintained pages now use the local committed Tailwind build instead of `cdn.tailwindcss.com`.
+- The shared stylesheet no longer leaks legacy global paragraph/section rules into the maintained pages.
+- Local development and Playwright smoke tests now run against `http://127.0.0.1:8000/`.
+- Removed stale `tailwind.config.js` and the stale `package.json` `main` field.
+- Added a readability regression check for the primary-page hero copy after the CSS migration.

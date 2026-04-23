@@ -17,15 +17,16 @@ The repo has been hardened toward a plain static-site model.
 
 - Not a React app.
 - Not an active Jekyll source tree.
-- Not a build-first site where `assets/css/output.css` is the runtime source of truth for `index.html` and `photo.html`.
+- Not a framework app that needs a runtime CSS compiler in production.
 
 ## Practical Outcome
 
 - The maintained pages are easier to review because the page logic is in dedicated files.
 - Mobile navigation behavior is shared and testable.
+- The maintained pages now use the local committed Tailwind build instead of the CDN runtime.
+- The Playwright smoke suite now runs against a served local HTTP URL instead of `file://`.
 - The codebase has a cleaner separation between maintained pages and legacy compatibility pages.
 
 ## Follow-On Work
 
-- Migrate the primary pages off the Tailwind CDN onto a local compiled CSS path in a separate controlled pass.
 - Prune or archive legacy standalone pages once they are no longer needed.
