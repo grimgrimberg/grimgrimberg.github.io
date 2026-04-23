@@ -61,6 +61,7 @@ npm run serve
 ## Commands
 
 ```bash
+npm run lint
 npm test
 npm run test:headed
 npm run build
@@ -68,6 +69,7 @@ npm run watch
 npm run serve
 ```
 
+- `npm run lint` runs the repo-specific static and runtime hygiene checks.
 - `npm test` runs the maintained Playwright smoke suite.
 - `npm run build` rebuilds the committed Tailwind CSS used by the site pages.
 - `npm run serve` launches the same local static server shape the smoke suite uses.

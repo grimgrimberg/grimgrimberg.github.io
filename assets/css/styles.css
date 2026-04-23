@@ -149,7 +149,44 @@ h1 {
 
 /* Enable smooth scrolling for the entire page */
 html {
+  color-scheme: dark;
   scroll-behavior: smooth;
+}
+
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+.project-action-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+}
+
+.project-icon-link,
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 9999px;
+  touch-action: manipulation;
+}
+
+.footer-link-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+.drawer-scroll-region {
+  overscroll-behavior: contain;
 }
 
 /* Scroll Animations */

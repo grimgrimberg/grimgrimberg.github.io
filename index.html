@@ -249,7 +249,7 @@
                 </div>
                 <!-- Mobile Menu Button - Fixed positioning without AOS animations -->
                 <button type="button"
-                    class="md:hidden mobile-menu-button flex items-center justify-center w-10 h-10 rounded-lg bg-tech-cyan/10 hover:bg-tech-cyan/20 border border-tech-cyan/30 transition-all duration-300 flex-shrink-0 absolute top-1/2 right-0 -translate-y-1/2"
+                    class="md:hidden mobile-menu-button touch-target flex items-center justify-center w-11 h-11 rounded-lg bg-tech-cyan/10 hover:bg-tech-cyan/20 border border-tech-cyan/30 transition-all duration-300 flex-shrink-0 absolute top-1/2 right-0 -translate-y-1/2"
                     aria-label="Toggle mobile menu" aria-expanded="false" id="mobile-menu-button">
                     <i class="fas fa-bars text-tech-cyan text-lg transition-transform duration-300"></i>
                 </button>
@@ -267,14 +267,15 @@
                 <!-- Header -->
                 <div class="flex items-center justify-between p-6 border-b border-tech-cyan/20">
                     <div class="text-xl font-bold gradient-text">Navigation</div>
-                    <button type="button" class="mobile-menu-close text-tech-cyan hover:text-white transition-colors"
+                    <button type="button"
+                        class="mobile-menu-close touch-target inline-flex items-center justify-center text-tech-cyan hover:text-white transition-colors"
                         aria-label="Close mobile menu">
                         <i class="fas fa-times text-xl"></i>
                     </button>
                 </div>
 
                 <!-- Navigation Links -->
-                <nav class="p-6 pb-24 overflow-y-auto flex-1">
+                <nav class="p-6 pb-24 overflow-y-auto flex-1 drawer-scroll-region">
                     <ul class="space-y-4" id="mobile-nav-list">
                         <li>
                             <a href="#hero"
@@ -650,14 +651,14 @@
                         <div class="flex justify-between items-center">
                             <a href="https://github.com/grimgrimberg/BGR_PathPlanning_Control" target="_blank"
                                 rel="noopener noreferrer"
-                                class="text-tech-cyan hover:text-white transition-colors flex items-center space-x-1">
+                                class="project-action-link touch-target text-tech-cyan hover:text-white transition-colors flex items-center space-x-1">
                                 <span>View Details</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                             <div class="flex space-x-2">
                                 <a href="https://github.com/grimgrimberg/BGR_PathPlanning_Control" target="_blank"
                                     rel="noopener noreferrer" aria-label="Open the BGR Path Planning Control repository"
-                                    class="text-gray-400 hover:text-white transition-colors">
+                                    class="project-icon-link touch-target text-gray-400 hover:text-white transition-colors">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -699,14 +700,14 @@
                         <div class="flex justify-between items-center">
                             <a href="https://github.com/grimgrimberg/Space_GNC_Pipeline" target="_blank"
                                 rel="noopener noreferrer"
-                                class="text-tech-purple hover:text-white transition-colors flex items-center space-x-1">
+                                class="project-action-link touch-target text-tech-purple hover:text-white transition-colors flex items-center space-x-1">
                                 <span>View Details</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                             <div class="flex space-x-2">
                                 <a href="https://github.com/grimgrimberg/Space_GNC_Pipeline" target="_blank"
                                     rel="noopener noreferrer" aria-label="Open the Space GNC Pipeline repository"
-                                    class="text-gray-400 hover:text-white transition-colors">
+                                    class="project-icon-link touch-target text-gray-400 hover:text-white transition-colors">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -746,14 +747,14 @@
                         <div class="flex justify-between items-center">
                             <a href="https://github.com/grimgrimberg/AI_ROBOTICS_BGU" target="_blank"
                                 rel="noopener noreferrer"
-                                class="text-tech-green hover:text-white transition-colors flex items-center space-x-1">
+                                class="project-action-link touch-target text-tech-green hover:text-white transition-colors flex items-center space-x-1">
                                 <span>View Details</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                             <div class="flex space-x-2">
                                 <a href="https://github.com/grimgrimberg/AI_ROBOTICS_BGU" target="_blank"
                                     rel="noopener noreferrer" aria-label="Open the AI Robotics BGU repository"
-                                    class="text-gray-400 hover:text-white transition-colors">
+                                    class="project-icon-link touch-target text-gray-400 hover:text-white transition-colors">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </div>
@@ -926,7 +927,7 @@
 
                     <div class="space-y-3">
                         <button id="goose-talk"
-                            class="bg-gradient-to-r from-tech-green to-tech-cyan hover:from-tech-cyan hover:to-tech-green text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            class="touch-target bg-gradient-to-r from-tech-green to-tech-cyan hover:from-tech-cyan hover:to-tech-green text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">
                             Ask Goose for Advice
                         </button>
                         <div id="goose-wisdom" class="text-sm text-tech-cyan italic min-h-[20px]"></div>
@@ -949,7 +950,7 @@
                         </div>
 
                         <button id="click-me-button"
-                            class="bg-gradient-to-r from-tech-purple to-tech-pink hover:from-tech-pink hover:to-tech-purple text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 animate-pulse">
+                            class="touch-target bg-gradient-to-r from-tech-purple to-tech-pink hover:from-tech-pink hover:to-tech-purple text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 animate-pulse">
                             Click Me! <span id="click-count" class="text-xs">(0)</span>
                         </button>
 
@@ -1025,7 +1026,7 @@
                             class="inline-block bg-tech-green/20 text-tech-green px-3 py-1 rounded-full text-xs">Multiplayer</span>
                     </div>
                     <button onclick="downloadGame('little-fighter-2')"
-                        class="bg-gradient-to-r from-tech-purple to-tech-pink hover:from-tech-pink hover:to-tech-purple text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        class="touch-target bg-gradient-to-r from-tech-purple to-tech-pink hover:from-tech-pink hover:to-tech-purple text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
                         <i class="fas fa-download mr-2"></i>Download (5MB)
                     </button>
                 </div>
@@ -1046,7 +1047,7 @@
                             class="inline-block bg-tech-purple/20 text-tech-purple px-3 py-1 rounded-full text-xs">Strategy</span>
                     </div>
                     <button onclick="downloadGame('airxonix')"
-                        class="bg-gradient-to-r from-tech-cyan to-tech-green hover:from-tech-green hover:to-tech-cyan text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        class="touch-target bg-gradient-to-r from-tech-cyan to-tech-green hover:from-tech-green hover:to-tech-cyan text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
                         <i class="fas fa-download mr-2"></i>Download (3MB)
                     </button>
                 </div>
@@ -1067,7 +1068,7 @@
                             class="inline-block bg-tech-cyan/20 text-tech-cyan px-3 py-1 rounded-full text-xs">Physics</span>
                     </div>
                     <button onclick="downloadGame('elastomania')"
-                        class="bg-gradient-to-r from-tech-green to-tech-purple hover:from-tech-purple hover:to-tech-green text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        class="touch-target bg-gradient-to-r from-tech-green to-tech-purple hover:from-tech-purple hover:to-tech-green text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
                         <i class="fas fa-download mr-2"></i>Download (2MB)
                     </button>
                 </div>
@@ -1086,7 +1087,7 @@
                             Soon</span>
                     </div>
                     <button onclick="showRetroGameRequest()"
-                        class="bg-gradient-to-r from-tech-pink to-tech-purple hover:from-tech-purple hover:to-tech-pink text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        class="touch-target bg-gradient-to-r from-tech-pink to-tech-purple hover:from-tech-purple hover:to-tech-pink text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
                         <i class="fas fa-plus mr-2"></i>Request Game
                     </button>
                 </div>
@@ -1339,16 +1340,16 @@
                     <div class="flex space-x-4">
                         <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
                             aria-label="Open GitHub profile"
-                            class="text-gray-400 hover:text-tech-cyan transition-colors">
+                            class="footer-social-link touch-target text-gray-400 hover:text-tech-cyan transition-colors">
                             <i class="fab fa-github text-xl"></i>
                         </a>
                         <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
                             rel="noopener noreferrer" aria-label="Open LinkedIn profile"
-                            class="text-gray-400 hover:text-tech-purple transition-colors">
+                            class="footer-social-link touch-target text-gray-400 hover:text-tech-purple transition-colors">
                             <i class="fab fa-linkedin text-xl"></i>
                         </a>
                         <a href="mailto:yuval.grimberg@gmail.com" aria-label="Send email to Yuval Grimberg"
-                            class="text-gray-400 hover:text-tech-green transition-colors">
+                            class="footer-social-link touch-target text-gray-400 hover:text-tech-green transition-colors">
                             <i class="fas fa-envelope text-xl"></i>
                         </a>
                     </div>
@@ -1356,7 +1357,7 @@
 
                 <div>
                     <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
+                    <ul class="space-y-2 footer-link-list">
                         <li><a href="#about" class="text-gray-400 hover:text-tech-cyan transition-colors">About</a></li>
                         <li><a href="#skills" class="text-gray-400 hover:text-tech-cyan transition-colors">Expertise</a>
                         </li>

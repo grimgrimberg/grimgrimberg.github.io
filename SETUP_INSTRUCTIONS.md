@@ -35,10 +35,12 @@ Use this when you change Tailwind classes, theme tokens, or shared site styles. 
 ## Testing
 
 ```bash
+npm run lint
 npm test
 ```
 
-The maintained Playwright suite is a small smoke matrix aimed at the current live pages, not a broad cross-device lab.
+- `npm run lint` runs the repo-specific static and runtime hygiene checks.
+- `npm test` runs the maintained Playwright smoke matrix aimed at the current live pages, not a broad cross-device lab.
 
 ## Branching
 

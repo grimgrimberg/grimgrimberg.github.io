@@ -46,6 +46,16 @@ async function openDrawer(page, pagePath) {
     return { button, menu, panel };
 }
 
+async function expectTouchTarget(locator, label) {
+    await locator.scrollIntoViewIfNeeded();
+    await expect(locator, `${label} should be visible`).toBeVisible();
+
+    const box = await locator.boundingBox();
+    expect(box, `${label} should have a measurable bounding box`).not.toBeNull();
+    expect(box.width, `${label} width should meet the 44px touch target minimum`).toBeGreaterThanOrEqual(44);
+    expect(box.height, `${label} height should meet the 44px touch target minimum`).toBeGreaterThanOrEqual(44);
+}
+
 test.describe('maintained smoke suite', () => {
     test('primary pages use local generated CSS instead of Tailwind CDN', async ({ page }) => {
         for (const target of ['index.html', 'photo.html', 'thank-you.html']) {
@@ -182,6 +192,30 @@ test.describe('maintained smoke suite', () => {
         expect(photoBox.width).toBeLessThanOrEqual(viewportWidth - 56);
         await page.locator('#mobile-menu-backdrop').click({ position: { x: 10, y: 10 } });
         await expect(photoDrawer.menu).toBeHidden();
+    });
+
+    test('critical mobile touch targets stay comfortably tappable on maintained pages', async ({ page }, testInfo) => {
+        test.skip(!MOBILE_PROJECTS.has(testInfo.project.name), 'Mobile-only smoke');
+
+        await page.goto(siteUrl('index.html'), { waitUntil: 'domcontentloaded' });
+        await expectTouchTarget(page.locator('#mobile-menu-button'), 'homepage mobile menu button');
+        await page.locator('#mobile-menu-button').click();
+        await expectTouchTarget(page.locator('#mobile-menu-panel .mobile-menu-close'), 'homepage mobile menu close button');
+        await page.locator('#mobile-menu-backdrop').click({ position: { x: 10, y: 10 } });
+        await expectTouchTarget(page.locator('#goose-talk'), 'goose advice button');
+        await expectTouchTarget(page.locator('#click-me-button'), 'click counter button');
+        await expectTouchTarget(page.getByRole('link', { name: 'View Details' }).first(), 'first project details link');
+        await expectTouchTarget(page.locator('a[aria-label="Open the BGR Path Planning Control repository"]'), 'first project repository icon link');
+        await expectTouchTarget(page.locator('footer').getByLabel('Open GitHub profile'), 'homepage footer GitHub link');
+        await expectTouchTarget(page.locator('footer').getByRole('link', { name: 'About' }), 'homepage footer About link');
+
+        await page.goto(siteUrl('photo.html'), { waitUntil: 'domcontentloaded' });
+        await expectTouchTarget(page.locator('#mobile-menu-button'), 'photo page mobile menu button');
+        await page.locator('#mobile-menu-button').click();
+        await expectTouchTarget(page.locator('#mobile-menu-panel .mobile-menu-close'), 'photo page mobile menu close button');
+        await page.locator('#mobile-menu-backdrop').click({ position: { x: 10, y: 10 } });
+        await expectTouchTarget(page.locator('footer').getByLabel('Open GitHub profile'), 'photo page footer GitHub link');
+        await expectTouchTarget(page.locator('footer').getByRole('link', { name: 'Home' }), 'photo page footer Home link');
     });
 
     test('drawer keeps a tappable backdrop gutter at 320, 375, and 390 pixels', async ({ page }, testInfo) => {
