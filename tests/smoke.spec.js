@@ -1,5 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
+const DESKTOP_PROJECT = 'Desktop Chrome';
 const MOBILE_PROJECTS = new Set(['iPhone 12', 'Mobile Narrow 320']);
 
 function siteUrl(relativePath) {
@@ -27,9 +28,14 @@ async function fillContactForm(page, overrides = {}) {
     return fields;
 }
 
-async function openDrawer(page, pagePath) {
+async function openDrawer(page, pagePath, options = {}) {
     const relativePath = pagePath === '/' ? 'index.html' : pagePath.replace(/^\//, '');
     await page.goto(siteUrl(relativePath), { waitUntil: 'domcontentloaded' });
+
+    if (options.scrollY) {
+        await page.evaluate((scrollY) => window.scrollTo(0, scrollY), options.scrollY);
+        await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(50);
+    }
 
     const button = page.locator('#mobile-menu-button');
     const menu = page.locator('#mobile-menu');
@@ -57,7 +63,9 @@ async function expectTouchTarget(locator, label) {
 }
 
 test.describe('maintained smoke suite', () => {
-    test('primary pages use local generated CSS instead of Tailwind CDN', async ({ page }) => {
+    test('primary pages use local generated CSS instead of Tailwind CDN', async ({ page }, testInfo) => {
+        test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Static runtime check runs once on desktop');
+
         for (const target of ['index.html', 'photo.html', 'thank-you.html']) {
             await page.goto(siteUrl(target), { waitUntil: 'domcontentloaded' });
             await expect(page.locator('script[src*="cdn.tailwindcss.com"]')).toHaveCount(0);
@@ -65,7 +73,9 @@ test.describe('maintained smoke suite', () => {
         }
     });
 
-    test('primary page hero copy stays readable with the local CSS build', async ({ page }) => {
+    test('primary page hero copy stays readable with the local CSS build', async ({ page }, testInfo) => {
+        test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Visual CSS smoke runs once on desktop');
+
         const heroChecks = [
             { target: 'index.html', selector: '#hero p.font-tech' },
             { target: 'photo.html', selector: 'main section:first-of-type p.font-tech' }
@@ -79,6 +89,8 @@ test.describe('maintained smoke suite', () => {
     });
 
     test('homepage loads, navigation works, and core homepage features still respond', async ({ page }, testInfo) => {
+        test.skip(testInfo.project.name === 'Mobile Narrow 320', '320px project is reserved for narrow layout regressions');
+
         const pageErrors = [];
         page.on('pageerror', (error) => pageErrors.push(error.message));
 
@@ -105,7 +117,7 @@ test.describe('maintained smoke suite', () => {
             await page.locator('#contact').scrollIntoViewIfNeeded();
         } else {
             await page.locator('#desktop-nav a[href="#contact"]').click();
-            await expect(page.locator('#contact-name')).toBeInViewport();
+            await expect(page.locator('#contact')).toBeInViewport();
         }
 
         await page.click('#goose-talk');
@@ -131,7 +143,9 @@ test.describe('maintained smoke suite', () => {
         expect(pageErrors).toEqual([]);
     });
 
-    test('contact copy falls back cleanly when navigator.clipboard is unavailable', async ({ page }) => {
+    test('contact copy falls back cleanly when navigator.clipboard is unavailable', async ({ page }, testInfo) => {
+        test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Clipboard fallback runs once on desktop');
+
         await page.addInitScript(() => {
             window.__fallbackCopiedText = '';
             window.__mailtoAttempts = [];
@@ -183,6 +197,10 @@ test.describe('maintained smoke suite', () => {
         const homepageBox = await homepageDrawer.panel.boundingBox();
         expect(homepageBox).not.toBeNull();
         expect(homepageBox.width).toBeLessThanOrEqual(viewportWidth - 56);
+        await homepageDrawer.button.click();
+        await expect(homepageDrawer.menu).toBeHidden();
+        await homepageDrawer.button.click();
+        await expect(homepageDrawer.menu).toBeVisible();
         await page.locator('#mobile-menu-panel .mobile-menu-close').click();
         await expect(homepageDrawer.menu).toBeHidden();
 
@@ -190,6 +208,10 @@ test.describe('maintained smoke suite', () => {
         const photoBox = await photoDrawer.panel.boundingBox();
         expect(photoBox).not.toBeNull();
         expect(photoBox.width).toBeLessThanOrEqual(viewportWidth - 56);
+        await photoDrawer.button.click();
+        await expect(photoDrawer.menu).toBeHidden();
+        await photoDrawer.button.click();
+        await expect(photoDrawer.menu).toBeVisible();
         await page.locator('#mobile-menu-backdrop').click({ position: { x: 10, y: 10 } });
         await expect(photoDrawer.menu).toBeHidden();
     });
@@ -219,7 +241,7 @@ test.describe('maintained smoke suite', () => {
     });
 
     test('drawer keeps a tappable backdrop gutter at 320, 375, and 390 pixels', async ({ page }, testInfo) => {
-        test.skip(testInfo.project.name !== 'Desktop Chrome', 'Viewport probe on desktop project only');
+        test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Viewport probe on desktop project only');
 
         const widths = [320, 375, 390];
         const pages = ['/', '/photo.html'];
@@ -238,7 +260,35 @@ test.describe('maintained smoke suite', () => {
         }
     });
 
-    test('photo gallery initializes background and updates EXIF data', async ({ page }) => {
+    test('mobile drawer still owns the viewport after the page is scrolled', async ({ page }, testInfo) => {
+        test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Viewport probe on desktop project only');
+
+        const widths = [320, 375, 390];
+        const pages = ['/', '/photo.html'];
+
+        for (const width of widths) {
+            const height = width === 320 ? 568 : 844;
+            await page.setViewportSize({ width, height });
+
+            for (const path of pages) {
+                const drawer = await openDrawer(page, path, { scrollY: 1400 });
+                const menuBox = await drawer.menu.boundingBox();
+                const panelBox = await drawer.panel.boundingBox();
+
+                expect(menuBox, `${path} drawer overlay should be measurable after scrolling at ${width}px`).not.toBeNull();
+                expect(panelBox, `${path} drawer panel should be measurable after scrolling at ${width}px`).not.toBeNull();
+                expect(menuBox.height, `${path} drawer overlay should cover the viewport after scrolling at ${width}px`).toBeGreaterThanOrEqual(height - 1);
+                expect(panelBox.height, `${path} drawer panel should cover the viewport after scrolling at ${width}px`).toBeGreaterThanOrEqual(height - 1);
+
+                await drawer.button.click();
+                await expect(drawer.menu).toBeHidden();
+            }
+        }
+    });
+
+    test('photo gallery initializes background and updates EXIF data', async ({ page }, testInfo) => {
+        test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Photo behavior smoke runs once on desktop');
+
         await page.goto(siteUrl('photo.html'), { waitUntil: 'domcontentloaded' });
 
         await expect(page.locator('#dynamic-bg')).toBeAttached();

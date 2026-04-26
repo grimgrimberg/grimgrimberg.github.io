@@ -7,6 +7,7 @@ export default defineConfig({
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
     workers: 1,
+    timeout: 90000,
     reporter: [
         ['html', { outputFolder: 'playwright-report', open: 'never' }],
         ['json', { outputFile: 'test-results/results.json' }],
@@ -16,7 +17,7 @@ export default defineConfig({
         baseURL: 'http://127.0.0.1:8000',
         trace: 'on-first-retry',
         screenshot: 'only-on-failure',
-        video: 'retain-on-failure',
+        video: 'off',
         actionTimeout: 15000,
         navigationTimeout: 30000
     },

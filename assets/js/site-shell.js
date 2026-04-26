@@ -84,16 +84,36 @@
             return;
         }
 
+        const mobileMenuButtonParent = mobileMenuButton.parentElement;
+        const mobileMenuButtonNextSibling = mobileMenuButton.nextSibling;
         const hamburgerIcon = mobileMenuButton.querySelector('i');
 
         cloneDesktopLinks(mobileNavList, desktopNav);
         initSmoothAnchors();
 
+        if (mobileMenu.parentElement !== document.body) {
+            document.body.appendChild(mobileMenu);
+        }
+
+        const restoreMobileMenuButton = () => {
+            if (mobileMenuButton.parentElement === mobileMenuButtonParent) {
+                return;
+            }
+
+            if (mobileMenuButtonNextSibling?.parentElement === mobileMenuButtonParent) {
+                mobileMenuButtonParent.insertBefore(mobileMenuButton, mobileMenuButtonNextSibling);
+            } else {
+                mobileMenuButtonParent.appendChild(mobileMenuButton);
+            }
+        };
+
         const closeMobileMenu = () => {
             mobileMenuPanel.classList.add('translate-x-full');
             mobileMenu.classList.add('pointer-events-none');
+            mobileMenuButton.classList.remove('mobile-menu-button-open');
             mobileMenuButton.setAttribute('aria-expanded', 'false');
             hamburgerIcon?.classList.replace('fa-times', 'fa-bars');
+            restoreMobileMenuButton();
 
             window.setTimeout(() => {
                 mobileMenu.classList.add('hidden');
@@ -104,7 +124,9 @@
 
         const openMobileMenu = () => {
             mobileMenu.classList.remove('hidden');
+            mobileMenuButton.classList.add('mobile-menu-button-open');
             mobileMenuButton.setAttribute('aria-expanded', 'true');
+            document.body.appendChild(mobileMenuButton);
 
             requestAnimationFrame(() => {
                 mobileMenuPanel.classList.remove('translate-x-full');

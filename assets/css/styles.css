@@ -154,9 +154,21 @@ html {
 }
 
 .touch-target {
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 46px;
+  min-height: 46px;
   touch-action: manipulation;
+}
+
+.mobile-menu-button-open {
+  position: fixed;
+  top: 1rem;
+  right: calc(min(24rem, calc(100vw - 4rem)) + 0.5rem);
+  z-index: 70;
+  translate: none;
+}
+
+#mobile-menu {
+  z-index: 60;
 }
 
 .project-action-link {
