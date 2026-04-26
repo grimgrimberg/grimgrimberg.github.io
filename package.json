@@ -2,12 +2,15 @@
   "name": "grimgrimberg.github.io",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
+    "lint": "npm run lint:static && npm run lint:runtime",
+    "lint:static": "node scripts/lint-site.mjs",
+    "lint:runtime": "playwright test --config=playwright.hygiene.config.js",
     "build": "tailwindcss -i ./assets/css/styles.css -o ./assets/css/output.css --minify",
-    "watch": "tailwindcss -i ./assets/css/styles.css -o ./assets/css/output.css --watch"
+    "watch": "tailwindcss -i ./assets/css/styles.css -o ./assets/css/output.css --watch",
+    "serve": "python -m http.server 8000 --bind 127.0.0.1"
   },
   "repository": {
     "type": "git",
@@ -23,8 +26,9 @@
   "homepage": "https://github.com/grimgrimberg/grimgrimberg.github.io#readme",
   "devDependencies": {
     "@playwright/test": "^1.54.2",
+    "@tailwindcss/cli": "^4.1.17",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.4"
+    "tailwindcss": "^4.1.17"
   }
 }
