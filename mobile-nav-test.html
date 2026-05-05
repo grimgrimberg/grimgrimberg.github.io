@@ -9,10 +9,16 @@
     <style>
         body {
             margin: 0;
-            padding: 20px;
+            padding: 16px;
             font-family: Arial, sans-serif;
             background: #1a1a1a;
             color: white;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
         }
 
         .test-info {
@@ -22,10 +28,15 @@
             margin-bottom: 20px;
         }
 
+        code {
+            overflow-wrap: anywhere;
+        }
+
         .iframe-container {
             border: 2px solid #666;
             border-radius: 8px;
             overflow: hidden;
+            max-width: 100%;
         }
 
         iframe {
@@ -36,6 +47,9 @@
 
         .viewport-controls {
             margin: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         button {
@@ -43,7 +57,7 @@
             color: white;
             border: none;
             padding: 8px 16px;
-            margin: 0 5px;
+            min-height: 44px;
             border-radius: 4px;
             cursor: pointer;
         }
