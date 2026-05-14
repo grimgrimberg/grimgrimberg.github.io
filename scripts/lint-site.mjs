@@ -1,10 +1,11 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 
 const cwd = process.cwd();
-const maintainedPages = ['index.html', 'photo.html', 'thank-you.html'];
-const compatibilityPages = ['about.html', 'projects.html', 'vision.html'];
-const lintPages = [...maintainedPages, ...compatibilityPages];
+const rootHtmlPages = readdirSync(cwd)
+    .filter((filePath) => filePath.endsWith('.html'))
+    .sort();
+const maintainedPages = ['index.html', 'photo.html', 'thank-you.html', 'cv.html'];
 const failures = [];
 
 function read(filePath) {
@@ -35,7 +36,7 @@ function findTag(normalizedSource, regex) {
     return match ? match[0] : '';
 }
 
-for (const filePath of lintPages) {
+for (const filePath of rootHtmlPages) {
     const source = read(filePath);
     const normalized = normalize(source);
 
@@ -47,6 +48,18 @@ for (const filePath of lintPages) {
 
     if (/href\s*=\s*["']javascript:/i.test(normalized)) {
         record(filePath, 'contains javascript: links');
+    }
+
+    if (/href\s*=\s*["'](?:tel:|https?:\/\/(?:wa\.me|[^"']*whatsapp)|[^"']*calendar)/i.test(normalized)) {
+        record(filePath, 'contains a phone, WhatsApp, or calendar contact link');
+    }
+
+    if (/<script\b[^>]+src=["']https?:\/\//i.test(normalized)) {
+        record(filePath, 'contains a remote script dependency');
+    }
+
+    if (/<link\b[^>]+rel=["']stylesheet["'][^>]+href=["']https?:\/\//i.test(normalized)) {
+        record(filePath, 'contains a remote stylesheet dependency');
     }
 
     const anchorTags = normalized.match(/<a\b[^>]*>/gi) ?? [];

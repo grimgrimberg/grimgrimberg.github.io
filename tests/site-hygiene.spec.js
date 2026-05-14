@@ -7,6 +7,7 @@ const ROOT_HTML_PAGES = [
     'about.html',
     'projects.html',
     'vision.html',
+    'cv.html',
     'mobile-nav-test.html'
 ];
 
@@ -103,6 +104,32 @@ test.describe('site hygiene', () => {
             await skipLink.click();
 
             await expect(page.locator('#main-content'), `${target} should keep the main landmark reachable`).toBeInViewport();
+        }
+    });
+
+    test('homepage keeps the public surface privacy-hardened', async ({ page }) => {
+        await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+        await expect(page.locator('script[src^="https://"]')).toHaveCount(0);
+        await expect(page.locator('[onclick], [onload], [onerror], [onmouseover]')).toHaveCount(0);
+        await expect(page.locator('a[href^="tel:"], a[href*="wa.me"], a[href*="whatsapp"], a[href*="calendar"]')).toHaveCount(0);
+        await expect(page.locator('a[href$=".pdf"], a[href*=".pdf?"]')).toHaveCount(0);
+
+        const csp = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute('content');
+        expect(csp).toContain("script-src 'self'");
+        expect(csp).not.toContain("script-src 'self' 'unsafe-inline'");
+
+        const referrer = await page.locator('meta[name="referrer"]').getAttribute('content');
+        expect(referrer).toBe('no-referrer');
+    });
+
+    test('root pages avoid remote scripts and stylesheets', async ({ page }) => {
+        for (const target of ROOT_HTML_PAGES) {
+            await page.goto(siteUrl(target), { waitUntil: 'domcontentloaded' });
+            await expect(
+                page.locator('script[src^="https://"], link[rel="stylesheet"][href^="https://"]'),
+                `${target} should not depend on remote runtime or stylesheet assets`
+            ).toHaveCount(0);
         }
     });
 });

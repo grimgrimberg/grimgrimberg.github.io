@@ -26,6 +26,7 @@
         { camera: 'Sony a7 II', model: 'E 28-75mm F2.8-2.8', focal: '75mm', aperture: 'f/2.8', shutter: '1/1250s', iso: 'ISO 250' },
         { camera: 'Sony a7 II', model: 'E 28-75mm F2.8-2.8', focal: '28mm', aperture: 'f/2.8', shutter: '1/160s', iso: 'ISO 1250' }
     ];
+    let activePhotoIndex = 0;
 
     function initAos() {
         if (window.AOS && typeof window.AOS.init === 'function') {
@@ -65,38 +66,46 @@
         exifContainer.innerHTML = `
             <div class="space-y-2">
                 <div class="exif-item">
-                    <span class="exif-label"><i class="fas fa-camera mr-2" aria-hidden="true"></i>Camera</span>
+                    <span class="exif-label"><span aria-hidden="true" class="mr-2">📷</span>Camera</span>
                     <span class="exif-value">${data.camera}</span>
                 </div>
                 <div class="exif-item">
-                    <span class="exif-label"><i class="fas fa-eye mr-2" aria-hidden="true"></i>Lens</span>
+                    <span class="exif-label"><span aria-hidden="true" class="mr-2">◉</span>Lens</span>
                     <span class="exif-value">${data.model}</span>
                 </div>
                 <div class="exif-item">
-                    <span class="exif-label"><i class="fas fa-search-plus mr-2" aria-hidden="true"></i>Focal Length</span>
+                    <span class="exif-label"><span aria-hidden="true" class="mr-2">⌕</span>Focal Length</span>
                     <span class="exif-value">${data.focal}</span>
                 </div>
             </div>
             <div class="space-y-2">
                 <div class="exif-item">
-                    <span class="exif-label"><i class="fas fa-adjust mr-2" aria-hidden="true"></i>Aperture</span>
+                    <span class="exif-label"><span aria-hidden="true" class="mr-2">◐</span>Aperture</span>
                     <span class="exif-value">${data.aperture}</span>
                 </div>
                 <div class="exif-item">
-                    <span class="exif-label"><i class="fas fa-clock mr-2" aria-hidden="true"></i>Shutter Speed</span>
+                    <span class="exif-label"><span aria-hidden="true" class="mr-2">⏱</span>Shutter Speed</span>
                     <span class="exif-value">${data.shutter}</span>
                 </div>
                 <div class="exif-item">
-                    <span class="exif-label"><i class="fas fa-sun mr-2" aria-hidden="true"></i>ISO</span>
+                    <span class="exif-label"><span aria-hidden="true" class="mr-2">☀</span>ISO</span>
                     <span class="exif-value">${data.iso}</span>
                 </div>
             </div>
         `;
     }
 
+    function setActiveSlide(index) {
+        const safeIndex = clampIndex(index);
+        document.querySelectorAll('.swiper-slide').forEach((slide, slideIndex) => {
+            slide.classList.toggle('is-active', slideIndex === safeIndex);
+        });
+    }
+
     function setBackground(index) {
         const safeIndex = clampIndex(index);
         const background = ensureDynamicBackground();
+        activePhotoIndex = safeIndex;
         background.style.backgroundImage = `url('${PHOTO_SOURCES[safeIndex]}')`;
         background.classList.add('active');
         updateExifData(safeIndex);
@@ -112,7 +121,10 @@
 
     function initSwiper() {
         if (!window.Swiper) {
-            console.info('Swiper did not load; photo gallery controls are unavailable.');
+            setActiveSlide(0);
+            document.querySelector('.swiper-button-next')?.addEventListener('click', () => goToSlide(activePhotoIndex + 1));
+            document.querySelector('.swiper-button-prev')?.addEventListener('click', () => goToSlide(activePhotoIndex - 1));
+            console.info('Using local photo gallery controls.');
             return;
         }
 
@@ -148,10 +160,6 @@
     }
 
     function goToSlide(index) {
-        if (!window.swiperInstance) {
-            return;
-        }
-
         const safeIndex = clampIndex(index);
         const gallery = document.getElementById('main-gallery');
 
@@ -163,6 +171,12 @@
             });
         }
 
+        if (!window.swiperInstance) {
+            setActiveSlide(safeIndex);
+            setBackground(safeIndex);
+            return;
+        }
+
         window.setTimeout(() => {
             window.swiperInstance.slideToLoop(safeIndex, 500);
             window.setTimeout(() => {
@@ -171,11 +185,25 @@
         }, gallery ? 250 : 0);
     }
 
+    function initThumbnailButtons() {
+        document.querySelectorAll('[data-slide-index]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const index = Number.parseInt(button.dataset.slideIndex, 10);
+                if (Number.isNaN(index)) {
+                    return;
+                }
+
+                goToSlide(index);
+            });
+        });
+    }
+
     function initPage() {
         initAos();
         ensureDynamicBackground();
         setBackground(0);
         initSwiper();
+        initThumbnailButtons();
     }
 
     window.goToSlide = goToSlide;

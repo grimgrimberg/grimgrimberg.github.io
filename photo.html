@@ -6,8 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photography Portfolio | Yuval Grimberg</title>
   <meta name="description" content="Travel Photography by Yuval Grimberg - Engineering precision meets artistic vision">
-  <meta name="theme-color" content="#0a0f1c">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self'; frame-src 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="theme-color" content="#05070a">
   <link rel="canonical" href="https://grimgrimberg.github.io/photo.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Photography Portfolio | Yuval Grimberg">
   <meta property="og:description"
@@ -18,22 +22,8 @@
   <meta name="twitter:description"
     content="Travel photography by Yuval Grimberg, where engineering precision meets artistic vision.">
 
-  <!-- Modern fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
   <!-- Local generated Tailwind CSS -->
   <link rel="stylesheet" href="assets/css/output.css">
-
-  <!-- AOS Animation Library -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-  <!-- SwiperJS CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <style>
     body {
@@ -41,7 +31,7 @@
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #f2b84b 0%, #38d8c8 62%, #ff6b6b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -49,14 +39,14 @@
 
     .tech-pattern {
       background-image:
-        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 22% 22%, rgba(56, 216, 200, 0.12) 0%, transparent 48%),
+        radial-gradient(circle at 78% 74%, rgba(242, 184, 75, 0.10) 0%, transparent 52%);
     }
 
     .glass-effect {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(246, 241, 232, 0.055);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(246, 241, 232, 0.11);
     }
 
     .hover-lift:hover {
@@ -71,8 +61,8 @@
       z-index: 60;
       transform: translateY(-200%);
       border-radius: 0.75rem;
-      background: rgba(10, 15, 28, 0.95);
-      border: 1px solid rgba(6, 182, 212, 0.45);
+      background: rgba(5, 7, 10, 0.95);
+      border: 1px solid rgba(56, 216, 200, 0.45);
       color: white;
       font-weight: 600;
       padding: 0.75rem 1rem;
@@ -85,6 +75,20 @@
 
     .swiper {
       max-width: 800px;
+      overflow: hidden;
+    }
+
+    .swiper-wrapper {
+      display: flex;
+    }
+
+    .swiper-slide {
+      display: none;
+      flex: 0 0 100%;
+    }
+
+    .swiper-slide.is-active {
+      display: block;
     }
 
     .swiper-slide img {
@@ -93,7 +97,7 @@
     }
 
     .photo-overlay {
-      background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
+      background: linear-gradient(45deg, rgba(56, 216, 200, 0.12), rgba(242, 184, 75, 0.10));
       backdrop-filter: blur(20px);
     }
 
@@ -122,12 +126,12 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(45deg, rgba(10, 15, 28, 0.85), rgba(10, 15, 28, 0.7));
+      background: linear-gradient(45deg, rgba(5, 7, 10, 0.88), rgba(13, 17, 23, 0.74));
       z-index: 1;
     }
 
     .exif-panel {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.1));
+      background: linear-gradient(135deg, rgba(56, 216, 200, 0.12), rgba(242, 184, 75, 0.08));
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 1rem;
@@ -159,11 +163,11 @@
     }
 
     .camera-icon {
-      color: #06b6d4;
+      color: #38d8c8;
     }
 
     .thumbnail-button:focus-visible {
-      outline: 2px solid #06b6d4;
+      outline: 2px solid #38d8c8;
       outline-offset: 4px;
     }
   </style>
@@ -206,7 +210,7 @@
           class="md:hidden mobile-menu-button touch-target flex items-center justify-center w-11 h-11 rounded-lg bg-tech-cyan/10 hover:bg-tech-cyan/20 border border-tech-cyan/30 transition-all duration-300 flex-shrink-0"
           aria-label="Toggle mobile menu"
           aria-expanded="false" aria-controls="mobile-menu">
-          <i class="fas fa-bars text-xl"></i>
+          <span aria-hidden="true" class="text-xl leading-none">☰</span>
         </button>
       </div>
     </div>
@@ -214,14 +218,14 @@
     <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
       <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
       <div
-        class="absolute top-0 right-0 h-full w-[calc(100vw-4rem)] max-w-sm bg-tech-dark/95 backdrop-blur-lg border-l border-tech-cyan/20 transform translate-x-full transition-transform duration-300 ease-in-out overflow-hidden flex flex-col"
+        class="absolute top-0 right-0 h-full w-[calc(100vw-4rem)] max-w-sm bg-tech-dark/95 backdrop-blur-lg border-l border-tech-cyan/20 transform translate-x-full overflow-hidden flex flex-col"
         id="mobile-menu-panel">
         <div class="flex items-center justify-between p-6 border-b border-tech-cyan/20">
           <div class="text-xl font-bold gradient-text">Navigation</div>
           <button type="button"
             class="mobile-menu-close touch-target inline-flex items-center justify-center text-tech-cyan hover:text-white transition-colors"
             aria-label="Close mobile menu">
-            <i class="fas fa-times text-xl"></i>
+            <span aria-hidden="true" class="text-xl leading-none">×</span>
           </button>
         </div>
         <nav class="p-6 overflow-y-auto flex-1 drawer-scroll-region">
@@ -278,7 +282,7 @@
       <div class="w-full flex justify-center mb-8" data-aos="fade-up" id="main-gallery">
         <div class="swiper w-full max-w-4xl rounded-2xl glass-effect p-2 sm:p-6">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
+            <div class="swiper-slide is-active">
               <img src="assets/images/optimized/DSC02477.jpg" alt="Travel photo 1" width="1200" height="800"
                 decoding="async" fetchpriority="high"
                 class="w-full object-cover hover:scale-105 transition-transform duration-300" />
@@ -341,13 +345,13 @@
       <div class="w-full max-w-4xl mx-auto mb-16" data-aos="fade-up" data-aos-delay="200">
         <div class="exif-panel p-6">
           <div class="flex items-center mb-4">
-            <i class="fas fa-camera camera-icon text-2xl mr-3"></i>
+            <span aria-hidden="true" class="camera-icon text-2xl mr-3">📷</span>
             <h3 class="text-xl font-bold gradient-text">Camera Details</h3>
           </div>
           <div id="exif-data" class="grid md:grid-cols-2 gap-4">
             <!-- EXIF data will be populated here -->
             <div class="text-center text-gray-400 md:col-span-2 py-8">
-              <i class="fas fa-camera text-4xl mb-4 opacity-50"></i>
+              <span aria-hidden="true" class="block text-4xl mb-4 opacity-50">📷</span>
               <p>Select a photo to view camera settings</p>
             </div>
           </div>
@@ -358,52 +362,62 @@
       <div class="w-full max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="200">
         <h3 class="text-2xl font-bold text-center mb-8 gradient-text">Select Photo</h3>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          <button onclick="goToSlide(0)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+          <button type="button" data-slide-index="0" aria-label="Show travel photo 1"
+            class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
             <img src="assets/images/optimized/DSC02477.jpg" alt="Photo 1" width="1200" height="800" loading="lazy"
               decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(1)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+          <button type="button" data-slide-index="1" aria-label="Show travel photo 2"
+            class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
             <img src="assets/images/optimized/DSC03288.jpg" alt="Photo 2" width="1200" height="800" loading="lazy"
               decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(2)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+          <button type="button" data-slide-index="2" aria-label="Show travel photo 3"
+            class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
             <img src="assets/images/optimized/DSC03631-HDR-2.jpg" alt="Photo 3" width="1200" height="800"
               loading="lazy" decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(3)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+          <button type="button" data-slide-index="3" aria-label="Show travel photo 4"
+            class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
             <img src="assets/images/optimized/DSC03675.jpg" alt="Photo 4" width="1200" height="800" loading="lazy"
               decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(4)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+          <button type="button" data-slide-index="4" aria-label="Show travel photo 5"
+            class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
             <img src="assets/images/optimized/DSC05064-Edit.jpg" alt="Photo 5" width="1200" height="799"
               loading="lazy" decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(5)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+          <button type="button" data-slide-index="5" aria-label="Show travel photo 6"
+            class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
             <img src="assets/images/optimized/DSC05396.jpg" alt="Photo 6" width="1200" height="800" loading="lazy"
               decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(6)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+          <button type="button" data-slide-index="6" aria-label="Show travel photo 7"
+            class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
             <img src="assets/images/optimized/DSC06545.jpg" alt="Photo 7" width="1200" height="800" loading="lazy"
               decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(7)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+          <button type="button" data-slide-index="7" aria-label="Show travel photo 8"
+            class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
             <img src="assets/images/optimized/DSC07124.jpg" alt="Photo 8" width="1200" height="800" loading="lazy"
               decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(8)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+          <button type="button" data-slide-index="8" aria-label="Show travel photo 9"
+            class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
             <img src="assets/images/optimized/DSC0676.jpg" alt="Photo 9" width="1200" height="800" loading="lazy"
               decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
           </button>
-          <button onclick="goToSlide(9)" class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
+          <button type="button" data-slide-index="9" aria-label="Show travel photo 10"
+            class="thumbnail-button group glass-effect rounded-lg p-2 hover-lift">
             <img src="assets/images/optimized/DSC0865.jpg" alt="Photo 10" width="1200" height="800" loading="lazy"
               decoding="async"
               class="rounded-lg shadow group-hover:scale-105 transition-transform duration-200 w-full object-cover h-32" />
@@ -448,22 +462,22 @@
         <div>
           <div class="text-2xl font-bold gradient-text mb-4">Yuval Grimberg</div>
           <p class="text-gray-400 mb-4">
-            Control Systems Engineer & Photography Enthusiast
+            Autonomy, simulation, control, and photography
           </p>
           <div class="flex space-x-4">
             <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
               aria-label="Open GitHub profile"
               class="footer-social-link touch-target text-gray-400 hover:text-tech-cyan transition-colors">
-              <i class="fab fa-github text-xl"></i>
+              <span aria-hidden="true" class="text-sm font-bold">GH</span>
             </a>
             <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
               rel="noopener noreferrer" aria-label="Open LinkedIn profile"
               class="footer-social-link touch-target text-gray-400 hover:text-tech-purple transition-colors">
-              <i class="fab fa-linkedin text-xl"></i>
+              <span aria-hidden="true" class="text-sm font-bold">in</span>
             </a>
             <a href="mailto:yuval.grimberg@gmail.com" aria-label="Send email to Yuval Grimberg"
               class="footer-social-link touch-target text-gray-400 hover:text-tech-green transition-colors">
-              <i class="fas fa-envelope text-xl"></i>
+              <span aria-hidden="true" class="text-sm font-bold">@</span>
             </a>
           </div>
         </div>
@@ -501,9 +515,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="assets/js/site-shell.js" defer></script>
-  <script src="assets/js/photo-page.js" defer></script>
+  <script src="assets/js/site-shell.js?v=20260514-audit2" defer></script>
+  <script src="assets/js/photo-page.js?v=20260514-audit2" defer></script>
 </body>
 </html>

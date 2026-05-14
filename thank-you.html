@@ -6,36 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You | Yuval Grimberg</title>
     <meta name="description" content="Thank you for contacting Yuval Grimberg. Your message has been received.">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self'; frame-src 'self'; form-action 'self'; upgrade-insecure-requests">
     <meta name="robots" content="noindex,follow">
+    <meta name="theme-color" content="#05070a">
     <link rel="canonical" href="https://grimgrimberg.github.io/thank-you.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Thank You | Yuval Grimberg">
     <meta property="og:description" content="Thank you for contacting Yuval Grimberg. Your message has been received.">
     <meta property="og:url" content="https://grimgrimberg.github.io/thank-you.html">
     <meta name="twitter:card" content="summary">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <!-- Local generated Tailwind CSS -->
     <link rel="stylesheet" href="assets/css/output.css">
 
     <style>
         .gradient-text {
-            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            background: linear-gradient(135deg, #f2b84b, #38d8c8 62%, #ff6b6b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(246, 241, 232, 0.06);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(246, 241, 232, 0.12);
         }
 
         body {
-            background: linear-gradient(135deg, #0a0f1c 0%, #1a1a2e 50%, #16213e 100%);
+            background:
+                radial-gradient(circle at 20% 18%, rgba(56, 216, 200, 0.14), transparent 28rem),
+                radial-gradient(circle at 80% 12%, rgba(242, 184, 75, 0.12), transparent 24rem),
+                linear-gradient(135deg, #05070a 0%, #0d1117 58%, #05070a 100%);
             min-height: 100vh;
         }
     </style>
@@ -48,7 +53,7 @@
             <div class="mb-8">
                 <div
                     class="w-24 h-24 mx-auto bg-gradient-to-r from-tech-green to-tech-cyan rounded-full flex items-center justify-center">
-                    <i class="fas fa-check text-4xl text-white"></i>
+                    <span aria-hidden="true" class="text-4xl text-white">✓</span>
                 </div>
             </div>
 
@@ -61,7 +66,7 @@
                     Your message has been successfully received. I'll get back to you within 24 hours.
                 </p>
                 <p class="text-gray-400">
-                    <i class="fas fa-envelope mr-2 text-tech-cyan"></i>
+                    <span aria-hidden="true" class="mr-2 text-tech-cyan">✉</span>
                     In the meantime, feel free to explore my portfolio or connect with me on social media.
                 </p>
             </div>
@@ -70,12 +75,12 @@
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="index.html"
                     class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
-                    <i class="fas fa-home mr-2"></i>
+                    <span aria-hidden="true" class="mr-2">⌂</span>
                     Back to Portfolio
                 </a>
                 <a href="mailto:yuval.grimberg@gmail.com?subject=Portfolio%20Contact&body=Hi%20Yuval,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20discuss..."
                     class="inline-flex items-center justify-center px-6 py-3 glass-effect hover:bg-white/20 text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
-                    <i class="fas fa-envelope mr-2"></i>
+                    <span aria-hidden="true" class="mr-2">✉</span>
                     Email Me Directly
                 </a>
             </div>
@@ -85,30 +90,20 @@
                 <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
                     rel="noopener noreferrer" aria-label="Open LinkedIn profile"
                     class="text-gray-400 hover:text-tech-cyan transition-colors duration-300">
-                    <i class="fab fa-linkedin text-2xl"></i>
+                    <span aria-hidden="true" class="text-xl font-bold">in</span>
                 </a>
                 <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
                     aria-label="Open GitHub profile" class="text-gray-400 hover:text-tech-cyan transition-colors duration-300">
-                    <i class="fab fa-github text-2xl"></i>
+                    <span aria-hidden="true" class="text-xl font-bold">GH</span>
                 </a>
                 <a href="mailto:yuval.grimberg@gmail.com" aria-label="Send email to Yuval Grimberg"
                     class="text-gray-400 hover:text-tech-cyan transition-colors duration-300">
-                    <i class="fas fa-envelope text-2xl"></i>
+                    <span aria-hidden="true" class="text-xl font-bold">@</span>
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Auto redirect after 10 seconds -->
-    <script>
-        // Optional: Auto redirect to homepage after 10 seconds
-        setTimeout(() => {
-            const redirect = confirm("Would you like to return to the portfolio homepage?");
-            if (redirect) {
-                window.location.href = 'index.html';
-            }
-        }, 10000);
-    </script>
 </body>
 
 </html>

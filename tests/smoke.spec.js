@@ -113,6 +113,46 @@ test.describe('maintained smoke suite', () => {
 
         await page.goto(siteUrl('index.html'), { waitUntil: 'domcontentloaded' });
 
+        await expect(page.locator('#hire')).toContainText('Hire Me Command Center');
+        await page.locator('[data-hire-role="ai"]').scrollIntoViewIfNeeded();
+        await page.locator('[data-hire-role="ai"]').click();
+        await expect(page.locator('#hire-role-title')).toHaveText('AI Tooling / Developer Tools');
+        await expect(page.locator('#reviews')).toContainText('Epic Reviews');
+        await expect(page.locator('#reviews')).toContainText('Ray Charles');
+        await expect(page.locator('#reviews')).toContainText('Stephen Hawking');
+        await expect(page.locator('#reviews')).toContainText('Doctor Strange');
+        await expect(page.locator('#retro-games')).toContainText('Retro Game Archive');
+        await expect(page.locator('#retro-games')).toContainText('Hosted Game Files');
+        await expect(page.locator('#retro-games [data-game-source]')).toHaveCount(3);
+        await expect(page.locator('#retro-games .retro-game-grid [data-old-game]')).toHaveCount(6);
+        await page.waitForFunction(() => window.clippyLoaded === true && Boolean(window.clippyAgent), null, {
+            timeout: 10000
+        });
+        await page.locator('#clippy-guide-button').click();
+        await expect(page.locator('.clippy')).toBeVisible();
+        await expect(page.locator('.clippy-balloon')).toContainText('I can guide');
+
+        await page.click('#command-palette-button');
+        await expect(page.locator('#command-palette')).toBeVisible();
+        await page.fill('#command-input', 'repos --featured');
+        await page.locator('#command-form button[type="submit"]').click();
+        await expect(page.locator('#command-output')).toContainText('BGR_PathPlanning_Control');
+        await expect(page.locator('#command-output')).toContainText('orbital-rendezvous-lqi');
+        await page.fill('#command-input', 'hire ai');
+        await page.locator('#command-form button[type="submit"]').click();
+        await expect(page.locator('#command-output')).toContainText('AI Tooling / Developer Tools');
+        await page.fill('#command-input', 'reviews');
+        await page.locator('#command-form button[type="submit"]').click();
+        await expect(page.locator('#command-output')).toContainText('Epic reviews');
+        await page.fill('#command-input', 'roast yuval');
+        await page.locator('#command-form button[type="submit"]').click();
+        await expect(page.locator('#command-output')).toContainText('Roast mode');
+        await page.fill('#command-input', 'cv');
+        await page.locator('#command-form button[type="submit"]').click();
+        await expect(page.locator('#command-output')).toContainText('human check');
+        await page.locator('#command-palette .command-close').click();
+        await expect(page.locator('#command-palette')).toBeHidden();
+
         if (MOBILE_PROJECTS.has(testInfo.project.name)) {
             await page.locator('#contact').scrollIntoViewIfNeeded();
         } else {
@@ -121,11 +161,26 @@ test.describe('maintained smoke suite', () => {
         }
 
         await page.click('#goose-talk');
+        const goosePlayer = page.locator('[data-goose-frame-player="true"]');
+        await expect(goosePlayer).toBeAttached();
+        const firstGooseFrame = await goosePlayer.getAttribute('data-goose-frame');
+        await expect.poll(() => goosePlayer.getAttribute('data-goose-frame'), {
+            message: 'animated goose should advance frames',
+            timeout: 3000
+        })
+            .not.toBe(firstGooseFrame);
         await expect(page.locator('#goose-wisdom')).not.toHaveText('');
 
         await page.click('#click-me-button');
         await expect(page.locator('#click-count')).toHaveText('(1)');
         await expect(page.locator('#click-message')).not.toHaveText('');
+
+        await page.locator('#cv-gate').scrollIntoViewIfNeeded();
+        await expect(page.locator('#cv-unlocked-panel')).toBeHidden();
+        await page.fill('#cv-human-answer', '13');
+        await page.click('#cv-unlock-button');
+        await expect(page.locator('#cv-unlocked-panel')).toBeVisible();
+        await expect(page.locator('#cv-public-link')).toHaveAttribute('href', /cv\.html$/);
 
         const fields = await fillContactForm(page);
         const success = page.locator('#contact-success');

@@ -1,14 +1,58 @@
 (function () {
     'use strict';
 
-    const CLIPPY_COMMIT = '64a68695451696e6c1062cd9e9c7cfb230389f2c';
-    const CLIPPY_ASSET_BASE = `https://cdn.jsdelivr.net/gh/pi0/clippyjs@${CLIPPY_COMMIT}/assets`;
-    const CLIPPY_AGENT_BASE = `${CLIPPY_ASSET_BASE}/agents/`;
-    const RETRO_STORAGE_KEY = 'retroDownloadCount';
+    const RETRO_STORAGE_KEY = 'retroSourceOpenCount';
     const COPY_RESET_DELAY_MS = 1600;
-    const CLIPPY_WAIT_TIMEOUT_MS = 5000;
-    const CLIPPY_WAIT_INTERVAL_MS = 250;
     const MAILTO_DELAY_MS = 100;
+    const EMAIL_ADDRESS = 'yuval.grimberg@gmail.com';
+    const CV_PUBLIC_PATH = ['cv', 'html'].join('.');
+    const REPO_SNAPSHOT_URL = './assets/data/github-repos.json';
+    const CLIPPY_AGENT_BASE_PATH = './assets/vendor/clippyjs/agents/';
+
+    const FALLBACK_REPO_SNAPSHOT = {
+        categories: {
+            featured: { label: 'Featured' },
+            lab: { label: 'Lab' },
+            tools: { label: 'Tools' },
+            learning: { label: 'Learning Archive' },
+            forks: { label: 'Forks / References' },
+            meta: { label: 'Meta' }
+        },
+        repos: [
+            {
+                name: 'BGR_PathPlanning_Control',
+                category: 'featured',
+                url: 'https://github.com/grimgrimberg/BGR_PathPlanning_Control',
+                language: 'Python',
+                tags: ['autonomy', 'path planning', 'control'],
+                pitch: 'Formula Student autonomous racing path planning and control stack.'
+            },
+            {
+                name: 'orbital-rendezvous-lqi',
+                category: 'featured',
+                url: 'https://github.com/grimgrimberg/orbital-rendezvous-lqi',
+                language: 'Python',
+                tags: ['orbital mechanics', 'LQI', 'MPC'],
+                pitch: 'Orbital propagator plus CW rendezvous LQI and MPC comparison.'
+            },
+            {
+                name: 'github-repo-summarizer',
+                category: 'featured',
+                url: 'https://github.com/grimgrimberg/github-repo-summarizer',
+                language: 'Python',
+                tags: ['FastAPI', 'LLM', 'tooling'],
+                pitch: 'FastAPI and CLI repo summarizer with deterministic packing.'
+            },
+            {
+                name: 'daily-movers-agent',
+                category: 'featured',
+                url: 'https://github.com/grimgrimberg/daily-movers-agent',
+                language: 'Python',
+                tags: ['LangGraph', 'reports', 'agentic AI'],
+                pitch: 'Agentic market-movers pipeline with explainable digests.'
+            }
+        ]
+    };
 
     const CLICK_MESSAGES = [
         'Great! You can follow instructions.',
@@ -36,30 +80,74 @@
         "I do not always test my code, but when I do, I do it before production."
     ];
 
-    const CLIPPY_WELCOME_MESSAGES = [
-        'It looks like you are browsing an engineering portfolio. Would you like help with that?',
-        "Hi. I am the real Clippy. This portfolio is quite impressive, isn't it?",
-        "I see you're checking out Yuval's work. Smart choice.",
-        'Need help navigating the site? Try pressing Alt+Shift+C.',
-        'Pro tip: there are more easter eggs in the Fun Zone.'
+    const ROLE_FITS = {
+        robotics: {
+            title: 'Robotics Systems Developer',
+            summary:
+                'I connect controls, perception, code, and physical constraints without pretending robots live in clean PowerPoint rectangles.',
+            proof: 'BGR driverless stack',
+            tools: 'Python, ROS2, OpenCV',
+            mode: 'Build, test, iterate',
+            bullets: [
+                'Led path planning and control work for a real Formula Student driverless effort.',
+                'Comfortable translating messy system behavior into debuggable software loops.',
+                'Useful when the job needs range, not a one-trick framework certificate.'
+            ]
+        },
+        autonomy: {
+            title: 'Autonomy / Controls Engineer',
+            summary:
+                'Strong fit for path planning, control loops, estimation-adjacent work, and teams that need engineering judgment when the demo meets reality.',
+            proof: 'Path planning + LQI',
+            tools: 'Control, dynamics, Python',
+            mode: 'Model, simulate, validate',
+            bullets: [
+                'Formula Student work shows practical autonomy under vehicle constraints.',
+                'Orbital rendezvous work shows comfort with state-space thinking and controller comparison.',
+                'I like systems that can be explained, plotted, and debugged under pressure.'
+            ]
+        },
+        simulation: {
+            title: 'Simulation / GNC Developer',
+            summary:
+                'I can build the simulation scaffolding around a control idea, then keep it inspectable enough that other humans can trust it.',
+            proof: 'Orbital rendezvous LQI',
+            tools: 'SciPy, MATLAB, plotting',
+            mode: 'Reproduce, compare, explain',
+            bullets: [
+                'Built orbital propagation and rendezvous-control experiments with reproducible plots.',
+                'Comfortable moving between equations, code, and visual inspection.',
+                'Good fit for simulation work where correctness and communication both matter.'
+            ]
+        },
+        ai: {
+            title: 'AI Tooling / Developer Tools',
+            summary:
+                'I build small systems that turn noisy inputs into useful outputs: repo summaries, agentic reports, fallbacks, and boring-but-important glue.',
+            proof: 'Repo summarizer + agents',
+            tools: 'FastAPI, LangGraph, testing',
+            mode: 'Ship useful tools',
+            bullets: [
+                'GitHub repo summarizer shows product-shaped AI tooling, not just prompt confetti.',
+                'Daily movers agent shows multi-step pipeline thinking with outputs and fallbacks.',
+                'I care about deterministic structure, testability, and making tools usable by people.'
+            ]
+        }
+    };
+
+    const FAKE_REVIEWS = [
+        'Ray Charles: Holy sh*t, this is the best engineering portfolio I have ever heard. Spiritual endorsement.',
+        "Stephen Hawking: It made me walk again. Well, not literally - I'm still dead. Interdimensional consultation.",
+        "Elon Musk: Damn, I wish I had hired Yuval for Tesla autopilot. We probably wouldn't have crashed into all those traffic cones.",
+        "Albert Einstein: E=mc² was cute, but Yuval's control algorithms? That is the real theory of everything.",
+        'Doctor Strange: I saw 14,000,605 possible futures. In ALL of them, Yuval gets the job.'
     ];
 
-    const CLIPPY_SHORTCUT_MESSAGES = [
-        'Secret activated. You found the real Microsoft Office Clippy.',
-        "Looking for Yuval's contact info? Scroll down to the contact section.",
-        'Want to see the photography work? Open the photography page from the nav.',
-        'Pro tip: try clicking the counter button exactly 42 times.',
-        'This portfolio is so well-coded that even I could not find a bug.'
-    ];
-
-    const CLIPPY_ANIMATIONS = [
-        'GetAttention',
-        'Congratulate',
-        'Thinking',
-        'Explain',
-        'LookRight',
-        'LookLeft',
-        'CheckingSomething'
+    const ROAST_LINES = [
+        'Roast mode is opt-in, so here it is: some repos are polished, some are learning fossils, and one or two look like they escaped a lab notebook. Still useful. Still honest.',
+        'Yuval has range. This is a strength until you ask him to name the one thing he does. Then the spreadsheet starts sweating.',
+        'The portfolio has a goose, a terminal, and a CV request flow. Subtle? No. Memorable? Unfortunately, yes.',
+        'He says "systems thinking" because "I keep pulling on threads until the machine confesses" sounds less LinkedIn-compliant.'
     ];
 
     const KONAMI_CODE = [
@@ -75,12 +163,15 @@
         'KeyA'
     ];
 
-    let clippyAgent = null;
-    let clippyLoaded = false;
     let funClickCount = 0;
-    let downloadCount = 0;
-    let clippyHideTimer = null;
+    let sourceOpenCount = 0;
     let konamiSequence = [];
+    let repoSnapshot = FALLBACK_REPO_SNAPSHOT;
+    let commandHistory = [];
+    let realClippyAgent = null;
+    let realClippyLoaded = false;
+    let realClippyLoadStarted = false;
+    let realClippyHideTimer = null;
 
     function initAos() {
         if (window.AOS && typeof window.AOS.init === 'function') {
@@ -128,7 +219,7 @@
 
     function buildMailtoLink(formData, previewText) {
         const emailSubject = `Portfolio Contact: ${formData.subject || 'General Inquiry'}`;
-        return `mailto:yuval.grimberg@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(previewText)}`;
+        return `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(previewText)}`;
     }
 
     function fallbackCopyText(text) {
@@ -193,6 +284,96 @@
         });
     }
 
+    async function copyEmailAddress(button) {
+        const copied = await copyTextToClipboard(EMAIL_ADDRESS);
+        const status = document.getElementById('copy-email-status');
+        const originalHtml = button?.innerHTML;
+
+        if (status) {
+            status.textContent = copied ? 'Email copied. Now go make something happen.' : `Copy failed. Email: ${EMAIL_ADDRESS}`;
+        }
+
+        if (button) {
+            button.innerHTML = copied ? '<span>Copied Email</span>' : `<span>${EMAIL_ADDRESS}</span>`;
+            window.setTimeout(() => {
+                button.innerHTML = originalHtml || 'Copy Email Address';
+            }, COPY_RESET_DELAY_MS);
+        }
+
+        return copied;
+    }
+
+    function setCvGateStatus(message, isError = false) {
+        const status = document.getElementById('cv-gate-status');
+        if (!status) {
+            return;
+        }
+
+        status.textContent = message;
+        status.classList.toggle('text-tech-pink', isError);
+        status.classList.toggle('text-tech-green', !isError);
+    }
+
+    function revealPublicCv(announce = true) {
+        const panel = document.getElementById('cv-unlocked-panel');
+        const publicLink = document.getElementById('cv-public-link');
+
+        if (publicLink) {
+            publicLink.href = CV_PUBLIC_PATH;
+        }
+
+        if (panel) {
+            panel.hidden = false;
+        }
+
+        try {
+            window.sessionStorage.setItem('portfolioCvUnlocked', 'true');
+        } catch (error) {
+            // Session persistence is a convenience only.
+        }
+
+        setCvGateStatus('Human enough. Public CV unlocked.');
+        if (announce) {
+            showClippy('CV unlocked. Public version, no phone-number buffet for scrapers. Responsible chaos.', 18000);
+        }
+    }
+
+    function initCvGate() {
+        const answerInput = document.getElementById('cv-human-answer');
+        const unlockButton = document.getElementById('cv-unlock-button');
+
+        if (!answerInput || !unlockButton) {
+            return;
+        }
+
+        try {
+            if (window.sessionStorage.getItem('portfolioCvUnlocked') === 'true') {
+                revealPublicCv(false);
+            }
+        } catch (error) {
+            // Ignore storage failures and keep the gate interactive.
+        }
+
+        const verify = () => {
+            const answer = answerInput.value.trim();
+            if (answer === '13' || answer.toLowerCase() === 'thirteen') {
+                revealPublicCv();
+                return;
+            }
+
+            setCvGateStatus('Not quite. Hint: Clippy counted on his wire and got 13.', true);
+            answerInput.focus();
+        };
+
+        unlockButton.addEventListener('click', verify);
+        answerInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                verify();
+            }
+        });
+    }
+
     function renderContactSuccess(mailtoLink, previewText) {
         const formContainer = document.getElementById('simple-contact-form');
         if (!formContainer) {
@@ -207,13 +388,13 @@
         successContainer.dataset.contactSent = 'true';
         successContainer.innerHTML = `
             <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-tech-green to-tech-cyan rounded-full flex items-center justify-center">
-                <i class="fas fa-check text-2xl text-white" aria-hidden="true"></i>
+                    <span class="text-2xl text-white" aria-hidden="true">✓</span>
             </div>
             <h4 class="text-2xl font-bold text-tech-cyan mb-3">Email Client Opened (or Ready)!</h4>
             <p class="text-gray-300 mb-4">If your default email client did not appear, use the link below or copy the message manually.</p>
             <div class="space-y-4 max-w-xl mx-auto">
                 <a id="retry-mailto" class="inline-flex items-center space-x-2 bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300">
-                    <i class="fas fa-envelope" aria-hidden="true"></i><span>Try Opening Email Again</span>
+                    <span aria-hidden="true">✉</span><span>Try Opening Email Again</span>
                 </a>
                 <div class="text-left bg-gray-800/60 border border-gray-700 rounded-lg p-4 overflow-y-auto max-h-56 text-sm font-mono whitespace-pre-wrap break-words" id="email-preview" aria-label="Email preview" tabindex="0"></div>
                 <button type="button" id="copy-email-content" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-colors">Copy Message to Clipboard</button>
@@ -379,124 +560,100 @@
         }
     }
 
-    function loadScriptOnce(id, src, onLoad) {
-        const existing = document.getElementById(id);
-        if (existing) {
-            if (existing.dataset.loaded === 'true') {
-                onLoad();
-            } else {
-                existing.addEventListener('load', onLoad, { once: true });
-            }
-            return;
-        }
-
-        const script = document.createElement('script');
-        script.id = id;
-        script.src = src;
-        script.addEventListener(
-            'load',
-            () => {
-                script.dataset.loaded = 'true';
-                onLoad();
-            },
-            { once: true }
-        );
-        document.head.appendChild(script);
+    function renderGooseFallback(gooseContainer) {
+        const fallbackImage = document.createElement('img');
+        fallbackImage.src = './assets/images/goose.png';
+        fallbackImage.alt = 'Small goose mascot';
+        fallbackImage.loading = 'lazy';
+        fallbackImage.decoding = 'async';
+        fallbackImage.className = 'goose-frame-fallback';
+        gooseContainer.replaceChildren(fallbackImage);
+        gooseContainer.dataset.gooseReady = 'fallback';
     }
 
-    function initGooseAnimation() {
+    async function initGooseAnimation() {
         const gooseContainer = document.getElementById('goose-fun-zone');
-        if (!gooseContainer) {
+        if (!gooseContainer || gooseContainer.dataset.gooseReady) {
             return;
         }
 
-        const startAnimation = () => {
-            if (!window.lottie || gooseContainer.dataset.lottieReady === 'true') {
+        gooseContainer.dataset.gooseReady = 'loading';
+
+        try {
+            const response = await fetch('./assets/images/jumpy-goose.json', { cache: 'force-cache' });
+            if (!response.ok) {
+                throw new Error(`Goose animation failed to load: ${response.status}`);
+            }
+
+            const animationData = await response.json();
+            const frames = (animationData.assets || [])
+                .filter((asset) => typeof asset.p === 'string' && asset.p.startsWith('data:image/'))
+                .sort((left, right) => Number(left.id) - Number(right.id))
+                .map((asset) => asset.p);
+
+            if (!frames.length) {
+                throw new Error('Goose animation does not include embedded image frames.');
+            }
+
+            const gooseImage = document.createElement('img');
+            gooseImage.src = frames[0];
+            gooseImage.alt = 'Animated goose mascot';
+            gooseImage.loading = 'lazy';
+            gooseImage.decoding = 'async';
+            gooseImage.className = 'goose-frame-player';
+            gooseImage.dataset.gooseFramePlayer = 'true';
+            gooseImage.dataset.gooseFrame = '0';
+            gooseContainer.replaceChildren(gooseImage);
+            gooseContainer.dataset.gooseReady = 'true';
+            gooseContainer.dataset.gooseFrameCount = String(frames.length);
+
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reducedMotion || frames.length === 1) {
                 return;
             }
 
-            window.lottie.loadAnimation({
-                container: gooseContainer,
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                path: './assets/images/jumpy-goose.json'
-            });
-            gooseContainer.dataset.lottieReady = 'true';
-        };
+            const frameMs = Math.max(34, 1000 / Number(animationData.fr || 24));
+            let frameIndex = 0;
+            let lastFrameTime = window.performance.now();
 
-        if (window.lottie) {
-            startAnimation();
-            return;
-        }
-
-        loadScriptOnce(
-            'lottie-player-script',
-            'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js',
-            startAnimation
-        );
-    }
-
-    function waitForGlobal(name, timeoutMs, intervalMs, onReady, onTimeout) {
-        const deadline = Date.now() + timeoutMs;
-
-        function check() {
-            if (window[name]) {
-                onReady(window[name]);
-                return;
-            }
-
-            if (Date.now() >= deadline) {
-                if (typeof onTimeout === 'function') {
-                    onTimeout();
+            const playNextFrame = (timestamp) => {
+                if (!document.body.contains(gooseImage)) {
+                    return;
                 }
-                return;
-            }
 
-            window.setTimeout(check, intervalMs);
+                if (timestamp - lastFrameTime >= frameMs) {
+                    frameIndex = (frameIndex + 1) % frames.length;
+                    gooseImage.src = frames[frameIndex];
+                    gooseImage.dataset.gooseFrame = String(frameIndex);
+                    lastFrameTime = timestamp;
+                }
+
+                window.requestAnimationFrame(playNextFrame);
+            };
+
+            window.requestAnimationFrame(playNextFrame);
+        } catch {
+            renderGooseFallback(gooseContainer);
         }
-
-        check();
     }
 
-    function scheduleClippyHide(delayMs, goodbyeAnimation) {
-        if (!clippyAgent || !clippyLoaded) {
-            return;
-        }
-
-        window.clearTimeout(clippyHideTimer);
-        clippyHideTimer = window.setTimeout(() => {
-            if (!clippyAgent) {
-                return;
-            }
-
-            if (goodbyeAnimation) {
-                clippyAgent.play(goodbyeAnimation);
-                window.setTimeout(() => {
-                    clippyAgent.hide();
-                }, 1200);
-                return;
-            }
-
-            clippyAgent.hide();
-        }, delayMs);
+    function updateRealClippyGlobals() {
+        window.clippyAgent = realClippyAgent;
+        window.clippyLoaded = realClippyLoaded;
     }
 
-    function showRealClippyWelcome() {
-        if (!clippyAgent || !clippyLoaded) {
-            return;
+    function hideFallbackClippy() {
+        const clippyElement = document.getElementById('custom-clippy');
+        if (clippyElement) {
+            if (clippyElement.dataset.hideTimer) {
+                window.clearTimeout(Number(clippyElement.dataset.hideTimer));
+                delete clippyElement.dataset.hideTimer;
+            }
+            clippyElement.classList.remove('show');
         }
-
-        const x = Math.max(32, Math.random() * (window.innerWidth - 240));
-        const y = Math.max(32, Math.random() * (window.innerHeight - 240));
-        clippyAgent.moveTo(x, y);
-        clippyAgent.show();
-        clippyAgent.play('Wave');
-        clippyAgent.speak(CLIPPY_WELCOME_MESSAGES[Math.floor(Math.random() * CLIPPY_WELCOME_MESSAGES.length)]);
-        scheduleClippyHide(10000, 'Hide');
     }
 
-    function showClippy(message) {
+    function showFallbackClippy(message, durationMs = 12000) {
         const clippyElement = document.getElementById('custom-clippy');
         const clippyText = document.getElementById('clippy-text');
         if (!clippyElement || !clippyText) {
@@ -509,61 +666,294 @@
 
         clippyElement.classList.add('show');
 
-        window.setTimeout(() => {
+        if (clippyElement.dataset.hideTimer) {
+            window.clearTimeout(Number(clippyElement.dataset.hideTimer));
+            delete clippyElement.dataset.hideTimer;
+        }
+
+        if (durationMs <= 0) {
+            return;
+        }
+
+        const timerId = window.setTimeout(() => {
             hideClippy();
-        }, 8000);
+        }, durationMs);
+        clippyElement.dataset.hideTimer = String(timerId);
     }
 
-    function hideClippy() {
-        const clippyElement = document.getElementById('custom-clippy');
-        if (clippyElement) {
-            clippyElement.classList.remove('show');
+    function initRealClippy() {
+        if (realClippyLoadStarted) {
+            return;
+        }
+
+        realClippyLoadStarted = true;
+        updateRealClippyGlobals();
+
+        if (!window.clippy || typeof window.clippy.load !== 'function' || !window.jQuery) {
+            return;
+        }
+
+        window.clippy.BASE_PATH = CLIPPY_AGENT_BASE_PATH;
+
+        try {
+            window.clippy.load(
+                'Clippy',
+                (agent) => {
+                    realClippyAgent = agent;
+                    realClippyLoaded = true;
+                    updateRealClippyGlobals();
+                    allowRealClippySoundAfterGesture(realClippyAgent);
+                    realClippyAgent.hide(true);
+                    resetRealClippyQueue(realClippyAgent);
+                    window.dispatchEvent(new CustomEvent('portfolio:clippy-ready'));
+                },
+                () => {
+                    realClippyLoaded = false;
+                    updateRealClippyGlobals();
+                }
+            );
+        } catch {
+            realClippyLoaded = false;
+            updateRealClippyGlobals();
         }
     }
 
-    function initClippy() {
-        window.CLIPPY_CDN = CLIPPY_AGENT_BASE;
+    function selectClippyAnimation(preferredAnimation) {
+        if (!realClippyAgent || !preferredAnimation) {
+            return null;
+        }
 
-        waitForGlobal(
-            'clippy',
-            CLIPPY_WAIT_TIMEOUT_MS,
-            CLIPPY_WAIT_INTERVAL_MS,
-            (clippyLibrary) => {
-                clippyLibrary.load(
-                    'Clippy',
-                    (agent) => {
-                        clippyAgent = agent;
-                        clippyLoaded = true;
-                        clippyAgent.hide();
+        if (typeof realClippyAgent.hasAnimation === 'function' && realClippyAgent.hasAnimation(preferredAnimation)) {
+            return preferredAnimation;
+        }
 
-                        if (Math.random() > 0.7) {
-                            window.setTimeout(showRealClippyWelcome, 10000);
-                        }
-                    },
-                    undefined,
-                    CLIPPY_AGENT_BASE
-                );
-            },
-            () => {
-                console.info('ClippyJS did not load in time; fallback assistant remains available.');
+        return null;
+    }
+
+    function allowRealClippySoundAfterGesture(agent) {
+        const animator = agent?._animator;
+        if (!animator || typeof animator._playSound !== 'function' || animator._portfolioSoundGuarded) {
+            return;
+        }
+
+        let userGestureSeen = false;
+        const originalPlaySound = animator._playSound.bind(animator);
+        const markGesture = () => {
+            userGestureSeen = true;
+            document.removeEventListener('pointerdown', markGesture, true);
+            document.removeEventListener('keydown', markGesture, true);
+        };
+
+        document.addEventListener('pointerdown', markGesture, { once: true, capture: true });
+        document.addEventListener('keydown', markGesture, { once: true, capture: true });
+
+        animator._playSound = function guardedPlaySound() {
+            if (!userGestureSeen) {
+                return;
             }
+
+            try {
+                originalPlaySound();
+            } catch {
+                // Browser audio policies vary. Clippy visuals and speech bubbles still matter most.
+            }
+        };
+        animator._portfolioSoundGuarded = true;
+    }
+
+    function resetRealClippySpeech(agent) {
+        const balloon = agent?._balloon;
+        if (!balloon) {
+            return;
+        }
+
+        if (balloon._loop) {
+            window.clearTimeout(balloon._loop);
+        }
+
+        if (balloon._hiding) {
+            window.clearTimeout(balloon._hiding);
+        }
+
+        balloon._active = false;
+        balloon._hold = false;
+        balloon._hiding = null;
+        balloon._addWord = null;
+
+        if (typeof agent.closeBalloon === 'function') {
+            agent.closeBalloon();
+        }
+    }
+
+    function resetRealClippyQueue(agent) {
+        const queue = agent?._queue;
+        if (!queue) {
+            return;
+        }
+
+        queue._queue = [];
+        queue._active = false;
+    }
+
+    function summonRealClippy(message, animation = 'GetAttention', durationMs = 12000) {
+        if (!realClippyAgent || !realClippyLoaded) {
+            return false;
+        }
+
+        try {
+            hideFallbackClippy();
+
+            if (realClippyHideTimer) {
+                window.clearTimeout(realClippyHideTimer);
+                realClippyHideTimer = null;
+            }
+
+            if (typeof realClippyAgent.stop === 'function') {
+                realClippyAgent.stop();
+            }
+            resetRealClippyQueue(realClippyAgent);
+            resetRealClippySpeech(realClippyAgent);
+
+            const left = Math.max(16, Math.min(window.innerWidth - 150, window.innerWidth - 180));
+            const top = Math.max(76, Math.min(window.innerHeight - 180, window.innerHeight - 240));
+            realClippyAgent.moveTo(left, top);
+            realClippyAgent.show(true);
+
+            const selectedAnimation = selectClippyAnimation(animation);
+            if (selectedAnimation) {
+                realClippyAgent.play(selectedAnimation);
+            }
+
+            if (message) {
+                window.setTimeout(() => {
+                    if (realClippyAgent && realClippyLoaded) {
+                        realClippyAgent.speak(message);
+                    }
+                }, selectedAnimation ? 450 : 120);
+            }
+
+            if (durationMs > 0) {
+                realClippyHideTimer = window.setTimeout(() => {
+                    if (!realClippyAgent || !realClippyLoaded) {
+                        return;
+                    }
+
+                    const goodbye = selectClippyAnimation('GoodBye');
+                    if (goodbye) {
+                        realClippyAgent.play(goodbye);
+                        window.setTimeout(() => {
+                            realClippyAgent?.hide(true);
+                            resetRealClippyQueue(realClippyAgent);
+                        }, 1200);
+                    } else {
+                        realClippyAgent.hide(true);
+                        resetRealClippyQueue(realClippyAgent);
+                    }
+                }, durationMs);
+            }
+
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    function showClippy(message, durationMs = 12000) {
+        if (summonRealClippy(message, 'GetAttention', durationMs)) {
+            return;
+        }
+
+        showFallbackClippy(message, durationMs);
+    }
+
+    function showClippyIntro() {
+        showClippy(
+            'Hey there! Looking to hire an awesome engineer? Ask me for projects, CV, contact, reviews, or the goose.',
+            18000
         );
+    }
+
+    function pinClippyGuide(message) {
+        if (summonRealClippy(message, 'Explain', 0)) {
+            return;
+        }
+
+        showFallbackClippy(message, 0);
+    }
+
+    function hideClippy() {
+        if (realClippyHideTimer) {
+            window.clearTimeout(realClippyHideTimer);
+            realClippyHideTimer = null;
+        }
+
+        if (realClippyAgent && realClippyLoaded) {
+            realClippyAgent.hide(true);
+            resetRealClippyQueue(realClippyAgent);
+        }
+
+        hideFallbackClippy();
+    }
+
+    function scheduleClippyIntro() {
+        let introShown = false;
+
+        const showIntroOnce = () => {
+            if (introShown) {
+                return;
+            }
+
+            const clippyElement = document.getElementById('custom-clippy');
+            if (clippyElement?.classList.contains('show') || document.querySelector('.clippy-balloon:not([style*="display: none"])')) {
+                return;
+            }
+
+            introShown = true;
+            showClippyIntro();
+        };
+
+        if (realClippyLoaded) {
+            window.setTimeout(showIntroOnce, 650);
+            return;
+        }
+
+        window.addEventListener(
+            'portfolio:clippy-ready',
+            () => {
+                window.setTimeout(showIntroOnce, 650);
+            },
+            { once: true }
+        );
+
+        window.setTimeout(() => {
+            if (!realClippyLoaded) {
+                showIntroOnce();
+            }
+        }, 4500);
     }
 
     function initKeyboardEasterEggs() {
         document.addEventListener('keydown', (event) => {
+            if (event.key === '/' && !event.ctrlKey && !event.metaKey && !event.altKey) {
+                const activeElement = document.activeElement;
+                const isTyping =
+                    activeElement &&
+                    ['INPUT', 'TEXTAREA', 'SELECT'].includes(activeElement.tagName);
+
+                if (!isTyping) {
+                    event.preventDefault();
+                    openCommandPalette('help');
+                    return;
+                }
+            }
+
+            if (event.key === 'Escape') {
+                closeCommandPalette();
+            }
+
             if (event.altKey && event.shiftKey && event.code === 'KeyC') {
                 event.preventDefault();
-
-                if (clippyAgent && clippyLoaded) {
-                    clippyAgent.moveTo(100, 100);
-                    clippyAgent.show();
-                    clippyAgent.play(CLIPPY_ANIMATIONS[Math.floor(Math.random() * CLIPPY_ANIMATIONS.length)]);
-                    clippyAgent.speak(CLIPPY_SHORTCUT_MESSAGES[Math.floor(Math.random() * CLIPPY_SHORTCUT_MESSAGES.length)]);
-                    scheduleClippyHide(12000, 'GoodBye');
-                } else {
-                    showClippy('Real Clippy is still loading, but the fallback assistant is here.');
-                }
+                showClippy('Old-school Clippy activated. No third-party script, no clipboard drama, just one paperclip doing its job.', 18000);
             }
 
             konamiSequence.push(event.code);
@@ -579,15 +969,7 @@
                 return;
             }
 
-            if (clippyAgent && clippyLoaded) {
-                clippyAgent.moveTo(window.innerWidth / 2 - 100, window.innerHeight / 2 - 100);
-                clippyAgent.show();
-                clippyAgent.play('Congratulate');
-                clippyAgent.speak('Konami code activated. Ultimate easter egg unlocked.');
-                scheduleClippyHide(8000, 'Hide');
-            } else {
-                showClippy('Konami code activated. Ultimate easter egg unlocked.');
-            }
+            showClippy('Konami code activated. Ultimate easter egg unlocked.', 18000);
 
             document.body.style.animation = 'rainbow 2s infinite';
             window.setTimeout(() => {
@@ -597,7 +979,524 @@
         });
     }
 
-    function readDownloadCount() {
+    function escapeHtml(value) {
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    function getRepoCategory(categoryKey) {
+        return repoSnapshot.categories?.[categoryKey]?.label || categoryKey;
+    }
+
+    function getOrderedCategories() {
+        return ['featured', 'lab', 'tools', 'learning', 'forks', 'meta'];
+    }
+
+    function repoMatches(repo, term) {
+        const normalized = term.toLowerCase();
+        const aliases = {
+            bgr: 'BGR_PathPlanning_Control',
+            racing: 'BGR_PathPlanning_Control',
+            orbital: 'orbital-rendezvous-lqi',
+            orbit: 'orbital-rendezvous-lqi',
+            lqi: 'orbital-rendezvous-lqi',
+            summarizer: 'github-repo-summarizer',
+            github: 'github-repo-summarizer',
+            movers: 'daily-movers-agent',
+            daily: 'daily-movers-agent',
+            gnc: 'gnc-tracking-intercept-sim',
+            jetpack: 'jetpack_joyride_rl',
+            goose: 'grimgrimberg.github.io'
+        };
+        const aliasTarget = aliases[normalized];
+
+        return (
+            repo.name.toLowerCase() === normalized ||
+            repo.name.toLowerCase().includes(normalized) ||
+            (aliasTarget && repo.name === aliasTarget) ||
+            repo.tags?.some((tag) => tag.toLowerCase().includes(normalized))
+        );
+    }
+
+    function findRepo(term) {
+        if (!term) {
+            return null;
+        }
+
+        return repoSnapshot.repos.find((repo) => repoMatches(repo, term));
+    }
+
+    function formatRepoLine(repo) {
+        const tags = repo.tags?.length ? ` | ${repo.tags.slice(0, 3).join(', ')}` : '';
+        return `<a href="${escapeHtml(repo.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(repo.name)}</a> <span class="text-gray-500">(${escapeHtml(repo.language || 'mixed')}${escapeHtml(tags)})</span>\n  ${escapeHtml(repo.pitch)}`;
+    }
+
+    function formatRepoGroup(categoryKey, repos) {
+        if (!repos.length) {
+            return '';
+        }
+
+        return `<strong>${escapeHtml(getRepoCategory(categoryKey))}</strong>\n${repos.map(formatRepoLine).join('\n\n')}`;
+    }
+
+    function formatRepos(categoryFilter) {
+        const categoryAliases = {
+            '--featured': 'featured',
+            featured: 'featured',
+            '--labs': 'lab',
+            '--lab': 'lab',
+            labs: 'lab',
+            lab: 'lab',
+            '--tools': 'tools',
+            tools: 'tools',
+            '--learning': 'learning',
+            learning: 'learning',
+            '--forks': 'forks',
+            forks: 'forks',
+            '--meta': 'meta',
+            meta: 'meta'
+        };
+        const selectedCategory = categoryAliases[categoryFilter];
+
+        if (selectedCategory) {
+            const repos = repoSnapshot.repos.filter((repo) => repo.category === selectedCategory);
+            return formatRepoGroup(selectedCategory, repos) || `No repos found for ${escapeHtml(selectedCategory)}.`;
+        }
+
+        return getOrderedCategories()
+            .map((categoryKey) =>
+                formatRepoGroup(
+                    categoryKey,
+                    repoSnapshot.repos.filter((repo) => repo.category === categoryKey)
+                )
+            )
+            .filter(Boolean)
+            .join('\n\n');
+    }
+
+    function formatRepoDetail(repo) {
+        if (!repo) {
+            return 'I could not find that repo in the local snapshot. Try `repos` or `repos --featured`.';
+        }
+
+        return `<strong>${escapeHtml(repo.name)}</strong>
+Category: ${escapeHtml(getRepoCategory(repo.category))}
+Language: ${escapeHtml(repo.language || 'mixed')}
+Tags: ${escapeHtml(repo.tags?.join(', ') || 'not tagged')}
+Why it matters: ${escapeHtml(repo.pitch)}
+Open: <a href="${escapeHtml(repo.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(repo.url)}</a>`;
+    }
+
+    function scrollToSection(sectionId) {
+        const target = document.getElementById(sectionId);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    function getRoleFit(roleKey) {
+        return ROLE_FITS[roleKey] || ROLE_FITS.robotics;
+    }
+
+    function formatHireRole(roleKey) {
+        const role = getRoleFit(roleKey);
+        return `<strong>${escapeHtml(role.title)}</strong>
+${escapeHtml(role.summary)}
+
+Proof: ${escapeHtml(role.proof)}
+Tools: ${escapeHtml(role.tools)}
+Mode: ${escapeHtml(role.mode)}
+
+${role.bullets.map((bullet) => `- ${escapeHtml(bullet)}`).join('\n')}`;
+    }
+
+    function setHireRole(roleKey) {
+        const role = getRoleFit(roleKey);
+        const title = document.getElementById('hire-role-title');
+        const summary = document.getElementById('hire-role-summary');
+        const proof = document.getElementById('hire-role-proof');
+        const tools = document.getElementById('hire-role-tools');
+        const mode = document.getElementById('hire-role-mode');
+        const bullets = document.getElementById('hire-role-bullets');
+
+        if (title) title.textContent = role.title;
+        if (summary) summary.textContent = role.summary;
+        if (proof) proof.textContent = role.proof;
+        if (tools) tools.textContent = role.tools;
+        if (mode) mode.textContent = role.mode;
+        if (bullets) {
+            bullets.replaceChildren(
+                ...role.bullets.map((bullet) => {
+                    const item = document.createElement('li');
+                    item.textContent = bullet;
+                    return item;
+                })
+            );
+        }
+
+        document.querySelectorAll('[data-hire-role]').forEach((button) => {
+            const isActive = button.getAttribute('data-hire-role') === roleKey;
+            button.classList.toggle('is-active', isActive);
+            button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        document.querySelectorAll('[data-command-run^="hire "]').forEach((button) => {
+            if (button.classList.contains('hire-command-button')) {
+                button.setAttribute('data-command-run', `hire ${roleKey}`);
+            }
+        });
+    }
+
+    function initHireCommandCenter() {
+        document.querySelectorAll('[data-hire-role]').forEach((button) => {
+            button.addEventListener('click', () => {
+                setHireRole(button.getAttribute('data-hire-role') || 'robotics');
+            });
+        });
+    }
+
+    function showClippyGuide(message) {
+        const guideMessage =
+            message ||
+            'Old Clippy reporting for duty. I can route you to hire fit, projects, repos, CV, contact, reviews, or the goose.';
+
+        pinClippyGuide(guideMessage);
+    }
+
+    function getCommandResponse(rawCommand) {
+        const command = rawCommand.trim();
+        const normalized = command.toLowerCase();
+        const [verb, ...args] = normalized.split(/\s+/).filter(Boolean);
+
+        if (!command || verb === 'help') {
+            return `<strong>Commands</strong>
+help              show this list
+hire robotics     show role-fit packet
+hire autonomy     match projects to autonomy roles
+hire simulation   match projects to simulation/GNC roles
+hire ai           match projects to AI/tooling roles
+projects          jump to featured work
+repos             show categorized GitHub snapshot
+repos --featured  show the strongest hiring proof
+repos --labs      show experiments and sharp edges
+repo orbital      inspect one repo
+compare bgr lqi   compare two repos
+score repos       show category logic without public numbers
+reviews           epic fictional reviews
+roast yuval       opt-in roast mode
+skills            jump to skills
+contact / hire    email, LinkedIn, GitHub, CV gate
+cv                jump to human-checked public CV
+goose / honk      controlled chaos, explicit click only
+clippy            summon the guide
+honest            mildly spicy truth
+clear             clear the terminal`;
+        }
+
+        if (verb === 'clear') {
+            return '__CLEAR__';
+        }
+
+        if (verb === 'projects') {
+            scrollToSection('projects');
+            return 'Jumping to featured projects. The short version: BGR, orbital LQI, repo summarizer, daily movers agent.';
+        }
+
+        if (verb === 'hire' && args.length > 0) {
+            const roleAlias = {
+                robotics: 'robotics',
+                robot: 'robotics',
+                autonomy: 'autonomy',
+                control: 'autonomy',
+                controls: 'autonomy',
+                simulation: 'simulation',
+                sim: 'simulation',
+                gnc: 'simulation',
+                ai: 'ai',
+                tooling: 'ai',
+                tools: 'ai'
+            };
+            const roleKey = roleAlias[args[0]] || 'robotics';
+            scrollToSection('hire');
+            setHireRole(roleKey);
+            return formatHireRole(roleKey);
+        }
+
+        if (verb === 'fit' || verb === 'proof') {
+            scrollToSection('hire');
+            return `${formatHireRole('robotics')}
+
+Try \`hire autonomy\`, \`hire simulation\`, or \`hire ai\` for a narrower fit.`;
+        }
+
+        if (verb === 'skills') {
+            scrollToSection('skills');
+            return 'Jumping to skills. Control, autonomy, Python, AI tooling, and a stubborn respect for edge cases.';
+        }
+
+        if (verb === 'about') {
+            scrollToSection('about');
+            return 'Jumping to the human-readable background. No résumé fog machine required.';
+        }
+
+        if (verb === 'contact' || verb === 'hire') {
+            scrollToSection('contact');
+            return `<strong>Contact</strong>
+Email: <a href="mailto:${EMAIL_ADDRESS}">${EMAIL_ADDRESS}</a>
+LinkedIn: <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank" rel="noopener noreferrer">linkedin.com/in/yuval-grimberg-933215173</a>
+GitHub: <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer">github.com/grimgrimberg</a>
+CV: public version unlocks after a tiny human check; full-detail PDF can still be requested by email.
+
+The form below builds an email draft. If your mail app refuses to cooperate, copy buttons are waiting like adults.`;
+        }
+
+        if (verb === 'cv' || verb === 'resume') {
+            scrollToSection('contact');
+            return `CV: jump to Contact and pass the tiny human check to reveal the public CV.
+
+The public CV is intentionally scrubbed of phone/private contact details. Static GitHub Pages cannot provide real access control, so this is anti-scraper friction, not a bank vault.`;
+        }
+
+        if (verb === 'github') {
+            return `<a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer">github.com/grimgrimberg</a>`;
+        }
+
+        if (verb === 'linkedin') {
+            return `<a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>`;
+        }
+
+        if (verb === 'repos') {
+            return formatRepos(args[0]);
+        }
+
+        if (verb === 'repo') {
+            return formatRepoDetail(findRepo(args.join(' ')));
+        }
+
+        if (verb === 'compare') {
+            const left = findRepo(args[0] || 'bgr');
+            const right = findRepo(args[1] || 'orbital');
+
+            return `<strong>Comparison</strong>
+
+${formatRepoDetail(left)}
+
+---
+
+${formatRepoDetail(right)}
+
+Verdict: compare scope, not ego. Featured repos show finish; Lab repos show appetite. Both matter, but hiring pages should lead with finish.`;
+        }
+
+        if (verb === 'score' && args[0] === 'repos') {
+            return `<strong>Repo categories, no public numbers</strong>
+Featured: strongest hiring proof, original work, inspectable scope.
+Lab: promising systems that still need polish.
+Tools: developer or AI utilities with product shape.
+Learning Archive: older coursework and experiments.
+Forks / References: useful context, not claimed as original work.
+
+The numeric scoring stays private because turning yourself into a scoreboard is how LinkedIn wins.`;
+        }
+
+        if (verb === 'reviews' || verb === 'references') {
+            scrollToSection('reviews');
+            return `<strong>Epic reviews</strong>
+${FAKE_REVIEWS.map((review) => `- ${escapeHtml(review)}`).join('\n')}`;
+        }
+
+        if (verb === 'roast') {
+            const target = args.join(' ') || 'yuval';
+            const roast = ROAST_LINES[Math.floor(Math.random() * ROAST_LINES.length)];
+            scrollToSection('reviews');
+            showClippy(`Roast mode accepted. ${roast}`, 18000);
+            return `<strong>Roast mode: ${escapeHtml(target)}</strong>
+${escapeHtml(roast)}
+
+This is opt-in. Public surface remains hireable. The terminal is where the eyebrows happen.`;
+        }
+
+        if (verb === 'goose') {
+            const quote = GOOSE_QUOTES[Math.floor(Math.random() * GOOSE_QUOTES.length)];
+            const wisdom = document.getElementById('goose-wisdom');
+            if (wisdom) {
+                wisdom.textContent = `"${quote}"`;
+            }
+            return `Goose says: "${escapeHtml(quote)}"`;
+        }
+
+        if (verb === 'honk') {
+            playHonkSound();
+            return 'Honk delivered. Explicit user action, legally and emotionally clean.';
+        }
+
+        if (verb === 'clippy') {
+            showClippyGuide();
+            return 'Clippy summoned and pinned. Helpful first, spicy sidekick second.';
+        }
+
+        if (verb === 'honest') {
+            return `Honest mode:
+Yuval is strongest where systems thinking, control, Python, and stubborn curiosity overlap.
+Some repos are polished. Some are labs. Some are old learning fossils.
+The flex is not perfection. The flex is range, follow-through, and enough taste to know what deserves the main stage.`;
+        }
+
+        if (verb === 'joke') {
+            return 'A control engineer walks into a bar, overshoots, corrects, oscillates twice, and finally settles near the counter.';
+        }
+
+        return `Unknown command: ${escapeHtml(command)}\nTry \`help\`, \`repos\`, \`projects\`, \`contact\`, or \`goose\`.`;
+    }
+
+    function appendCommandOutput(command, responseHtml) {
+        const output = document.getElementById('command-output');
+        if (!output) {
+            return;
+        }
+
+        if (responseHtml === '__CLEAR__') {
+            output.innerHTML = '';
+            return;
+        }
+
+        const entry = document.createElement('div');
+        entry.className = 'command-line';
+        entry.innerHTML = `
+            <div class="command-input-line">&gt; ${escapeHtml(command || 'help')}</div>
+            <div class="command-response">${responseHtml}</div>
+        `;
+        output.appendChild(entry);
+        output.scrollTop = output.scrollHeight;
+    }
+
+    function runCommand(command) {
+        const response = getCommandResponse(command);
+        commandHistory.push(command);
+        appendCommandOutput(command, response);
+    }
+
+    async function loadRepoSnapshot() {
+        try {
+            const response = await fetch(REPO_SNAPSHOT_URL, { cache: 'no-store' });
+            if (!response.ok) {
+                return;
+            }
+
+            const data = await response.json();
+            if (Array.isArray(data.repos) && data.repos.length > 0) {
+                repoSnapshot = data;
+            }
+        } catch (error) {
+            console.info('Repo snapshot fallback is in use.');
+        }
+    }
+
+    function openCommandPalette(seedCommand) {
+        const palette = document.getElementById('command-palette');
+        const input = document.getElementById('command-input');
+        if (!palette || !input) {
+            return;
+        }
+
+        palette.classList.remove('hidden');
+        document.querySelectorAll('[data-command-open]').forEach((button) => {
+            button.setAttribute('aria-expanded', 'true');
+        });
+
+        if (!commandHistory.length) {
+            appendCommandOutput('welcome', 'Type `help`, `repos`, `projects`, `cv`, `contact`, or `goose`. This is a static GitHub Pages site, so the repo list comes from a baked-in snapshot.');
+        }
+
+        if (seedCommand && seedCommand !== 'help') {
+            input.value = seedCommand;
+        }
+
+        window.setTimeout(() => input.focus(), 0);
+    }
+
+    function closeCommandPalette() {
+        const palette = document.getElementById('command-palette');
+        if (!palette || palette.classList.contains('hidden')) {
+            return;
+        }
+
+        palette.classList.add('hidden');
+        document.querySelectorAll('[data-command-open]').forEach((button) => {
+            button.setAttribute('aria-expanded', 'false');
+        });
+    }
+
+    function initCommandPalette() {
+        const form = document.getElementById('command-form');
+        const input = document.getElementById('command-input');
+
+        document.querySelectorAll('[data-command-open]').forEach((button) => {
+            button.addEventListener('click', () => openCommandPalette());
+        });
+
+        document.querySelectorAll('[data-command-close]').forEach((button) => {
+            button.addEventListener('click', closeCommandPalette);
+        });
+
+        document.querySelectorAll('[data-command-run]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const command = button.getAttribute('data-command-run') || 'help';
+                openCommandPalette();
+                runCommand(command);
+            });
+        });
+
+        if (form && input) {
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const command = input.value.trim() || 'help';
+                input.value = '';
+                runCommand(command);
+            });
+        }
+    }
+
+    function initGuideButtons() {
+        const guideButton = document.getElementById('clippy-guide-button');
+        const gooseButton = document.getElementById('goose-mini-button');
+        const clippyCloseButton = document.getElementById('clippy-close-button');
+        const emailButton = document.getElementById('open-email-client-btn');
+        const gameRequestButton = document.querySelector('[data-game-request]');
+        const copyButtons = [document.getElementById('copy-email-address'), document.getElementById('quick-copy-email')];
+
+        clippyCloseButton?.addEventListener('click', hideClippy);
+        emailButton?.addEventListener('click', openEmailClient);
+        gameRequestButton?.addEventListener('click', showRetroGameRequest);
+
+        document.querySelectorAll('[data-game-source]').forEach((button) => {
+            button.addEventListener('click', () => {
+                openGameSource(button.dataset.gameSource);
+            });
+        });
+
+        guideButton?.addEventListener('click', () => {
+            showClippyGuide('I can guide you to hire fit, projects, contact, CV, repos, reviews, roast mode, or the goose. Start with Command if you like typing.');
+        });
+
+        gooseButton?.addEventListener('click', () => {
+            playHonkSound();
+            const quote = GOOSE_QUOTES[Math.floor(Math.random() * GOOSE_QUOTES.length)];
+            showClippy(`Goose says: ${quote}`, 16000);
+        });
+
+        copyButtons.forEach((button) => {
+            button?.addEventListener('click', () => copyEmailAddress(button));
+        });
+
+        scheduleClippyIntro();
+    }
+
+    function readSourceOpenCount() {
         try {
             const storedValue = window.localStorage.getItem(RETRO_STORAGE_KEY) || '0';
             return Number.parseInt(storedValue, 10) || 0;
@@ -606,22 +1505,22 @@
         }
     }
 
-    function writeDownloadCount(value) {
+    function writeSourceOpenCount(value) {
         try {
             window.localStorage.setItem(RETRO_STORAGE_KEY, String(value));
         } catch (error) {
-            console.info('Could not persist retro download counter.');
+            console.info('Could not persist retro source counter.');
         }
     }
 
-    function updateDownloadCounter() {
-        const counter = document.getElementById('download-count');
+    function updateSourceOpenCounter() {
+        const counter = document.getElementById('source-open-count');
         if (!counter) {
             return;
         }
 
-        counter.textContent = String(downloadCount);
-        if (downloadCount > 0) {
+        counter.textContent = String(sourceOpenCount);
+        if (sourceOpenCount > 0) {
             counter.style.animation = 'pulse 1s ease-in-out';
             window.setTimeout(() => {
                 counter.style.animation = '';
@@ -672,9 +1571,9 @@
 
     function showGameDownloadModal(gameName) {
         const modal = buildModalShell(
-            'GAME',
+            'RETRO SOURCE',
             gameName,
-            'This classic game is ready for download.<br><br><strong>Note:</strong> provide the final download link in the code if you want to self-host it later.'
+            'Opening the external source page for this classic.<br><br><strong>Archive policy:</strong> this portfolio does not host game files, ROMs, cracks, installers, or mystery ZIPs named after your childhood.'
         );
         const actions = modal.querySelector('[data-modal-actions]');
 
@@ -687,7 +1586,7 @@
 
         const note = document.createElement('div');
         note.className = 'text-xs text-gray-400';
-        note.textContent = 'Contact Yuval if you need the original download source.';
+        note.textContent = 'Use external game pages responsibly. Verify availability and licensing before downloading anything.';
         actions.appendChild(note);
 
         document.body.appendChild(modal);
@@ -695,9 +1594,9 @@
 
     function showRetroGameRequest() {
         const modal = buildModalShell(
-            'RETRO',
-            'Request a Retro Game',
-            "Have a favorite 90s game you'd like to see here?<br><br>Send an email request."
+            'RETRO NOMINATION',
+            'Suggest a Retro Entry',
+            "Have a favorite 90s game that belongs in the archive?<br><br>Send the title, source page, and why it deserves shelf space."
         );
         const actions = modal.querySelector('[data-modal-actions]');
 
@@ -706,7 +1605,7 @@
             'Send Request',
             'block w-full bg-gradient-to-r from-tech-purple to-tech-pink text-white font-bold py-3 px-6 rounded-lg text-center',
             null,
-            'mailto:yuval.grimberg@gmail.com?subject=Retro Game Request&body=Hi Yuval! I would love to see this game in your retro collection: '
+            'mailto:yuval.grimberg@gmail.com?subject=Retro Game Archive Nomination&body=Hi Yuval! I would nominate this retro game for the archive:%0D%0A%0D%0ATitle:%0D%0ASource page:%0D%0AWhy it belongs:'
         );
 
         appendModalButton(
@@ -719,11 +1618,11 @@
         document.body.appendChild(modal);
     }
 
-    function downloadGame(gameId) {
+    function openGameSource(gameId) {
         const gameLinks = {
-            'little-fighter-2': 'https://lf2.net/download_lf2_en.html',
-            airxonix: 'https://www.myabandonware.com/download/mc1f-airxonix',
-            elastomania: 'https://archive.org/details/elmav10'
+            'little-fighter-2': 'https://www.lf2.net/en/intro.html',
+            airxonix: 'https://www.myabandonware.com/game/airxonix-iid',
+            elastomania: 'https://elastomania.com/'
         };
 
         const gameNames = {
@@ -744,18 +1643,9 @@
         link.click();
         document.body.removeChild(link);
 
-        downloadCount += 1;
-        writeDownloadCount(downloadCount);
-        updateDownloadCounter();
-
-        if (clippyAgent && clippyLoaded) {
-            clippyAgent.moveTo(200, 300);
-            clippyAgent.show();
-            clippyAgent.play('Congratulate');
-            clippyAgent.speak(`Excellent choice. ${gameNames[gameId]} is opening now.`);
-            scheduleClippyHide(8000, 'Hide');
-            return;
-        }
+        sourceOpenCount += 1;
+        writeSourceOpenCount(sourceOpenCount);
+        updateSourceOpenCounter();
 
         showGameDownloadModal(gameNames[gameId]);
     }
@@ -781,22 +1671,28 @@
 
     function initPage() {
         initAos();
+        initRealClippy();
+        loadRepoSnapshot();
         initProjectCardObserver();
         initFunZone();
         initGooseAnimation();
-        initClippy();
+        initHireCommandCenter();
+        initCvGate();
+        initCommandPalette();
+        initGuideButtons();
         initKeyboardEasterEggs();
         injectRainbowKeyframes();
 
-        downloadCount = readDownloadCount();
-        updateDownloadCounter();
+        sourceOpenCount = readSourceOpenCount();
+        updateSourceOpenCounter();
     }
 
     window.openEmailClient = openEmailClient;
-    window.downloadGame = downloadGame;
+    window.openGameSource = openGameSource;
     window.showRetroGameRequest = showRetroGameRequest;
     window.showClippy = showClippy;
     window.hideClippy = hideClippy;
+    window.openCommandPalette = openCommandPalette;
 
     document.addEventListener('DOMContentLoaded', initPage);
 })();

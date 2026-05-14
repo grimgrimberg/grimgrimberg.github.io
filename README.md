@@ -9,6 +9,7 @@ Static personal site for [grimgrimberg.github.io](https://grimgrimberg.github.io
   - `index.html`
   - `photo.html`
   - `thank-you.html`
+  - `cv.html`
 - Legacy compatibility pages:
   - `about.html`
   - `projects.html`
@@ -71,6 +72,7 @@ npm run serve
 
 - `npm run lint` runs the repo-specific static and runtime hygiene checks.
 - `npm test` runs the maintained Playwright smoke suite.
+- Use `npm run lint` and `npm test -- --reporter=line` as the default acceptance gates before pushing portfolio changes.
 - `npm run build` rebuilds the committed Tailwind CSS used by the site pages.
 - `npm run serve` launches the same local static server shape the smoke suite uses.
 
@@ -87,9 +89,13 @@ assets/
     site-shell.js
     scripts.js
 tests/
+  README.md
+  site-hygiene.spec.js
+  smoke.spec.js
 index.html
 photo.html
 thank-you.html
+cv.html
 ```
 
 ## Notes
