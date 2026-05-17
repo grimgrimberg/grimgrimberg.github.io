@@ -210,7 +210,7 @@
             formData.message,
             '',
             '---',
-            'This message was sent from your portfolio website.',
+            'This draft was generated from your portfolio website.',
             '',
             'Best regards,',
             formData.name
@@ -390,15 +390,15 @@
             <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-tech-green to-tech-cyan rounded-full flex items-center justify-center">
                     <span class="text-2xl text-white" aria-hidden="true">✓</span>
             </div>
-            <h4 class="text-2xl font-bold text-tech-cyan mb-3">Email Client Opened (or Ready)!</h4>
-            <p class="text-gray-300 mb-4">If your default email client did not appear, use the link below or copy the message manually.</p>
+            <h4 class="text-2xl font-bold text-tech-cyan mb-3">Email Draft Ready</h4>
+            <p class="text-gray-300 mb-4">If your mail app did not open, use the link below or copy the draft. No backend, no pretend inbox, no nonsense.</p>
             <div class="space-y-4 max-w-xl mx-auto">
                 <a id="retry-mailto" class="inline-flex items-center space-x-2 bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300">
                     <span aria-hidden="true">✉</span><span>Try Opening Email Again</span>
                 </a>
                 <div class="text-left bg-gray-800/60 border border-gray-700 rounded-lg p-4 overflow-y-auto max-h-56 text-sm font-mono whitespace-pre-wrap break-words" id="email-preview" aria-label="Email preview" tabindex="0"></div>
                 <button type="button" id="copy-email-content" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-colors">Copy Message to Clipboard</button>
-                <a href="index.html#contact" class="text-tech-cyan hover:text-tech-purple text-sm inline-block">Send another message</a>
+                <a href="index.html#contact" class="text-tech-cyan hover:text-tech-purple text-sm inline-block">Build another draft</a>
             </div>
             <div id="contact-status" class="sr-only" aria-live="polite"></div>
         `;
@@ -560,81 +560,27 @@
         }
     }
 
-    function renderGooseFallback(gooseContainer) {
-        const fallbackImage = document.createElement('img');
-        fallbackImage.src = './assets/images/goose.png';
-        fallbackImage.alt = 'Small goose mascot';
-        fallbackImage.loading = 'lazy';
-        fallbackImage.decoding = 'async';
-        fallbackImage.className = 'goose-frame-fallback';
-        gooseContainer.replaceChildren(fallbackImage);
-        gooseContainer.dataset.gooseReady = 'fallback';
-    }
-
-    async function initGooseAnimation() {
+    function initGooseAnimation() {
         const gooseContainer = document.getElementById('goose-fun-zone');
-        if (!gooseContainer || gooseContainer.dataset.gooseReady) {
+        if (!gooseContainer) {
             return;
         }
 
-        gooseContainer.dataset.gooseReady = 'loading';
-
-        try {
-            const response = await fetch('./assets/images/jumpy-goose.json', { cache: 'force-cache' });
-            if (!response.ok) {
-                throw new Error(`Goose animation failed to load: ${response.status}`);
-            }
-
-            const animationData = await response.json();
-            const frames = (animationData.assets || [])
-                .filter((asset) => typeof asset.p === 'string' && asset.p.startsWith('data:image/'))
-                .sort((left, right) => Number(left.id) - Number(right.id))
-                .map((asset) => asset.p);
-
-            if (!frames.length) {
-                throw new Error('Goose animation does not include embedded image frames.');
-            }
-
-            const gooseImage = document.createElement('img');
-            gooseImage.src = frames[0];
-            gooseImage.alt = 'Animated goose mascot';
-            gooseImage.loading = 'lazy';
-            gooseImage.decoding = 'async';
-            gooseImage.className = 'goose-frame-player';
-            gooseImage.dataset.gooseFramePlayer = 'true';
-            gooseImage.dataset.gooseFrame = '0';
-            gooseContainer.replaceChildren(gooseImage);
-            gooseContainer.dataset.gooseReady = 'true';
-            gooseContainer.dataset.gooseFrameCount = String(frames.length);
-
-            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (reducedMotion || frames.length === 1) {
-                return;
-            }
-
-            const frameMs = Math.max(34, 1000 / Number(animationData.fr || 24));
-            let frameIndex = 0;
-            let lastFrameTime = window.performance.now();
-
-            const playNextFrame = (timestamp) => {
-                if (!document.body.contains(gooseImage)) {
-                    return;
-                }
-
-                if (timestamp - lastFrameTime >= frameMs) {
-                    frameIndex = (frameIndex + 1) % frames.length;
-                    gooseImage.src = frames[frameIndex];
-                    gooseImage.dataset.gooseFrame = String(frameIndex);
-                    lastFrameTime = timestamp;
-                }
-
-                window.requestAnimationFrame(playNextFrame);
-            };
-
-            window.requestAnimationFrame(playNextFrame);
-        } catch {
-            renderGooseFallback(gooseContainer);
+        const existingGoose = gooseContainer.querySelector('[data-goose-mascot="true"]');
+        if (existingGoose) {
+            gooseContainer.dataset.gooseReady = 'static';
+            return;
         }
+
+        const gooseImage = document.createElement('img');
+        gooseImage.src = './assets/images/desk-goose.svg';
+        gooseImage.alt = 'Dumb happy desktop goose mascot';
+        gooseImage.loading = 'lazy';
+        gooseImage.decoding = 'async';
+        gooseImage.className = 'goose-frame-fallback goose-desk-goose';
+        gooseImage.dataset.gooseMascot = 'true';
+        gooseContainer.replaceChildren(gooseImage);
+        gooseContainer.dataset.gooseReady = 'static';
     }
 
     function updateRealClippyGlobals() {
@@ -1600,7 +1546,7 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
         const modal = buildModalShell(
             'RETRO NOMINATION',
             'Suggest a Retro Entry',
-            "Have a favorite 90s game that belongs in the archive?<br><br>Send the title, source page, and why it deserves shelf space."
+            "Have a favorite 90s game that belongs on this tiny shelf?<br><br>Send the title, source page, and why it deserves to bully the current selection."
         );
         const actions = modal.querySelector('[data-modal-actions]');
 
@@ -1609,7 +1555,7 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
             'Send Request',
             'block w-full bg-gradient-to-r from-tech-purple to-tech-pink text-white font-bold py-3 px-6 rounded-lg text-center',
             null,
-            'mailto:yuval.grimberg@gmail.com?subject=Retro Game Archive Nomination&body=Hi Yuval! I would nominate this retro game for the archive:%0D%0A%0D%0ATitle:%0D%0ASource page:%0D%0AWhy it belongs:'
+            'mailto:yuval.grimberg@gmail.com?subject=Retro Classics Nomination&body=Hi Yuval! I would nominate this retro game for the classics shelf:%0D%0A%0D%0ATitle:%0D%0ASource page:%0D%0AWhy it belongs:'
         );
 
         appendModalButton(
@@ -1626,13 +1572,19 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
         const gameLinks = {
             'little-fighter-2': 'https://www.lf2.net/en/intro.html',
             airxonix: 'https://www.myabandonware.com/game/airxonix-iid',
-            elastomania: 'https://elastomania.com/'
+            elastomania: 'https://elastomania.com/',
+            jazz: 'https://www.old-games.org/games/jazz',
+            dave: 'https://www.old-games.org/games/dave',
+            skyroads: 'https://www.old-games.org/games/sky'
         };
 
         const gameNames = {
             'little-fighter-2': 'Little Fighter 2',
             airxonix: 'Airxonix',
-            elastomania: 'Elastomania'
+            elastomania: 'Elastomania',
+            jazz: 'Jazz Jackrabbit',
+            dave: 'Dangerous Dave',
+            skyroads: 'SkyRoads'
         };
 
         if (!gameLinks[gameId] || !gameNames[gameId]) {

@@ -31,5 +31,7 @@ they support the portfolio rather than hijacking it.
 
 ## Privacy Guardrails
 
-Keep the public surface to email, LinkedIn, GitHub, CV access, and copy/mailto
-fallbacks. No phone, WhatsApp, or calendar links on the public page.
+Keep the public surface to the real email, LinkedIn, GitHub, CV access, and
+copy/mailto fallbacks. The email must stay visible and usable; privacy is about
+not exposing extra personal channels. No phone, WhatsApp, or calendar links on
+the public page.

@@ -1031,13 +1031,16 @@
                 <div data-aos="fade-up"
                     class="glass-effect rounded-2xl p-8 text-center group hover:scale-105 transition-all duration-300">
                     <div class="text-4xl mb-4">🦆</div>
-                    <h3 class="text-2xl font-bold text-tech-green mb-4">Meet My Assistant</h3>
-                    <p class="text-gray-300 mb-6">Every serious engineer needs a debugging companion. Mine is cute,
-                        opinionated, and legally not responsible for production incidents.</p>
+                    <h3 class="text-2xl font-bold text-tech-green mb-4">Meet Desk Goose</h3>
+                    <p class="text-gray-300 mb-6">Helpful guide first, dumb joyful desk menace second. He is not
+                        qualified to review pull requests, which has never stopped anyone.</p>
 
-                    <!-- Goose Animation Container -->
-                    <div id="goose-fun-zone" class="relative mx-auto mb-6" style="width: 120px; height: 120px;">
-                        <!-- Goose will be loaded here -->
+                    <div id="goose-fun-zone" class="goose-desk-scene relative mx-auto mb-6">
+                        <span class="goose-desk-bubble" aria-hidden="true">help?</span>
+                        <img src="assets/images/desk-goose.svg" alt="Dumb happy desktop goose mascot" width="240" height="220"
+                            loading="lazy" decoding="async" class="goose-frame-fallback goose-desk-goose"
+                            data-goose-mascot="true">
+                        <span class="goose-desk-shadow" aria-hidden="true"></span>
                     </div>
 
                     <div class="space-y-3">
@@ -1110,19 +1113,19 @@
         </div>
     </section>
 
-    <!-- Retro Gaming Archive Section -->
+    <!-- Retro Gaming Classics Section -->
     <section id="retro-games" class="anchor-section retro-archive-section py-20 relative overflow-hidden">
         <div class="absolute inset-0 tech-pattern opacity-30"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="retro-archive-header" data-aos="fade-up">
                 <div>
-                    <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-green mb-4">curated external archive</p>
+                    <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-green mb-4">curated classics shelf</p>
                     <h2 class="text-4xl md:text-5xl font-black mb-6">
-                        Retro Game <span class="gradient-text">Archive</span>
+                        Retro <span class="gradient-text">Classics</span>
                     </h2>
                     <p class="text-xl text-gray-300 max-w-3xl">
-                        A cleaner shelf for games that shaped timing, constraints, loops, and bad posture. No binaries
-                        are hosted here; every action opens a source page in a new tab.
+                        Six old-school games that still explain timing, constraints, flow, and why children in the 90s
+                        developed suspiciously strong patience. No hosted binaries; only source pages.
                     </p>
                 </div>
                 <aside class="retro-archive-note" aria-label="Retro archive access policy">
@@ -1133,12 +1136,12 @@
 
             <div class="retro-policy-grid" data-aos="fade-up" data-aos-delay="80">
                 <div class="retro-policy-card">
-                    <span class="retro-policy-value">9</span>
-                    <span class="retro-policy-label">Curated Entries</span>
+                    <span class="retro-policy-value">6</span>
+                    <span class="retro-policy-label">Curated Classics</span>
                 </div>
                 <div class="retro-policy-card">
-                    <span class="retro-policy-value">6</span>
-                    <span class="retro-policy-label">old-games.org Picks</span>
+                    <span class="retro-policy-value">3</span>
+                    <span class="retro-policy-label">Protected Favorites</span>
                 </div>
                 <div class="retro-policy-card">
                     <span class="retro-policy-value" id="source-open-count">0</span>
@@ -1152,10 +1155,10 @@
 
             <div class="retro-section-title" data-aos="fade-up" data-aos-delay="110">
                 <div>
-                    <p class="font-tech text-sm uppercase tracking-[0.14em] text-tech-cyan">primary shelf</p>
+                    <p class="font-tech text-sm uppercase tracking-[0.14em] text-tech-cyan">one shelf, no landfill</p>
                     <h3>Games I would actually defend in a meeting</h3>
                 </div>
-                <p>Fast to understand, mechanically sharp, and still useful as tiny design lessons.</p>
+                <p>Fast to understand, mechanically sharp, and still useful as tiny design lessons. Also: legally safer than hosting mystery ZIPs.</p>
             </div>
 
             <div class="retro-game-grid retro-catalog-grid">
@@ -1206,18 +1209,8 @@
                         <span aria-hidden="true">↗</span>Open Source Page
                     </button>
                 </article>
-            </div>
 
-            <div class="retro-section-title mt-14" data-aos="fade-up" data-aos-delay="260">
-                <div>
-                    <p class="font-tech text-sm uppercase tracking-[0.14em] text-tech-purple">external archive shelf</p>
-                    <h3>Selected old-games.org entries</h3>
-                </div>
-                <p>Classic pages kept separate from hosted files, because this is a portfolio, not a suspicious folder named “final_final_REAL”.</p>
-            </div>
-
-            <div class="retro-game-grid retro-catalog-grid">
-                <article data-aos="fade-up" data-aos-delay="300" class="retro-game-card" data-old-game>
+                <article data-aos="fade-up" data-aos-delay="260" class="retro-game-card">
                     <div class="retro-card-topline">
                         <span class="retro-card-icon" aria-hidden="true">🐇</span>
                         <span class="retro-source-pill">old-games.org</span>
@@ -1228,60 +1221,28 @@
                         <div><dt>Genre</dt><dd>Platformer</dd></div>
                         <div><dt>Signal</dt><dd>Speed, rhythm, visual clarity.</dd></div>
                     </dl>
-                    <a href="https://www.old-games.org/games/jazz" target="_blank" rel="noopener noreferrer" class="retro-link-button touch-target">
-                        <span aria-hidden="true">↗</span>Open Game Page
-                    </a>
+                    <button type="button" data-game-source="jazz" class="retro-game-action touch-target">
+                        <span aria-hidden="true">↗</span>Open Source Page
+                    </button>
                 </article>
 
-                <article data-aos="fade-up" data-aos-delay="330" class="retro-game-card" data-old-game>
+                <article data-aos="fade-up" data-aos-delay="300" class="retro-game-card">
                     <div class="retro-card-topline">
-                        <span class="retro-card-icon" aria-hidden="true">🚀</span>
+                        <span class="retro-card-icon" aria-hidden="true">🧢</span>
                         <span class="retro-source-pill">old-games.org</span>
                     </div>
-                    <h3>Commander Keen 4</h3>
-                    <p>Space-kid platforming with enough charm to forgive every pixel that aged like DOS cheese.</p>
+                    <h3>Dangerous Dave</h3>
+                    <p>Small, brutal, and instantly readable. A reminder that level design can be simple and still bully your ego.</p>
                     <dl class="retro-card-meta">
                         <div><dt>Genre</dt><dd>Platformer</dd></div>
-                        <div><dt>Signal</dt><dd>Exploration, pacing, readable hazards.</dd></div>
+                        <div><dt>Signal</dt><dd>Timing, risk, primitive controls with consequences.</dd></div>
                     </dl>
-                    <a href="https://www.old-games.org/games/keen4" target="_blank" rel="noopener noreferrer" class="retro-link-button touch-target">
-                        <span aria-hidden="true">↗</span>Open Game Page
-                    </a>
+                    <button type="button" data-game-source="dave" class="retro-game-action touch-target">
+                        <span aria-hidden="true">↗</span>Open Source Page
+                    </button>
                 </article>
 
-                <article data-aos="fade-up" data-aos-delay="360" class="retro-game-card" data-old-game>
-                    <div class="retro-card-topline">
-                        <span class="retro-card-icon" aria-hidden="true">💾</span>
-                        <span class="retro-source-pill">old-games.org</span>
-                    </div>
-                    <h3>Supaplex</h3>
-                    <p>Bug-hunting puzzle logic. Basically debugging, but with better music and fewer meetings.</p>
-                    <dl class="retro-card-meta">
-                        <div><dt>Genre</dt><dd>Puzzle</dd></div>
-                        <div><dt>Signal</dt><dd>Planning, deadlock avoidance, state discipline.</dd></div>
-                    </dl>
-                    <a href="https://www.old-games.org/games/supaplex" target="_blank" rel="noopener noreferrer" class="retro-link-button touch-target">
-                        <span aria-hidden="true">↗</span>Open Game Page
-                    </a>
-                </article>
-
-                <article data-aos="fade-up" data-aos-delay="390" class="retro-game-card" data-old-game>
-                    <div class="retro-card-topline">
-                        <span class="retro-card-icon" aria-hidden="true">⌛</span>
-                        <span class="retro-source-pill">old-games.org</span>
-                    </div>
-                    <h3>Prince of Persia</h3>
-                    <p>One hour, many spikes, and a beautiful reminder that timing matters more than confidence.</p>
-                    <dl class="retro-card-meta">
-                        <div><dt>Genre</dt><dd>Cinematic platformer</dd></div>
-                        <div><dt>Signal</dt><dd>Animation-first design, precision, punishment.</dd></div>
-                    </dl>
-                    <a href="https://www.old-games.org/games/prince" target="_blank" rel="noopener noreferrer" class="retro-link-button touch-target">
-                        <span aria-hidden="true">↗</span>Open Game Page
-                    </a>
-                </article>
-
-                <article data-aos="fade-up" data-aos-delay="420" class="retro-game-card" data-old-game>
+                <article data-aos="fade-up" data-aos-delay="340" class="retro-game-card">
                     <div class="retro-card-topline">
                         <span class="retro-card-icon" aria-hidden="true">🛣</span>
                         <span class="retro-source-pill">old-games.org</span>
@@ -1292,29 +1253,13 @@
                         <div><dt>Genre</dt><dd>Arcade / runner</dd></div>
                         <div><dt>Signal</dt><dd>Reaction loops, resource pressure, flow.</dd></div>
                     </dl>
-                    <a href="https://www.old-games.org/games/sky" target="_blank" rel="noopener noreferrer" class="retro-link-button touch-target">
-                        <span aria-hidden="true">↗</span>Open Game Page
-                    </a>
-                </article>
-
-                <article data-aos="fade-up" data-aos-delay="450" class="retro-game-card" data-old-game>
-                    <div class="retro-card-topline">
-                        <span class="retro-card-icon" aria-hidden="true">🗺</span>
-                        <span class="retro-source-pill">old-games.org</span>
-                    </div>
-                    <h3>Little Big Adventure</h3>
-                    <p>Adventure brain, weird world, and the correct amount of 90s mystery.</p>
-                    <dl class="retro-card-meta">
-                        <div><dt>Genre</dt><dd>Adventure</dd></div>
-                        <div><dt>Signal</dt><dd>World logic, discovery, narrative constraints.</dd></div>
-                    </dl>
-                    <a href="https://www.old-games.org/games/lba1" target="_blank" rel="noopener noreferrer" class="retro-link-button touch-target">
-                        <span aria-hidden="true">↗</span>Open Game Page
-                    </a>
+                    <button type="button" data-game-source="skyroads" class="retro-game-action touch-target">
+                        <span aria-hidden="true">↗</span>Open Source Page
+                    </button>
                 </article>
             </div>
 
-            <div class="retro-request-card mt-14" data-aos="fade-up" data-aos-delay="480">
+            <div class="retro-request-card mt-14" data-aos="fade-up" data-aos-delay="380">
                 <div>
                     <p class="font-tech text-sm uppercase tracking-[0.14em] text-tech-green mb-2">nomination lane</p>
                     <h3>Missing a classic?</h3>
@@ -1328,236 +1273,165 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="anchor-section py-20 relative overflow-hidden">
+    <section id="contact" class="anchor-section contact-command-section py-20 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-tech-dark via-gray-900 to-tech-dark"></div>
         <div class="absolute inset-0 tech-pattern opacity-40"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="contact-command-hero text-center mb-16" data-aos="fade-up">
+                <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-cyan mb-4">safe contact surface</p>
                 <h2 class="text-4xl md:text-5xl font-black mb-6">
-                    Let's <span class="gradient-text">Connect</span>
+                    Hire Me <span class="gradient-text">Command Center</span>
                 </h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Email is the source of truth here. The form builds a clean draft, and the fallback copy buttons are
-                    hard to miss because fake form magic is not a personality trait.
+                    Real email, clear links, no phone-number buffet for scrapers. The site helps people reach me without
+                    pretending this static page has a secret CRM under the floorboards.
                 </p>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Contact Form -->
-                <div data-aos="fade-right" class="glass-effect rounded-2xl p-8">
-                    <div class="text-center mb-8">
-                        <h3 class="text-3xl font-bold text-tech-cyan mb-3">Send a Message</h3>
-                        <p class="text-gray-300">Tell me what you are building, hiring for, or trying to untangle.</p>
+            <div class="contact-hero-email" data-aos="fade-up" data-aos-delay="80">
+                <span>Direct email</span>
+                <a href="mailto:yuval.grimberg@gmail.com">yuval.grimberg@gmail.com</a>
+                <small>No burner, no phone number buffet.</small>
+            </div>
+
+            <div class="contact-command-grid">
+                <aside data-aos="fade-right" class="contact-direct-panel glass-effect">
+                    <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-green mb-3">fast path</p>
+                    <h3>Reach me without weird rituals</h3>
+                    <p class="contact-direct-copy">
+                        This is my real contact route. I am keeping phone, WhatsApp, and calendar links off public GitHub
+                        Pages, but email stays obvious because hiring should not require archaeology.
+                    </p>
+
+                    <div class="contact-email-strip" aria-label="Primary email address">
+                        <span>Email</span>
+                        <strong>yuval.grimberg@gmail.com</strong>
+                        <button type="button" id="copy-email-address" class="touch-target">
+                            <span aria-hidden="true">⧉</span>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+                    <p id="copy-email-status" class="contact-copy-status" aria-live="polite"></p>
+
+                    <div class="contact-action-grid" aria-label="Primary contact actions">
+                        <a href="mailto:yuval.grimberg@gmail.com?subject=Portfolio%20Contact&body=Hi%20Yuval,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20discuss..."
+                            class="contact-action-card touch-target">
+                            <span aria-hidden="true">✉</span>
+                            <strong>Email draft</strong>
+                            <small>opens your mail app</small>
+                        </a>
+                        <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
+                            rel="noopener noreferrer" class="contact-action-card touch-target">
+                            <span aria-hidden="true">in</span>
+                            <strong>LinkedIn</strong>
+                            <small>professional surface</small>
+                        </a>
+                        <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
+                            class="contact-action-card touch-target">
+                            <span aria-hidden="true">GH</span>
+                            <strong>GitHub</strong>
+                            <small>code and projects</small>
+                        </a>
+                        <a href="#cv-gate" class="contact-action-card touch-target">
+                            <span aria-hidden="true">CV</span>
+                            <strong>Public CV</strong>
+                            <small>human check below</small>
+                        </a>
+                    </div>
+                </aside>
+
+                <form data-aos="fade-up" class="contact-draft-card glass-effect" id="simple-contact-form" novalidate>
+                    <div class="contact-card-header">
+                        <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-cyan mb-3">draft helper</p>
+                        <h3>Build a clean email</h3>
+                        <p>Static site, zero backend. This only creates a mailto draft and leaves the fallback email visible.</p>
                     </div>
 
-                    <!-- Simple Email Form (No External Services Needed) -->
-                    <form class="space-y-6" id="simple-contact-form" novalidate>
+                    <div class="contact-field-grid">
                         <div>
-                            <label for="contact-name" class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
-                            <input type="text" name="name" id="contact-name" required
-                                autocomplete="name"
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500"
+                            <label for="contact-name">Name *</label>
+                            <input type="text" name="name" id="contact-name" required autocomplete="name"
                                 placeholder="Your Name">
                         </div>
                         <div>
-                            <label for="contact-email" class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
-                            <input type="email" name="email" id="contact-email" required
-                                autocomplete="email"
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500"
+                            <label for="contact-email">Email *</label>
+                            <input type="email" name="email" id="contact-email" required autocomplete="email"
                                 placeholder="your.email@company.com">
                         </div>
-                        <div>
-                            <label for="contact-subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
-                            <select name="subject" id="contact-subject"
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white transition-all duration-300 hover:border-gray-500">
-                                <option value="General Inquiry">General Inquiry</option>
-                                <option value="Job Opportunity">Job Opportunity</option>
-                                <option value="Collaboration Proposal">Collaboration Proposal</option>
-                                <option value="Consultation Request">Consultation Request</option>
-                                <option value="Technical Discussion">Technical Discussion</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="contact-message" class="block text-sm font-medium text-gray-300 mb-2">Message *</label>
-                            <textarea name="message" id="contact-message" rows="4" required
-                                autocomplete="off"
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500 resize-vertical"
-                                placeholder="Tell me about your project or opportunity..."></textarea>
-                        </div>
+                    </div>
+                    <div>
+                        <label for="contact-subject">Subject</label>
+                        <select name="subject" id="contact-subject">
+                            <option value="Job Opportunity">Job Opportunity</option>
+                            <option value="Robotics / Autonomy Role">Robotics / Autonomy Role</option>
+                            <option value="AI Tooling Role">AI Tooling Role</option>
+                            <option value="Simulation / Controls Work">Simulation / Controls Work</option>
+                            <option value="Collaboration Proposal">Collaboration Proposal</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="contact-message">Message *</label>
+                        <textarea name="message" id="contact-message" rows="5" required autocomplete="off"
+                            placeholder="Tell me what you are building, hiring for, or trying to untangle..."></textarea>
+                    </div>
 
-                        <!-- Email Button - Opens user's email client with pre-filled content -->
-                        <button type="button" id="open-email-client-btn"
-                            class="w-full bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                            <span class="flex items-center justify-center space-x-3">
-                                <span class="text-lg">Open Email Draft</span>
-                                <span aria-hidden="true" class="text-lg">✉</span>
-                            </span>
-                        </button>
+                    <button type="button" id="open-email-client-btn" class="contact-primary-button touch-target">
+                        <span>Open Email Draft</span>
+                        <span aria-hidden="true">✉</span>
+                    </button>
+                    <p class="contact-zero-backend-note">
+                        If mailto misbehaves, copy the email above. The fallback is intentionally hard to miss.
+                    </p>
+                    <div id="contact-status" class="sr-only" aria-live="polite"></div>
+                </form>
 
-                        <!-- Success Message - Shows after email is opened -->
-                        <div id="email-success" style="display: none;"
-                            class="mt-6 p-6 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl shadow-md">
-                            <div class="text-center">
-                                <div class="flex justify-center mb-3">
-                                    <span aria-hidden="true" class="text-3xl text-green-600">✓</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-green-800 mb-2">Email Client Opened!</h3>
-                                <p class="text-sm text-green-700 mb-4">Your email should now be open with a pre-filled
-                                    message.</p>
-
-                                <div class="bg-white p-4 rounded-lg shadow-inner mb-4">
-                                    <p class="text-xs text-gray-600 mb-2">Preview of email content:</p>
-                                    <div class="text-left">
-                                        <p class="text-sm font-semibold text-gray-800">To: yuval.grimberg@gmail.com</p>
-                                        <p class="text-sm font-semibold text-gray-800" id="email-subject-preview">
-                                            Subject: </p>
-                                        <p class="text-sm text-gray-700 mt-2" id="email-body-preview"></p>
-                                    </div>
-                                </div>
-
-                                <button type="button"
-                                    class="bg-tech-cyan hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg">
-                                    <span class="flex items-center justify-center space-x-2">
-                                        <span aria-hidden="true">⧉</span>
-                                        <span>Copy Email Content</span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div id="contact-status" class="sr-only" aria-live="polite"></div>
-
-                        <!-- Alternative: Direct email link -->
-                        <div class="text-center mt-8 p-6 glass-effect rounded-xl border border-gray-600/50">
-                            <p class="text-gray-300 text-sm mb-4 font-medium">No mail app? No problem.</p>
-                            <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                                <a href="mailto:yuval.grimberg@gmail.com?subject=Portfolio%20Contact&body=Hi%20Yuval,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20discuss..."
-                                    class="inline-flex items-center justify-center space-x-3 px-5 py-3 bg-tech-cyan/20 hover:bg-tech-cyan/30 border border-tech-cyan/50 rounded-lg text-tech-cyan hover:text-white font-medium transition-all duration-300">
-                                    <span aria-hidden="true" class="text-lg">✉</span>
-                                    <span>Email Yuval</span>
-                                </a>
-                                <button type="button" id="copy-email-address"
-                                    class="inline-flex items-center justify-center space-x-3 px-5 py-3 bg-tech-purple/20 hover:bg-tech-purple/30 border border-tech-purple/50 rounded-lg text-tech-purple hover:text-white font-medium transition-all duration-300">
-                                    <span aria-hidden="true" class="text-lg">⧉</span>
-                                    <span>Copy Email Address</span>
-                                </button>
-                            </div>
-                            <p id="copy-email-status" class="mt-3 text-sm text-tech-green min-h-[1.25rem]" aria-live="polite"></p>
-                        </div>
-                    </form>
+                <div data-aos="fade-up" class="contact-support-panel glass-effect">
+                    <h3>Availability Status</h3>
+                    <div class="contact-availability">
+                        <span aria-hidden="true"></span>
+                        <strong>Currently Available</strong>
+                    </div>
+                    <p>
+                        Open to robotics, autonomy, simulation, and AI/tooling roles. Based in Israel, open to remote or
+                        relocation.
+                    </p>
+                    <ul>
+                        <li>Robotics and autonomy software</li>
+                        <li>Simulation, controls, and GNC</li>
+                        <li>Python tooling and AI pipelines</li>
+                        <li>Useful chaos in measured doses</li>
+                    </ul>
                 </div>
 
-                <!-- Contact Info & Quick Actions -->
-                <div data-aos="fade-left" class="space-y-8">
-                    <!-- Quick Contact -->
-                    <div class="glass-effect rounded-2xl p-8">
-                        <h3 class="text-2xl font-bold text-tech-purple mb-6">Quick Connect</h3>
-                        <div class="space-y-4">
-                            <a href="mailto:yuval.grimberg@gmail.com"
-                                class="flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-purple/10 transition-colors group">
-                                <div
-                                    class="w-12 h-12 bg-gradient-to-br from-tech-purple to-tech-cyan rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <span aria-hidden="true" class="text-white">✉</span>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-white">Email</div>
-                                    <div class="text-gray-400 text-sm">opens a direct draft</div>
-                                </div>
-                            </a>
-
-                            <button type="button" id="quick-copy-email"
-                                class="w-full flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-purple/10 transition-colors group text-left">
-                                <div
-                                    class="w-12 h-12 bg-gradient-to-br from-tech-purple to-tech-cyan rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <span aria-hidden="true" class="text-white">⧉</span>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-white">Copy Email</div>
-                                    <div class="text-gray-400 text-sm">yuval.grimberg@gmail.com</div>
-                                </div>
-                            </button>
-
-                            <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
-                                rel="noopener noreferrer"
-                                class="flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-cyan/10 transition-colors group">
-                                <div
-                                    class="w-12 h-12 bg-gradient-to-br from-tech-cyan to-tech-green rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <span aria-hidden="true" class="text-white text-sm font-bold">in</span>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-white">LinkedIn</div>
-                                    <div class="text-gray-400 text-sm">Professional Network</div>
-                                </div>
-                            </a>
-
-                            <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
-                                class="flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-green/10 transition-colors group">
-                                <div
-                                    class="w-12 h-12 bg-gradient-to-br from-tech-green to-tech-purple rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <span aria-hidden="true" class="text-white text-sm font-bold">GH</span>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-white">GitHub</div>
-                                    <div class="text-gray-400 text-sm">View Code & Projects</div>
-                                </div>
-                            </a>
-                        </div>
+                <div data-aos="fade-left" class="cv-gate glass-effect" id="cv-gate">
+                    <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-purple mb-3">public cv gate</p>
+                    <h3>Tiny Human Check, Then CV</h3>
+                    <p>
+                        Anyone human can open the public CV. This is anti-scraper friction, not pretend security. The
+                        public version keeps phone/private details off GitHub Pages.
+                    </p>
+                    <label for="cv-human-answer">Prove you are not a lazy bot: what is 8 + 5?</label>
+                    <div class="cv-gate-row">
+                        <input id="cv-human-answer" type="text" inputmode="numeric" autocomplete="off"
+                            class="cv-gate-input" aria-describedby="cv-gate-status" placeholder="13">
+                        <button type="button" id="cv-unlock-button" class="cv-unlock-button touch-target">
+                            Unlock CV
+                        </button>
                     </div>
-
-                    <!-- Availability Status -->
-                    <div class="glass-effect rounded-2xl p-8">
-                        <h3 class="text-2xl font-bold text-tech-green mb-4">Availability Status</h3>
-                        <div class="flex items-center space-x-3 mb-4">
-                            <div class="w-4 h-4 bg-tech-green rounded-full animate-pulse"></div>
-                            <span class="text-tech-green font-semibold">Currently Available</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-4">
-                            Open to robotics, autonomy, simulation, and AI/tooling roles. Based in Israel, open to remote
-                            or relocation.
-                        </p>
-                        <ul class="text-sm text-gray-300 space-y-1">
-                            <li>• Robotics and autonomy software</li>
-                            <li>• Simulation, controls, and GNC</li>
-                            <li>• Python tooling and AI pipelines</li>
-                            <li>• Teams that like useful chaos in measured doses</li>
-                        </ul>
-                    </div>
-
-                    <!-- Human-checked public CV -->
-                    <div class="cv-gate glass-effect rounded-2xl p-8" id="cv-gate">
-                        <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-purple mb-3">public cv gate</p>
-                        <h3 class="text-2xl font-bold text-white mb-4">Tiny Human Check, Then CV</h3>
-                        <p class="text-gray-300 text-sm mb-5">
-                            Anyone human can open the public CV. This is zero-backend anti-scraper friction, not
-                            pretend security. The public version keeps phone/private details off GitHub Pages.
-                        </p>
-                        <label for="cv-human-answer" class="block text-sm font-semibold text-gray-200 mb-2">
-                            Prove you are not a lazy bot: what is 8 + 5?
-                        </label>
-                        <div class="cv-gate-row">
-                            <input id="cv-human-answer" type="text" inputmode="numeric" autocomplete="off"
-                                class="cv-gate-input"
-                                aria-describedby="cv-gate-status"
-                                placeholder="13">
-                            <button type="button" id="cv-unlock-button" class="cv-unlock-button touch-target">
-                                Unlock CV
-                            </button>
-                        </div>
-                        <p id="cv-gate-status" class="text-sm min-h-[1.25rem] mt-3 text-gray-400" aria-live="polite">
-                            The answer is not stored, sent, or made weird.
-                        </p>
-                        <div id="cv-unlocked-panel" class="cv-unlocked-panel mt-5" hidden>
-                            <a id="cv-public-link" class="cv-public-link touch-target">
-                                <span aria-hidden="true">↗</span>
-                                <span>Open Public CV</span>
-                            </a>
-                            <a href="mailto:yuval.grimberg@gmail.com?subject=Full%20CV%20PDF%20Request&body=Hi%20Yuval,%0D%0A%0D%0AI%20saw%20your%20portfolio%20and%20would%20like%20the%20full%20CV%20PDF."
-                                class="cv-secondary-link touch-target">
-                                Need the full PDF? Email me
-                            </a>
-                        </div>
+                    <p id="cv-gate-status" class="text-sm min-h-[1.25rem] mt-3 text-gray-400" aria-live="polite">
+                        The answer is not stored, sent, or made weird.
+                    </p>
+                    <div id="cv-unlocked-panel" class="cv-unlocked-panel mt-5" hidden>
+                        <a id="cv-public-link" class="cv-public-link touch-target">
+                            <span aria-hidden="true">↗</span>
+                            <span>Open Public CV</span>
+                        </a>
+                        <a href="mailto:yuval.grimberg@gmail.com?subject=Full%20CV%20PDF%20Request&body=Hi%20Yuval,%0D%0A%0D%0AI%20saw%20your%20portfolio%20and%20would%20like%20the%20full%20CV%20PDF."
+                            class="cv-secondary-link touch-target">
+                            Need the full PDF? Email me
+                        </a>
                     </div>
                 </div>
             </div>

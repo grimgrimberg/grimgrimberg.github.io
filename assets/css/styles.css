@@ -301,6 +301,8 @@ html {
 .roast-button,
 .retro-link-button,
 .retro-game-action,
+.contact-primary-button,
+.contact-email-strip button,
 .cv-unlock-button,
 .cv-public-link,
 .cv-secondary-link {
@@ -637,6 +639,264 @@ html {
 
 .retro-request-card p {
   color: #d1d5db;
+}
+
+.contact-command-section {
+  background:
+    linear-gradient(90deg, rgba(242, 184, 75, 0.05) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(rgba(56, 216, 200, 0.06) 1px, transparent 1px) 0 0 / 64px 64px,
+    #05070a;
+}
+
+.contact-hero-email {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  margin: -1.25rem auto 2rem;
+  max-width: 58rem;
+  border: 1px solid rgba(242, 184, 75, 0.38);
+  border-radius: 0.5rem;
+  background: rgba(5, 7, 10, 0.72);
+  padding: 0.9rem 1rem;
+}
+
+.contact-hero-email span,
+.contact-hero-email small {
+  color: #9ca3af;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: "JetBrains Mono", Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.contact-hero-email a {
+  color: #f6f1e8;
+  overflow-wrap: anywhere;
+  font-weight: 900;
+}
+
+.contact-hero-email a:hover,
+.contact-hero-email a:focus-visible {
+  color: #f2b84b;
+}
+
+.contact-command-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.contact-direct-panel,
+.contact-draft-card,
+.contact-support-panel,
+.cv-gate {
+  border-radius: 0.5rem;
+  padding: clamp(1.25rem, 2.6vw, 2rem);
+}
+
+.contact-direct-panel {
+  min-height: 100%;
+}
+
+.contact-direct-panel h3,
+.contact-draft-card h3,
+.contact-support-panel h3,
+.cv-gate h3 {
+  margin-bottom: 0.75rem;
+  color: #f6f1e8;
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  font-weight: 900;
+}
+
+.contact-direct-copy,
+.contact-card-header p,
+.contact-support-panel p,
+.cv-gate p {
+  color: #d1d5db;
+  line-height: 1.65;
+}
+
+.contact-email-strip {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.85rem;
+  align-items: center;
+  margin: 1.5rem 0 0.4rem;
+  border: 1px solid rgba(242, 184, 75, 0.42);
+  border-radius: 0.5rem;
+  background: rgba(242, 184, 75, 0.1);
+  padding: 0.85rem;
+}
+
+.contact-email-strip span:first-child {
+  color: #f2b84b;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: "JetBrains Mono", Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.contact-email-strip strong {
+  min-width: 0;
+  color: #f6f1e8;
+  overflow-wrap: anywhere;
+}
+
+.contact-email-strip button,
+.contact-primary-button {
+  min-height: 46px;
+  padding: 0.72rem 1rem;
+}
+
+.contact-email-strip button {
+  gap: 0.4rem;
+  border: 1px solid rgba(246, 241, 232, 0.18);
+  background: rgba(5, 7, 10, 0.58);
+  color: #f6f1e8;
+}
+
+.contact-copy-status {
+  min-height: 1.35rem;
+  color: #9bd66b;
+  font-size: 0.9rem;
+}
+
+.contact-action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+}
+
+.contact-action-card {
+  display: grid;
+  gap: 0.25rem;
+  min-height: 7.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.055);
+  padding: 1rem;
+  color: #f6f1e8;
+  transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.contact-action-card:hover,
+.contact-action-card:focus-visible {
+  border-color: rgba(56, 216, 200, 0.48);
+  background: rgba(56, 216, 200, 0.1);
+  transform: translateY(-2px);
+}
+
+.contact-action-card span {
+  color: #38d8c8;
+  font-weight: 900;
+}
+
+.contact-action-card small {
+  color: #9ca3af;
+}
+
+.contact-draft-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-card-header {
+  margin-bottom: 0.25rem;
+}
+
+.contact-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.contact-draft-card label,
+.cv-gate label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.contact-draft-card input,
+.contact-draft-card select,
+.contact-draft-card textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0.5rem;
+  background: rgba(5, 7, 10, 0.68);
+  color: #f6f1e8;
+  outline: 0;
+  padding: 0.85rem 0.95rem;
+}
+
+.contact-draft-card textarea {
+  resize: vertical;
+}
+
+.contact-draft-card input:focus,
+.contact-draft-card select:focus,
+.contact-draft-card textarea:focus {
+  border-color: rgba(56, 216, 200, 0.62);
+  box-shadow: 0 0 0 3px rgba(56, 216, 200, 0.13);
+}
+
+.contact-primary-button {
+  gap: 0.65rem;
+  background: #f2b84b;
+  color: #05070a;
+}
+
+.contact-zero-backend-note {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.contact-support-panel {
+  border-color: rgba(155, 214, 107, 0.24);
+}
+
+.contact-availability {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: #9bd66b;
+}
+
+.contact-availability span {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 9999px;
+  background: #9bd66b;
+  box-shadow: 0 0 20px rgba(155, 214, 107, 0.72);
+}
+
+.contact-support-panel ul {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  color: #d1d5db;
+}
+
+.contact-support-panel li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.contact-support-panel li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: #9bd66b;
+  font-family: "JetBrains Mono", Monaco, Consolas, monospace;
+  font-weight: 900;
 }
 
 .cv-gate {
@@ -1050,31 +1310,76 @@ html {
   border: 1px solid rgba(244, 63, 94, 0.44);
 }
 
-.goose-frame-player,
-.goose-frame-fallback {
+.goose-desk-scene {
+  width: 148px;
+  height: 148px;
+  isolation: isolate;
+}
+
+.goose-frame-fallback,
+.goose-desk-goose {
   width: 100%;
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.34));
 }
 
-.goose-frame-player {
-  animation: goose-hover 4.6s ease-in-out infinite;
+.goose-desk-goose {
+  position: relative;
+  z-index: 2;
+  animation: goose-waddle 3.8s ease-in-out infinite;
+  transform-origin: 50% 88%;
 }
 
-@keyframes goose-hover {
+.goose-desk-bubble {
+  position: absolute;
+  top: 0.2rem;
+  right: -0.45rem;
+  z-index: 3;
+  border: 1px solid rgba(246, 241, 232, 0.22);
+  border-radius: 9999px;
+  background: rgba(5, 7, 10, 0.78);
+  color: #f2b84b;
+  padding: 0.25rem 0.55rem;
+  font-family: "JetBrains Mono", Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+  transform: rotate(7deg);
+}
+
+.goose-desk-shadow {
+  position: absolute;
+  right: 1.1rem;
+  bottom: 0.18rem;
+  left: 1.1rem;
+  z-index: 1;
+  height: 0.72rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.34);
+  filter: blur(4px);
+}
+
+@keyframes goose-waddle {
   0%,
   100% {
-    transform: translateY(0) rotate(-1deg);
+    transform: translateX(0) translateY(0) rotate(-2deg);
+  }
+
+  25% {
+    transform: translateX(-3px) translateY(-2px) rotate(2deg);
   }
 
   50% {
-    transform: translateY(-6px) rotate(1deg);
+    transform: translateX(2px) translateY(0) rotate(-1deg);
+  }
+
+  75% {
+    transform: translateX(4px) translateY(-3px) rotate(2deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .goose-frame-player {
+  .goose-desk-goose {
     animation: none;
   }
 }
@@ -1082,6 +1387,28 @@ html {
 @media (max-width: 640px) {
   .anchor-section {
     padding-bottom: 8rem;
+  }
+
+  .contact-command-section.anchor-section {
+    padding-top: 3rem;
+  }
+
+  .contact-command-hero {
+    margin-bottom: 2rem;
+  }
+
+  .contact-hero-email {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    margin-top: -0.75rem;
+    text-align: center;
+  }
+
+  .contact-direct-panel,
+  .contact-draft-card,
+  .contact-support-panel,
+  .cv-gate {
+    padding: 1.25rem;
   }
 
   .portfolio-fab-stack {
@@ -1130,6 +1457,10 @@ html {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .contact-command-grid {
+    grid-template-columns: 1fr;
+  }
+
   .retro-section-title {
     align-items: start;
     flex-direction: column;
@@ -1154,7 +1485,9 @@ html {
   .hire-role-tabs,
   .retro-policy-grid,
   .retro-catalog-grid,
-  .review-grid {
+  .review-grid,
+  .contact-action-grid,
+  .contact-field-grid {
     grid-template-columns: 1fr;
   }
 

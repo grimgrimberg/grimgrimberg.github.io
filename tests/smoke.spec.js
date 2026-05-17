@@ -121,10 +121,11 @@ test.describe('maintained smoke suite', () => {
         await expect(page.locator('#reviews')).toContainText('Ray Charles');
         await expect(page.locator('#reviews')).toContainText('Stephen Hawking');
         await expect(page.locator('#reviews')).toContainText('Doctor Strange');
-        await expect(page.locator('#retro-games')).toContainText('Retro Game Archive');
+        await expect(page.locator('#retro-games')).toContainText('Retro Classics');
         await expect(page.locator('#retro-games')).toContainText('Hosted Game Files');
-        await expect(page.locator('#retro-games [data-game-source]')).toHaveCount(3);
-        await expect(page.locator('#retro-games .retro-game-grid [data-old-game]')).toHaveCount(6);
+        await expect(page.locator('#retro-games [data-game-source]')).toHaveCount(6);
+        await expect(page.locator('#retro-games')).toContainText('Dangerous Dave');
+        await expect(page.locator('#retro-games')).toContainText('SkyRoads');
         await page.waitForFunction(() => window.clippyLoaded === true && Boolean(window.clippyAgent), null, {
             timeout: 10000
         });
@@ -161,14 +162,10 @@ test.describe('maintained smoke suite', () => {
         }
 
         await page.click('#goose-talk');
-        const goosePlayer = page.locator('[data-goose-frame-player="true"]');
-        await expect(goosePlayer).toBeAttached();
-        const firstGooseFrame = await goosePlayer.getAttribute('data-goose-frame');
-        await expect.poll(() => goosePlayer.getAttribute('data-goose-frame'), {
-            message: 'animated goose should advance frames',
-            timeout: 3000
-        })
-            .not.toBe(firstGooseFrame);
+        const gooseMascot = page.locator('[data-goose-mascot="true"]');
+        await expect(gooseMascot).toBeAttached();
+        await expect(gooseMascot).toHaveAttribute('src', /assets\/images\/desk-goose\.svg$/);
+        await expect(page.locator('#goose-fun-zone')).toHaveAttribute('data-goose-ready', 'static');
         await expect(page.locator('#goose-wisdom')).not.toHaveText('');
 
         await page.click('#click-me-button');

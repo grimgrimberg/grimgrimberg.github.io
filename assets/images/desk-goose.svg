@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 220" role="img" aria-labelledby="title desc">
+  <title id="title">Dumb happy desk goose mascot</title>
+  <desc id="desc">A simple white goose with orange feet and a tiny blank expression.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#020508" flood-opacity="0.34"/>
+    </filter>
+  </defs>
+  <ellipse cx="121" cy="196" rx="66" ry="10" fill="#020508" opacity="0.28"/>
+  <g filter="url(#shadow)">
+    <path d="M79 129c-21 6-36 19-39 36-4 26 25 38 66 31 36-6 71-28 76-52 4-19-11-30-39-31-24-1-45 10-64 16z" fill="#f7f7ef" stroke="#10151a" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M151 118c-13-30-11-61 4-81 11-15 32-15 43-1 9 12 7 28-6 37-8 6-18 6-27 2-3 15 0 30 9 47z" fill="#f7f7ef" stroke="#10151a" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M194 49c19-4 33-1 38 8-8 9-23 12-41 8z" fill="#ff8a2a" stroke="#10151a" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="181" cy="43" r="5" fill="#10151a"/>
+    <circle cx="183" cy="41" r="1.4" fill="#f7f7ef"/>
+    <path d="M57 172c-16 5-26 11-34 20 19 1 32-3 44-12z" fill="#ff8a2a" stroke="#10151a" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M128 188c-7 11-10 18-11 25 17-5 28-11 36-21z" fill="#ff8a2a" stroke="#10151a" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M86 147c19-4 38-2 56 8-19 12-43 17-70 13" fill="none" stroke="#d8ded7" stroke-width="7" stroke-linecap="round"/>
+    <path d="M165 78c10 6 20 7 30 2" fill="none" stroke="#d8ded7" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>
