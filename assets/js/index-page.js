@@ -80,6 +80,19 @@
         "I do not always test my code, but when I do, I do it before production."
     ];
 
+    const GOOSE_TERROR_NOTES = [
+        'I found a bug. It was morale.',
+        'This portfolio is now under goose review.',
+        'HONK. Ship smaller PRs.',
+        'I dragged your attention here. You are welcome.',
+        'Please hire Yuval before he gives me admin rights.',
+        'I stepped on the design system. It survived.',
+        'No secrets stolen. Only dignity.',
+        'The goose has entered standup and has blockers.',
+        'I saw the backlog. Delicious.',
+        'This is still less annoying than Jira.'
+    ];
+
     const ROLE_FITS = {
         robotics: {
             title: 'Robotics Systems Developer',
@@ -168,6 +181,18 @@
     let konamiSequence = [];
     let repoSnapshot = FALLBACK_REPO_SNAPSHOT;
     let commandHistory = [];
+    const gooseTerrorState = {
+        active: false,
+        layer: null,
+        goose: null,
+        moveTimer: null,
+        noteTimer: null,
+        footTimer: null,
+        keyHandler: null,
+        resizeHandler: null,
+        x: 24,
+        y: 120
+    };
     let realClippyAgent = null;
     let realClippyLoaded = false;
     let realClippyLoadStarted = false;
@@ -558,6 +583,15 @@
                 }, 10);
             });
         }
+
+        document.getElementById('goose-terror-button')?.addEventListener('click', () => {
+            if (gooseTerrorState.active) {
+                stopGooseTerror('button');
+                return;
+            }
+
+            startGooseTerror();
+        });
     }
 
     function initGooseAnimation() {
@@ -581,6 +615,177 @@
         gooseImage.dataset.gooseMascot = 'true';
         gooseContainer.replaceChildren(gooseImage);
         gooseContainer.dataset.gooseReady = 'static';
+    }
+
+    function updateGooseTerrorButton() {
+        const button = document.getElementById('goose-terror-button');
+        if (!button) {
+            return;
+        }
+
+        button.textContent = gooseTerrorState.active ? 'Banish Desk Goose' : 'Release Desk Goose';
+        button.setAttribute('aria-pressed', String(gooseTerrorState.active));
+    }
+
+    function getRandomGooseNote() {
+        return GOOSE_TERROR_NOTES[Math.floor(Math.random() * GOOSE_TERROR_NOTES.length)];
+    }
+
+    function getGoosePoint(width = 116, height = 104) {
+        const maxX = Math.max(16, window.innerWidth - width - 16);
+        const maxY = Math.max(86, window.innerHeight - height - 86);
+
+        return {
+            x: Math.round(16 + Math.random() * Math.max(1, maxX - 16)),
+            y: Math.round(80 + Math.random() * Math.max(1, maxY - 80))
+        };
+    }
+
+    function moveGooseTerror() {
+        if (!gooseTerrorState.active || !gooseTerrorState.goose) {
+            return;
+        }
+
+        const next = getGoosePoint();
+        gooseTerrorState.goose.style.left = `${next.x}px`;
+        gooseTerrorState.goose.style.top = `${next.y}px`;
+        gooseTerrorState.goose.classList.toggle('goose-terror-flipped', next.x < gooseTerrorState.x);
+        gooseTerrorState.x = next.x;
+        gooseTerrorState.y = next.y;
+    }
+
+    function dropGooseFootprint() {
+        if (!gooseTerrorState.active || !gooseTerrorState.layer) {
+            return;
+        }
+
+        const footprint = document.createElement('span');
+        footprint.className = 'goose-terror-footprint';
+        footprint.setAttribute('aria-hidden', 'true');
+        footprint.style.left = `${gooseTerrorState.x + 40}px`;
+        footprint.style.top = `${gooseTerrorState.y + 82}px`;
+        gooseTerrorState.layer.appendChild(footprint);
+
+        window.setTimeout(() => footprint.remove(), 5200);
+    }
+
+    function spawnGooseNote(noteText = getRandomGooseNote()) {
+        if (!gooseTerrorState.active || !gooseTerrorState.layer) {
+            return;
+        }
+
+        const note = document.createElement('aside');
+        note.className = 'goose-terror-note';
+        note.innerHTML = `
+            <button type="button" aria-label="Dismiss goose note">×</button>
+            <strong>goose notepad</strong>
+            <span>${escapeHtml(noteText)}</span>
+        `;
+
+        const point = getGoosePoint(210, 150);
+        note.style.left = `${point.x}px`;
+        note.style.top = `${point.y}px`;
+        note.querySelector('button')?.addEventListener('click', () => note.remove());
+
+        gooseTerrorState.layer.appendChild(note);
+        gooseTerrorState.layer.querySelectorAll('.goose-terror-note').forEach((existingNote, index, notes) => {
+            if (index < notes.length - 5) {
+                existingNote.remove();
+            }
+        });
+
+        window.setTimeout(() => note.remove(), 9000);
+    }
+
+    function startGooseTerror() {
+        if (gooseTerrorState.active) {
+            spawnGooseNote('Already loose. This is how incidents happen.');
+            return false;
+        }
+
+        const layer = document.createElement('div');
+        layer.id = 'goose-terror-layer';
+        layer.className = 'goose-terror-layer';
+        layer.dataset.gooseTerror = 'active';
+        layer.setAttribute('aria-live', 'polite');
+        layer.innerHTML = `
+            <div class="goose-terror-toolbar">
+                <span>goose terror mode</span>
+                <button type="button" id="goose-terror-stop" class="touch-target">Banish goose</button>
+            </div>
+        `;
+
+        const goose = document.createElement('img');
+        goose.src = './assets/images/desk-goose.svg';
+        goose.alt = 'Desktop goose causing controlled chaos';
+        goose.className = 'goose-terror-goose';
+        goose.dataset.gooseTerrorGoose = 'true';
+        layer.appendChild(goose);
+        document.body.appendChild(layer);
+
+        gooseTerrorState.active = true;
+        gooseTerrorState.layer = layer;
+        gooseTerrorState.goose = goose;
+        gooseTerrorState.keyHandler = (event) => {
+            if (event.key === 'Escape') {
+                stopGooseTerror('escape');
+            }
+        };
+        gooseTerrorState.resizeHandler = () => moveGooseTerror();
+
+        document.addEventListener('keydown', gooseTerrorState.keyHandler);
+        window.addEventListener('resize', gooseTerrorState.resizeHandler);
+        document.getElementById('goose-terror-stop')?.addEventListener('click', () => stopGooseTerror('toolbar'));
+
+        moveGooseTerror();
+        dropGooseFootprint();
+        spawnGooseNote('HONK. You opted in. Legally devastating.');
+        playHonkSound();
+        showClippy('Desk Goose released. Press Esc, type `goose stop`, or use the banish button when dignity needs restoring.', 18000);
+
+        gooseTerrorState.moveTimer = window.setInterval(moveGooseTerror, 1100);
+        gooseTerrorState.footTimer = window.setInterval(dropGooseFootprint, 900);
+        gooseTerrorState.noteTimer = window.setInterval(() => spawnGooseNote(), 2800);
+        updateGooseTerrorButton();
+        return true;
+    }
+
+    function stopGooseTerror(reason = 'command') {
+        if (!gooseTerrorState.active) {
+            updateGooseTerrorButton();
+            return false;
+        }
+
+        [gooseTerrorState.moveTimer, gooseTerrorState.footTimer, gooseTerrorState.noteTimer].forEach((timer) => {
+            if (timer) {
+                window.clearInterval(timer);
+            }
+        });
+
+        if (gooseTerrorState.keyHandler) {
+            document.removeEventListener('keydown', gooseTerrorState.keyHandler);
+        }
+
+        if (gooseTerrorState.resizeHandler) {
+            window.removeEventListener('resize', gooseTerrorState.resizeHandler);
+        }
+
+        gooseTerrorState.layer?.remove();
+        gooseTerrorState.active = false;
+        gooseTerrorState.layer = null;
+        gooseTerrorState.goose = null;
+        gooseTerrorState.moveTimer = null;
+        gooseTerrorState.footTimer = null;
+        gooseTerrorState.noteTimer = null;
+        gooseTerrorState.keyHandler = null;
+        gooseTerrorState.resizeHandler = null;
+        updateGooseTerrorButton();
+
+        if (reason !== 'silent') {
+            showClippy('Goose banished. The page is safe. Suspiciously safe.', 12000);
+        }
+
+        return true;
     }
 
     function updateRealClippyGlobals() {
@@ -1141,7 +1346,10 @@ roast yuval       opt-in roast mode
 skills            jump to skills
 contact / hire    email, LinkedIn, GitHub, CV gate
 cv                jump to human-checked public CV
-goose / honk      controlled chaos, explicit click only
+goose             controlled wisdom, explicit click only
+goose terror      release the desktop goose-ish nuisance
+goose stop        banish the goose
+honk              single honk, no ongoing crimes
 clippy            summon the guide
 honest            mildly spicy truth
 clear             clear the terminal`;
@@ -1270,13 +1478,30 @@ ${escapeHtml(roast)}
 This is opt-in. Public surface remains hireable. The terminal is where the eyebrows happen.`;
         }
 
+        if (verb === 'goose' && ['terror', 'release', 'attack', 'chaos', 'loose'].includes(args[0])) {
+            const started = startGooseTerror();
+            return started
+                ? `<strong>Goose terror mode released.</strong>
+It wanders, drops dumb notes, leaves footprints, and honks like a tiny workplace liability.
+
+Stop it with \`goose stop\`, Esc, or the on-screen banish button.`
+                : 'Goose terror mode is already active. This is not a second goose economy.';
+        }
+
+        if (verb === 'goose' && ['stop', 'banish', 'calm', 'enough', 'off'].includes(args[0])) {
+            const stopped = stopGooseTerror('command');
+            return stopped ? 'Goose banished. Dignity partially restored.' : 'No active goose terror mode. Suspiciously peaceful.';
+        }
+
         if (verb === 'goose') {
             const quote = GOOSE_QUOTES[Math.floor(Math.random() * GOOSE_QUOTES.length)];
             const wisdom = document.getElementById('goose-wisdom');
             if (wisdom) {
                 wisdom.textContent = `"${quote}"`;
             }
-            return `Goose says: "${escapeHtml(quote)}"`;
+            return `Goose says: "${escapeHtml(quote)}"
+
+Try \`goose terror\` if you want the desktop goose-ish nuisance.`;
         }
 
         if (verb === 'honk') {

@@ -151,6 +151,16 @@ test.describe('maintained smoke suite', () => {
         await page.fill('#command-input', 'cv');
         await page.locator('#command-form button[type="submit"]').click();
         await expect(page.locator('#command-output')).toContainText('human check');
+        await page.fill('#command-input', 'goose terror');
+        await page.locator('#command-form button[type="submit"]').click();
+        await expect(page.locator('#command-output')).toContainText('Goose terror mode released');
+        await expect(page.locator('#goose-terror-layer')).toHaveAttribute('data-goose-terror', 'active');
+        await expect(page.locator('[data-goose-terror-goose="true"]')).toBeVisible();
+        await expect(page.locator('.goose-terror-note').first()).toBeVisible();
+        await page.fill('#command-input', 'goose stop');
+        await page.locator('#command-form button[type="submit"]').click();
+        await expect(page.locator('#command-output')).toContainText('Goose banished');
+        await expect(page.locator('#goose-terror-layer')).toHaveCount(0);
         await page.locator('#command-palette .command-close').click();
         await expect(page.locator('#command-palette')).toBeHidden();
 
@@ -277,6 +287,7 @@ test.describe('maintained smoke suite', () => {
         await expectTouchTarget(page.locator('#mobile-menu-panel .mobile-menu-close'), 'homepage mobile menu close button');
         await page.locator('#mobile-menu-backdrop').click({ position: { x: 10, y: 10 } });
         await expectTouchTarget(page.locator('#goose-talk'), 'goose advice button');
+        await expectTouchTarget(page.locator('#goose-terror-button'), 'goose terror button');
         await expectTouchTarget(page.locator('#click-me-button'), 'click counter button');
         await expectTouchTarget(page.getByRole('link', { name: 'View Details' }).first(), 'first project details link');
         await expectTouchTarget(page.locator('a[aria-label="Open the BGR Path Planning Control repository"]'), 'first project repository icon link');

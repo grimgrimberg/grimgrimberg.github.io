@@ -1359,6 +1359,157 @@ html {
   filter: blur(4px);
 }
 
+.goose-terror-trigger {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(242, 184, 75, 0.48);
+  border-radius: 9999px;
+  background: rgba(242, 184, 75, 0.16);
+  color: #f2b84b;
+  font-weight: 900;
+  padding: 0.65rem 1rem;
+}
+
+.goose-terror-trigger:hover,
+.goose-terror-trigger:focus-visible,
+.goose-terror-trigger[aria-pressed="true"] {
+  background: rgba(242, 184, 75, 0.28);
+  color: #f6f1e8;
+}
+
+.goose-terror-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.goose-terror-toolbar {
+  position: fixed;
+  top: calc(4.8rem + env(safe-area-inset-top));
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid rgba(242, 184, 75, 0.52);
+  border-radius: 9999px;
+  background: rgba(5, 7, 10, 0.86);
+  color: #f6f1e8;
+  padding: 0.45rem 0.55rem 0.45rem 0.9rem;
+  pointer-events: auto;
+  box-shadow: 0 16px 46px rgba(0, 0, 0, 0.36);
+}
+
+.goose-terror-toolbar span {
+  color: #f2b84b;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: "JetBrains Mono", Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.goose-terror-toolbar button {
+  min-height: 40px;
+  border-radius: 9999px;
+  background: #f2b84b;
+  color: #05070a;
+  padding: 0.55rem 0.8rem;
+  font-weight: 900;
+}
+
+.goose-terror-goose {
+  position: fixed;
+  width: clamp(82px, 9vw, 132px);
+  height: auto;
+  transition: left 0.85s ease-in-out, top 0.85s ease-in-out, transform 0.2s ease;
+  filter: drop-shadow(0 20px 26px rgba(0, 0, 0, 0.42));
+  animation: goose-terror-bob 0.72s steps(2, end) infinite;
+  pointer-events: none;
+}
+
+.goose-terror-goose.goose-terror-flipped {
+  transform: scaleX(-1);
+}
+
+.goose-terror-note {
+  position: fixed;
+  width: min(210px, calc(100vw - 2rem));
+  min-height: 7rem;
+  border: 1px solid rgba(16, 21, 26, 0.18);
+  border-radius: 0.35rem;
+  background: #f2e7a8;
+  color: #10151a;
+  padding: 1.05rem 0.85rem 0.85rem;
+  transform: rotate(var(--note-rotate, -2deg));
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+  pointer-events: none;
+}
+
+.goose-terror-note:nth-of-type(2n) {
+  --note-rotate: 2deg;
+}
+
+.goose-terror-note strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: "JetBrains Mono", Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+}
+
+.goose-terror-note span {
+  display: block;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.goose-terror-note button {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.35rem;
+  color: #10151a;
+  font-size: 1.25rem;
+  font-weight: 900;
+  pointer-events: auto;
+}
+
+.goose-terror-footprint {
+  position: fixed;
+  width: 0.72rem;
+  height: 0.42rem;
+  border-radius: 9999px;
+  background: rgba(242, 184, 75, 0.46);
+  transform: rotate(-18deg);
+  animation: goose-footprint-fade 5.2s ease forwards;
+}
+
+@keyframes goose-terror-bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -6px;
+  }
+}
+
+@keyframes goose-footprint-fade {
+  0% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px) rotate(-18deg);
+  }
+}
+
 @keyframes goose-waddle {
   0%,
   100% {
@@ -1379,8 +1530,14 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .goose-desk-goose {
+  .goose-desk-goose,
+  .goose-terror-goose,
+  .goose-terror-footprint {
     animation: none;
+  }
+
+  .goose-terror-goose {
+    transition: none;
   }
 }
 
@@ -1443,6 +1600,21 @@ html {
 
   .command-output {
     font-size: 0.82rem;
+  }
+
+  .goose-terror-toolbar {
+    top: calc(4.5rem + env(safe-area-inset-top));
+    right: 0.75rem;
+    left: 0.75rem;
+    justify-content: space-between;
+  }
+
+  .goose-terror-toolbar span {
+    font-size: 0.64rem;
+  }
+
+  .goose-terror-note {
+    width: min(190px, calc(100vw - 2rem));
   }
 }
 

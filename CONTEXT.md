@@ -30,7 +30,10 @@ host game downloads.
 
 The goose should feel dumb-looking, joyful, and lightly Desktop-Goose-adjacent.
 It should be a helpful guide first and a chaotic sidekick second. Prefer a
-stable local image/CSS motion over heavy animation loaders.
+stable local image/CSS motion over heavy animation loaders. Terror mode is
+opt-in only via explicit controls such as `goose terror`, a release button, or a
+similarly obvious user action; always provide `goose stop`, Escape, and a visible
+banish affordance.
 
 ### Public CV Gate
 
