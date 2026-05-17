@@ -2,6 +2,12 @@ const { test, expect } = require('@playwright/test');
 
 const DESKTOP_PROJECT = 'Desktop Chrome';
 const MOBILE_PROJECTS = new Set(['iPhone 12', 'Mobile Narrow 320']);
+const MAINTAINED_PAGE_PATHS = ['/', '/photo.html'];
+const NARROW_VIEWPORTS = [
+    { width: 320, height: 568 },
+    { width: 375, height: 844 },
+    { width: 390, height: 844 }
+];
 
 function siteUrl(relativePath) {
     if (relativePath === 'index.html') {
@@ -60,6 +66,11 @@ async function expectTouchTarget(locator, label) {
     expect(box, `${label} should have a measurable bounding box`).not.toBeNull();
     expect(box.width, `${label} width should meet the 44px touch target minimum`).toBeGreaterThanOrEqual(44);
     expect(box.height, `${label} height should meet the 44px touch target minimum`).toBeGreaterThanOrEqual(44);
+}
+
+async function submitCommand(page, command) {
+    await page.fill('#command-input', command);
+    await page.locator('#command-form button[type="submit"]').click();
 }
 
 test.describe('maintained smoke suite', () => {
@@ -135,30 +146,27 @@ test.describe('maintained smoke suite', () => {
 
         await page.click('#command-palette-button');
         await expect(page.locator('#command-palette')).toBeVisible();
-        await page.fill('#command-input', 'repos --featured');
-        await page.locator('#command-form button[type="submit"]').click();
-        await expect(page.locator('#command-output')).toContainText('BGR_PathPlanning_Control');
-        await expect(page.locator('#command-output')).toContainText('orbital-rendezvous-lqi');
-        await page.fill('#command-input', 'hire ai');
-        await page.locator('#command-form button[type="submit"]').click();
-        await expect(page.locator('#command-output')).toContainText('AI Tooling / Developer Tools');
-        await page.fill('#command-input', 'reviews');
-        await page.locator('#command-form button[type="submit"]').click();
-        await expect(page.locator('#command-output')).toContainText('Epic reviews');
-        await page.fill('#command-input', 'roast yuval');
-        await page.locator('#command-form button[type="submit"]').click();
-        await expect(page.locator('#command-output')).toContainText('Roast mode');
-        await page.fill('#command-input', 'cv');
-        await page.locator('#command-form button[type="submit"]').click();
-        await expect(page.locator('#command-output')).toContainText('human check');
-        await page.fill('#command-input', 'goose terror');
-        await page.locator('#command-form button[type="submit"]').click();
+        const commandChecks = [
+            { command: 'repos --featured', expected: ['BGR_PathPlanning_Control', 'orbital-rendezvous-lqi'] },
+            { command: 'hire ai', expected: ['AI Tooling / Developer Tools'] },
+            { command: 'reviews', expected: ['Epic reviews'] },
+            { command: 'roast yuval', expected: ['Roast mode'] },
+            { command: 'cv', expected: ['human check'] }
+        ];
+
+        for (const { command, expected } of commandChecks) {
+            await submitCommand(page, command);
+            for (const text of expected) {
+                await expect(page.locator('#command-output')).toContainText(text);
+            }
+        }
+
+        await submitCommand(page, 'goose terror');
         await expect(page.locator('#command-output')).toContainText('Goose terror mode released');
         await expect(page.locator('#goose-terror-layer')).toHaveAttribute('data-goose-terror', 'active');
         await expect(page.locator('[data-goose-terror-goose="true"]')).toBeVisible();
         await expect(page.locator('.goose-terror-note').first()).toBeVisible();
-        await page.fill('#command-input', 'goose stop');
-        await page.locator('#command-form button[type="submit"]').click();
+        await submitCommand(page, 'goose stop');
         await expect(page.locator('#command-output')).toContainText('Goose banished');
         await expect(page.locator('#goose-terror-layer')).toHaveCount(0);
         await page.locator('#command-palette .command-close').click();
@@ -203,6 +211,60 @@ test.describe('maintained smoke suite', () => {
         await expect.poll(() => page.evaluate(() => window.__mailtoAttempts.length)).toBe(1);
 
         expect(pageErrors).toEqual([]);
+    });
+
+    test('direct contact, retro source, and goose controls work without external services', async ({ page }, testInfo) => {
+        test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Direct affordance regression runs once on desktop');
+
+        await page.addInitScript(() => {
+            window.__copiedText = '';
+            window.__sourceClicks = [];
+            window.localStorage.clear();
+
+            Object.defineProperty(navigator, 'clipboard', {
+                configurable: true,
+                value: {
+                    writeText: async (text) => {
+                        window.__copiedText = text;
+                    }
+                }
+            });
+
+            HTMLAnchorElement.prototype.click = function () {
+                window.__sourceClicks.push(this.href);
+            };
+        });
+
+        await page.goto(siteUrl('index.html'), { waitUntil: 'domcontentloaded' });
+
+        const directEmail = page.locator('.contact-hero-email a');
+        await expect(directEmail).toHaveAttribute('href', 'mailto:yuval.grimberg@gmail.com');
+        await expect(directEmail).toHaveText('yuval.grimberg@gmail.com');
+
+        const copyEmailButton = page.locator('#copy-email-address');
+        await copyEmailButton.scrollIntoViewIfNeeded();
+        await copyEmailButton.click();
+        await expect(page.locator('#copy-email-status')).toContainText('Email copied');
+        await expect.poll(() => page.evaluate(() => window.__copiedText)).toBe('yuval.grimberg@gmail.com');
+
+        const gooseTerrorButton = page.locator('#goose-terror-button');
+        await gooseTerrorButton.scrollIntoViewIfNeeded();
+        await gooseTerrorButton.click();
+        await expect(page.locator('#goose-terror-layer')).toHaveAttribute('data-goose-terror', 'active');
+        await expect(gooseTerrorButton).toHaveAttribute('aria-pressed', 'true');
+        await page.locator('#goose-terror-stop').click();
+        await expect(page.locator('#goose-terror-layer')).toHaveCount(0);
+        await expect(gooseTerrorButton).toHaveAttribute('aria-pressed', 'false');
+
+        const sourceButton = page.locator('[data-game-source="dave"]');
+        await sourceButton.scrollIntoViewIfNeeded();
+        await sourceButton.click();
+        await expect(page.locator('#source-open-count')).toHaveText('1');
+        await expect.poll(() => page.evaluate(() => window.__sourceClicks.join('\n'))).toContain('https://www.old-games.org/games/dave');
+        const sourceModal = page.locator('body > .fixed').filter({ hasText: 'Opening the external source page' });
+        await expect(sourceModal.getByRole('heading', { name: 'Dangerous Dave' })).toBeVisible();
+        await sourceModal.getByRole('button', { name: 'Got It' }).click();
+        await expect(sourceModal).toHaveCount(0);
     });
 
     test('contact copy falls back cleanly when navigator.clipboard is unavailable', async ({ page }, testInfo) => {
@@ -254,28 +316,26 @@ test.describe('maintained smoke suite', () => {
         test.skip(!MOBILE_PROJECTS.has(testInfo.project.name), 'Mobile-only smoke');
 
         const viewportWidth = page.viewportSize().width;
+        const closeStrategies = ['close-button', 'backdrop'];
 
-        const homepageDrawer = await openDrawer(page, '/');
-        const homepageBox = await homepageDrawer.panel.boundingBox();
-        expect(homepageBox).not.toBeNull();
-        expect(homepageBox.width).toBeLessThanOrEqual(viewportWidth - 56);
-        await homepageDrawer.button.click();
-        await expect(homepageDrawer.menu).toBeHidden();
-        await homepageDrawer.button.click();
-        await expect(homepageDrawer.menu).toBeVisible();
-        await page.locator('#mobile-menu-panel .mobile-menu-close').click();
-        await expect(homepageDrawer.menu).toBeHidden();
+        for (const [index, path] of MAINTAINED_PAGE_PATHS.entries()) {
+            const drawer = await openDrawer(page, path);
+            const panelBox = await drawer.panel.boundingBox();
+            expect(panelBox).not.toBeNull();
+            expect(panelBox.width).toBeLessThanOrEqual(viewportWidth - 56);
+            await drawer.button.click();
+            await expect(drawer.menu).toBeHidden();
+            await drawer.button.click();
+            await expect(drawer.menu).toBeVisible();
 
-        const photoDrawer = await openDrawer(page, '/photo.html');
-        const photoBox = await photoDrawer.panel.boundingBox();
-        expect(photoBox).not.toBeNull();
-        expect(photoBox.width).toBeLessThanOrEqual(viewportWidth - 56);
-        await photoDrawer.button.click();
-        await expect(photoDrawer.menu).toBeHidden();
-        await photoDrawer.button.click();
-        await expect(photoDrawer.menu).toBeVisible();
-        await page.locator('#mobile-menu-backdrop').click({ position: { x: 10, y: 10 } });
-        await expect(photoDrawer.menu).toBeHidden();
+            if (closeStrategies[index] === 'close-button') {
+                await page.locator('#mobile-menu-panel .mobile-menu-close').click();
+            } else {
+                await page.locator('#mobile-menu-backdrop').click({ position: { x: 10, y: 10 } });
+            }
+
+            await expect(drawer.menu).toBeHidden();
+        }
     });
 
     test('critical mobile touch targets stay comfortably tappable on maintained pages', async ({ page }, testInfo) => {
@@ -303,48 +363,40 @@ test.describe('maintained smoke suite', () => {
         await expectTouchTarget(page.locator('footer').getByRole('link', { name: 'Home' }), 'photo page footer Home link');
     });
 
-    test('drawer keeps a tappable backdrop gutter at 320, 375, and 390 pixels', async ({ page }, testInfo) => {
+    test('drawer stays usable across narrow viewport states', async ({ page }, testInfo) => {
         test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Viewport probe on desktop project only');
 
-        const widths = [320, 375, 390];
-        const pages = ['/', '/photo.html'];
+        const states = [
+            { name: 'initial', scrollY: 0 },
+            { name: 'scrolled', scrollY: 1400 }
+        ];
 
-        for (const width of widths) {
-            await page.setViewportSize({ width, height: width === 320 ? 568 : 844 });
+        for (const viewport of NARROW_VIEWPORTS) {
+            await page.setViewportSize(viewport);
 
-            for (const path of pages) {
-                const drawer = await openDrawer(page, path);
-                const panelBox = await drawer.panel.boundingBox();
-                expect(panelBox).not.toBeNull();
-                expect(panelBox.width).toBeLessThanOrEqual(width - 56);
-                await page.locator('#mobile-menu-backdrop').click({ position: { x: 10, y: 10 } });
-                await expect(drawer.menu).toBeHidden();
-            }
-        }
-    });
+            for (const path of MAINTAINED_PAGE_PATHS) {
+                for (const state of states) {
+                    const drawer = await openDrawer(page, path, { scrollY: state.scrollY });
+                    const panelBox = await drawer.panel.boundingBox();
 
-    test('mobile drawer still owns the viewport after the page is scrolled', async ({ page }, testInfo) => {
-        test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Viewport probe on desktop project only');
+                    expect(panelBox, `${path} drawer panel should be measurable in ${state.name} state at ${viewport.width}px`).not.toBeNull();
+                    expect(panelBox.width, `${path} drawer panel should leave a tappable gutter at ${viewport.width}px`).toBeLessThanOrEqual(viewport.width - 56);
 
-        const widths = [320, 375, 390];
-        const pages = ['/', '/photo.html'];
+                    if (state.name === 'initial') {
+                        await page.locator('#mobile-menu-backdrop').click({ position: { x: 10, y: 10 } });
+                        await expect(drawer.menu).toBeHidden();
+                        continue;
+                    }
 
-        for (const width of widths) {
-            const height = width === 320 ? 568 : 844;
-            await page.setViewportSize({ width, height });
+                    const menuBox = await drawer.menu.boundingBox();
 
-            for (const path of pages) {
-                const drawer = await openDrawer(page, path, { scrollY: 1400 });
-                const menuBox = await drawer.menu.boundingBox();
-                const panelBox = await drawer.panel.boundingBox();
+                    expect(menuBox, `${path} drawer overlay should be measurable after scrolling at ${viewport.width}px`).not.toBeNull();
+                    expect(menuBox.height, `${path} drawer overlay should cover the viewport after scrolling at ${viewport.width}px`).toBeGreaterThanOrEqual(viewport.height - 1);
+                    expect(panelBox.height, `${path} drawer panel should cover the viewport after scrolling at ${viewport.width}px`).toBeGreaterThanOrEqual(viewport.height - 1);
 
-                expect(menuBox, `${path} drawer overlay should be measurable after scrolling at ${width}px`).not.toBeNull();
-                expect(panelBox, `${path} drawer panel should be measurable after scrolling at ${width}px`).not.toBeNull();
-                expect(menuBox.height, `${path} drawer overlay should cover the viewport after scrolling at ${width}px`).toBeGreaterThanOrEqual(height - 1);
-                expect(panelBox.height, `${path} drawer panel should cover the viewport after scrolling at ${width}px`).toBeGreaterThanOrEqual(height - 1);
-
-                await drawer.button.click();
-                await expect(drawer.menu).toBeHidden();
+                    await drawer.button.click();
+                    await expect(drawer.menu).toBeHidden();
+                }
             }
         }
     });
