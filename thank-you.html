@@ -24,24 +24,23 @@
 
     <style>
         .gradient-text {
-            background: linear-gradient(135deg, #f2b84b, #38d8c8 62%, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #d8aa4f;
+            -webkit-text-fill-color: currentColor;
         }
 
         .glass-effect {
-            background: rgba(246, 241, 232, 0.06);
-            backdrop-filter: blur(14px);
+            background: linear-gradient(180deg, rgba(246, 241, 232, 0.068), rgba(246, 241, 232, 0.035)), rgba(11, 15, 18, 0.78);
             border: 1px solid rgba(246, 241, 232, 0.12);
+            box-shadow: 0 18px 48px rgba(2, 5, 8, 0.28);
         }
 
         body {
             background:
-                radial-gradient(circle at 20% 18%, rgba(56, 216, 200, 0.14), transparent 28rem),
-                radial-gradient(circle at 80% 12%, rgba(242, 184, 75, 0.12), transparent 24rem),
+                linear-gradient(90deg, rgba(246, 241, 232, 0.025) 1px, transparent 1px),
+                linear-gradient(rgba(246, 241, 232, 0.018) 1px, transparent 1px),
                 linear-gradient(135deg, #05070a 0%, #0d1117 58%, #05070a 100%);
-            min-height: 100vh;
+            background-size: 40px 40px, 40px 40px, auto;
+            min-height: 100dvh;
         }
     </style>
 </head>
@@ -52,7 +51,7 @@
             <!-- Success Icon -->
             <div class="mb-8">
                 <div
-                    class="w-24 h-24 mx-auto bg-gradient-to-r from-tech-green to-tech-cyan rounded-full flex items-center justify-center">
+                    class="w-24 h-24 mx-auto bg-tech-green/85 border border-tech-green rounded-full flex items-center justify-center">
                     <span aria-hidden="true" class="text-4xl text-white">✓</span>
                 </div>
             </div>
@@ -60,10 +59,10 @@
             <!-- Thank You Message -->
             <div class="glass-effect rounded-2xl p-8 mb-8">
                 <h1 class="text-4xl md:text-5xl font-black mb-6">
-                    <span class="gradient-text">Thank You!</span>
+                    <span class="gradient-text">Thank you</span>
                 </h1>
                 <p class="text-xl text-gray-300 mb-6">
-                    Your message has been successfully received. I'll get back to you within 24 hours.
+                    Your message was received. I'll get back to you within 24 hours.
                 </p>
                 <p class="text-gray-400">
                     <span aria-hidden="true" class="mr-2 text-tech-cyan">✉</span>
@@ -74,7 +73,7 @@
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="index.html"
-                    class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
+                    class="inline-flex items-center justify-center px-6 py-3 bg-tech-purple hover:bg-tech-cyan text-tech-dark font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
                     <span aria-hidden="true" class="mr-2">⌂</span>
                     Back to Portfolio
                 </a>

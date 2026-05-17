@@ -27,31 +27,30 @@
 
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Bahnschrift', 'Aptos Display', 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #f2b84b 0%, #38d8c8 62%, #ff6b6b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #d8aa4f;
+      -webkit-text-fill-color: currentColor;
     }
 
     .tech-pattern {
       background-image:
-        radial-gradient(circle at 22% 22%, rgba(56, 216, 200, 0.12) 0%, transparent 48%),
-        radial-gradient(circle at 78% 74%, rgba(242, 184, 75, 0.10) 0%, transparent 52%);
+        linear-gradient(rgba(88, 199, 188, 0.065) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(216, 170, 79, 0.055) 1px, transparent 1px);
+      background-size: 48px 48px;
     }
 
     .glass-effect {
-      background: rgba(246, 241, 232, 0.055);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(246, 241, 232, 0.11);
+      background: linear-gradient(180deg, rgba(246, 241, 232, 0.068), rgba(246, 241, 232, 0.035)), rgba(11, 15, 18, 0.78);
+      border: 1px solid rgba(246, 241, 232, 0.12);
+      box-shadow: 0 18px 48px rgba(2, 5, 8, 0.28);
     }
 
     .hover-lift:hover {
-      transform: translateY(-8px);
-      transition: all 0.3s ease;
+      transform: translateY(-3px);
+      transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
     }
 
     .skip-link {
@@ -92,13 +91,12 @@
     }
 
     .swiper-slide img {
-      border-radius: 1.5rem;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border-radius: 0.625rem;
+      box-shadow: 0 18px 48px rgba(2, 5, 8, 0.36);
     }
 
     .photo-overlay {
       background: linear-gradient(45deg, rgba(56, 216, 200, 0.12), rgba(242, 184, 75, 0.10));
-      backdrop-filter: blur(20px);
     }
 
     .dynamic-bg {
@@ -132,9 +130,8 @@
 
     .exif-panel {
       background: linear-gradient(135deg, rgba(56, 216, 200, 0.12), rgba(242, 184, 75, 0.08));
-      backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
+      border-radius: 0.625rem;
       transition: all 0.4s ease;
     }
 
@@ -216,9 +213,9 @@
     </div>
 
     <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
-      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
+      <div class="absolute inset-0 bg-black/50" id="mobile-menu-backdrop"></div>
       <div
-        class="absolute top-0 right-0 h-full w-[calc(100vw-4rem)] max-w-sm bg-tech-dark/95 backdrop-blur-lg border-l border-tech-cyan/20 transform translate-x-full overflow-hidden flex flex-col"
+        class="absolute top-0 right-0 h-full w-[calc(100vw-4rem)] max-w-sm bg-tech-dark/95 border-l border-tech-cyan/20 transform translate-x-full overflow-hidden flex flex-col"
         id="mobile-menu-panel">
         <div class="flex items-center justify-between p-6 border-b border-tech-cyan/20">
           <div class="text-xl font-bold gradient-text">Navigation</div>
@@ -261,7 +258,7 @@
 
       <div data-aos="fade-up" data-aos-delay="300" class="mb-4 sm:mb-8">
         <div
-          class="inline-flex items-center space-x-3 sm:space-x-4 bg-gradient-to-r from-tech-purple/20 to-tech-cyan/20 backdrop-blur-sm rounded-full px-5 py-3 sm:px-8 sm:py-4 border border-white/10">
+          class="inline-flex items-center space-x-3 sm:space-x-4 bg-tech-dark/60 rounded-full px-5 py-3 sm:px-8 sm:py-4 border border-white/10">
           <div class="w-3 h-3 bg-tech-green rounded-full animate-pulse"></div>
           <p class="text-base sm:text-xl md:text-2xl font-tech">Engineering Precision Meets Artistic Vision</p>
         </div>

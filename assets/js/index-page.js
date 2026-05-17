@@ -814,8 +814,12 @@
             resetRealClippyQueue(realClippyAgent);
             resetRealClippySpeech(realClippyAgent);
 
-            const left = Math.max(16, Math.min(window.innerWidth - 150, window.innerWidth - 180));
-            const top = Math.max(76, Math.min(window.innerHeight - 180, window.innerHeight - 240));
+            const left = window.innerWidth < 700
+                ? Math.max(16, window.innerWidth - 154)
+                : Math.max(16, window.innerWidth - 340);
+            const top = window.innerWidth < 700
+                ? Math.max(76, window.innerHeight - 282)
+                : Math.max(76, window.innerHeight - 240);
             realClippyAgent.moveTo(left, top);
             realClippyAgent.show(true);
 

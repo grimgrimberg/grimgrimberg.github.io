@@ -29,3 +29,14 @@ not host game downloads.
 A zero-backend human check that reveals the public CV page. It is scraper
 friction, not real access control, and the public CV should avoid phone numbers
 or unnecessary private details.
+
+### Visual Thesis
+
+The portfolio should read as a calm engineering command center with maker
+mischief. The first impression is competent and recruitable; the second layer is
+Clippy, terminal, fake reviews, opt-in roast mode, the goose, and retro games.
+
+### Personality Layer
+
+The personality features are secondary affordances. They make the site memorable
+without competing with the primary hiring story.

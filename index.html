@@ -49,12 +49,13 @@
         }
 
         .clippy-assistant {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
+            background: linear-gradient(180deg, rgba(246, 241, 232, 0.09), rgba(246, 241, 232, 0.04)), #0b0f12;
+            border: 1px solid rgba(216, 170, 79, 0.34);
+            border-radius: 10px;
             padding: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 18px 48px rgba(2, 5, 8, 0.42);
             max-width: 280px;
-            color: white;
+            color: #f6f1e8;
             font-size: 14px;
             position: relative;
             min-width: min(280px, calc(100vw - 2rem));
@@ -105,14 +106,12 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Bahnschrift', 'Aptos Display', 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #f2b84b 0%, #38d8c8 62%, #ff6b6b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #d8aa4f;
+            -webkit-text-fill-color: currentColor;
         }
 
         .tech-pattern {
@@ -123,14 +122,14 @@
         }
 
         .glass-effect {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, rgba(246, 241, 232, 0.068), rgba(246, 241, 232, 0.035)), rgba(11, 15, 18, 0.78);
+            border: 1px solid rgba(246, 241, 232, 0.12);
+            box-shadow: 0 18px 48px rgba(2, 5, 8, 0.28);
         }
 
         .hover-lift:hover {
-            transform: translateY(-8px);
-            transition: all 0.3s ease;
+            transform: translateY(-3px);
+            transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
         }
 
         .skip-link {
@@ -157,8 +156,8 @@
         }
 
         .skill-glow:hover {
-            box-shadow: 0 0 30px rgba(56, 216, 200, 0.38);
-            transition: all 0.3s ease;
+            border-color: rgba(88, 199, 188, 0.44);
+            transition: border-color 0.22s ease, transform 0.22s ease;
         }
 
           @media (max-width: 430px) {
@@ -314,10 +313,10 @@
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
             <!-- Backdrop -->
-            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
+            <div class="absolute inset-0 bg-black/50" id="mobile-menu-backdrop"></div>
 
             <!-- Menu Panel -->
-            <div class="absolute top-0 right-0 h-full w-[calc(100vw-4rem)] max-w-sm bg-tech-dark/95 backdrop-blur-lg border-l border-tech-cyan/20 transform translate-x-full overflow-hidden flex flex-col"
+            <div class="absolute top-0 right-0 h-full w-[calc(100vw-4rem)] max-w-sm bg-tech-dark/95 border-l border-tech-cyan/20 transform translate-x-full overflow-hidden flex flex-col"
                 id="mobile-menu-panel">
                 <!-- Header -->
                 <div class="flex items-center justify-between p-6 border-b border-tech-cyan/20">
@@ -334,70 +333,70 @@
                     <ul class="space-y-4" id="mobile-nav-list">
                         <li>
                             <a href="#hero"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
                                 <span aria-hidden="true" class="inline-block w-6">⌂</span>
                                 <span class="ml-3">Home</span>
                             </a>
                         </li>
                         <li>
                             <a href="#about"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
                                 <span aria-hidden="true" class="inline-block w-6">👤</span>
                                 <span class="ml-3">About</span>
                             </a>
                         </li>
                         <li>
                             <a href="#skills"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
                                 <span aria-hidden="true" class="inline-block w-6">⚙</span>
                                 <span class="ml-3">Expertise</span>
                             </a>
                         </li>
                         <li>
                             <a href="#hire"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
                                 <span aria-hidden="true" class="inline-block w-6">◎</span>
                                 <span class="ml-3">Hire</span>
                             </a>
                         </li>
                         <li>
                             <a href="#projects"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
                                 <span aria-hidden="true" class="inline-block w-6">🚀</span>
                                 <span class="ml-3">Projects</span>
                             </a>
                         </li>
                         <li>
                             <a href="#reviews"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
                                 <span aria-hidden="true" class="inline-block w-6">★</span>
                                 <span class="ml-3">Reviews</span>
                             </a>
                         </li>
                         <li>
                             <a href="#fun-zone"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
                                 <span aria-hidden="true" class="inline-block w-6">🕹</span>
                                 <span class="ml-3">Fun Zone</span>
                             </a>
                         </li>
                         <li>
                             <a href="#retro-games"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
                                 <span aria-hidden="true" class="inline-block w-6">🎮</span>
                                 <span class="ml-3">🎮 Retro Games</span>
                             </a>
                         </li>
                         <li>
                             <a href="#contact"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
                                 <span aria-hidden="true" class="inline-block w-6">✉</span>
                                 <span class="ml-3">Contact</span>
                             </a>
                         </li>
                         <li>
                             <a href="photo.html"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
                                 <span aria-hidden="true" class="inline-block w-6">📷</span>
                                 <span class="ml-3">📸 Photography</span>
                             </a>
@@ -444,7 +443,7 @@
             </div>
 
             <div data-aos="fade-up" data-aos-delay="500" class="mt-5">
-                <p class="inline-flex items-start gap-3 rounded-full border border-white/15 bg-black/30 px-5 py-3 text-sm md:text-base text-gray-200 backdrop-blur">
+                <p class="inline-flex items-start gap-3 rounded-full border border-white/15 bg-black/30 px-5 py-3 text-sm md:text-base text-gray-200">
                     <span class="mt-1 h-2.5 w-2.5 rounded-full bg-tech-green animate-pulse flex-shrink-0"></span>
                     <span>Open to robotics, autonomy, simulation, and AI/tooling roles. Based in Israel, open to remote or relocation.</span>
                 </p>
@@ -556,16 +555,6 @@
                     <div class="glass-effect rounded-2xl p-8 hover-lift">
                         <h3 class="text-2xl font-bold text-tech-cyan mb-4">🎓 Background</h3>
                         <p class="text-gray-300 leading-relaxed">
-                            <!-- Mechanical Engineering graduate with specialized focus on Control Theory and Autonomous
-                            Systems.
-                            Passionate about bridging the gap between theoretical engineering principles and real-world
-                            applications
-                            in autonomous vehicle technology. -->
-                            <!-- Mechanical Engineering graduate (B.Sc.) from Ben-Gurion University. Head of Path Planning & Control for the BGRacing Formula Student team, where we delivered the team’s first autonomous car that actually drives.
-                                Beyond racecars, I’m deep into space and perception: I built a learning-based LQI controller for the Hill equations, an orbiter propagator, and a robotics computer-vision project focused on perception.
-                                Broad, systems-minded generalist—comfortable across control, dynamics, and CV—good at connecting disciplines and shipping working systems. -->
-                            <!-- Mechanical Engineering B.Sc. (BGU); led Path Planning & Control for BGRacing (Formula Student) and delivered the team’s first self-driving car. Projects span a learning-based LQI for Hill’s equations, an orbiter propagator, and a robotics CV build—broad generalist across control, dynamics, and perception. -->
-                            <!-- B.Sc. Mechanical Engineering (BGU). I led Path Planning & Control for BGRacing (Formula Student), delivering the team’s first self-driving car. I built a learning-based LQI controller for Hill’s equations, an animated orbital propagator, and a robotics computer-vision system—broad, systems-minded generalist across control, dynamics, and perception. -->
                             B.Sc. Mechanical Engineering from BGU, with a strong bias toward systems that move,
                             estimate, decide, and occasionally misbehave in public. I led Path Planning & Control for
                             BGRacing's Formula Student driverless effort and keep building across autonomy, control,
@@ -689,7 +678,6 @@
             </div>
 
             <!-- Tools & Technologies -->
-            <!-- Tools & Technologies (short) -->
             <div class="mt-16" data-aos="fade-up">
                 <h3 class="text-2xl font-bold text-center mb-8 gradient-text">Tools & Technologies</h3>
                 <div class="flex flex-wrap justify-center gap-4">
@@ -710,27 +698,6 @@
                         class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">MATLAB/Simulink</span>
                 </div>
             </div>
-            <!-- <div class="mt-16" data-aos="fade-up">
-                <h3 class="text-2xl font-bold text-center mb-8 gradient-text">Tools & Technologies</h3>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20 transition-colors">TensorFlow</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20 transition-colors">PyTorch</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20 transition-colors">OpenCV</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20 transition-colors">Gazebo</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20 transition-colors">Docker</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20 transition-colors">Git</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20 transition-colors">Linux</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20 transition-colors">Kubernetes</span>
-                </div>
-            </div> -->
         </div>
     </section>
 
@@ -1378,7 +1345,7 @@
 
             <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Contact Form -->
-                <div data-aos="fade-right" class="glass-effect rounded-2xl p-8 backdrop-blur-xl">
+                <div data-aos="fade-right" class="glass-effect rounded-2xl p-8">
                     <div class="text-center mb-8">
                         <h3 class="text-3xl font-bold text-tech-cyan mb-3">Send a Message</h3>
                         <p class="text-gray-300">Tell me what you are building, hiring for, or trying to untangle.</p>
