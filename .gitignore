@@ -4,6 +4,10 @@ test-results/
 .playwright-mcp/
 output/
 
+# Local agent tooling installed for design/review work.
+.agents/
+skills-lock.json
+
 .DS_Store
 Thumbs.db
 Desktop.ini

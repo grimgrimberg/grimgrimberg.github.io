@@ -11,8 +11,11 @@ async function globalTeardown() {
             'homepage navigation',
             'mobile drawer behavior',
             'contact success UI',
+            'direct email copy',
             'clipboard fallback',
             'goose wisdom',
+            'goose terror mode',
+            'retro source links',
             'click counter',
             'photo gallery background and EXIF'
         ]

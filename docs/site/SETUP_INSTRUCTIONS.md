@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repo is a root-static GitHub Pages site. The maintained user-facing flow lives in `index.html`, `photo.html`, and `thank-you.html`.
+This repo is a root-static GitHub Pages site. The maintained user-facing flow lives in `index.html`, `photo.html`, `thank-you.html`, and `cv.html`.
 
 ## Quick Start
 
@@ -49,4 +49,4 @@ npm test
 
 ## Legacy Pages
 
-`about.html`, `projects.html`, `vision.html`, and `mobile-nav-test.html` remain in the repo for compatibility and reference, but they are not the primary maintained surfaces.
+`about.html`, `projects.html`, and `vision.html` remain in the repo for compatibility and reference, but they are not the primary maintained surfaces. Local harness pages live under `tests/fixtures/`.

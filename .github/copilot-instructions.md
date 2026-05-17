@@ -3,7 +3,7 @@
 ## Reality Check
 
 - This repo is a root-static GitHub Pages site.
-- The maintained pages are `index.html`, `photo.html`, and `thank-you.html`.
+- The maintained pages are `index.html`, `photo.html`, `thank-you.html`, and `cv.html`.
 - `dev` is the working/source branch convention.
 - Do not assume `main` is the source branch.
 - Do not assume Jekyll templates or GitHub Actions are part of the active runtime unless the repo is changed to make that true.
@@ -28,4 +28,4 @@
 
 ## Legacy Routes
 
-`about.html`, `projects.html`, `vision.html`, and `mobile-nav-test.html` are compatibility-only routes. Keep them low-risk and avoid treating them as primary product surfaces unless the repo is intentionally reoriented.
+`about.html`, `projects.html`, and `vision.html` are compatibility-only routes. Keep them low-risk and avoid treating them as primary product surfaces unless the repo is intentionally reoriented. Local harness pages belong under `tests/fixtures/`.

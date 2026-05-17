@@ -9,10 +9,16 @@
     <style>
         body {
             margin: 0;
-            padding: 20px;
+            padding: 16px;
             font-family: Arial, sans-serif;
             background: #1a1a1a;
             color: white;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
         }
 
         .test-info {
@@ -22,10 +28,15 @@
             margin-bottom: 20px;
         }
 
+        code {
+            overflow-wrap: anywhere;
+        }
+
         .iframe-container {
             border: 2px solid #666;
             border-radius: 8px;
             overflow: hidden;
+            max-width: 100%;
         }
 
         iframe {
@@ -36,6 +47,9 @@
 
         .viewport-controls {
             margin: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         button {
@@ -43,7 +57,7 @@
             color: white;
             border: none;
             padding: 8px 16px;
-            margin: 0 5px;
+            min-height: 44px;
             border-radius: 4px;
             cursor: pointer;
         }
@@ -57,22 +71,22 @@
 <body>
     <div class="test-info">
         <h2>Mobile Navigation Test Page</h2>
-        <p><strong>Legacy local harness:</strong> this page is kept for compatibility and expects a local server at
-            <code>http://127.0.0.1:8000</code>. Start from <a href="index.html" style="color: #8ec5ff;">the homepage</a>
+        <p><strong>Legacy local harness:</strong> this page is kept for compatibility and expects the repo to be served
+            through <code>npm run serve</code>. Start from <a href="/" style="color: #8ec5ff;">the homepage</a>
             for the maintained experience.</p>
         <p>This page loads the main portfolio in an iframe with different mobile viewport sizes to test the navigation
             button positioning.</p>
         <div class="viewport-controls">
-            <button onclick="setViewport(320, 568)">iPhone SE (320x568)</button>
-            <button onclick="setViewport(390, 844)">iPhone 12 (390x844)</button>
-            <button onclick="setViewport(414, 896)">iPhone 11 Pro Max (414x896)</button>
-            <button onclick="setViewport(375, 667)">iPhone 8 (375x667)</button>
+            <button type="button" data-viewport-width="320" data-viewport-height="568">iPhone SE (320x568)</button>
+            <button type="button" data-viewport-width="390" data-viewport-height="844">iPhone 12 (390x844)</button>
+            <button type="button" data-viewport-width="414" data-viewport-height="896">iPhone 11 Pro Max (414x896)</button>
+            <button type="button" data-viewport-width="375" data-viewport-height="667">iPhone 8 (375x667)</button>
         </div>
         <p id="current-size">Current viewport: 390x844 (iPhone 12)</p>
     </div>
 
     <div class="iframe-container">
-        <iframe src="http://127.0.0.1:8000" id="portfolio-frame"></iframe>
+        <iframe src="/" id="portfolio-frame"></iframe>
     </div>
 
     <script>
@@ -87,6 +101,19 @@
             document.getElementById('current-size').textContent =
                 `Current viewport: ${width}x${height}`;
         }
+
+        document.querySelectorAll('[data-viewport-width][data-viewport-height]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const width = Number.parseInt(button.dataset.viewportWidth, 10);
+                const height = Number.parseInt(button.dataset.viewportHeight, 10);
+
+                if (Number.isNaN(width) || Number.isNaN(height)) {
+                    return;
+                }
+
+                setViewport(width, height);
+            });
+        });
 
         // Initialize with iPhone 12 size
         setViewport(390, 844);

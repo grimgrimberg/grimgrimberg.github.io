@@ -4,47 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yuval Grimberg | Control Systems Engineer & Autonomous Vehicle Specialist</title>
+    <title>Yuval Grimberg | Autonomy, Simulation & AI Tooling</title>
     <meta name="description"
-        content="Yuval Grimberg - Mechanical Engineer specializing in Control Theory, Autonomous Vehicles, and Advanced System Design. Hire me for cutting-edge engineering solutions.">
+        content="Yuval Grimberg - systems developer and mechanical engineer building autonomy, control, simulation, and AI tooling projects.">
     <meta name="keywords"
-        content="Control Systems Engineer, Autonomous Vehicles, Mechanical Engineer, Control Theory, Machine Learning, Python, MATLAB, Robotics">
-    <meta name="theme-color" content="#0a0f1c">
+        content="Autonomy Developer, Robotics, Simulation, Control Theory, AI Tooling, Python, MATLAB, Mechanical Engineer">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; media-src 'self' data:; connect-src 'self'; frame-src 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="theme-color" content="#05070a">
     <link rel="canonical" href="https://grimgrimberg.github.io/">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Yuval Grimberg | Control Systems Engineer & Autonomous Vehicle Specialist">
+    <meta property="og:title" content="Yuval Grimberg | Autonomy, Control & AI Tooling">
     <meta property="og:description"
-        content="Mechanical Engineer specializing in control theory, autonomous vehicles, and advanced system design.">
+        content="Portfolio of robotics, autonomy, simulation, control, and AI tooling projects.">
     <meta property="og:url" content="https://grimgrimberg.github.io/">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Yuval Grimberg | Control Systems Engineer & Autonomous Vehicle Specialist">
+    <meta name="twitter:title" content="Yuval Grimberg | Autonomy, Control & AI Tooling">
     <meta name="twitter:description"
-        content="Mechanical Engineer specializing in control theory, autonomous vehicles, and advanced system design.">
-
-    <!-- Modern fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        content="Portfolio of autonomy, simulation, control, robotics, and AI tooling projects.">
 
     <!-- Local generated Tailwind CSS -->
     <link rel="stylesheet" href="assets/css/output.css">
-
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- REAL ClippyJS - The Authentic Microsoft Office Assistant! -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/gh/pi0/clippyjs@64a68695451696e6c1062cd9e9c7cfb230389f2c/assets/clippy.css">
+    <link rel="stylesheet" href="assets/vendor/clippyjs/clippy.css">
 
     <style>
-        /* Custom Clippy-like Assistant (fallback) */
+        /* Old-school Clippy guide */
         #custom-clippy {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            right: 1rem;
+            bottom: 14rem;
             z-index: 1000;
             opacity: 0;
             transform: translateY(20px);
@@ -59,14 +49,16 @@
         }
 
         .clippy-assistant {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
+            background: linear-gradient(180deg, rgba(246, 241, 232, 0.09), rgba(246, 241, 232, 0.04)), #0b0f12;
+            border: 1px solid rgba(216, 170, 79, 0.34);
+            border-radius: 10px;
             padding: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 18px 48px rgba(2, 5, 8, 0.42);
             max-width: 280px;
-            color: white;
+            color: #f6f1e8;
             font-size: 14px;
             position: relative;
+            min-width: min(280px, calc(100vw - 2rem));
         }
 
         .clippy-icon {
@@ -114,31 +106,30 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Bahnschrift', 'Aptos Display', 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #d8aa4f;
+            -webkit-text-fill-color: currentColor;
         }
 
         .tech-pattern {
             background-image:
-                radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+                linear-gradient(rgba(56, 216, 200, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(242, 184, 75, 0.08) 1px, transparent 1px);
+            background-size: 48px 48px;
         }
 
         .glass-effect {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, rgba(246, 241, 232, 0.068), rgba(246, 241, 232, 0.035)), rgba(11, 15, 18, 0.78);
+            border: 1px solid rgba(246, 241, 232, 0.12);
+            box-shadow: 0 18px 48px rgba(2, 5, 8, 0.28);
         }
 
         .hover-lift:hover {
-            transform: translateY(-8px);
-            transition: all 0.3s ease;
+            transform: translateY(-3px);
+            transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
         }
 
         .skip-link {
@@ -149,7 +140,7 @@
             transform: translateY(-200%);
             border-radius: 0.75rem;
             background: rgba(10, 15, 28, 0.95);
-            border: 1px solid rgba(6, 182, 212, 0.45);
+            border: 1px solid rgba(56, 216, 200, 0.45);
             color: white;
             font-weight: 600;
             padding: 0.75rem 1rem;
@@ -165,21 +156,21 @@
         }
 
         .skill-glow:hover {
-            box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
-            transition: all 0.3s ease;
+            border-color: rgba(88, 199, 188, 0.44);
+            transition: border-color 0.22s ease, transform 0.22s ease;
         }
 
-          /* Prevent horizontal overflow on small devices by hiding large decorative blobs
-              and neutralizing horizontal AOS transforms that can extend beyond the viewport */
           @media (max-width: 430px) {
-            .hero-blob {
-                display: none;
-            }
-
-            /* Remove AOS horizontal translations that can cause overflow */
             [data-aos="fade-left"],
             [data-aos="fade-right"] {
                 transform: none !important;
+            }
+
+            #custom-clippy {
+                top: auto;
+                left: 1rem;
+                right: 1rem;
+                bottom: 5.25rem;
             }
         }
     </style>
@@ -190,12 +181,66 @@
     <!-- Custom Clippy Assistant -->
     <div id="custom-clippy">
         <div class="clippy-assistant">
-            <button type="button" class="clippy-close" onclick="hideClippy()" aria-label="Dismiss Clippy message">×</button>
-            <div class="clippy-icon">📎</div>
+            <button type="button" class="clippy-close" id="clippy-close-button" aria-label="Dismiss Clippy message">×</button>
+            <div class="clippy-icon" aria-hidden="true">📎</div>
             <div class="clippy-message" id="clippy-text">
-                Hey there! Looking to hire an awesome engineer? I'm here to help!
+                Hey there! Looking to hire an awesome engineer? I'm here to help.
             </div>
         </div>
+    </div>
+
+    <!-- Quick personality affordances -->
+    <div class="portfolio-fab-stack" aria-label="Portfolio quick actions">
+        <button type="button" id="clippy-guide-button" class="portfolio-fab portfolio-fab-secondary"
+            aria-label="Ask Clippy for help navigating the portfolio">
+            <span aria-hidden="true">📎</span>
+            <span>Guide</span>
+        </button>
+        <button type="button" id="goose-mini-button" class="portfolio-fab portfolio-fab-secondary"
+            aria-label="Ask the goose for a tiny bit of advice">
+            <span aria-hidden="true">🦆</span>
+            <span>Goose</span>
+        </button>
+        <button type="button" id="command-palette-button" data-command-open class="portfolio-fab portfolio-fab-primary"
+            aria-haspopup="dialog" aria-controls="command-palette" aria-expanded="false">
+            <span aria-hidden="true">&gt;_</span>
+            <span>Command</span>
+        </button>
+    </div>
+
+    <div id="command-palette" class="command-palette hidden" role="dialog" aria-modal="true"
+        aria-labelledby="command-palette-title">
+        <div class="command-palette-backdrop" data-command-close></div>
+        <section class="command-shell" aria-label="Portfolio command terminal">
+            <header class="command-shell-header">
+                <div>
+                    <p class="command-kicker">portfolio terminal</p>
+                    <h2 id="command-palette-title">Ask the site what matters</h2>
+                </div>
+                <button type="button" class="command-close touch-target" data-command-close aria-label="Close command palette">
+                    ×
+                </button>
+            </header>
+            <div id="command-output" class="command-output" aria-live="polite"></div>
+            <form id="command-form" class="command-form">
+                <label for="command-input" class="sr-only">Portfolio command</label>
+                <span aria-hidden="true">&gt;</span>
+                <input id="command-input" name="command" type="text" autocomplete="off" spellcheck="false"
+                    placeholder="try help, repos, projects, contact, goose">
+                <button type="submit">Run</button>
+            </form>
+            <div class="command-suggestions" aria-label="Suggested commands">
+                <button type="button" data-command-run="hire robotics">hire robotics</button>
+                <button type="button" data-command-run="projects">projects</button>
+                <button type="button" data-command-run="repos --featured">repos --featured</button>
+                <button type="button" data-command-run="reviews">reviews</button>
+                <button type="button" data-command-run="roast yuval">roast</button>
+                <button type="button" data-command-run="cv">cv</button>
+                <button type="button" data-command-run="contact">contact</button>
+                <button type="button" data-command-run="goose">goose</button>
+                <button type="button" data-command-run="goose terror">goose terror</button>
+            </div>
+        </section>
     </div>
     <!-- Floating Navigation -->
     <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
@@ -204,7 +249,7 @@
                 <div class="text-2xl font-bold gradient-text flex-shrink-0">
                     YG
                 </div>
-                <div class="hidden md:flex space-x-8 ml-auto" id="desktop-nav">
+                <div class="hidden md:flex gap-5 lg:gap-8 ml-auto text-sm lg:text-base" id="desktop-nav">
                     <a href="#hero" class="hover:text-tech-cyan transition-all duration-300 relative group">
                         Home
                         <span
@@ -215,6 +260,11 @@
                         <span
                             class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
                     </a>
+                    <a href="#hire" class="hover:text-tech-cyan transition-all duration-300 relative group">
+                        Hire
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                     <a href="#skills" class="hover:text-tech-cyan transition-all duration-300 relative group">
                         Expertise
                         <span
@@ -222,6 +272,11 @@
                     </a>
                     <a href="#projects" class="hover:text-tech-cyan transition-all duration-300 relative group">
                         Projects
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#reviews" class="hover:text-tech-cyan transition-all duration-300 relative group">
+                        Reviews
                         <span
                             class="absolute -bottom-1 left-0 w-0 h-0.5 bg-tech-cyan transition-all duration-300 group-hover:w-full"></span>
                     </a>
@@ -251,7 +306,7 @@
                 <button type="button"
                     class="md:hidden mobile-menu-button touch-target flex items-center justify-center w-11 h-11 rounded-lg bg-tech-cyan/10 hover:bg-tech-cyan/20 border border-tech-cyan/30 transition-all duration-300 flex-shrink-0 absolute top-1/2 right-0 -translate-y-1/2"
                     aria-label="Toggle mobile menu" aria-expanded="false" id="mobile-menu-button">
-                    <i class="fas fa-bars text-tech-cyan text-lg transition-transform duration-300"></i>
+                    <span aria-hidden="true" class="text-tech-cyan text-lg leading-none transition-transform duration-300">☰</span>
                 </button>
             </div>
         </div>
@@ -259,10 +314,10 @@
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
             <!-- Backdrop -->
-            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
+            <div class="absolute inset-0 bg-black/50" id="mobile-menu-backdrop"></div>
 
             <!-- Menu Panel -->
-            <div class="absolute top-0 right-0 h-full w-[calc(100vw-4rem)] max-w-sm bg-tech-dark/95 backdrop-blur-lg border-l border-tech-cyan/20 transform translate-x-full transition-transform duration-300 ease-in-out overflow-hidden flex flex-col"
+            <div class="absolute top-0 right-0 h-full w-[calc(100vw-4rem)] max-w-sm bg-tech-dark/95 border-l border-tech-cyan/20 transform translate-x-full overflow-hidden flex flex-col"
                 id="mobile-menu-panel">
                 <!-- Header -->
                 <div class="flex items-center justify-between p-6 border-b border-tech-cyan/20">
@@ -270,7 +325,7 @@
                     <button type="button"
                         class="mobile-menu-close touch-target inline-flex items-center justify-center text-tech-cyan hover:text-white transition-colors"
                         aria-label="Close mobile menu">
-                        <i class="fas fa-times text-xl"></i>
+                        <span aria-hidden="true" class="text-xl leading-none">×</span>
                     </button>
                 </div>
 
@@ -279,57 +334,71 @@
                     <ul class="space-y-4" id="mobile-nav-list">
                         <li>
                             <a href="#hero"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
-                                <i class="fas fa-home w-6"></i>
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
+                                <span aria-hidden="true" class="inline-block w-6">⌂</span>
                                 <span class="ml-3">Home</span>
                             </a>
                         </li>
                         <li>
                             <a href="#about"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
-                                <i class="fas fa-user w-6"></i>
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
+                                <span aria-hidden="true" class="inline-block w-6">👤</span>
                                 <span class="ml-3">About</span>
                             </a>
                         </li>
                         <li>
                             <a href="#skills"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
-                                <i class="fas fa-cogs w-6"></i>
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
+                                <span aria-hidden="true" class="inline-block w-6">⚙</span>
                                 <span class="ml-3">Expertise</span>
                             </a>
                         </li>
                         <li>
+                            <a href="#hire"
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
+                                <span aria-hidden="true" class="inline-block w-6">◎</span>
+                                <span class="ml-3">Hire</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="#projects"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
-                                <i class="fas fa-rocket w-6"></i>
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
+                                <span aria-hidden="true" class="inline-block w-6">🚀</span>
                                 <span class="ml-3">Projects</span>
                             </a>
                         </li>
                         <li>
+                            <a href="#reviews"
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
+                                <span aria-hidden="true" class="inline-block w-6">★</span>
+                                <span class="ml-3">Reviews</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="#fun-zone"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
-                                <i class="fas fa-gamepad w-6"></i>
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
+                                <span aria-hidden="true" class="inline-block w-6">🕹</span>
                                 <span class="ml-3">Fun Zone</span>
                             </a>
                         </li>
                         <li>
                             <a href="#retro-games"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
-                                <i class="fas fa-gamepad w-6"></i>
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
+                                <span aria-hidden="true" class="inline-block w-6">🎮</span>
                                 <span class="ml-3">🎮 Retro Games</span>
                             </a>
                         </li>
                         <li>
                             <a href="#contact"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
-                                <i class="fas fa-envelope w-6"></i>
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
+                                <span aria-hidden="true" class="inline-block w-6">✉</span>
                                 <span class="ml-3">Contact</span>
                             </a>
                         </li>
                         <li>
                             <a href="photo.html"
-                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-tech-cyan">
-                                <i class="fas fa-camera w-6"></i>
+                                class="mobile-nav-link block py-3 px-4 text-white hover:text-tech-cyan hover:bg-tech-cyan/10 rounded-lg transition-all duration-300 border border-transparent hover:border-tech-cyan/45">
+                                <span aria-hidden="true" class="inline-block w-6">📷</span>
                                 <span class="ml-3">📸 Photography</span>
                             </a>
                         </li>
@@ -348,66 +417,126 @@
 
     <main id="main-content">
     <!-- Hero Section -->
-    <section id="hero" class="anchor-section min-h-screen flex items-center justify-center relative overflow-hidden tech-pattern">
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div
-                class="hero-blob absolute -top-10 -left-10 w-72 h-72 bg-tech-purple rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float">
-            </div>
-            <div class="hero-blob absolute -bottom-10 -right-10 w-72 h-72 bg-tech-cyan rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"
-                style="animation-delay: 2s;"></div>
-            <div class="hero-blob absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-tech-green rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-float"
-                style="animation-delay: 4s;"></div>
-        </div>
+    <section id="hero"
+        class="anchor-section min-h-[84svh] flex items-center relative overflow-hidden hero-photo-bg"
+        style="background-image: linear-gradient(90deg, rgba(8, 11, 17, 0.96) 0%, rgba(8, 11, 17, 0.82) 42%, rgba(8, 11, 17, 0.32) 100%), url('assets/images/optimized/DSC03631-HDR-2.jpg');">
+        <div class="absolute inset-0 hero-signal-grid" aria-hidden="true"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div data-aos="fade-up" data-aos-duration="1000">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full pt-24 md:pt-28 pb-16">
+            <div class="max-w-4xl" data-aos="fade-up" data-aos-duration="1000">
+                <p class="font-tech text-sm md:text-base uppercase tracking-[0.18em] text-tech-cyan mb-5">
+                    Robotics, autonomy, simulation, AI tooling
+                </p>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black mb-5 leading-tight">
                     <span class="block text-white">Yuval</span>
                     <span class="block gradient-text">Grimberg</span>
                 </h1>
-            </div>
-
-            <div data-aos="fade-up" data-aos-delay="300" class="mb-8">
-                <div
-                    class="inline-flex items-center space-x-4 bg-gradient-to-r from-tech-purple/20 to-tech-cyan/20 backdrop-blur-sm rounded-full px-8 py-4 border border-white/10">
-                    <div class="w-3 h-3 bg-tech-green rounded-full animate-pulse"></div>
-                    <p class="text-xl md:text-2xl font-tech">Control Systems Engineer</p>
-                </div>
-            </div>
-
-            <div data-aos="fade-up" data-aos-delay="600" class="mb-12">
-                <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                    Mechanical Engineer specializing in <span class="text-tech-cyan font-semibold">Autonomous
-                        Vehicles</span>,
-                    <span class="text-tech-purple font-semibold">Control Theory</span>, and
-                    <span class="text-tech-green font-semibold">Advanced System Design</span>
+                <p class="text-2xl md:text-3xl lg:text-4xl text-white font-black leading-tight max-w-3xl">
+                    I build systems, simulations, and tools that actually do the thing.
                 </p>
             </div>
 
-            <div data-aos="fade-up" data-aos-delay="900"
-                class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div data-aos="fade-up" data-aos-delay="300" class="mt-6 max-w-3xl">
+                <p class="text-lg md:text-xl text-gray-200 leading-relaxed">
+                    Control, autonomy, Python, AI tooling, and the occasional side quest that somehow becomes a working
+                    prototype.
+                </p>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="500" class="mt-5">
+                <p class="inline-flex items-start gap-3 rounded-full border border-white/15 bg-black/30 px-5 py-3 text-sm md:text-base text-gray-200">
+                    <span class="mt-1 h-2.5 w-2.5 rounded-full bg-tech-green animate-pulse flex-shrink-0"></span>
+                    <span>Open to robotics, autonomy, simulation, and AI/tooling roles. Based in Israel, open to remote or relocation.</span>
+                </p>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="700"
+                class="mt-8 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
                 <a href="#projects"
-                    class="group bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 animate-pulse-glow shadow-2xl">
-                    <span class="flex items-center space-x-2">
-                        <span>View My Work</span>
-                        <i class="fas fa-rocket group-hover:translate-x-1 transition-transform"></i>
-                    </span>
+                    class="group inline-flex justify-center items-center gap-3 bg-tech-purple hover:bg-tech-cyan text-white font-bold py-4 px-7 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl">
+                    <span>See the work</span>
+                    <span aria-hidden="true" class="group-hover:translate-y-1 transition-transform">↓</span>
                 </a>
-                <a href="#contact"
-                    class="group glass-effect hover:bg-white/10 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 border border-white/20">
-                    <span class="flex items-center space-x-2">
-                        <span>Let's Connect</span>
-                        <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform"></i>
-                    </span>
-                </a>
+                <button type="button" data-command-open
+                    class="group inline-flex justify-center items-center gap-3 glass-effect hover:bg-white/10 text-white font-bold py-4 px-7 rounded-full transition-all duration-300 transform hover:scale-105 border border-white/20">
+                    <span>Open command palette</span>
+                    <span class="font-tech text-tech-cyan">&gt;_</span>
+                </button>
             </div>
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="hero-scroll-cue absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
             <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
                 <div class="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hire Command Center -->
+    <section id="hire" class="anchor-section hire-command-center py-20 relative overflow-hidden">
+        <div class="hire-grid-plane" aria-hidden="true"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+                <div class="hire-copy" data-aos="fade-right">
+                    <p class="font-tech text-sm uppercase tracking-[0.18em] text-tech-green mb-4">Hire Me Command Center</p>
+                    <h2 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                        Pick the mission. <span class="gradient-text">I will show the proof.</span>
+                    </h2>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-8">
+                        Recruiters should not need a treasure map. Choose the role shape and the site will line up
+                        projects, skills, and the honest reason I fit.
+                    </p>
+                    <div class="hire-role-tabs" role="tablist" aria-label="Role fit selector">
+                        <button type="button" class="hire-role-tab is-active" data-hire-role="robotics" role="tab"
+                            aria-selected="true">Robotics</button>
+                        <button type="button" class="hire-role-tab" data-hire-role="autonomy" role="tab"
+                            aria-selected="false">Autonomy</button>
+                        <button type="button" class="hire-role-tab" data-hire-role="simulation" role="tab"
+                            aria-selected="false">Simulation</button>
+                        <button type="button" class="hire-role-tab" data-hire-role="ai" role="tab"
+                            aria-selected="false">AI Tooling</button>
+                    </div>
+                </div>
+
+                <div class="hire-console" data-aos="fade-left" aria-live="polite">
+                    <div class="hire-console-header">
+                        <span class="font-tech text-tech-green">FIT_PACKET</span>
+                        <span class="hire-status-dot" aria-hidden="true"></span>
+                    </div>
+                    <div class="hire-console-body">
+                        <p class="font-tech text-xs uppercase tracking-[0.16em] text-gray-400 mb-2">selected role</p>
+                        <h3 id="hire-role-title" class="text-3xl font-black text-white mb-4">Robotics Systems Developer</h3>
+                        <p id="hire-role-summary" class="text-gray-300 text-lg leading-relaxed mb-6">
+                            I connect controls, perception, code, and physical constraints without pretending robots
+                            live in clean PowerPoint rectangles.
+                        </p>
+                        <div class="grid md:grid-cols-3 gap-4 mb-6">
+                            <div class="hire-metric">
+                                <span class="hire-metric-label">Proof</span>
+                                <strong id="hire-role-proof">BGR driverless stack</strong>
+                            </div>
+                            <div class="hire-metric">
+                                <span class="hire-metric-label">Tools</span>
+                                <strong id="hire-role-tools">Python, ROS2, OpenCV</strong>
+                            </div>
+                            <div class="hire-metric">
+                                <span class="hire-metric-label">Mode</span>
+                                <strong id="hire-role-mode">Build, test, iterate</strong>
+                            </div>
+                        </div>
+                        <ul id="hire-role-bullets" class="hire-proof-list">
+                            <li>Led path planning and control work for a real Formula Student driverless effort.</li>
+                            <li>Comfortable translating messy system behavior into debuggable software loops.</li>
+                            <li>Useful when the job needs range, not a one-trick framework certificate.</li>
+                        </ul>
+                    </div>
+                    <div class="hire-console-actions">
+                        <button type="button" data-command-run="hire robotics"
+                            class="touch-target hire-command-button">Run terminal fit</button>
+                        <a href="#contact" class="touch-target hire-contact-link">Start the conversation</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -425,42 +554,29 @@
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div data-aos="fade-right" class="space-y-6">
                     <div class="glass-effect rounded-2xl p-8 hover-lift">
-                        <h3 class="text-2xl font-bold text-tech-cyan mb-4">🎓 Education & Background</h3>
+                        <h3 class="text-2xl font-bold text-tech-cyan mb-4">🎓 Background</h3>
                         <p class="text-gray-300 leading-relaxed">
-                            <!-- Mechanical Engineering graduate with specialized focus on Control Theory and Autonomous
-                            Systems.
-                            Passionate about bridging the gap between theoretical engineering principles and real-world
-                            applications
-                            in autonomous vehicle technology. -->
-                            <!-- Mechanical Engineering graduate (B.Sc.) from Ben-Gurion University. Head of Path Planning & Control for the BGRacing Formula Student team, where we delivered the team’s first autonomous car that actually drives.
-                                Beyond racecars, I’m deep into space and perception: I built a learning-based LQI controller for the Hill equations, an orbiter propagator, and a robotics computer-vision project focused on perception.
-                                Broad, systems-minded generalist—comfortable across control, dynamics, and CV—good at connecting disciplines and shipping working systems. -->
-                            <!-- Mechanical Engineering B.Sc. (BGU); led Path Planning & Control for BGRacing (Formula Student) and delivered the team’s first self-driving car. Projects span a learning-based LQI for Hill’s equations, an orbiter propagator, and a robotics CV build—broad generalist across control, dynamics, and perception. -->
-                            <!-- B.Sc. Mechanical Engineering (BGU). I led Path Planning & Control for BGRacing (Formula Student), delivering the team’s first self-driving car. I built a learning-based LQI controller for Hill’s equations, an animated orbital propagator, and a robotics computer-vision system—broad, systems-minded generalist across control, dynamics, and perception. -->
-                            A systems-minded generalist (B.Sc. Mechanical Engineering, BGU) with broad experience across
-                            control, dynamics, and perception.
-                            I led the Path Planning & Control team for BGRacing (Formula Student) to deliver its first
-                            self-driving car and have built projects including a learning-based LQI controller,
-                            an orbital propagator, and a robotics computer-vision system.
+                            B.Sc. Mechanical Engineering from BGU, with a strong bias toward systems that move,
+                            estimate, decide, and occasionally misbehave in public. I led Path Planning & Control for
+                            BGRacing's Formula Student driverless effort and keep building across autonomy, control,
+                            simulation, and AI tooling.
                         </p>
                     </div>
 
                     <div class="glass-effect rounded-2xl p-8 hover-lift">
-                        <h3 class="text-2xl font-bold text-tech-purple mb-4">🚀 Mission</h3>
+                        <h3 class="text-2xl font-bold text-tech-purple mb-4">🚀 Working Style</h3>
                         <p class="text-gray-300 leading-relaxed">
-                            To solve complex problems at the intersection of hardware, software, and systems thinking.
-                            My strength is in seeing the big picture, connecting dots that others miss,
-                            and collaborating with teams to transform ambitious, ambiguous ideas into reality.
+                            I like ambiguous problems, but I do not worship ambiguity. Break the problem apart, build a
+                            useful first version, test the thing, then make it less embarrassing one iteration at a time.
                         </p>
                     </div>
 
                     <div class="glass-effect rounded-2xl p-8 hover-lift">
-                        <h3 class="text-2xl font-bold text-tech-green mb-4">💡 Innovation Focus</h3>
+                        <h3 class="text-2xl font-bold text-tech-green mb-4">💡 Systems Taste</h3>
                         <p class="text-gray-300 leading-relaxed">
-                            I specialize in the seams and gaps where different technologies meet.
-                            My focus is on integrating complex systems by bridging the divide between mechanical design,
-                            control theory, and AI. By identifying the core, shared principles between them,
-                            I simplify challenges and accelerate the development of novel solutions.
+                            I am most useful where math meets software and hardware stops being polite: estimation,
+                            control, simulation, perception, automation, and developer tools that make the work easier
+                            to reason about.
                         </p>
                     </div>
                 </div>
@@ -563,7 +679,6 @@
             </div>
 
             <!-- Tools & Technologies -->
-            <!-- Tools & Technologies (short) -->
             <div class="mt-16" data-aos="fade-up">
                 <h3 class="text-2xl font-bold text-center mb-8 gradient-text">Tools & Technologies</h3>
                 <div class="flex flex-wrap justify-center gap-4">
@@ -575,6 +690,8 @@
                     <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">ESP32/Arduino</span>
                     <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">PlatformIO</span>
                     <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">LangChain</span>
+                    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20">LangGraph</span>
+                    <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">FastAPI</span>
                     <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">TensorFlow</span>
                     <span
                         class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20">Scipy/Sklearn</span>
@@ -582,27 +699,6 @@
                         class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">MATLAB/Simulink</span>
                 </div>
             </div>
-            <!-- <div class="mt-16" data-aos="fade-up">
-                <h3 class="text-2xl font-bold text-center mb-8 gradient-text">Tools & Technologies</h3>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20 transition-colors">TensorFlow</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20 transition-colors">PyTorch</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20 transition-colors">OpenCV</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20 transition-colors">Gazebo</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20 transition-colors">Docker</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20 transition-colors">Git</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-purple/20 transition-colors">Linux</span>
-                    <span
-                        class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20 transition-colors">Kubernetes</span>
-                </div>
-            </div> -->
         </div>
     </section>
 
@@ -610,174 +706,186 @@
     <section id="projects" class="anchor-section py-20 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
+                <p class="font-tech text-sm uppercase tracking-[0.18em] text-tech-cyan mb-4">selected proof</p>
                 <h2 class="text-4xl md:text-5xl font-black mb-6">
                     Featured <span class="gradient-text">Projects</span>
                 </h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Cutting-edge engineering solutions that showcase innovation and technical excellence
+                    Four projects that show the useful part: math, systems, code, and enough polish to inspect without a
+                    treasure map.
                 </p>
             </div>
 
-            <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                <!-- Project 1: Autonomous Vehicle Control System -->
-                <div data-aos="fade-up" data-aos-delay="100"
+            <div class="grid lg:grid-cols-2 gap-8">
+                <article data-aos="fade-up" data-aos-delay="100"
                     class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group">
-                    <div class="relative overflow-hidden">
-                        <div
-                            class="h-48 bg-gradient-to-br from-tech-purple to-tech-cyan flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-300">
-                            🚗
-                        </div>
-                        <div class="absolute top-4 right-4">
-                            <span
-                                class="bg-tech-green/20 text-tech-green px-3 py-1 rounded-full text-xs font-bold">FEATURED</span>
-                        </div>
+                    <div class="project-visual project-visual-road">
+                        <div class="project-visual-label">autonomy</div>
+                        <div class="project-visual-icon">🏎️</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-tech-cyan mb-3">Autonomous Vehicle Control System</h3>
-                        <p class="text-gray-300 mb-4">
-                            Built a path-planning & control stack for BGRacing’s autonomous racer GNC Piepline with an
-                            end-to-end from simulation to track. The pipeline runs on an AirSim-based simulator with
-                            interactive telemetry and logging,
-                            and the same code deploys on-car with full sensor/actuator integration.
-                            <!-- Advanced model predictive control system for autonomous vehicles with real-time path
-                            planning,
-                            obstacle avoidance, and vehicle dynamics optimization. -->
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-tech-purple/20 text-tech-purple px-2 py-1 rounded text-xs">Python</span>
-                            <span class="bg-tech-cyan/20 text-tech-cyan px-2 py-1 rounded text-xs">Control Theory</span>
-                            <span class="bg-tech-green/20 text-tech-green px-2 py-1 rounded text-xs">ROS2</span>
+                        <div class="flex items-start justify-between gap-4 mb-3">
+                            <h3 class="text-2xl font-bold text-tech-cyan">BGR Path Planning & Control</h3>
+                            <span class="repo-badge">FEATURED</span>
                         </div>
-                        <div class="flex justify-between items-center">
+                        <p class="text-gray-300 mb-4">
+                            Formula Student autonomous racing work: path planning, control, simulation loops, and real
+                            vehicle constraints. This is the serious anchor, not a toy demo wearing a helmet.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="repo-chip">Python</span>
+                            <span class="repo-chip">Path Planning</span>
+                            <span class="repo-chip">Control</span>
+                            <span class="repo-chip">Autonomy</span>
+                        </div>
+                        <div class="flex justify-between items-center gap-4">
                             <a href="https://github.com/grimgrimberg/BGR_PathPlanning_Control" target="_blank"
                                 rel="noopener noreferrer"
-                                class="project-action-link touch-target text-tech-cyan hover:text-white transition-colors flex items-center space-x-1">
+                                class="project-action-link touch-target text-tech-cyan hover:text-white transition-colors">
                                 <span>View Details</span>
-                                <i class="fas fa-arrow-right"></i>
+                                <span aria-hidden="true">→</span>
                             </a>
-                            <div class="flex space-x-2">
-                                <a href="https://github.com/grimgrimberg/BGR_PathPlanning_Control" target="_blank"
-                                    rel="noopener noreferrer" aria-label="Open the BGR Path Planning Control repository"
-                                    class="project-icon-link touch-target text-gray-400 hover:text-white transition-colors">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
+                            <a href="https://github.com/grimgrimberg/BGR_PathPlanning_Control" target="_blank"
+                                rel="noopener noreferrer" aria-label="Open the BGR Path Planning Control repository"
+                                class="project-icon-link touch-target text-gray-400 hover:text-white transition-colors">
+                                <span aria-hidden="true" class="text-sm font-bold">GH</span>
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Project 2: Machine Learning Control Optimization -->
-                <div data-aos="fade-up" data-aos-delay="200"
+                <article data-aos="fade-up" data-aos-delay="160"
                     class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group">
-                    <div class="relative overflow-hidden">
-                        <div
-                            class="h-48 bg-gradient-to-br from-tech-green to-tech-purple flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-300">
-                            🧠
-                        </div>
-                        <div class="absolute top-4 right-4">
-                            <span
-                                class="bg-tech-purple/20 text-tech-purple px-3 py-1 rounded-full text-xs font-bold">AI/ML</span>
-                        </div>
+                    <div class="project-visual project-visual-orbit">
+                        <div class="project-visual-label">control</div>
+                        <div class="project-visual-icon">🛰️</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-tech-purple mb-3">ML-Enhanced Control Systems for Satellites
-                            Rendezvous</h3>
-                        <p class="text-gray-300 mb-4">
-                            Python-based project that simulates orbital mechanics and robust control for satellite
-                            rendezvous
-                            using the Clohessy-Wiltshire (CW) equations. This project includes various animations and
-                            visualizations to illustrate the dynamics of the rendezvous process.
-                            <!-- The project also includes an orbital propagator. -->
-                            <!-- Integration of deep reinforcement learning with traditional control methods for adaptive
-                            system optimization and predictive maintenance in industrial applications. -->
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-tech-green/20 text-tech-green px-2 py-1 rounded text-xs">Scipy</span>
-                            <span class="bg-tech-purple/20 text-tech-purple px-2 py-1 rounded text-xs">Deep
-                                Learning</span>
-                            <span class="bg-tech-cyan/20 text-tech-cyan px-2 py-1 rounded text-xs">Matplotlib</span>
+                        <div class="flex items-start justify-between gap-4 mb-3">
+                            <h3 class="text-2xl font-bold text-tech-purple">Orbital Rendezvous LQI</h3>
+                            <span class="repo-badge">CONTROL</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://github.com/grimgrimberg/Space_GNC_Pipeline" target="_blank"
+                        <p class="text-gray-300 mb-4">
+                            Two-body orbital propagation, Clohessy-Wiltshire rendezvous control, cached LQI, constrained
+                            MPC comparison, Streamlit viewer, and reproducible plots.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="repo-chip">Python</span>
+                            <span class="repo-chip">LQI</span>
+                            <span class="repo-chip">MPC</span>
+                            <span class="repo-chip">Streamlit</span>
+                        </div>
+                        <div class="flex justify-between items-center gap-4">
+                            <a href="https://github.com/grimgrimberg/orbital-rendezvous-lqi" target="_blank"
                                 rel="noopener noreferrer"
-                                class="project-action-link touch-target text-tech-purple hover:text-white transition-colors flex items-center space-x-1">
+                                class="project-action-link touch-target text-tech-purple hover:text-white transition-colors">
                                 <span>View Details</span>
-                                <i class="fas fa-arrow-right"></i>
+                                <span aria-hidden="true">→</span>
                             </a>
-                            <div class="flex space-x-2">
-                                <a href="https://github.com/grimgrimberg/Space_GNC_Pipeline" target="_blank"
-                                    rel="noopener noreferrer" aria-label="Open the Space GNC Pipeline repository"
-                                    class="project-icon-link touch-target text-gray-400 hover:text-white transition-colors">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
+                            <a href="https://github.com/grimgrimberg/orbital-rendezvous-lqi" target="_blank"
+                                rel="noopener noreferrer" aria-label="Open the Orbital Rendezvous LQI repository"
+                                class="project-icon-link touch-target text-gray-400 hover:text-white transition-colors">
+                                <span aria-hidden="true" class="text-sm font-bold">GH</span>
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Project 3: Robotic System Integration -->
-                <div data-aos="fade-up" data-aos-delay="300"
+                <article data-aos="fade-up" data-aos-delay="220"
                     class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group">
-                    <div class="relative overflow-hidden">
-                        <div
-                            class="h-48 bg-gradient-to-br from-tech-cyan to-tech-green flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-300">
-                            🤖
-                        </div>
-                        <div class="absolute top-4 right-4">
-                            <span
-                                class="bg-tech-cyan/20 text-tech-cyan px-3 py-1 rounded-full text-xs font-bold">ROBOTICS</span>
-                        </div>
+                    <div class="project-visual project-visual-tool">
+                        <div class="project-visual-label">tooling</div>
+                        <div class="project-visual-icon">🧰</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-tech-green mb-3">Advanced Robotics Platform - HW monitoring
-                            and CV piepline</h3>
-                        <p class="text-gray-300 mb-4">
-                            This repository contains a comprehensive AI robotics system
-                            , featuring advanced computer vision, real-time hardware monitoring, and
-                            intelligent robot control capabilities. The system demonstrates modern ROS2 integration with
-                            state-of-the-art AI technologies.
-                            <!-- Multi-robot coordination system with distributed control architecture,
-                            real-time communication protocols, and collaborative task execution. -->
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-tech-cyan/20 text-tech-cyan px-2 py-1 rounded text-xs">OpenCV</span>
-                            <span class="bg-tech-green/20 text-tech-green px-2 py-1 rounded text-xs">Robotics</span>
-                            <span class="bg-tech-purple/20 text-tech-purple px-2 py-1 rounded text-xs">ROS2</span>
+                        <div class="flex items-start justify-between gap-4 mb-3">
+                            <h3 class="text-2xl font-bold text-tech-green">GitHub Repo Summarizer</h3>
+                            <span class="repo-badge">TOOL</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <a href="https://github.com/grimgrimberg/AI_ROBOTICS_BGU" target="_blank"
+                        <p class="text-gray-300 mb-4">
+                            FastAPI and CLI service for turning public repos into structured summaries. Deterministic
+                            file scoring, adaptive sharding, strict JSON, provider fallback.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="repo-chip">FastAPI</span>
+                            <span class="repo-chip">LLM</span>
+                            <span class="repo-chip">GitHub API</span>
+                            <span class="repo-chip">Testing</span>
+                        </div>
+                        <div class="flex justify-between items-center gap-4">
+                            <a href="https://github.com/grimgrimberg/github-repo-summarizer" target="_blank"
                                 rel="noopener noreferrer"
-                                class="project-action-link touch-target text-tech-green hover:text-white transition-colors flex items-center space-x-1">
+                                class="project-action-link touch-target text-tech-green hover:text-white transition-colors">
                                 <span>View Details</span>
-                                <i class="fas fa-arrow-right"></i>
+                                <span aria-hidden="true">→</span>
                             </a>
-                            <div class="flex space-x-2">
-                                <a href="https://github.com/grimgrimberg/AI_ROBOTICS_BGU" target="_blank"
-                                    rel="noopener noreferrer" aria-label="Open the AI Robotics BGU repository"
-                                    class="project-icon-link touch-target text-gray-400 hover:text-white transition-colors">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
+                            <a href="https://github.com/grimgrimberg/github-repo-summarizer" target="_blank"
+                                rel="noopener noreferrer" aria-label="Open the GitHub Repo Summarizer repository"
+                                class="project-icon-link touch-target text-gray-400 hover:text-white transition-colors">
+                                <span aria-hidden="true" class="text-sm font-bold">GH</span>
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="280"
+                    class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group">
+                    <div class="project-visual project-visual-agent">
+                        <div class="project-visual-label">agentic ai</div>
+                        <div class="project-visual-icon">📈</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between gap-4 mb-3">
+                            <h3 class="text-2xl font-bold text-tech-cyan">Daily Movers Agent</h3>
+                            <span class="repo-badge">AI</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            LangGraph market-movers pipeline with researcher, analyst, critic, and recommender nodes.
+                            Outputs explainable HTML, Excel, email, logs, and fallbacks.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="repo-chip">LangGraph</span>
+                            <span class="repo-chip">Reports</span>
+                            <span class="repo-chip">Fallbacks</span>
+                            <span class="repo-chip">CI</span>
+                        </div>
+                        <div class="flex justify-between items-center gap-4">
+                            <a href="https://github.com/grimgrimberg/daily-movers-agent" target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-action-link touch-target text-tech-cyan hover:text-white transition-colors">
+                                <span>View Details</span>
+                                <span aria-hidden="true">→</span>
+                            </a>
+                            <a href="https://github.com/grimgrimberg/daily-movers-agent" target="_blank"
+                                rel="noopener noreferrer" aria-label="Open the Daily Movers Agent repository"
+                                class="project-icon-link touch-target text-gray-400 hover:text-white transition-colors">
+                                <span aria-hidden="true" class="text-sm font-bold">GH</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
             </div>
 
-            <!-- View More Projects Button -->
-            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
-                    class="group bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl">
-                    <span class="flex items-center space-x-2">
-                        <span>View All Projects on GitHub</span>
-                        <i class="fab fa-github group-hover:rotate-12 transition-transform"></i>
-                    </span>
-                </a>
+            <div class="mt-12 grid lg:grid-cols-[1fr_auto] gap-6 items-center" data-aos="fade-up" data-aos-delay="340">
+                <div class="glass-effect rounded-2xl p-6">
+                    <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-green mb-3">lab layer</p>
+                    <h3 class="text-2xl font-bold text-white mb-3">There is more in the terminal.</h3>
+                    <p class="text-gray-300">
+                        The command palette keeps the full GitHub snapshot categorized as Featured, Lab, Tools,
+                        Learning Archive, and Forks / References. Public categories, private scoring. Very civilized.
+                    </p>
+                </div>
+                <button type="button" data-command-open
+                    class="inline-flex justify-center items-center gap-3 bg-tech-purple hover:bg-tech-cyan text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl">
+                    <span>Compare repos</span>
+                    <span class="font-tech">&gt; repos</span>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials/Impact Section -->
-    <section id="testimonials" class="py-20 bg-gradient-to-br from-gray-900 to-tech-dark relative overflow-hidden">
+    <!-- Epic Reviews Section -->
+    <section id="reviews" class="anchor-section reviews-section py-20 bg-gradient-to-br from-gray-900 to-tech-dark relative overflow-hidden">
         <div class="absolute inset-0 tech-pattern opacity-30"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -789,77 +897,85 @@
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div data-aos="fade-up" data-aos-delay="100"
-                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
-                    <div class="text-4xl text-tech-cyan mb-4">🎯</div>
-                    <h3 class="text-2xl font-bold text-tech-cyan mb-3">Legendary Engineering</h3>
-                    <p class="text-gray-300 mb-4">
+            <div class="review-grid">
+                <article data-aos="fade-up" data-aos-delay="100" class="review-card">
+                    <div class="review-mark text-tech-cyan">🎯</div>
+                    <h3 class="text-tech-cyan">Legendary Engineering</h3>
+                    <p>
                         "Holy sh*t, this is the best engineering portfolio I've ever seen! And I've seen... well, not
                         much because I'm blind, but this one SOUNDS amazing!"
                     </p>
-                    <div class="mt-4 text-sm text-gray-400">- Ray Charles</div>
-                    <div class="text-xs text-gray-500 italic mt-1">(Spiritual endorsement)</div>
-                </div>
+                    <div class="review-author">- Ray Charles</div>
+                    <div class="review-note">(Spiritual endorsement)</div>
+                </article>
 
-                <div data-aos="fade-up" data-aos-delay="200"
-                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
-                    <div class="text-4xl text-tech-purple mb-4">🚀</div>
-                    <h3 class="text-2xl font-bold text-tech-purple mb-3">Mind-Blowing Innovation</h3>
-                    <p class="text-gray-300 mb-4">
+                <article data-aos="fade-up" data-aos-delay="180" class="review-card review-card-accent">
+                    <div class="review-mark text-tech-purple">🚀</div>
+                    <h3 class="text-tech-purple">Mind-Blowing Innovation</h3>
+                    <p>
                         "It made me walk again! Well, not literally - I'm still dead. But if I were alive, Yuval's
                         control systems would definitely help me get around faster than my wheelchair ever did."
                     </p>
-                    <div class="mt-4 text-sm text-gray-400">- Stephen Hawking</div>
-                    <div class="text-xs text-gray-500 italic mt-1">(Interdimensional consultation)</div>
-                </div>
+                    <div class="review-author">- Stephen Hawking</div>
+                    <div class="review-note">(Interdimensional consultation)</div>
+                </article>
 
-                <div data-aos="fade-up" data-aos-delay="300"
-                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
-                    <div class="text-4xl text-tech-green mb-4">⚡</div>
-                    <h3 class="text-2xl font-bold text-tech-green mb-3">Pure Genius</h3>
-                    <p class="text-gray-300 mb-4">
+                <article data-aos="fade-up" data-aos-delay="260" class="review-card">
+                    <div class="review-mark text-tech-green">⚡</div>
+                    <h3 class="text-tech-green">Pure Genius</h3>
+                    <p>
                         "Damn, I wish I had hired Yuval for Tesla autopilot. We probably wouldn't have crashed into all
                         those traffic cones. This guy actually knows what he's doing!"
                     </p>
-                    <div class="mt-4 text-sm text-gray-400">- Elon Musk</div>
-                    <div class="text-xs text-gray-500 italic mt-1">(Definitely would say this after a few drinks)</div>
-                </div>
-            </div>
+                    <div class="review-author">- Elon Musk</div>
+                    <div class="review-note">(Definitely would say this after a few drinks)</div>
+                </article>
 
-            <!-- Additional Epic Reviews Row -->
-            <div class="grid md:grid-cols-2 gap-8 mt-8">
-                <div data-aos="fade-up" data-aos-delay="400"
-                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
-                    <div class="text-4xl text-tech-pink mb-4">🎵</div>
-                    <h3 class="text-2xl font-bold text-tech-pink mb-3">Absolutely Revolutionary</h3>
-                    <p class="text-gray-300 mb-4">
+                <article data-aos="fade-up" data-aos-delay="340" class="review-card review-card-wide">
+                    <div class="review-mark text-tech-pink">🎵</div>
+                    <h3 class="text-tech-pink">Absolutely Revolutionary</h3>
+                    <p>
                         "E=mc² was cute, but Yuval's control algorithms? That's the real theory of everything! I'm
                         literally jealous of a guy who wasn't even born yet when I died."
                     </p>
-                    <div class="mt-4 text-sm text-gray-400">- Albert Einstein</div>
-                    <div class="text-xs text-gray-500 italic mt-1">(Time travel is complicated)</div>
-                </div>
+                    <div class="review-author">- Albert Einstein</div>
+                    <div class="review-note">(Time travel is complicated)</div>
+                </article>
 
-                <div data-aos="fade-up" data-aos-delay="500"
-                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
-                    <div class="text-4xl text-tech-cyan mb-4">🤖</div>
-                    <h3 class="text-2xl font-bold text-tech-cyan mb-3">Beyond Perfection</h3>
-                    <p class="text-gray-300 mb-4">
+                <article data-aos="fade-up" data-aos-delay="420" class="review-card review-card-wide review-card-accent">
+                    <div class="review-mark text-tech-cyan">🤖</div>
+                    <h3 class="text-tech-cyan">Beyond Perfection</h3>
+                    <p>
                         "I've seen 14,000,605 possible futures. In ALL of them, Yuval gets the job. In 14,000,604 of
                         them, he also gets a raise within 6 months."
                     </p>
-                    <div class="mt-4 text-sm text-gray-400">- Doctor Strange</div>
-                    <div class="text-xs text-gray-500 italic mt-1">(Multiverse HR consultant)</div>
-                </div>
+                    <div class="review-author">- Doctor Strange</div>
+                    <div class="review-note">(Multiverse HR consultant)</div>
+                </article>
             </div>
 
-            <!-- Disclaimer -->
-            <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="600">
+            <div class="mt-8 text-center" data-aos="fade-up" data-aos-delay="500">
                 <p class="text-xs text-gray-500 italic max-w-2xl mx-auto">
-                    * Reviews may be slightly exaggerated for comedic effect. But seriously, the engineering skills are
-                    real, the humor is infectious, and the results speak for themselves. What more do you want? 🤷‍♂️
+                    * Reviews may be slightly exaggerated for comedic effect. The engineering skills are real, the
+                    humor is opt-in, and the terminal is where the page stops pretending to be normal.
                 </p>
+            </div>
+
+            <div class="review-roast-teaser mt-12" data-aos="fade-up" data-aos-delay="560">
+                <div>
+                    <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-purple mb-2">opt-in roast mode</p>
+                    <h3 class="text-2xl font-black text-white mb-2">The page behaves. The terminal has opinions.</h3>
+                    <p class="text-gray-300">
+                        Public surface stays mostly polite. If you explicitly ask for the roast, Clippy puts on a tiny
+                        leather jacket and the compiler stops pretending to be neutral.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button type="button" data-command-run="reviews"
+                        class="touch-target hire-command-button">Show reviews</button>
+                    <button type="button" data-command-run="roast yuval"
+                        class="touch-target roast-button">Opt into roast</button>
+                </div>
             </div>
         </div>
     </section>
@@ -875,8 +991,8 @@
                     The <span class="gradient-text">Human</span> Side
                 </h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Yes, I can design control systems for autonomous vehicles. But can I make you laugh while doing it?
-                    <span class="text-tech-cyan">Absolutely.</span> 🤖
+                    Engineering first. Personality second. Still, life is too short for beige office-chair energy.
+                    <span class="text-tech-cyan">Bring the goose.</span>
                 </p>
             </div>
 
@@ -908,7 +1024,7 @@
                     <a href="photo.html"
                         class="inline-flex items-center space-x-2 text-tech-cyan hover:text-tech-green transition-colors font-semibold">
                         <span>View Full Gallery</span>
-                        <i class="fas fa-camera"></i>
+                        <span aria-hidden="true">📷</span>
                     </a>
                 </div>
 
@@ -916,19 +1032,26 @@
                 <div data-aos="fade-up"
                     class="glass-effect rounded-2xl p-8 text-center group hover:scale-105 transition-all duration-300">
                     <div class="text-4xl mb-4">🦆</div>
-                    <h3 class="text-2xl font-bold text-tech-green mb-4">Meet My Assistant</h3>
-                    <p class="text-gray-300 mb-6">Every serious engineer needs a debugging duck. Mine just happens to be
-                        animated and slightly unhinged.</p>
+                    <h3 class="text-2xl font-bold text-tech-green mb-4">Meet Desk Goose</h3>
+                    <p class="text-gray-300 mb-6">Helpful guide first, dumb joyful desk menace second. He is not
+                        qualified to review pull requests, which has never stopped anyone.</p>
 
-                    <!-- Goose Animation Container -->
-                    <div id="goose-fun-zone" class="relative mx-auto mb-6" style="width: 120px; height: 120px;">
-                        <!-- Goose will be loaded here -->
+                    <div id="goose-fun-zone" class="goose-desk-scene relative mx-auto mb-6">
+                        <span class="goose-desk-bubble" aria-hidden="true">help?</span>
+                        <img src="assets/images/desk-goose.svg" alt="Dumb happy desktop goose mascot" width="240" height="220"
+                            loading="lazy" decoding="async" class="goose-frame-fallback goose-desk-goose"
+                            data-goose-mascot="true">
+                        <span class="goose-desk-shadow" aria-hidden="true"></span>
                     </div>
 
                     <div class="space-y-3">
                         <button id="goose-talk"
                             class="touch-target bg-gradient-to-r from-tech-green to-tech-cyan hover:from-tech-cyan hover:to-tech-green text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">
                             Ask Goose for Advice
+                        </button>
+                        <button id="goose-terror-button" aria-pressed="false"
+                            class="touch-target goose-terror-trigger">
+                            Release Desk Goose
                         </button>
                         <div id="goose-wisdom" class="text-sm text-tech-cyan italic min-h-[20px]"></div>
                     </div>
@@ -939,11 +1062,12 @@
                     class="glass-effect rounded-2xl p-8 text-center group hover:scale-105 transition-all duration-300">
                     <div class="text-4xl mb-4">🎮</div>
                     <h3 class="text-2xl font-bold text-tech-purple mb-4">Secret Features</h3>
-                    <p class="text-gray-300 mb-6">I hide easter eggs in my code like I hide bugs... strategically and
-                        with purpose.</p>
+                    <p class="text-gray-300 mb-6">Most of the site behaves. Some of it has opinions. That is called
+                        range.</p>
 
                     <div class="space-y-4">
                         <div class="text-sm text-gray-400">
+                            <p><kbd class="bg-gray-700 px-2 py-1 rounded">Command</kbd> - Explore projects and repos</p>
                             <p><kbd class="bg-gray-700 px-2 py-1 rounded">Alt + Shift + C</kbd> - Summon Clippy</p>
                             <p><kbd class="bg-gray-700 px-2 py-1 rounded">Click Counter</kbd> - Find the magic number
                             </p>
@@ -994,331 +1118,324 @@
         </div>
     </section>
 
-    <!-- Retro Gaming Zone Section -->
-    <section id="retro-games"
-        class="anchor-section py-20 bg-gradient-to-br from-purple-900/20 via-tech-dark to-blue-900/20 relative overflow-hidden">
+    <!-- Retro Gaming Classics Section -->
+    <section id="retro-games" class="anchor-section retro-archive-section py-20 relative overflow-hidden">
         <div class="absolute inset-0 tech-pattern opacity-30"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-black mb-6">
-                    Retro <span class="gradient-text">Gaming</span> Zone
-                </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Nostalgic classics from the golden age of PC gaming 🕹️
-                    <br><span class="text-tech-cyan">Download and relive the 90s gaming magic!</span>
-                </p>
+            <div class="retro-archive-header" data-aos="fade-up">
+                <div>
+                    <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-green mb-4">curated classics shelf</p>
+                    <h2 class="text-4xl md:text-5xl font-black mb-6">
+                        Retro <span class="gradient-text">Classics</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-3xl">
+                        Six old-school games that still explain timing, constraints, flow, and why children in the 90s
+                        developed suspiciously strong patience. No hosted binaries; only source pages.
+                    </p>
+                </div>
+                <aside class="retro-archive-note" aria-label="Retro archive access policy">
+                    <span class="retro-source-pill">Source Links Only</span>
+                    <p>External pages may change. Verify availability and licensing before downloading anything. Nostalgia is charming; copyright law is not a side quest.</p>
+                </aside>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Little Fighter 2 -->
-                <div data-aos="fade-up" data-aos-delay="100"
-                    class="glass-effect rounded-2xl p-6 text-center hover-lift group">
-                    <div class="text-6xl mb-4 group-hover:scale-110 transition-transform">🥋</div>
-                    <h3 class="text-2xl font-bold text-tech-purple mb-3">Little Fighter 2</h3>
-                    <p class="text-gray-300 mb-4 text-sm">
-                        The legendary 2D fighting game that defined multiplayer fun. Up to 8 players, epic battles, and
-                        unforgettable characters!
-                    </p>
-                    <div class="space-y-2 mb-4">
-                        <span
-                            class="inline-block bg-tech-purple/20 text-tech-purple px-3 py-1 rounded-full text-xs">Fighting</span>
-                        <span
-                            class="inline-block bg-tech-green/20 text-tech-green px-3 py-1 rounded-full text-xs">Multiplayer</span>
-                    </div>
-                    <button onclick="downloadGame('little-fighter-2')"
-                        class="touch-target bg-gradient-to-r from-tech-purple to-tech-pink hover:from-tech-pink hover:to-tech-purple text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-download mr-2"></i>Download (5MB)
-                    </button>
+            <div class="retro-policy-grid" data-aos="fade-up" data-aos-delay="80">
+                <div class="retro-policy-card">
+                    <span class="retro-policy-value">6</span>
+                    <span class="retro-policy-label">Curated Classics</span>
                 </div>
-
-                <!-- Airxonix -->
-                <div data-aos="fade-up" data-aos-delay="200"
-                    class="glass-effect rounded-2xl p-6 text-center hover-lift group">
-                    <div class="text-6xl mb-4 group-hover:scale-110 transition-transform">🛸</div>
-                    <h3 class="text-2xl font-bold text-tech-cyan mb-3">Airxonix</h3>
-                    <p class="text-gray-300 mb-4 text-sm">
-                        Modern remake of the classic Xonix. Cut through space, avoid aliens, and claim territory in this
-                        addictive arcade game!
-                    </p>
-                    <div class="space-y-2 mb-4">
-                        <span
-                            class="inline-block bg-tech-cyan/20 text-tech-cyan px-3 py-1 rounded-full text-xs">Arcade</span>
-                        <span
-                            class="inline-block bg-tech-purple/20 text-tech-purple px-3 py-1 rounded-full text-xs">Strategy</span>
-                    </div>
-                    <button onclick="downloadGame('airxonix')"
-                        class="touch-target bg-gradient-to-r from-tech-cyan to-tech-green hover:from-tech-green hover:to-tech-cyan text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-download mr-2"></i>Download (3MB)
-                    </button>
+                <div class="retro-policy-card">
+                    <span class="retro-policy-value">3</span>
+                    <span class="retro-policy-label">Protected Favorites</span>
                 </div>
-
-                <!-- Elastomania -->
-                <div data-aos="fade-up" data-aos-delay="300"
-                    class="glass-effect rounded-2xl p-6 text-center hover-lift group">
-                    <div class="text-6xl mb-4 group-hover:scale-110 transition-transform">🏍️</div>
-                    <h3 class="text-2xl font-bold text-tech-green mb-3">Elastomania</h3>
-                    <p class="text-gray-300 mb-4 text-sm">
-                        The ultimate motorcycle physics game! Master impossible tracks with realistic bike physics that
-                        will test your skills.
-                    </p>
-                    <div class="space-y-2 mb-4">
-                        <span
-                            class="inline-block bg-tech-green/20 text-tech-green px-3 py-1 rounded-full text-xs">Racing</span>
-                        <span
-                            class="inline-block bg-tech-cyan/20 text-tech-cyan px-3 py-1 rounded-full text-xs">Physics</span>
-                    </div>
-                    <button onclick="downloadGame('elastomania')"
-                        class="touch-target bg-gradient-to-r from-tech-green to-tech-purple hover:from-tech-purple hover:to-tech-green text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-download mr-2"></i>Download (2MB)
-                    </button>
+                <div class="retro-policy-card">
+                    <span class="retro-policy-value" id="source-open-count">0</span>
+                    <span class="retro-policy-label">Source Opens</span>
                 </div>
-
-                <!-- Placeholder for More Games -->
-                <div data-aos="fade-up" data-aos-delay="400"
-                    class="glass-effect rounded-2xl p-6 text-center hover-lift group">
-                    <div class="text-6xl mb-4 group-hover:scale-110 transition-transform">🎮</div>
-                    <h3 class="text-2xl font-bold text-tech-pink mb-3">More Classics</h3>
-                    <p class="text-gray-300 mb-4 text-sm">
-                        Got more vintage games to share? Submit your favorites and let's build the ultimate retro
-                        collection!
-                    </p>
-                    <div class="space-y-2 mb-4">
-                        <span class="inline-block bg-tech-pink/20 text-tech-pink px-3 py-1 rounded-full text-xs">Coming
-                            Soon</span>
-                    </div>
-                    <button onclick="showRetroGameRequest()"
-                        class="touch-target bg-gradient-to-r from-tech-pink to-tech-purple hover:from-tech-purple hover:to-tech-pink text-white font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-plus mr-2"></i>Request Game
-                    </button>
+                <div class="retro-policy-card">
+                    <span class="retro-policy-value">0</span>
+                    <span class="retro-policy-label">Hosted Game Files</span>
                 </div>
             </div>
 
-            <!-- Gaming Stats -->
-            <div class="mt-16 grid md:grid-cols-4 gap-6" data-aos="fade-up" data-aos-delay="500">
-                <div class="text-center glass-effect rounded-xl p-4">
-                    <div class="text-2xl font-bold text-tech-purple" id="download-count">0</div>
-                    <div class="text-sm text-gray-400">Downloads</div>
+            <div class="retro-section-title" data-aos="fade-up" data-aos-delay="110">
+                <div>
+                    <p class="font-tech text-sm uppercase tracking-[0.14em] text-tech-cyan">one shelf, no landfill</p>
+                    <h3>Games I would actually defend in a meeting</h3>
                 </div>
-                <div class="text-center glass-effect rounded-xl p-4">
-                    <div class="text-2xl font-bold text-tech-cyan">90s</div>
-                    <div class="text-sm text-gray-400">Era Games</div>
-                </div>
-                <div class="text-center glass-effect rounded-xl p-4">
-                    <div class="text-2xl font-bold text-tech-green">100%</div>
-                    <div class="text-sm text-gray-400">Nostalgia</div>
-                </div>
-                <div class="text-center glass-effect rounded-xl p-4">
-                    <div class="text-2xl font-bold text-tech-pink">∞</div>
-                    <div class="text-sm text-gray-400">Fun Hours</div>
-                </div>
+                <p>Fast to understand, mechanically sharp, and still useful as tiny design lessons. Also: legally safer than hosting mystery ZIPs.</p>
             </div>
 
-            <!-- Gaming Philosophy -->
-            <!-- <div class="mt-12" data-aos="fade-up" data-aos-delay="600">
-                <div class="glass-effect rounded-2xl p-8 text-center">
-                    <h3 class="text-2xl font-bold mb-4 gradient-text">Engineering Meets Gaming</h3>
-                    <p class="text-gray-300 max-w-3xl mx-auto">
-                        "These games taught me more about physics, timing, and problem-solving than any textbook ever
-                        could.
-                        From the precise motorcycle physics in Elastomania to the strategic territory control in
-                        Airxonix,
-                        each game was a masterclass in engineering principles disguised as pure fun."
-                    </p>
-                    <div class="mt-6 text-tech-cyan">
-                        <i class="fas fa-gamepad mr-2"></i>
-                        Games = Interactive Engineering Simulations
+            <div class="retro-game-grid retro-catalog-grid">
+                <article data-aos="fade-up" data-aos-delay="140" class="retro-game-card">
+                    <div class="retro-card-topline">
+                        <span class="retro-card-icon" aria-hidden="true">🥋</span>
+                        <span class="retro-source-pill">Primary Pick</span>
                     </div>
+                    <h3>Little Fighter 2</h3>
+                    <p>Local multiplayer chaos with clear rules, readable feedback, and enough punch-per-pixel to justify the nostalgia.</p>
+                    <dl class="retro-card-meta">
+                        <div><dt>Genre</dt><dd>Fighting / multiplayer</dd></div>
+                        <div><dt>Why here</dt><dd>Readable mechanics, immediate feedback, excellent couch-war crime scene.</dd></div>
+                    </dl>
+                    <button type="button" data-game-source="little-fighter-2" class="retro-game-action touch-target">
+                        <span aria-hidden="true">↗</span>Open Source Page
+                    </button>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="180" class="retro-game-card">
+                    <div class="retro-card-topline">
+                        <span class="retro-card-icon" aria-hidden="true">🛸</span>
+                        <span class="retro-source-pill">Primary Pick</span>
+                    </div>
+                    <h3>Airxonix</h3>
+                    <p>Territory capture, risk control, and arcade pressure. Basically planning under uncertainty, but neon.</p>
+                    <dl class="retro-card-meta">
+                        <div><dt>Genre</dt><dd>Arcade / strategy</dd></div>
+                        <div><dt>Why here</dt><dd>Simple objective, nasty edge cases, clean tension loop.</dd></div>
+                    </dl>
+                    <button type="button" data-game-source="airxonix" class="retro-game-action touch-target">
+                        <span aria-hidden="true">↗</span>Open Source Page
+                    </button>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="220" class="retro-game-card">
+                    <div class="retro-card-topline">
+                        <span class="retro-card-icon" aria-hidden="true">🏍️</span>
+                        <span class="retro-source-pill">Primary Pick</span>
+                    </div>
+                    <h3>Elastomania</h3>
+                    <p>Physics, timing, failure recovery, and the emotional damage of overconfidence. A whole curriculum on two wheels.</p>
+                    <dl class="retro-card-meta">
+                        <div><dt>Genre</dt><dd>Physics / racing</dd></div>
+                        <div><dt>Why here</dt><dd>Constraint handling with consequences. Very educational. Deeply rude.</dd></div>
+                    </dl>
+                    <button type="button" data-game-source="elastomania" class="retro-game-action touch-target">
+                        <span aria-hidden="true">↗</span>Open Source Page
+                    </button>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="260" class="retro-game-card">
+                    <div class="retro-card-topline">
+                        <span class="retro-card-icon" aria-hidden="true">🐇</span>
+                        <span class="retro-source-pill">old-games.org</span>
+                    </div>
+                    <h3>Jazz Jackrabbit</h3>
+                    <p>Fast platforming, green attitude, and a soundtrack with more swagger than most sprint demos.</p>
+                    <dl class="retro-card-meta">
+                        <div><dt>Genre</dt><dd>Platformer</dd></div>
+                        <div><dt>Signal</dt><dd>Speed, rhythm, visual clarity.</dd></div>
+                    </dl>
+                    <button type="button" data-game-source="jazz" class="retro-game-action touch-target">
+                        <span aria-hidden="true">↗</span>Open Source Page
+                    </button>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="300" class="retro-game-card">
+                    <div class="retro-card-topline">
+                        <span class="retro-card-icon" aria-hidden="true">🧢</span>
+                        <span class="retro-source-pill">old-games.org</span>
+                    </div>
+                    <h3>Dangerous Dave</h3>
+                    <p>Small, brutal, and instantly readable. A reminder that level design can be simple and still bully your ego.</p>
+                    <dl class="retro-card-meta">
+                        <div><dt>Genre</dt><dd>Platformer</dd></div>
+                        <div><dt>Signal</dt><dd>Timing, risk, primitive controls with consequences.</dd></div>
+                    </dl>
+                    <button type="button" data-game-source="dave" class="retro-game-action touch-target">
+                        <span aria-hidden="true">↗</span>Open Source Page
+                    </button>
+                </article>
+
+                <article data-aos="fade-up" data-aos-delay="340" class="retro-game-card">
+                    <div class="retro-card-topline">
+                        <span class="retro-card-icon" aria-hidden="true">🛣</span>
+                        <span class="retro-source-pill">old-games.org</span>
+                    </div>
+                    <h3>SkyRoads</h3>
+                    <p>Space-road reflexes, fuel anxiety, and the exact amount of punishment old PC games considered normal.</p>
+                    <dl class="retro-card-meta">
+                        <div><dt>Genre</dt><dd>Arcade / runner</dd></div>
+                        <div><dt>Signal</dt><dd>Reaction loops, resource pressure, flow.</dd></div>
+                    </dl>
+                    <button type="button" data-game-source="skyroads" class="retro-game-action touch-target">
+                        <span aria-hidden="true">↗</span>Open Source Page
+                    </button>
+                </article>
+            </div>
+
+            <div class="retro-request-card mt-14" data-aos="fade-up" data-aos-delay="380">
+                <div>
+                    <p class="font-tech text-sm uppercase tracking-[0.14em] text-tech-green mb-2">nomination lane</p>
+                    <h3>Missing a classic?</h3>
+                    <p>Suggest one. The bar is simple: memorable mechanics, inspectable source page, and at least one lesson besides “old games hated children”.</p>
                 </div>
-            </div> -->
+                <button type="button" data-game-request class="retro-game-action touch-target">
+                    <span aria-hidden="true">+</span>Request Game
+                </button>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="anchor-section py-20 relative overflow-hidden">
+    <section id="contact" class="anchor-section contact-command-section py-20 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-tech-dark via-gray-900 to-tech-dark"></div>
         <div class="absolute inset-0 tech-pattern opacity-40"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="contact-command-hero text-center mb-16" data-aos="fade-up">
+                <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-cyan mb-4">safe contact surface</p>
                 <h2 class="text-4xl md:text-5xl font-black mb-6">
-                    Let's <span class="gradient-text">Connect</span>
+                    Hire Me <span class="gradient-text">Command Center</span>
                 </h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Ready to bring innovative control systems and autonomous vehicle solutions to your team?
-                    Let's discuss how we can build the future together.
+                    Real email, clear links, no phone-number buffet for scrapers. The site helps people reach me without
+                    pretending this static page has a secret CRM under the floorboards.
                 </p>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12">
-                <!-- Contact Form -->
-                <div data-aos="fade-right" class="glass-effect rounded-2xl p-8 backdrop-blur-xl">
-                    <div class="text-center mb-8">
-                        <h3 class="text-3xl font-bold text-tech-cyan mb-3">Send a Message</h3>
-                        <p class="text-gray-300">Ready to collaborate? Let's build something amazing together!</p>
+            <div class="contact-hero-email" data-aos="fade-up" data-aos-delay="80">
+                <span>Direct email</span>
+                <a href="mailto:yuval.grimberg@gmail.com">yuval.grimberg@gmail.com</a>
+                <small>No burner, no phone number buffet.</small>
+            </div>
+
+            <div class="contact-command-grid">
+                <aside data-aos="fade-right" class="contact-direct-panel glass-effect">
+                    <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-green mb-3">fast path</p>
+                    <h3>Reach me without weird rituals</h3>
+                    <p class="contact-direct-copy">
+                        This is my real contact route. I am keeping phone, WhatsApp, and calendar links off public GitHub
+                        Pages, but email stays obvious because hiring should not require archaeology.
+                    </p>
+
+                    <div class="contact-email-strip" aria-label="Primary email address">
+                        <span>Email</span>
+                        <strong>yuval.grimberg@gmail.com</strong>
+                        <button type="button" id="copy-email-address" class="touch-target">
+                            <span aria-hidden="true">⧉</span>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+                    <p id="copy-email-status" class="contact-copy-status" aria-live="polite"></p>
+
+                    <div class="contact-action-grid" aria-label="Primary contact actions">
+                        <a href="mailto:yuval.grimberg@gmail.com?subject=Portfolio%20Contact&body=Hi%20Yuval,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20discuss..."
+                            class="contact-action-card touch-target">
+                            <span aria-hidden="true">✉</span>
+                            <strong>Email draft</strong>
+                            <small>opens your mail app</small>
+                        </a>
+                        <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
+                            rel="noopener noreferrer" class="contact-action-card touch-target">
+                            <span aria-hidden="true">in</span>
+                            <strong>LinkedIn</strong>
+                            <small>professional surface</small>
+                        </a>
+                        <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
+                            class="contact-action-card touch-target">
+                            <span aria-hidden="true">GH</span>
+                            <strong>GitHub</strong>
+                            <small>code and projects</small>
+                        </a>
+                        <a href="#cv-gate" class="contact-action-card touch-target">
+                            <span aria-hidden="true">CV</span>
+                            <strong>Public CV</strong>
+                            <small>human check below</small>
+                        </a>
+                    </div>
+                </aside>
+
+                <form data-aos="fade-up" class="contact-draft-card glass-effect" id="simple-contact-form" novalidate>
+                    <div class="contact-card-header">
+                        <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-cyan mb-3">draft helper</p>
+                        <h3>Build a clean email</h3>
+                        <p>Static site, zero backend. This only creates a mailto draft and leaves the fallback email visible.</p>
                     </div>
 
-                    <!-- Simple Email Form (No External Services Needed) -->
-                    <form class="space-y-6" id="simple-contact-form" novalidate>
+                    <div class="contact-field-grid">
                         <div>
-                            <label for="contact-name" class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
-                            <input type="text" name="name" id="contact-name" required
-                                autocomplete="name"
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500"
+                            <label for="contact-name">Name *</label>
+                            <input type="text" name="name" id="contact-name" required autocomplete="name"
                                 placeholder="Your Name">
                         </div>
                         <div>
-                            <label for="contact-email" class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
-                            <input type="email" name="email" id="contact-email" required
-                                autocomplete="email"
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500"
+                            <label for="contact-email">Email *</label>
+                            <input type="email" name="email" id="contact-email" required autocomplete="email"
                                 placeholder="your.email@company.com">
                         </div>
-                        <div>
-                            <label for="contact-subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
-                            <select name="subject" id="contact-subject"
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white transition-all duration-300 hover:border-gray-500">
-                                <option value="General Inquiry">General Inquiry</option>
-                                <option value="Job Opportunity">Job Opportunity</option>
-                                <option value="Collaboration Proposal">Collaboration Proposal</option>
-                                <option value="Consultation Request">Consultation Request</option>
-                                <option value="Technical Discussion">Technical Discussion</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="contact-message" class="block text-sm font-medium text-gray-300 mb-2">Message *</label>
-                            <textarea name="message" id="contact-message" rows="4" required
-                                autocomplete="off"
-                                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-tech-cyan focus:border-tech-cyan outline-none text-white placeholder-gray-400 transition-all duration-300 hover:border-gray-500 resize-vertical"
-                                placeholder="Tell me about your project or opportunity..."></textarea>
-                        </div>
+                    </div>
+                    <div>
+                        <label for="contact-subject">Subject</label>
+                        <select name="subject" id="contact-subject">
+                            <option value="Job Opportunity">Job Opportunity</option>
+                            <option value="Robotics / Autonomy Role">Robotics / Autonomy Role</option>
+                            <option value="AI Tooling Role">AI Tooling Role</option>
+                            <option value="Simulation / Controls Work">Simulation / Controls Work</option>
+                            <option value="Collaboration Proposal">Collaboration Proposal</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="contact-message">Message *</label>
+                        <textarea name="message" id="contact-message" rows="5" required autocomplete="off"
+                            placeholder="Tell me what you are building, hiring for, or trying to untangle..."></textarea>
+                    </div>
 
-                        <!-- Email Button - Opens user's email client with pre-filled content -->
-                        <button type="button" onclick="openEmailClient()" id="open-email-client-btn"
-                            class="w-full bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                            <span class="flex items-center justify-center space-x-3">
-                                <span class="text-lg">Open Email Client</span>
-                                <i class="fas fa-envelope text-lg"></i>
-                            </span>
-                        </button>
+                    <button type="button" id="open-email-client-btn" class="contact-primary-button touch-target">
+                        <span>Open Email Draft</span>
+                        <span aria-hidden="true">✉</span>
+                    </button>
+                    <p class="contact-zero-backend-note">
+                        If mailto misbehaves, copy the email above. The fallback is intentionally hard to miss.
+                    </p>
+                    <div id="contact-status" class="sr-only" aria-live="polite"></div>
+                </form>
 
-                        <!-- Success Message - Shows after email is opened -->
-                        <div id="email-success" style="display: none;"
-                            class="mt-6 p-6 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl shadow-md">
-                            <div class="text-center">
-                                <div class="flex justify-center mb-3">
-                                    <i class="fas fa-check-circle text-3xl text-green-600"></i>
-                                </div>
-                                <h3 class="text-lg font-bold text-green-800 mb-2">Email Client Opened!</h3>
-                                <p class="text-sm text-green-700 mb-4">Your email should now be open with a pre-filled
-                                    message.</p>
-
-                                <div class="bg-white p-4 rounded-lg shadow-inner mb-4">
-                                    <p class="text-xs text-gray-600 mb-2">Preview of email content:</p>
-                                    <div class="text-left">
-                                        <p class="text-sm font-semibold text-gray-800">To: yuval.grimberg@gmail.com</p>
-                                        <p class="text-sm font-semibold text-gray-800" id="email-subject-preview">
-                                            Subject: </p>
-                                        <p class="text-sm text-gray-700 mt-2" id="email-body-preview"></p>
-                                    </div>
-                                </div>
-
-                                <button type="button" onclick="copyEmailContent()"
-                                    class="bg-tech-cyan hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg">
-                                    <span class="flex items-center justify-center space-x-2">
-                                        <i class="fas fa-copy"></i>
-                                        <span>Copy Email Content</span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div id="contact-status" class="sr-only" aria-live="polite"></div>
-
-                        <!-- Alternative: Direct email link -->
-                        <div class="text-center mt-8 p-6 glass-effect rounded-xl border border-gray-600/50">
-                            <p class="text-gray-300 text-sm mb-4 font-medium">Prefer a direct approach?</p>
-                            <a href="mailto:yuval.grimberg@gmail.com?subject=Portfolio%20Contact&body=Hi%20Yuval,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20discuss..."
-                                class="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-tech-cyan/20 to-tech-purple/20 hover:from-tech-cyan/30 hover:to-tech-purple/30 border border-tech-cyan/50 rounded-lg text-tech-cyan hover:text-white font-medium transition-all duration-300 transform hover:scale-105">
-                                <i class="fas fa-envelope text-lg"></i>
-                                <span>yuval.grimberg@gmail.com</span>
-                                <i class="fas fa-external-link-alt text-sm opacity-70"></i>
-                            </a>
-                        </div>
-                    </form>
+                <div data-aos="fade-up" class="contact-support-panel glass-effect">
+                    <h3>Availability Status</h3>
+                    <div class="contact-availability">
+                        <span aria-hidden="true"></span>
+                        <strong>Currently Available</strong>
+                    </div>
+                    <p>
+                        Open to robotics, autonomy, simulation, and AI/tooling roles. Based in Israel, open to remote or
+                        relocation.
+                    </p>
+                    <ul>
+                        <li>Robotics and autonomy software</li>
+                        <li>Simulation, controls, and GNC</li>
+                        <li>Python tooling and AI pipelines</li>
+                        <li>Useful chaos in measured doses</li>
+                    </ul>
                 </div>
 
-                <!-- Contact Info & Quick Actions -->
-                <div data-aos="fade-left" class="space-y-8">
-                    <!-- Quick Contact -->
-                    <div class="glass-effect rounded-2xl p-8">
-                        <h3 class="text-2xl font-bold text-tech-purple mb-6">Quick Connect</h3>
-                        <div class="space-y-4">
-                            <a href="mailto:yuval.grimberg@gmail.com"
-                                class="flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-purple/10 transition-colors group">
-                                <div
-                                    class="w-12 h-12 bg-gradient-to-br from-tech-purple to-tech-cyan rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <i class="fas fa-envelope text-white"></i>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-white">Email</div>
-                                    <div class="text-gray-400 text-sm">yuval.grimberg@gmail.com</div>
-                                </div>
-                            </a>
-
-                            <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
-                                rel="noopener noreferrer"
-                                class="flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-cyan/10 transition-colors group">
-                                <div
-                                    class="w-12 h-12 bg-gradient-to-br from-tech-cyan to-tech-green rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <i class="fab fa-linkedin text-white"></i>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-white">LinkedIn</div>
-                                    <div class="text-gray-400 text-sm">Professional Network</div>
-                                </div>
-                            </a>
-
-                            <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
-                                class="flex items-center space-x-4 p-4 glass-effect rounded-xl hover:bg-tech-green/10 transition-colors group">
-                                <div
-                                    class="w-12 h-12 bg-gradient-to-br from-tech-green to-tech-purple rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <i class="fab fa-github text-white"></i>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-white">GitHub</div>
-                                    <div class="text-gray-400 text-sm">View Code & Projects</div>
-                                </div>
-                            </a>
-                        </div>
+                <div data-aos="fade-left" class="cv-gate glass-effect" id="cv-gate">
+                    <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-purple mb-3">public cv gate</p>
+                    <h3>Tiny Human Check, Then CV</h3>
+                    <p>
+                        Anyone human can open the public CV. This is anti-scraper friction, not pretend security. The
+                        public version keeps phone/private details off GitHub Pages.
+                    </p>
+                    <label for="cv-human-answer">Prove you are not a lazy bot: what is 8 + 5?</label>
+                    <div class="cv-gate-row">
+                        <input id="cv-human-answer" type="text" inputmode="numeric" autocomplete="off"
+                            class="cv-gate-input" aria-describedby="cv-gate-status" placeholder="13">
+                        <button type="button" id="cv-unlock-button" class="cv-unlock-button touch-target">
+                            Unlock CV
+                        </button>
                     </div>
-
-                    <!-- Availability Status -->
-                    <div class="glass-effect rounded-2xl p-8">
-                        <h3 class="text-2xl font-bold text-tech-green mb-4">Availability Status</h3>
-                        <div class="flex items-center space-x-3 mb-4">
-                            <div class="w-4 h-4 bg-tech-green rounded-full animate-pulse"></div>
-                            <span class="text-tech-green font-semibold">Currently Available</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-4">
-                            Open to full-time opportunities, consulting projects, and collaborative research in:
-                        </p>
-                        <ul class="text-sm text-gray-300 space-y-1">
-                            <li>• Control Systems Engineering</li>
-                            <li>• Autonomous Vehicle Development</li>
-                            <li>• Robotics & Automation</li>
-                            <li>• Machine Learning Integration</li>
-                        </ul>
-                    </div>
-
-                    <!-- Download Resume -->
-                    <div class="glass-effect rounded-2xl p-8 text-center">
-                        <h3 class="text-xl font-bold text-white mb-4">Download Resume</h3>
-                        <a href="./assets/CV - Yuval Grimberg Jan 26.pdf" download="CV - Yuval Grimberg Jan 26.pdf"
-                            target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center space-x-2 bg-gradient-to-r from-tech-green to-tech-cyan hover:from-tech-cyan hover:to-tech-green text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                            <i class="fas fa-download"></i>
-                            <span>Download CV / Resume</span>
+                    <p id="cv-gate-status" class="text-sm min-h-[1.25rem] mt-3 text-gray-400" aria-live="polite">
+                        The answer is not stored, sent, or made weird.
+                    </p>
+                    <div id="cv-unlocked-panel" class="cv-unlocked-panel mt-5" hidden>
+                        <a id="cv-public-link" class="cv-public-link touch-target">
+                            <span aria-hidden="true">↗</span>
+                            <span>Open Public CV</span>
+                        </a>
+                        <a href="mailto:yuval.grimberg@gmail.com?subject=Full%20CV%20PDF%20Request&body=Hi%20Yuval,%0D%0A%0D%0AI%20saw%20your%20portfolio%20and%20would%20like%20the%20full%20CV%20PDF."
+                            class="cv-secondary-link touch-target">
+                            Need the full PDF? Email me
                         </a>
                     </div>
                 </div>
@@ -1335,22 +1452,22 @@
                 <div>
                     <div class="text-2xl font-bold gradient-text mb-4">Yuval Grimberg</div>
                     <p class="text-gray-400 mb-4">
-                        Control Systems Engineer & Autonomous Vehicle Specialist
+                        Autonomy, simulation, control, and AI tooling
                     </p>
                     <div class="flex space-x-4">
                         <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
                             aria-label="Open GitHub profile"
                             class="footer-social-link touch-target text-gray-400 hover:text-tech-cyan transition-colors">
-                            <i class="fab fa-github text-xl"></i>
+                            <span aria-hidden="true" class="text-sm font-bold">GH</span>
                         </a>
                         <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank"
                             rel="noopener noreferrer" aria-label="Open LinkedIn profile"
                             class="footer-social-link touch-target text-gray-400 hover:text-tech-purple transition-colors">
-                            <i class="fab fa-linkedin text-xl"></i>
+                            <span aria-hidden="true" class="text-sm font-bold">in</span>
                         </a>
                         <a href="mailto:yuval.grimberg@gmail.com" aria-label="Send email to Yuval Grimberg"
                             class="footer-social-link touch-target text-gray-400 hover:text-tech-green transition-colors">
-                            <i class="fas fa-envelope text-xl"></i>
+                            <span aria-hidden="true" class="text-sm font-bold">@</span>
                         </a>
                     </div>
                 </div>
@@ -1359,10 +1476,13 @@
                     <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
                     <ul class="space-y-2 footer-link-list">
                         <li><a href="#about" class="text-gray-400 hover:text-tech-cyan transition-colors">About</a></li>
+                        <li><a href="#hire" class="text-gray-400 hover:text-tech-cyan transition-colors">Hire</a></li>
                         <li><a href="#skills" class="text-gray-400 hover:text-tech-cyan transition-colors">Expertise</a>
                         </li>
                         <li><a href="#projects"
                                 class="text-gray-400 hover:text-tech-cyan transition-colors">Projects</a></li>
+                        <li><a href="#reviews"
+                                class="text-gray-400 hover:text-tech-cyan transition-colors">Reviews</a></li>
                         <li><a href="#fun-zone" class="text-gray-400 hover:text-tech-cyan transition-colors">Fun
                                 Zone</a></li>
                         <li><a href="#contact" class="text-gray-400 hover:text-tech-cyan transition-colors">Contact</a>
@@ -1393,12 +1513,9 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="assets/js/site-shell.js" defer></script>
-
-    <!-- REAL ClippyJS - The Authentic Microsoft Office Assistant! -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/clippyjs@0.0.3/dist/clippy.js"></script>
-    <script src="assets/js/index-page.js" defer></script>
+    <script src="assets/js/site-shell.js?v=20260514-audit2" defer></script>
+    <script src="assets/vendor/clippyjs/jquery-3.7.1.min.js?v=20260514-audit2" defer></script>
+    <script src="assets/vendor/clippyjs/clippy.min.js?v=20260514-audit2" defer></script>
+    <script src="assets/js/index-page.js?v=20260514-audit2" defer></script>
 </body>
 </html>

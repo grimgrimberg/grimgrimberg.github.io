@@ -1,0 +1,248 @@
+{
+  "source": "https://api.github.com/users/grimgrimberg/repos?per_page=100&sort=updated",
+  "snapshotDate": "2026-05-13",
+  "categories": {
+    "featured": {
+      "label": "Featured",
+      "description": "Strongest hiring proof: original work, useful scope, and enough polish to inspect."
+    },
+    "lab": {
+      "label": "Lab",
+      "description": "Interesting systems still being sharpened. Good bones, some exposed wiring."
+    },
+    "tools": {
+      "label": "Tools",
+      "description": "Developer and AI utilities that show product-minded software work."
+    },
+    "learning": {
+      "label": "Learning Archive",
+      "description": "Older coursework, experiments, and proof of learning in public."
+    },
+    "forks": {
+      "label": "Forks / References",
+      "description": "Reference code, study material, and integration context."
+    },
+    "meta": {
+      "label": "Meta",
+      "description": "Profile and portfolio infrastructure."
+    }
+  },
+  "repos": [
+    {
+      "name": "BGR_PathPlanning_Control",
+      "category": "featured",
+      "url": "https://github.com/grimgrimberg/BGR_PathPlanning_Control",
+      "language": "Python",
+      "tags": ["autonomy", "path planning", "control", "formula student"],
+      "pitch": "Formula Student autonomous racing path planning and control stack, built around real vehicle constraints."
+    },
+    {
+      "name": "orbital-rendezvous-lqi",
+      "category": "featured",
+      "url": "https://github.com/grimgrimberg/orbital-rendezvous-lqi",
+      "language": "Python",
+      "tags": ["orbital mechanics", "LQI", "MPC", "streamlit"],
+      "pitch": "Two-body propagator plus CW rendezvous control, cached LQI, MPC comparison, and reproducible visual artifacts."
+    },
+    {
+      "name": "github-repo-summarizer",
+      "category": "featured",
+      "url": "https://github.com/grimgrimberg/github-repo-summarizer",
+      "language": "Python",
+      "tags": ["FastAPI", "LLM", "GitHub API", "tooling"],
+      "pitch": "FastAPI and CLI service that summarizes public repos with deterministic file scoring and adaptive sharding."
+    },
+    {
+      "name": "daily-movers-agent",
+      "category": "featured",
+      "url": "https://github.com/grimgrimberg/daily-movers-agent",
+      "language": "Python",
+      "tags": ["LangGraph", "agentic AI", "reports", "observability"],
+      "pitch": "Agentic market-movers pipeline with explainable HTML, Excel, and email digests plus deterministic fallbacks."
+    },
+    {
+      "name": "gnc-tracking-intercept-sim",
+      "category": "lab",
+      "url": "https://github.com/grimgrimberg/gnc-tracking-intercept-sim",
+      "language": "Python",
+      "tags": ["GNC", "Kalman filter", "sensor fusion", "guidance"],
+      "pitch": "Async sensor fusion, Kalman LOS tracking, and constrained 3D intercept simulation built around a real drone flight log."
+    },
+    {
+      "name": "jetpack_joyride_rl",
+      "category": "lab",
+      "url": "https://github.com/grimgrimberg/jetpack_joyride_rl",
+      "language": "Python",
+      "tags": ["reinforcement learning", "emulator", "PPO", "computer vision"],
+      "pitch": "Experimental PPO training loop for Jetpack Joyride on PPSSPP using screen capture, OCR rewards, and calibration tooling."
+    },
+    {
+      "name": "Small_Obg_Detection",
+      "category": "lab",
+      "url": "https://github.com/grimgrimberg/Small_Obg_Detection",
+      "language": "Python",
+      "tags": ["object detection", "computer vision", "cross-validation"],
+      "pitch": "Small-object detection workflow with leakage-safe folds, tiling, anchors, and a thin notebook front end."
+    },
+    {
+      "name": "invoice-tracker",
+      "category": "lab",
+      "url": "https://github.com/grimgrimberg/invoice-tracker",
+      "language": "Python",
+      "tags": ["OCR", "RAG", "Gemini", "Gradio"],
+      "pitch": "Invoice OCR, categorization, semantic search, duplicate detection, and Gradio UI for personal finance analysis."
+    },
+    {
+      "name": "AI_ROBOTICS_BGU",
+      "category": "lab",
+      "url": "https://github.com/grimgrimberg/AI_ROBOTICS_BGU",
+      "language": "Python",
+      "tags": ["ROS2", "YOLO", "OpenCV", "robotics"],
+      "pitch": "BGU robotics coursework repository with hardware monitoring, YOLO detection, face recognition, and ROS2 control."
+    },
+    {
+      "name": "Arduino",
+      "category": "lab",
+      "url": "https://github.com/grimgrimberg/Arduino",
+      "language": "Jupyter Notebook",
+      "tags": ["embedded", "arduino"],
+      "pitch": "Embedded and Arduino experiments."
+    },
+    {
+      "name": "DEEP_RL_HF",
+      "category": "lab",
+      "url": "https://github.com/grimgrimberg/DEEP_RL_HF",
+      "language": "Python",
+      "tags": ["deep RL", "learning"],
+      "pitch": "Deep reinforcement-learning course and experiment material."
+    },
+    {
+      "name": "Ottopia-Home_Assigment",
+      "category": "lab",
+      "url": "https://github.com/grimgrimberg/Ottopia-Home_Assigment",
+      "language": "Python",
+      "tags": ["assignment", "python"],
+      "pitch": "Python home-assignment repository."
+    },
+    {
+      "name": "grimgrimberg.github.io",
+      "category": "meta",
+      "url": "https://github.com/grimgrimberg/grimgrimberg.github.io",
+      "language": "JavaScript",
+      "tags": ["portfolio", "github pages"],
+      "pitch": "This portfolio: static HTML, CSS, JavaScript, Playwright tests, and the goose."
+    },
+    {
+      "name": "grimgrimberg",
+      "category": "meta",
+      "url": "https://github.com/grimgrimberg/grimgrimberg",
+      "language": "",
+      "tags": ["profile", "config"],
+      "pitch": "GitHub profile configuration."
+    },
+    {
+      "name": "BGU",
+      "category": "learning",
+      "url": "https://github.com/grimgrimberg/BGU",
+      "language": "Jupyter Notebook",
+      "tags": ["university", "notebooks"],
+      "pitch": "University-years archive."
+    },
+    {
+      "name": "Building-a-Conversational-Agent",
+      "category": "learning",
+      "url": "https://github.com/grimgrimberg/Building-a-Conversational-Agent",
+      "language": "Python",
+      "tags": ["conversational agent", "python"],
+      "pitch": "Conversational-agent learning project."
+    },
+    {
+      "name": "learn_git",
+      "category": "learning",
+      "url": "https://github.com/grimgrimberg/learn_git",
+      "language": "",
+      "tags": ["git", "learning"],
+      "pitch": "Git learning archive."
+    },
+    {
+      "name": "timesfm",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/timesfm",
+      "language": "",
+      "tags": ["forecasting", "reference"],
+      "pitch": "Forked reference for Google's TimesFM time-series model."
+    },
+    {
+      "name": "coding-interview-university",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/coding-interview-university",
+      "language": "",
+      "tags": ["computer science", "study"],
+      "pitch": "Forked software-engineering study plan."
+    },
+    {
+      "name": "everything-claude-code",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/everything-claude-code",
+      "language": "",
+      "tags": ["agents", "reference"],
+      "pitch": "Forked reference for agent workflows and tooling."
+    },
+    {
+      "name": "openbci-headphones",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/openbci-headphones",
+      "language": "",
+      "tags": ["bio-sensing", "reference"],
+      "pitch": "Forked OpenBCI reference documentation."
+    },
+    {
+      "name": "al-folio",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/al-folio",
+      "language": "",
+      "tags": ["jekyll", "portfolio"],
+      "pitch": "Forked academic portfolio theme reference."
+    },
+    {
+      "name": "ft-fsd-path-planning",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/ft-fsd-path-planning",
+      "language": "Python",
+      "tags": ["formula student", "path planning"],
+      "pitch": "Forked FaSTTUBe Formula Student Driverless path-planning algorithm used for study and integration context."
+    },
+    {
+      "name": "trajectory_planning_helpers",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/trajectory_planning_helpers",
+      "language": "",
+      "tags": ["trajectory planning", "reference"],
+      "pitch": "Forked trajectory-planning helper reference."
+    },
+    {
+      "name": "global_racetrajectory_optimization",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/global_racetrajectory_optimization",
+      "language": "",
+      "tags": ["race trajectory", "optimization"],
+      "pitch": "Forked race-trajectory optimization reference."
+    },
+    {
+      "name": "MotionPlanning",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/MotionPlanning",
+      "language": "",
+      "tags": ["motion planning", "autonomous vehicles"],
+      "pitch": "Forked motion-planning reference for autonomous vehicles."
+    },
+    {
+      "name": "Formula-Student-Driverless-Simulator",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/Formula-Student-Driverless-Simulator",
+      "language": "",
+      "tags": ["formula student", "simulator"],
+      "pitch": "Forked simulator reference for Formula Student Driverless."
+    }
+  ]
+}

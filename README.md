@@ -9,11 +9,11 @@ Static personal site for [grimgrimberg.github.io](https://grimgrimberg.github.io
   - `index.html`
   - `photo.html`
   - `thank-you.html`
+  - `cv.html`
 - Legacy compatibility pages:
   - `about.html`
   - `projects.html`
   - `vision.html`
-  - `mobile-nav-test.html`
 
 This repo is not React and is not driven by Jekyll templates in its current maintained flow.
 
@@ -71,6 +71,7 @@ npm run serve
 
 - `npm run lint` runs the repo-specific static and runtime hygiene checks.
 - `npm test` runs the maintained Playwright smoke suite.
+- Use `npm run lint` and `npm test -- --reporter=line` as the default acceptance gates before pushing portfolio changes.
 - `npm run build` rebuilds the committed Tailwind CSS used by the site pages.
 - `npm run serve` launches the same local static server shape the smoke suite uses.
 
@@ -86,13 +87,33 @@ assets/
     photo-page.js
     site-shell.js
     scripts.js
+scripts/
+  lint-site.mjs
+  optimize-images.ps1
 tests/
+  README.md
+  fixtures/
+    mobile-nav-test.html
+  site-hygiene.spec.js
+  smoke.spec.js
+docs/
+  site/
+    CONTEXT.md
+    DESIGN.md
+    PRODUCT.md
+    SETUP_INSTRUCTIONS.md
+  archive/
+    AUDIT_SITE_PASS_1.md
+    CHANGELOG_SITE_PASS_1.md
+    REFACTORING_SUMMARY.md
 index.html
 photo.html
 thank-you.html
+cv.html
 ```
 
 ## Notes
 
 - `.nojekyll` is present so GitHub Pages serves the repo as plain static files.
 - Legacy pages are intentionally kept reachable, but they are not the main maintained user journey.
+- Root markdown is intentionally sparse. Product/design context lives under `docs/site/`, while older audit notes live under `docs/archive/`.
