@@ -256,15 +256,31 @@ test.describe('maintained smoke suite', () => {
         await expect(page.locator('#goose-terror-layer')).toHaveCount(0);
         await expect(gooseTerrorButton).toHaveAttribute('aria-pressed', 'false');
 
-        const sourceButton = page.locator('[data-game-source="dave"]');
-        await sourceButton.scrollIntoViewIfNeeded();
-        await sourceButton.click();
-        await expect(page.locator('#source-open-count')).toHaveText('1');
-        await expect.poll(() => page.evaluate(() => window.__sourceClicks.join('\n'))).toContain('https://www.old-games.org/games/dave');
-        const sourceModal = page.locator('body > .fixed').filter({ hasText: 'Opening the external source page' });
-        await expect(sourceModal.getByRole('heading', { name: 'Dangerous Dave' })).toBeVisible();
-        await sourceModal.getByRole('button', { name: 'Got It' }).click();
-        await expect(sourceModal).toHaveCount(0);
+        const sourceChecks = [
+            {
+                gameId: 'elastomania',
+                heading: 'Elastomania',
+                href: 'https://archive.org/details/elmav10'
+            },
+            {
+                gameId: 'dave',
+                heading: 'Dangerous Dave',
+                href: 'https://www.old-games.org/games/dave'
+            }
+        ];
+
+        for (const [index, source] of sourceChecks.entries()) {
+            const sourceButton = page.locator(`[data-game-source="${source.gameId}"]`);
+            await sourceButton.scrollIntoViewIfNeeded();
+            await sourceButton.click();
+            await expect(page.locator('#source-open-count')).toHaveText(String(index + 1));
+            await expect.poll(() => page.evaluate(() => window.__sourceClicks.join('\n'))).toContain(source.href);
+
+            const sourceModal = page.locator('body > .fixed').filter({ hasText: 'Opening the external source page' });
+            await expect(sourceModal.getByRole('heading', { name: source.heading })).toBeVisible();
+            await sourceModal.getByRole('button', { name: 'Got It' }).click();
+            await expect(sourceModal).toHaveCount(0);
+        }
     });
 
     test('contact copy falls back cleanly when navigator.clipboard is unavailable', async ({ page }, testInfo) => {

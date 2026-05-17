@@ -1797,7 +1797,7 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
         const gameLinks = {
             'little-fighter-2': 'https://www.lf2.net/en/intro.html',
             airxonix: 'https://www.myabandonware.com/game/airxonix-iid',
-            elastomania: 'https://elastomania.com/',
+            elastomania: 'https://archive.org/details/elmav10',
             jazz: 'https://www.old-games.org/games/jazz',
             dave: 'https://www.old-games.org/games/dave',
             skyroads: 'https://www.old-games.org/games/sky'
