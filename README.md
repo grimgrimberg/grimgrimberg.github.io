@@ -14,7 +14,6 @@ Static personal site for [grimgrimberg.github.io](https://grimgrimberg.github.io
   - `about.html`
   - `projects.html`
   - `vision.html`
-  - `mobile-nav-test.html`
 
 This repo is not React and is not driven by Jekyll templates in its current maintained flow.
 
@@ -88,10 +87,25 @@ assets/
     photo-page.js
     site-shell.js
     scripts.js
+scripts/
+  lint-site.mjs
+  optimize-images.ps1
 tests/
   README.md
+  fixtures/
+    mobile-nav-test.html
   site-hygiene.spec.js
   smoke.spec.js
+docs/
+  site/
+    CONTEXT.md
+    DESIGN.md
+    PRODUCT.md
+    SETUP_INSTRUCTIONS.md
+  archive/
+    AUDIT_SITE_PASS_1.md
+    CHANGELOG_SITE_PASS_1.md
+    REFACTORING_SUMMARY.md
 index.html
 photo.html
 thank-you.html
@@ -102,3 +116,4 @@ cv.html
 
 - `.nojekyll` is present so GitHub Pages serves the repo as plain static files.
 - Legacy pages are intentionally kept reachable, but they are not the main maintained user journey.
+- Root markdown is intentionally sparse. Product/design context lives under `docs/site/`, while older audit notes live under `docs/archive/`.

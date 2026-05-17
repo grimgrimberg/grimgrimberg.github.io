@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-const ROOT_HTML_PAGES = [
+const CHECKED_HTML_PAGES = [
     'index.html',
     'photo.html',
     'thank-you.html',
@@ -8,7 +8,7 @@ const ROOT_HTML_PAGES = [
     'projects.html',
     'vision.html',
     'cv.html',
-    'mobile-nav-test.html'
+    'tests/fixtures/mobile-nav-test.html'
 ];
 
 function siteUrl(relativePath) {
@@ -20,7 +20,7 @@ function siteUrl(relativePath) {
 }
 
 test.describe('site hygiene', () => {
-    test('all root html pages avoid horizontal overflow at mobile widths', async ({ page }) => {
+    test('checked html pages avoid horizontal overflow at mobile widths', async ({ page }) => {
         const widths = [
             { width: 320, height: 568 },
             { width: 375, height: 812 },
@@ -30,7 +30,7 @@ test.describe('site hygiene', () => {
         for (const viewport of widths) {
             await page.setViewportSize(viewport);
 
-            for (const target of ROOT_HTML_PAGES) {
+            for (const target of CHECKED_HTML_PAGES) {
                 await page.goto(siteUrl(target), { waitUntil: 'domcontentloaded' });
                 const overflow = await page.evaluate(() => ({
                     documentWidth: document.documentElement.scrollWidth,
@@ -45,7 +45,7 @@ test.describe('site hygiene', () => {
         }
     });
 
-    test('all root html pages load without blocking mobile runtime errors', async ({ page }) => {
+    test('checked html pages load without blocking mobile runtime errors', async ({ page }) => {
         const failures = [];
 
         page.on('pageerror', (error) => {
@@ -60,7 +60,7 @@ test.describe('site hygiene', () => {
 
         await page.setViewportSize({ width: 390, height: 844 });
 
-        for (const target of ROOT_HTML_PAGES) {
+        for (const target of CHECKED_HTML_PAGES) {
             failures.length = 0;
             await page.goto(siteUrl(target), { waitUntil: 'domcontentloaded' });
 
@@ -99,8 +99,8 @@ test.describe('site hygiene', () => {
         expect(referrer).toBe('no-referrer');
     });
 
-    test('root pages avoid remote scripts and stylesheets', async ({ page }) => {
-        for (const target of ROOT_HTML_PAGES) {
+    test('checked html pages avoid remote scripts and stylesheets', async ({ page }) => {
+        for (const target of CHECKED_HTML_PAGES) {
             await page.goto(siteUrl(target), { waitUntil: 'domcontentloaded' });
             await expect(
                 page.locator('script[src^="https://"], link[rel="stylesheet"][href^="https://"]'),

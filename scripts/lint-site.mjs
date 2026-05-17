@@ -1,10 +1,18 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 
 const cwd = process.cwd();
 const rootHtmlPages = readdirSync(cwd)
     .filter((filePath) => filePath.endsWith('.html'))
     .sort();
+const fixtureHtmlDirectory = path.join(cwd, 'tests', 'fixtures');
+const fixtureHtmlPages = existsSync(fixtureHtmlDirectory)
+    ? readdirSync(fixtureHtmlDirectory)
+        .filter((filePath) => filePath.endsWith('.html'))
+        .map((filePath) => path.join('tests', 'fixtures', filePath).replaceAll(path.sep, '/'))
+        .sort()
+    : [];
+const checkedHtmlPages = [...rootHtmlPages, ...fixtureHtmlPages];
 const maintainedPages = ['index.html', 'photo.html', 'thank-you.html', 'cv.html'];
 const failures = [];
 
@@ -36,7 +44,7 @@ function findTag(normalizedSource, regex) {
     return match ? match[0] : '';
 }
 
-for (const filePath of rootHtmlPages) {
+for (const filePath of checkedHtmlPages) {
     const source = read(filePath);
     const normalized = normalize(source);
 
