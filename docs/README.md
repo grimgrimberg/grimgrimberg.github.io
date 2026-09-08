@@ -1,6 +1,8 @@
 # Portfolio Docs
 
-This folder keeps working notes out of the GitHub Pages deploy root.
+This folder organizes the repository's public documentation. GitHub Pages
+publishes from `dev` at `/`, so files under `docs/` are publicly accessible.
+Keep private notes and personal source documents outside this repository.
 
 - `site/` contains current product, design, setup, and vocabulary context.
 - `archive/` contains older audit and refactor notes that are useful history but not active instructions.

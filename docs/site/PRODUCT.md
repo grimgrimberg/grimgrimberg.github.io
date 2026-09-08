@@ -34,4 +34,6 @@ they support the portfolio rather than hijacking it.
 Keep the public surface to the real email, LinkedIn, GitHub, CV access, and
 copy/mailto fallbacks. The email must stay visible and usable; privacy is about
 not exposing extra personal channels. No phone, WhatsApp, or calendar links on
-the public page.
+the HTML page. The user-approved Master PDF download includes a phone number
+and is publicly accessible; preserve the supplied document unless a replacement
+is explicitly approved.

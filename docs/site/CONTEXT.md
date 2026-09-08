@@ -35,11 +35,12 @@ opt-in only via explicit controls such as `goose terror`, a release button, or a
 similarly obvious user action; always provide `goose stop`, Escape, and a visible
 banish affordance.
 
-### Public CV Gate
+### Public CV
 
-A zero-backend human check that reveals the public CV page. It is scraper
-friction, not real access control, and the public CV should avoid phone numbers
-or unnecessary private details.
+The public HTML CV at `cv.html` is directly accessible without a human check.
+Contact and the CV page link to the user-approved, two-page Master PDF download.
+That exact supplied PDF includes an approved phone number; the HTML CV does not
+display it. Neither document is access-controlled.
 
 ### Contact Command Center
 
