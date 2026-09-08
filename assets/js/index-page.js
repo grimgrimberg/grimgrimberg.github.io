@@ -95,15 +95,15 @@
 
     const ROLE_FITS = {
         robotics: {
-            title: 'Robotics Systems Developer',
+            title: 'R&D Software Developer',
             summary:
                 'I connect controls, perception, code, and physical constraints without pretending robots live in clean PowerPoint rectangles.',
-            proof: 'BGR driverless stack',
+            proof: 'UGV backend + BGR team work',
             tools: 'Python, ROS2, OpenCV',
             mode: 'Build, test, iterate',
             bullets: [
-                'Led path planning and control work for a real Formula Student driverless effort.',
-                'Comfortable translating messy system behavior into debuggable software loops.',
+                'Developed shared Python backend and operator interfaces for command handling, telemetry and diagnostics on a full-time UGV engagement, July–September 2026. Added logging across four components, thread-timing diagnostics, watchdogs and heartbeat handling.',
+                'Led BGR planning/control from 2023 to late 2025, sharing implementation and contributing to approximately 50 metres of physical autonomous driving.',
                 'Useful when the job needs range, not a one-trick framework certificate.'
             ]
         },
@@ -115,7 +115,7 @@
             tools: 'Control, dynamics, Python',
             mode: 'Model, simulate, validate',
             bullets: [
-                'Formula Student work shows practical autonomy under vehicle constraints.',
+                'BGR shared implementation used an adapted planner, Pure Pursuit, Stanley steering and curvature-based PID speed control.',
                 'Orbital rendezvous work shows comfort with state-space thinking and controller comparison.',
                 'I like systems that can be explained, plotted, and debugged under pressure.'
             ]
@@ -137,12 +137,12 @@
             title: 'AI Tooling / Developer Tools',
             summary:
                 'I build small systems that turn noisy inputs into useful outputs: repo summaries, agentic reports, fallbacks, and boring-but-important glue.',
-            proof: 'Repo summarizer + agents',
+            proof: 'FPV lab + tested Python tools',
             tools: 'FastAPI, LangGraph, testing',
             mode: 'Ship useful tools',
             bullets: [
                 'GitHub repo summarizer shows product-shaped AI tooling, not just prompt confetti.',
-                'Daily movers agent shows multi-step pipeline thinking with outputs and fallbacks.',
+                'FPV: VGGT on another creator’s public dataset, experimental methods and 13 scene packages. Daily Movers: optional LLM analysis; the published sample is heuristic.',
                 'I care about deterministic structure, testability, and making tools usable by people.'
             ]
         }
@@ -193,10 +193,33 @@
         x: 24,
         y: 120
     };
+    const gooseTimeouts = new Set();
+    function gooseLater(callback, delay) {
+        const timer = window.setTimeout(() => { gooseTimeouts.delete(timer); callback(); }, delay);
+        gooseTimeouts.add(timer);
+    }
     let realClippyAgent = null;
     let realClippyLoaded = false;
     let realClippyLoadStarted = false;
     let realClippyHideTimer = null;
+    let realClippySpeechTimer = null;
+    let realClippyGoodbyeTimer = null;
+    const HELPER_COOLDOWN_MS = 120000;
+    let helperDismissed = false, helperLastShown = 0;
+    try {
+        helperDismissed = sessionStorage.getItem('portfolioHelperDismissed') === 'true';
+        helperLastShown = Number(sessionStorage.getItem('portfolioHelperLastShown')) || 0;
+    } catch { /* Storage may be blocked; in-page state still works. */ }
+
+    function rememberHelperAppearance() {
+        helperLastShown = Date.now();
+        try { sessionStorage.setItem('portfolioHelperLastShown', String(helperLastShown)); } catch {}
+    }
+
+    function clearClippyTimers() {
+        [realClippyHideTimer, realClippySpeechTimer, realClippyGoodbyeTimer].forEach(timer => window.clearTimeout(timer));
+        realClippyHideTimer = realClippySpeechTimer = realClippyGoodbyeTimer = null;
+    }
 
     function initAos() {
         if (window.AOS && typeof window.AOS.init === 'function') {
@@ -359,7 +382,7 @@
 
         setCvGateStatus('Human enough. Public CV unlocked.');
         if (announce) {
-            showClippy('CV unlocked. Public version, no phone-number buffet for scrapers. Responsible chaos.', 18000);
+            showClippy('Public CV ready. The Master PDF is available from the resume page.', 18000);
         }
     }
 
@@ -623,7 +646,7 @@
             return;
         }
 
-        button.textContent = gooseTerrorState.active ? 'Banish Desk Goose' : 'Release Desk Goose';
+        button.textContent = gooseTerrorState.active ? 'Put Goose away' : 'Release Desk Goose';
         button.setAttribute('aria-pressed', String(gooseTerrorState.active));
     }
 
@@ -632,26 +655,39 @@
     }
 
     function getGoosePoint(width = 116, height = 104) {
-        const maxX = Math.max(16, window.innerWidth - width - 16);
-        const maxY = Math.max(86, window.innerHeight - height - 86);
+        for (let i=0;i<80;i++) {
+            const point={x:12+Math.random()*Math.max(1,innerWidth-width-24),y:100+Math.random()*Math.max(1,innerHeight-height-190)};
+            if (goosePointClear(point.x,point.y,width,height)) return point;
+        }
+        for(let y=100;y+height<innerHeight-76;y+=12) for(let x=12;x+width<innerWidth-8;x+=12) {
+            if(goosePointClear(x,y,width,height)) return {x,y};
+        }
+        return null;
+    }
 
-        return {
-            x: Math.round(16 + Math.random() * Math.max(1, maxX - 16)),
-            y: Math.round(80 + Math.random() * Math.max(1, maxY - 80))
-        };
+    function goosePointClear(x,y,width=82,height=76) {
+        if(x<8 || y<86 || x+width>innerWidth-8 || y+height>innerHeight-76) return false;
+        return !gooseTerrorState.blockers.some(r=>
+            x<r.right+5 && x+width>r.left-5 && y<r.bottom+5 && y+height>r.top-5);
     }
 
     function moveGooseTerror() {
-        if (!gooseTerrorState.active || !gooseTerrorState.goose) {
-            return;
+        const s=gooseTerrorState;
+        if(!s.active) return;
+        if(!s.target || Math.hypot(s.target.x-s.x,s.target.y-s.y)<8) s.target=getGoosePoint(82,76);
+        if(!s.target) return;
+        const dx=s.target.x-s.x,dy=s.target.y-s.y,d=Math.hypot(dx,dy);
+        const step=Math.min(5,d),x=s.x+dx/d*step,y=s.y+dy/d*step;
+        if(!goosePointClear(x,y)) { s.target=null; return; }
+        s.x=x;s.y=y;s.distance+=step;
+        s.goose.style.left=x+'px';s.goose.style.top=y+'px';
+        s.goose.classList.toggle('goose-terror-flipped',dx<0);
+        if(s.distance>=22) {s.distance=0;dropGooseFootprint();}
+        if(s.carried?.isConnected && Date.now()<s.carryUntil) {
+            const nx=dx<0?x+65:x-160,ny=y+22;
+            const clear=goosePointClear(nx,ny,172,s.carried.offsetHeight);
+            if(clear) {s.carried.style.left=nx+'px';s.carried.style.top=ny+'px';}
         }
-
-        const next = getGoosePoint();
-        gooseTerrorState.goose.style.left = `${next.x}px`;
-        gooseTerrorState.goose.style.top = `${next.y}px`;
-        gooseTerrorState.goose.classList.toggle('goose-terror-flipped', next.x < gooseTerrorState.x);
-        gooseTerrorState.x = next.x;
-        gooseTerrorState.y = next.y;
     }
 
     function dropGooseFootprint() {
@@ -662,11 +698,12 @@
         const footprint = document.createElement('span');
         footprint.className = 'goose-terror-footprint';
         footprint.setAttribute('aria-hidden', 'true');
-        footprint.style.left = `${gooseTerrorState.x + 40}px`;
-        footprint.style.top = `${gooseTerrorState.y + 82}px`;
+        gooseTerrorState.footSide=!gooseTerrorState.footSide;
+        footprint.style.left = `${gooseTerrorState.x + (gooseTerrorState.footSide?28:44)}px`;
+        footprint.style.top = `${gooseTerrorState.y + 66}px`;
         gooseTerrorState.layer.appendChild(footprint);
 
-        window.setTimeout(() => footprint.remove(), 5200);
+        gooseLater(() => footprint.remove(), 3200);
     }
 
     function spawnGooseNote(noteText = getRandomGooseNote()) {
@@ -682,19 +719,25 @@
             <span>${escapeHtml(noteText)}</span>
         `;
 
-        const point = getGoosePoint(210, 150);
+        note.style.visibility='hidden';
+        gooseTerrorState.layer.appendChild(note);
+        const point = getGoosePoint(172, note.offsetHeight);
+        if(!point) {note.remove();return;}
+        note.style.visibility='';
         note.style.left = `${point.x}px`;
         note.style.top = `${point.y}px`;
         note.querySelector('button')?.addEventListener('click', () => note.remove());
 
         gooseTerrorState.layer.appendChild(note);
+        gooseTerrorState.carried=note;
+        gooseTerrorState.carryUntil=Date.now()+2400;
         gooseTerrorState.layer.querySelectorAll('.goose-terror-note').forEach((existingNote, index, notes) => {
-            if (index < notes.length - 5) {
+            if (index < notes.length - 2) {
                 existingNote.remove();
             }
         });
 
-        window.setTimeout(() => note.remove(), 9000);
+        gooseLater(() => note.remove(), 9000);
     }
 
     function startGooseTerror() {
@@ -710,14 +753,15 @@
         layer.setAttribute('aria-live', 'polite');
         layer.innerHTML = `
             <div class="goose-terror-toolbar">
-                <span>goose terror mode</span>
-                <button type="button" id="goose-terror-stop" class="touch-target">Banish goose</button>
+                <span>Desk Goose · tap for mischief</span>
+                <button type="button" id="goose-terror-stop" class="touch-target">Put Goose away</button>
             </div>
         `;
 
-        const goose = document.createElement('img');
-        goose.src = './assets/images/desk-goose.svg';
-        goose.alt = 'Desktop goose causing controlled chaos';
+        const goose = document.createElement('button');
+        goose.type='button';
+        goose.setAttribute('aria-label','Goose: bring another note');
+        goose.innerHTML='<img src="./assets/images/desk-goose.svg" alt="">';
         goose.className = 'goose-terror-goose';
         goose.dataset.gooseTerrorGoose = 'true';
         layer.appendChild(goose);
@@ -726,26 +770,55 @@
         gooseTerrorState.active = true;
         gooseTerrorState.layer = layer;
         gooseTerrorState.goose = goose;
+        gooseTerrorState.reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        layer.classList.toggle('goose-quiet',gooseTerrorState.reduced);
+        // Scrolling/resizing ends the visit, so these hitboxes stay valid while Goose is loose.
+        gooseTerrorState.blockers=[...document.querySelectorAll('nav,header,#contact,#about,.path-playground,a,button,input,textarea,select,summary,.goose-terror-toolbar')]
+            .filter(el=>(!el.closest('#goose-terror-layer') || el.matches('.goose-terror-toolbar')) && getComputedStyle(el).visibility!=='hidden')
+            .map(el=>el.getBoundingClientRect()).filter(r=>r.width && r.height);
+        const initial=getGoosePoint(82,76);
+        if(!initial) {stopGooseTerror('silent');return false;}
+        gooseTerrorState.x=initial.x;gooseTerrorState.y=initial.y;
+        goose.style.left=initial.x+'px';goose.style.top=initial.y+'px';
+        gooseTerrorState.distance=0;gooseTerrorState.target=null;
+        goose.addEventListener('click',()=> {
+            spawnGooseNote();
+            if(!gooseTerrorState.reduced) gooseTerrorState.target=getGoosePoint(82,76);
+        });
         gooseTerrorState.keyHandler = (event) => {
             if (event.key === 'Escape') {
                 stopGooseTerror('escape');
             }
         };
-        gooseTerrorState.resizeHandler = () => moveGooseTerror();
+        gooseTerrorState.resizeHandler = () => stopGooseTerror('navigation');
+        gooseTerrorState.pointerHandler = event => {
+            if(event.pointerType!=='mouse' || gooseTerrorState.reduced || event.target.closest('a,button,input,textarea,select,summary')) return;
+            const dx=event.clientX-gooseTerrorState.x,dy=event.clientY-gooseTerrorState.y,d=Math.hypot(dx,dy);
+            if(d>110 && d<360) {
+                const point={x:event.clientX-dx/d*95,y:event.clientY-dy/d*95};
+                if(goosePointClear(point.x,point.y)) gooseTerrorState.target=point;
+            }
+        };
+        gooseTerrorState.navigationHandler = event => {
+            if(event.type!=='click' || event.target.closest('a[href]')) stopGooseTerror('navigation');
+        };
 
         document.addEventListener('keydown', gooseTerrorState.keyHandler);
         window.addEventListener('resize', gooseTerrorState.resizeHandler);
+        document.addEventListener('pointermove',gooseTerrorState.pointerHandler);
+        document.addEventListener('click',gooseTerrorState.navigationHandler);
+        window.addEventListener('scroll',gooseTerrorState.navigationHandler,{passive:true});
+        window.addEventListener('pagehide',gooseTerrorState.navigationHandler);
+        gooseTerrorState.motionQuery=window.matchMedia('(prefers-reduced-motion: reduce)');
+        gooseTerrorState.motionQuery.addEventListener('change',gooseTerrorState.navigationHandler);
         document.getElementById('goose-terror-stop')?.addEventListener('click', () => stopGooseTerror('toolbar'));
 
-        moveGooseTerror();
-        dropGooseFootprint();
         spawnGooseNote('HONK. You opted in. Legally devastating.');
-        playHonkSound();
-        showClippy('Desk Goose released. Press Esc, type `goose stop`, or use the banish button when dignity needs restoring.', 18000);
-
-        gooseTerrorState.moveTimer = window.setInterval(moveGooseTerror, 1100);
-        gooseTerrorState.footTimer = window.setInterval(dropGooseFootprint, 900);
-        gooseTerrorState.noteTimer = window.setInterval(() => spawnGooseNote(), 2800);
+        hideClippy();
+        if(!gooseTerrorState.reduced) {
+            gooseTerrorState.moveTimer = window.setInterval(moveGooseTerror, 50);
+            gooseTerrorState.noteTimer = window.setInterval(() => spawnGooseNote(), 8000);
+        }
         updateGooseTerrorButton();
         return true;
     }
@@ -769,6 +842,15 @@
         if (gooseTerrorState.resizeHandler) {
             window.removeEventListener('resize', gooseTerrorState.resizeHandler);
         }
+        document.removeEventListener('pointermove',gooseTerrorState.pointerHandler);
+        document.removeEventListener('click',gooseTerrorState.navigationHandler);
+        window.removeEventListener('scroll',gooseTerrorState.navigationHandler);
+        window.removeEventListener('pagehide',gooseTerrorState.navigationHandler);
+        gooseTerrorState.motionQuery?.removeEventListener('change',gooseTerrorState.navigationHandler);
+        gooseTimeouts.forEach(timer=>window.clearTimeout(timer));
+        gooseTimeouts.clear();
+        gooseTerrorState.pointerHandler=null;gooseTerrorState.navigationHandler=null;
+        gooseTerrorState.target=null;gooseTerrorState.carried=null;
 
         gooseTerrorState.layer?.remove();
         gooseTerrorState.active = false;
@@ -782,7 +864,9 @@
         updateGooseTerrorButton();
 
         if (reason !== 'silent') {
-            showClippy('Goose banished. The page is safe. Suspiciously safe.', 12000);
+            hideClippy(true);
+            const wisdom = document.getElementById('goose-wisdom');
+            if (wisdom) wisdom.textContent = 'Goose banished. The page is safe. Suspiciously safe.';
         }
 
         return true;
@@ -856,6 +940,12 @@
                     allowRealClippySoundAfterGesture(realClippyAgent);
                     realClippyAgent.hide(true);
                     resetRealClippyQueue(realClippyAgent);
+                    const close = document.createElement('button');
+                    close.id = 'real-clippy-dismiss'; close.className = 'clippy-visit-close'; close.type = 'button'; close.textContent = '×';
+                    close.setAttribute('aria-label', 'Dismiss Clippy for this visit');
+                    close.addEventListener('mousedown', event => event.stopPropagation());
+                    close.addEventListener('click', event => {event.stopPropagation();hideClippy(true);});
+                    document.querySelector('.clippy')?.appendChild(close);
                     window.dispatchEvent(new CustomEvent('portfolio:clippy-ready'));
                 },
                 () => {
@@ -931,8 +1021,8 @@
         balloon._hiding = null;
         balloon._addWord = null;
 
-        if (typeof agent.closeBalloon === 'function') {
-            agent.closeBalloon();
+        if (typeof balloon.hide === 'function') {
+            balloon.hide(true);
         }
     }
 
@@ -954,10 +1044,7 @@
         try {
             hideFallbackClippy();
 
-            if (realClippyHideTimer) {
-                window.clearTimeout(realClippyHideTimer);
-                realClippyHideTimer = null;
-            }
+            clearClippyTimers();
 
             if (typeof realClippyAgent.stop === 'function') {
                 realClippyAgent.stop();
@@ -980,7 +1067,7 @@
             }
 
             if (message) {
-                window.setTimeout(() => {
+                realClippySpeechTimer = window.setTimeout(() => {
                     if (realClippyAgent && realClippyLoaded) {
                         realClippyAgent.speak(message);
                     }
@@ -996,7 +1083,7 @@
                     const goodbye = selectClippyAnimation('GoodBye');
                     if (goodbye) {
                         realClippyAgent.play(goodbye);
-                        window.setTimeout(() => {
+                        realClippyGoodbyeTimer = window.setTimeout(() => {
                             realClippyAgent?.hide(true);
                             resetRealClippyQueue(realClippyAgent);
                         }, 1200);
@@ -1014,6 +1101,9 @@
     }
 
     function showClippy(message, durationMs = 12000) {
+        hideClippy();
+        rememberHelperAppearance();
+        if (useTextHelper()) { showFallbackClippy(message, durationMs); return; }
         if (summonRealClippy(message, 'GetAttention', durationMs)) {
             return;
         }
@@ -1022,13 +1112,26 @@
     }
 
     function showClippyIntro() {
+        // Only this intro is automatic. Explicit commands never use this gate.
+        if (helperDismissed || Date.now()-helperLastShown < HELPER_COOLDOWN_MS || document.hidden || !document.body.classList.contains('hero-intro-near')) return;
         showClippy(
             'Hey there! Looking to hire an awesome engineer? Ask me for projects, CV, contact, reviews, or the goose.',
             18000
         );
     }
 
+    function useTextHelper() {
+        return document.body.classList.contains('path-scene-near') || (window.matchMedia('(max-width: 640px)').matches && document.body.classList.contains('quiet-reading'));
+    }
+
     function pinClippyGuide(message) {
+        hideClippy();
+        rememberHelperAppearance();
+        if (useTextHelper()) {
+            showFallbackClippy(message, 0);
+            return;
+        }
+
         if (summonRealClippy(message, 'Explain', 0)) {
             return;
         }
@@ -1036,14 +1139,16 @@
         showFallbackClippy(message, 0);
     }
 
-    function hideClippy() {
-        if (realClippyHideTimer) {
-            window.clearTimeout(realClippyHideTimer);
-            realClippyHideTimer = null;
+    function hideClippy(dismissForVisit = false) {
+        if (dismissForVisit === true) {
+            helperDismissed = true;
+            try { sessionStorage.setItem('portfolioHelperDismissed', 'true'); } catch {}
         }
+        clearClippyTimers();
 
         if (realClippyAgent && realClippyLoaded) {
             realClippyAgent.hide(true);
+            resetRealClippySpeech(realClippyAgent);
             resetRealClippyQueue(realClippyAgent);
         }
 
@@ -1344,8 +1449,8 @@ score repos       show category logic without public numbers
 reviews           epic fictional reviews
 roast yuval       opt-in roast mode
 skills            jump to skills
-contact / hire    email, LinkedIn, GitHub, CV gate
-cv                jump to human-checked public CV
+contact / hire    email, LinkedIn, GitHub, public CV
+cv                read public CV / download Master PDF
 goose             controlled wisdom, explicit click only
 goose terror      release the desktop goose-ish nuisance
 goose stop        banish the goose
@@ -1405,18 +1510,16 @@ Try \`hire autonomy\`, \`hire simulation\`, or \`hire ai\` for a narrower fit.`;
             scrollToSection('contact');
             return `<strong>Contact</strong>
 Email: <a href="mailto:${EMAIL_ADDRESS}">${EMAIL_ADDRESS}</a>
-LinkedIn: <a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank" rel="noopener noreferrer">linkedin.com/in/yuval-grimberg-933215173</a>
+LinkedIn: <a href="https://www.linkedin.com/in/yuval-grimberg-ai-robotics/" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>
 GitHub: <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer">github.com/grimgrimberg</a>
-CV: public version unlocks after a tiny human check; full-detail PDF can still be requested by email.
+CV: <a href="cv.html">Read the public CV</a>. Ask by email for any further details.
 
 The form below builds an email draft. If your mail app refuses to cooperate, copy buttons are waiting like adults.`;
         }
 
         if (verb === 'cv' || verb === 'resume') {
             scrollToSection('contact');
-            return `CV: jump to Contact and pass the tiny human check to reveal the public CV.
-
-The public CV is intentionally scrubbed of phone/private contact details. Static GitHub Pages cannot provide real access control, so this is anti-scraper friction, not a bank vault.`;
+            return `<a href="cv.html">Read the public CV</a>, or use Contact to ask for further details.`;
         }
 
         if (verb === 'github') {
@@ -1424,7 +1527,7 @@ The public CV is intentionally scrubbed of phone/private contact details. Static
         }
 
         if (verb === 'linkedin') {
-            return `<a href="https://www.linkedin.com/in/yuval-grimberg-933215173" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>`;
+            return `<a href="https://www.linkedin.com/in/yuval-grimberg-ai-robotics/" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>`;
         }
 
         if (verb === 'repos') {
@@ -1482,7 +1585,7 @@ This is opt-in. Public surface remains hireable. The terminal is where the eyebr
             const started = startGooseTerror();
             return started
                 ? `<strong>Goose terror mode released.</strong>
-It wanders, drops dumb notes, leaves footprints, and honks like a tiny workplace liability.
+It waddles, brings dumb notes, and leaves footprints like a tiny workplace liability. Tap the goose for another note.
 
 Stop it with \`goose stop\`, Esc, or the on-screen banish button.`
                 : 'Goose terror mode is already active. This is not a second goose economy.';
@@ -1644,8 +1747,12 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
         const gameRequestButton = document.querySelector('[data-game-request]');
         const copyButtons = [document.getElementById('copy-email-address'), document.getElementById('quick-copy-email')];
 
-        clippyCloseButton?.addEventListener('click', hideClippy);
+        clippyCloseButton?.addEventListener('click', () => hideClippy(true));
         emailButton?.addEventListener('click', openEmailClient);
+        document.getElementById('simple-contact-form')?.addEventListener('submit', (event) => {
+            event.preventDefault();
+            openEmailClient();
+        });
         gameRequestButton?.addEventListener('click', showRetroGameRequest);
 
         document.querySelectorAll('[data-game-source]').forEach((button) => {

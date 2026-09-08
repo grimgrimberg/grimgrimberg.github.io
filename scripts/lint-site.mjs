@@ -134,10 +134,6 @@ if (countMatches(normalize(read('index.html')), /\bproject-action-link\b/g) < 3)
     record('index.html', 'homepage project detail links should use project-action-link sizing');
 }
 
-if (countMatches(normalize(read('index.html')), /\bproject-icon-link\b/g) < 3) {
-    record('index.html', 'homepage project icon links should use project-icon-link sizing');
-}
-
 if (failures.length > 0) {
     console.error('Site lint failed:\n');
     for (const failure of failures) {

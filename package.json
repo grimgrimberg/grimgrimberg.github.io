@@ -10,7 +10,7 @@
     "lint:runtime": "playwright test --config=playwright.hygiene.config.js",
     "build": "tailwindcss -i ./assets/css/styles.css -o ./assets/css/output.css --minify",
     "watch": "tailwindcss -i ./assets/css/styles.css -o ./assets/css/output.css --watch",
-    "serve": "python -m http.server 8000 --bind 127.0.0.1"
+    "serve": "python scripts/serve.py"
   },
   "repository": {
     "type": "git",

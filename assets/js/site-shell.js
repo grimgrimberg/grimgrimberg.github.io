@@ -87,6 +87,7 @@
         const mobileMenuButtonParent = mobileMenuButton.parentElement;
         const mobileMenuButtonNextSibling = mobileMenuButton.nextSibling;
         const hamburgerIcon = mobileMenuButton.querySelector('i');
+        let closeTimer = null;
 
         cloneDesktopLinks(mobileNavList, desktopNav);
         initSmoothAnchors();
@@ -114,23 +115,30 @@
             mobileMenuButton.setAttribute('aria-expanded', 'false');
             hamburgerIcon?.classList.replace('fa-times', 'fa-bars');
             restoreMobileMenuButton();
+            mobileMenuButton.focus({preventScroll:true});
 
-            window.setTimeout(() => {
+            window.clearTimeout(closeTimer);
+            closeTimer = window.setTimeout(() => {
                 mobileMenu.classList.add('hidden');
                 mobileMenu.classList.remove('pointer-events-none');
                 document.body.style.overflow = '';
+                closeTimer = null;
             }, 300);
         };
 
         const openMobileMenu = () => {
+            window.clearTimeout(closeTimer);
+            mobileMenu.classList.remove('pointer-events-none');
             mobileMenu.classList.remove('hidden');
             mobileMenuButton.classList.add('mobile-menu-button-open');
             mobileMenuButton.setAttribute('aria-expanded', 'true');
             document.body.appendChild(mobileMenuButton);
 
             requestAnimationFrame(() => {
+                if (mobileMenuButton.getAttribute('aria-expanded') !== 'true') return;
                 mobileMenuPanel.classList.remove('translate-x-full');
                 hamburgerIcon?.classList.replace('fa-bars', 'fa-times');
+                mobileMenuClose?.focus({preventScroll:true});
             });
 
             document.body.style.overflow = 'hidden';
@@ -158,6 +166,14 @@
         });
 
         document.addEventListener('keydown', (event) => {
+            if (event.key === 'Tab' && mobileMenuButton.getAttribute('aria-expanded') === 'true') {
+                const focusable = [...mobileMenuPanel.querySelectorAll('a[href], button, summary')].filter(el => !el.disabled && el.getClientRects().length && !el.matches('details:not([open]) a'));
+                const first = focusable[0], last = focusable[focusable.length - 1];
+                if (first && (!mobileMenuPanel.contains(document.activeElement) || (event.shiftKey && document.activeElement === first) || (!event.shiftKey && document.activeElement === last))) {
+                    event.preventDefault();
+                    (event.shiftKey ? last : first).focus();
+                }
+            }
             if (event.key === 'Escape' && mobileMenuButton.getAttribute('aria-expanded') === 'true') {
                 closeMobileMenu();
             }

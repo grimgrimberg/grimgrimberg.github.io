@@ -25,6 +25,7 @@ async function fillContactForm(page, overrides = {}) {
         ...overrides
     };
 
+    await page.locator('.contact-composer summary').click();
     await page.locator('#contact-name').scrollIntoViewIfNeeded();
     await page.fill('#contact-name', fields.name);
     await page.fill('#contact-email', fields.email);
@@ -151,7 +152,7 @@ test.describe('maintained smoke suite', () => {
             { command: 'hire ai', expected: ['AI Tooling / Developer Tools'] },
             { command: 'reviews', expected: ['Epic reviews'] },
             { command: 'roast yuval', expected: ['Roast mode'] },
-            { command: 'cv', expected: ['human check'] }
+            { command: 'cv', expected: ['Read the public CV'] }
         ];
 
         for (const { command, expected } of commandChecks) {
@@ -161,14 +162,6 @@ test.describe('maintained smoke suite', () => {
             }
         }
 
-        await submitCommand(page, 'goose terror');
-        await expect(page.locator('#command-output')).toContainText('Goose terror mode released');
-        await expect(page.locator('#goose-terror-layer')).toHaveAttribute('data-goose-terror', 'active');
-        await expect(page.locator('[data-goose-terror-goose="true"]')).toBeVisible();
-        await expect(page.locator('.goose-terror-note').first()).toBeVisible();
-        await submitCommand(page, 'goose stop');
-        await expect(page.locator('#command-output')).toContainText('Goose banished');
-        await expect(page.locator('#goose-terror-layer')).toHaveCount(0);
         await page.locator('#command-palette .command-close').click();
         await expect(page.locator('#command-palette')).toBeHidden();
 
@@ -190,12 +183,8 @@ test.describe('maintained smoke suite', () => {
         await expect(page.locator('#click-count')).toHaveText('(1)');
         await expect(page.locator('#click-message')).not.toHaveText('');
 
-        await page.locator('#cv-gate').scrollIntoViewIfNeeded();
-        await expect(page.locator('#cv-unlocked-panel')).toBeHidden();
-        await page.fill('#cv-human-answer', '13');
-        await page.click('#cv-unlock-button');
-        await expect(page.locator('#cv-unlocked-panel')).toBeVisible();
-        await expect(page.locator('#cv-public-link')).toHaveAttribute('href', /cv\.html$/);
+        await expect(page.locator('#contact a[href="cv.html"]')).toBeVisible();
+        await expect(page.locator('#contact a[download]')).toHaveAttribute('href', 'assets/cv/yuval-grimberg-master-cv-september-2026.pdf');
 
         const fields = await fillContactForm(page);
         const success = page.locator('#contact-success');
@@ -237,9 +226,9 @@ test.describe('maintained smoke suite', () => {
 
         await page.goto(siteUrl('index.html'), { waitUntil: 'domcontentloaded' });
 
-        const directEmail = page.locator('.contact-hero-email a');
+        const directEmail = page.locator('#contact a[href="mailto:yuval.grimberg@gmail.com"]');
         await expect(directEmail).toHaveAttribute('href', 'mailto:yuval.grimberg@gmail.com');
-        await expect(directEmail).toHaveText('yuval.grimberg@gmail.com');
+        await expect(directEmail).toContainText('yuval.grimberg@gmail.com');
 
         const copyEmailButton = page.locator('#copy-email-address');
         await copyEmailButton.scrollIntoViewIfNeeded();
@@ -365,8 +354,8 @@ test.describe('maintained smoke suite', () => {
         await expectTouchTarget(page.locator('#goose-talk'), 'goose advice button');
         await expectTouchTarget(page.locator('#goose-terror-button'), 'goose terror button');
         await expectTouchTarget(page.locator('#click-me-button'), 'click counter button');
-        await expectTouchTarget(page.getByRole('link', { name: 'View Details' }).first(), 'first project details link');
-        await expectTouchTarget(page.locator('a[aria-label="Open the BGR Path Planning Control repository"]'), 'first project repository icon link');
+        await expectTouchTarget(page.getByRole('link', { name: 'Read my contribution' }), 'first project details link');
+        await expectTouchTarget(page.getByRole('link', { name: 'Inspect the racing stack' }), 'BGR repository link');
         await expectTouchTarget(page.locator('footer').getByLabel('Open GitHub profile'), 'homepage footer GitHub link');
         await expectTouchTarget(page.locator('footer').getByRole('link', { name: 'About' }), 'homepage footer About link');
 

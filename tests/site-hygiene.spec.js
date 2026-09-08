@@ -89,7 +89,10 @@ test.describe('site hygiene', () => {
         await expect(page.locator('script[src^="https://"]')).toHaveCount(0);
         await expect(page.locator('[onclick], [onload], [onerror], [onmouseover]')).toHaveCount(0);
         await expect(page.locator('a[href^="tel:"], a[href*="wa.me"], a[href*="whatsapp"], a[href*="calendar"]')).toHaveCount(0);
-        await expect(page.locator('a[href$=".pdf"], a[href*=".pdf?"]')).toHaveCount(0);
+        const publicPdf = page.locator('a[href$=".pdf"], a[href*=".pdf?"]');
+        await expect(publicPdf).toHaveCount(1);
+        await expect(publicPdf).toHaveAttribute('href', 'assets/cv/yuval-grimberg-master-cv-september-2026.pdf');
+        await expect(publicPdf).toHaveAttribute('download', '');
 
         const csp = await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute('content');
         expect(csp).toContain("script-src 'self'");
