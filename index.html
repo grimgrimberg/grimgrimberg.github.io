@@ -11,7 +11,7 @@
         content="Autonomy Developer, Robotics, Simulation, Control Theory, AI Tooling, Python, MATLAB, Mechanical Engineer">
     <meta name="referrer" content="no-referrer">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; media-src 'self' data:; connect-src 'self'; frame-src 'self'; form-action 'self'; upgrade-insecure-requests">
+        content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; media-src 'self' data:; connect-src 'self'; frame-src 'self' https://grimgrimberg.github.io; form-action 'self'; upgrade-insecure-requests">
     <meta name="theme-color" content="#05070a">
     <link rel="canonical" href="https://grimgrimberg.github.io/">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -579,10 +579,11 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-tech-purple mb-3">FPV Visual Geometry Lab</h3>
+                        <p class="project-wip">Work in progress</p>
                         <p class="project-problem">Inspect what reconstruction methods recover from FPV footage.</p>
                         <p class="text-gray-300 mb-4">I ran VGGT on another creator’s public dataset, added experimental reconstruction methods, smoothing and a WebGL viewer, and published 13 scene packages. The dataset and base models are not mine; evaluation remains experimental.</p>
                         <div class="flex justify-between items-center gap-4">
-                            <a href="https://grimgrimberg.github.io/fpv-vggt-visual-geometry-lab/" target="_blank" rel="noopener noreferrer" class="project-action-link touch-target text-tech-purple">Explore the scene packages ↗</a>
+                            <a href="#reconstruction-lab" data-lab-target="reconstruction" class="project-action-link touch-target text-tech-purple">Explore a reconstruction ↘</a>
                             <a href="https://github.com/grimgrimberg/fpv-vggt-visual-geometry-lab" target="_blank" rel="noopener noreferrer" class="project-action-link project-demo-link touch-target">Inspect the code ↗</a>
                         </div>
                     </div>
@@ -692,6 +693,7 @@
                         <button type="button" data-lab-mode="drive" aria-pressed="true">Driving · PID</button>
                         <button type="button" data-lab-mode="space" aria-pressed="false">Space · rendezvous</button>
                         <button type="button" data-lab-mode="perception" aria-pressed="false">Perception · depth</button>
+                        <button type="button" data-lab-mode="reconstruction" aria-pressed="false">Reconstruction · VGGT</button>
                     </div>
                 </div>
                 <article id="path-playground" class="path-playground" data-aos="fade-up" data-aos-delay="320"
@@ -826,6 +828,21 @@
                     </div>
                 </article>
 
+                <article id="reconstruction-lab" class="path-playground reconstruction-lab" hidden aria-labelledby="reconstruction-title">
+                    <div class="reconstruction-intro">
+                        <p class="path-section-label">Visual geometry · work in progress</p>
+                        <h3 id="reconstruction-title">From frames to a scene.</h3>
+                        <p class="path-playground-intro">Explore a point cloud and recovered camera path from published FPV footage. Compare what the reconstruction methods recover.</p>
+                        <p class="reconstruction-credit">Existing VGGT model, another creator’s public dataset. My work adds methods, smoothing and a viewer across 13 scene packages. Evaluation is ongoing; coordinates are relative.</p>
+                        <div class="reconstruction-actions">
+                            <button type="button" id="reconstruction-load" class="path-action path-action-primary">Load reconstruction</button>
+                            <button type="button" id="reconstruction-close" class="path-action" hidden>Close viewer</button>
+                            <a href="https://grimgrimberg.github.io/fpv-vggt-visual-geometry-lab/?scene=2026-04-24_d9_engineering_vehicle_between_taybeh_and_deir_siryan" target="_blank" rel="noopener noreferrer" class="path-action">Open full viewer ↗</a>
+                        </div>
+                        <p id="reconstruction-status" class="path-status" role="status">Loads on request. On a phone, the full viewer gives the controls more room.</p>
+                    </div>
+                    <div id="reconstruction-frame-slot" hidden></div>
+                </article>
                 <div class="glass-effect rounded-2xl p-6">
                     <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-green mb-3">lab layer</p>
                     <h3 class="text-2xl font-bold text-white mb-3">There is more in the terminal.</h3>

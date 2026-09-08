@@ -233,7 +233,7 @@ canvas.addEventListener('keydown',event=>{
 });
 document.addEventListener('portfolio:lab-change',event=>{
     pause();
-    if(event.detail==='drive'){root.dataset.nearViewport='false';document.dispatchEvent(new Event('portfolio:lab-visibility'));return;}
+    if(!['space','perception'].includes(event.detail)){root.dataset.nearViewport='false';document.dispatchEvent(new Event('portfolio:lab-visibility'));return;}
     configure(event.detail);
 });
 new IntersectionObserver(entries=>{

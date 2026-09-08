@@ -75,6 +75,57 @@ async function submitCommand(page, command) {
 }
 
 test.describe('maintained smoke suite', () => {
+    test('reconstruction loads only on request and releases the viewer on close or lab switch', async ({ page }, testInfo) => {
+        test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Checks both narrow widths in one run');
+        const scene = '2026-04-24_d9_engineering_vehicle_between_taybeh_and_deir_siryan';
+        const viewerBase = 'https://grimgrimberg.github.io/fpv-vggt-visual-geometry-lab/';
+        const requests = [];
+        const errors = [];
+        page.on('pageerror', error => errors.push(error.message));
+        // Test the portfolio lifecycle without downloading the external scene's media.
+        await page.route(viewerBase + '**', route => {
+            requests.push(route.request().url());
+            return route.fulfill({ contentType: 'text/html', body: '<title>Viewer fixture</title><p>Scene fixture</p>' });
+        });
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        for (const width of [508, 320]) {
+            requests.length = 0;
+            await page.setViewportSize({ width, height: width === 508 ? 642 : 568 });
+            await page.goto('/#reconstruction-lab', { waitUntil: 'networkidle' });
+            const panel = page.locator('#reconstruction-lab');
+            const iframe = panel.locator('iframe');
+            const load = page.locator('#reconstruction-load');
+            await expect(page.locator('[data-lab-mode="reconstruction"]')).toHaveAttribute('aria-pressed', 'true');
+            await expect(iframe).toHaveCount(0);
+            expect(requests).toEqual([]);
+            await expect(page.locator('#lab-picker h2')).toBeInViewport();
+            await expect(panel.getByRole('link', { name: 'Open full viewer' })).toHaveAttribute('href', viewerBase + '?scene=' + scene);
+            await load.focus();
+            await page.keyboard.press('Enter');
+            await expect(iframe).toHaveAttribute('src', viewerBase + 'scenes/' + scene + '/seg01/index.html?embed=1');
+            await expect(iframe).toHaveAttribute('title', /FPV reconstruction/);
+            await expect(iframe).toHaveAttribute('allow', "autoplay 'none'");
+            await expect.poll(() => requests.length).toBe(1);
+            await page.locator('#reconstruction-close').click();
+            await expect(iframe).toHaveCount(0);
+            await expect(load).toBeFocused();
+            for (const mode of ['drive', 'space', 'perception']) {
+                await load.click();
+                await page.locator('[data-lab-mode="' + mode + '"]').click();
+                await expect(iframe).toHaveCount(0);
+                await expect(panel).toBeHidden();
+                await expect(page.locator(mode === 'drive' ? '#path-playground' : '#experiment-playground')).toBeVisible();
+                if (mode !== 'drive') await expect(page.locator('#experiment-playground')).toHaveAttribute('aria-labelledby', mode === 'space' ? 'experiment-title' : 'perception-title');
+                await page.locator('[data-lab-mode="reconstruction"]').click();
+                await expect(page.locator('#path-play-toggle')).toHaveAttribute('aria-pressed', 'false');
+                await expect(page.locator('#experiment-play')).toHaveAttribute('aria-pressed', 'false');
+            }
+            await expect(page.locator('.project-card').filter({ hasText: 'FPV Visual Geometry Lab' })).toContainText('Work in progress');
+            expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
+        }
+        expect(errors).toEqual([]);
+    });
+
     test('primary pages use local generated CSS instead of Tailwind CDN', async ({ page }, testInfo) => {
         test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Static runtime check runs once on desktop');
 
