@@ -83,6 +83,23 @@ const readingObserver = new IntersectionObserver(entries => {
     document.dispatchEvent(new Event('portfolio:lab-visibility'));
 }, {rootMargin:'-80px 0px -35% 0px'});
 document.querySelectorAll('#hero, #about, #contact, #lab-picker, .path-playground').forEach(el => readingObserver.observe(el));
+
+// three.js is ~750 KB, so the scenes load when a lab gets close or the page goes idle, never before first paint.
+let labScenesRequested = false;
+function loadLabScenes() {
+    if (labScenesRequested) return;
+    labScenesRequested = true;
+    labLoadObserver.disconnect();
+    Promise.all([import('./path-playground.js?v=20261102'), import('./lab-experiments.js?v=20261102')])
+        .catch(() => document.querySelectorAll('#path-status, #experiment-status').forEach(el => { el.textContent = 'Lab failed to load. Refresh to try again.'; }));
+}
+const labLoadObserver = new IntersectionObserver(entries => {
+    if (entries.some(entry => entry.isIntersecting)) loadLabScenes();
+}, {rootMargin:'1200px 0px'});
+document.querySelectorAll('#lab-picker, .path-playground').forEach(el => labLoadObserver.observe(el));
+const scheduleIdleLoad = () => ('requestIdleCallback' in window ? requestIdleCallback(loadLabScenes, {timeout:4000}) : setTimeout(loadLabScenes, 2500));
+if (document.readyState === 'complete') scheduleIdleLoad();
+else window.addEventListener('load', scheduleIdleLoad, {once:true});
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) unloadReconstruction('Viewer closed while this tab was hidden. Load it again to continue.');
 });

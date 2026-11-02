@@ -3,13 +3,17 @@ const { test, expect } = require('@playwright/test');
 const CHECKED_HTML_PAGES = [
     'index.html',
     'photo.html',
-    'thank-you.html',
-    'about.html',
-    'projects.html',
-    'vision.html',
     'cv.html',
+    '404.html',
     'tests/fixtures/mobile-nav-test.html'
 ];
+
+const LEGACY_REDIRECTS = {
+    'about.html': '#about',
+    'projects.html': '#projects',
+    'vision.html': '#about',
+    'thank-you.html': '#contact'
+};
 
 function siteUrl(relativePath) {
     if (relativePath === 'index.html') {
@@ -80,6 +84,15 @@ test.describe('site hygiene', () => {
             await skipLink.click();
 
             await expect(page.locator('#main-content'), `${target} should keep the main landmark reachable`).toBeInViewport();
+            await expect(page.locator('#main-content'), `${target} skip link should move keyboard focus into main`).toBeFocused();
+            await expect(page, `${target} skip link should update the URL hash`).toHaveURL(/#main-content$/);
+        }
+    });
+
+    test('legacy pages redirect into the matching homepage section', async ({ page }) => {
+        for (const [legacyPage, hash] of Object.entries(LEGACY_REDIRECTS)) {
+            await page.goto(siteUrl(legacyPage));
+            await page.waitForURL((url) => url.pathname.endsWith('/index.html') && url.hash === hash);
         }
     });
 

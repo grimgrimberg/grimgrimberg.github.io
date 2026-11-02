@@ -15,15 +15,56 @@
     <meta name="theme-color" content="#05070a">
     <link rel="canonical" href="https://grimgrimberg.github.io/">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Yuval Grimberg | Software, Algorithms & Applied AI">
-    <meta property="og:description"
-        content="Python software, R&D algorithms, applied AI, computer vision and autonomous systems.">
+    <meta property="og:site_name" content="Yuval Grimberg">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Yuval Grimberg | Software, Algorithms &amp; Applied AI">
+    <meta property="og:description" content="Python software, R&amp;D algorithms, applied AI, computer vision and autonomous systems.">
     <meta property="og:url" content="https://grimgrimberg.github.io/">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Yuval Grimberg | Software, Algorithms & Applied AI">
-    <meta name="twitter:description"
-        content="Python software, R&D algorithms, applied AI, computer vision and autonomous systems.">
+    <meta property="og:image" content="https://grimgrimberg.github.io/assets/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Yuval Grimberg: Python software for autonomous systems, computer vision and applied AI, next to a planned versus driven path plot.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Yuval Grimberg | Software, Algorithms &amp; Applied AI">
+    <meta name="twitter:description" content="Python software, R&amp;D algorithms, applied AI, computer vision and autonomous systems.">
+    <meta name="twitter:image" content="https://grimgrimberg.github.io/assets/images/og-card.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Yuval Grimberg",
+        "url": "https://grimgrimberg.github.io/",
+        "image": "https://grimgrimberg.github.io/assets/images/og-card.png",
+        "jobTitle": "R&D Software Engineer",
+        "description": "Python software for autonomous systems, computer vision and applied AI.",
+        "email": "mailto:yuval.grimberg@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "IL"
+        },
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Ben-Gurion University of the Negev"
+        },
+        "knowsAbout": [
+            "Path planning",
+            "Control systems",
+            "Python",
+            "ROS 2",
+            "Computer vision",
+            "Applied AI"
+        ],
+        "sameAs": [
+            "https://github.com/grimgrimberg",
+            "https://www.linkedin.com/in/yuval-grimberg-ai-robotics/"
+        ]
+    }
+    </script>
+
+    <!-- The hero photo is a CSS background, so the preload scanner cannot find it on its own. -->
+    <link rel="preload" as="image" href="assets/images/optimized/DSC03631-HDR-2.jpg" fetchpriority="high">
 
     <!-- Local generated Tailwind CSS -->
     <link rel="stylesheet" href="assets/css/output.css">
@@ -38,14 +79,17 @@
             bottom: 14rem;
             z-index: 1000;
             opacity: 0;
+            visibility: hidden;
             transform: translateY(20px);
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
             pointer-events: none;
         }
 
         #custom-clippy.show {
             opacity: 1;
+            visibility: visible;
             transform: translateY(0);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s;
             pointer-events: auto;
         }
 
@@ -304,7 +348,7 @@
                 <!-- Footer -->
                 <div class="mt-auto p-6 border-t border-tech-cyan/20">
                     <p class="text-sm text-gray-400 text-center">
-                        © 2025 Yuval Grimberg
+                        © <span data-current-year>2026</span> Yuval Grimberg
                     </p>
                 </div>
             </div>
@@ -328,7 +372,7 @@
                     <span class="block gradient-text">Grimberg</span>
                 </h1>
                 <p class="text-2xl md:text-3xl lg:text-4xl text-white font-black leading-tight max-w-3xl">
-                    I build Python software for autonomous systems, computer vision, and applied AI.
+                    I build Python software for autonomous systems: planning and control, diagnostics, computer vision and applied AI.
                 </p>
             </div>
 
@@ -341,14 +385,14 @@
             <div data-aos="fade-up" data-aos-delay="500" class="mt-5">
                 <p class="inline-flex items-start gap-3 rounded-full border border-white/15 bg-black/30 px-5 py-3 text-sm md:text-base text-gray-200">
                     <span class="mt-1 h-2.5 w-2.5 rounded-full bg-tech-green animate-pulse flex-shrink-0"></span>
-                    <span>Open to software development and R&amp;D roles. Based in Israel, open to remote or relocation.</span>
+                    <span>Open to R&amp;D and software roles in autonomy, robotics and applied AI. Tel Aviv, open to remote or relocation.</span>
                 </p>
             </div>
 
             <div data-aos="fade-up" data-aos-delay="700"
                 class="mt-8 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
                 <a href="#projects"
-                    class="group inline-flex justify-center items-center gap-3 bg-tech-purple hover:bg-tech-cyan text-white font-bold py-4 px-7 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl">
+                    class="group inline-flex justify-center items-center gap-3 bg-tech-purple hover:bg-tech-cyan text-tech-dark font-bold py-4 px-7 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl">
                     <span>See the work</span>
                     <span aria-hidden="true" class="group-hover:translate-y-1 transition-transform">↓</span>
                 </a>
@@ -377,11 +421,10 @@
                 <div class="hire-copy" data-aos="fade-right">
                     <p class="font-tech text-sm uppercase tracking-[0.18em] text-tech-green mb-4">Hire Me Command Center</p>
                     <h2 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
-                        Pick the mission. <span class="gradient-text">I will show the proof.</span>
+                        Pick the mission. <span class="gradient-text block">I will show the proof.</span>
                     </h2>
                     <p class="text-lg text-gray-300 leading-relaxed mb-8">
-                        Recruiters should not need a treasure map. Choose the role shape and the site will line up
-                        projects, skills, and the honest reason I fit.
+                        Recruiters shouldn’t need a treasure map. Pick the role you’re hiring for and I’ll line up the projects, the tools and the honest reason I fit.
                     </p>
                     <div class="hire-role-tabs" role="tablist" aria-label="Role fit selector">
                         <button type="button" class="hire-role-tab is-active" data-hire-role="robotics" role="tab"
@@ -422,8 +465,8 @@
                             </div>
                         </div>
                         <ul id="hire-role-bullets" class="hire-proof-list">
-                            <li>Led path planning and control work for a real Formula Student driverless effort.</li>
-                            <li>Comfortable translating messy system behavior into debuggable software loops.</li>
+                            <li>Built shared Python backend and operator interfaces for a UGV: command handling, telemetry, diagnostics, watchdogs and heartbeats (full-time, July–September 2026).</li>
+                            <li>Led five student developers on BGR Formula Student planning and control, 2023 to late 2025; our car drove about 50 metres autonomously.</li>
                             <li>Useful when the job needs range, not a one-trick framework certificate.</li>
                         </ul>
                     </div>
@@ -444,8 +487,8 @@
                 <h2>About me</h2>
                 <div class="about-bio">
                     <p class="about-lead">I’m Yuval, a software developer with a mechanical engineering degree. I work on algorithms, Python systems and applied AI.</p>
-                    <p>From July to September 2026, I worked full-time on a UGV defense project. I developed shared Python backend and operator interfaces for command handling, telemetry and diagnostics, with logging across four components, thread-timing diagnostics, watchdogs and heartbeat handling.</p>
-                    <p>At BGR Formula Student, I led planning and control from 2023 to late 2025, sharing implementation with the team. We achieved approximately 50 metres of physical autonomous driving using ego-centric navigation without a functioning IMU.</p>
+                    <p>From July to September 2026 I worked full-time on a UGV defense project. I built a shared Python backend and operator interfaces for command handling, telemetry and diagnostics, then made failures traceable: logging across four components, thread-timing diagnostics, watchdogs and heartbeat handling.</p>
+                    <p>At BGR Formula Student I led the five-person planning and control group from 2023 to late 2025 and wrote code alongside them. Our car drove about 50 metres autonomously, navigating ego-centrically without a working IMU.</p>
                     <p>I like turning an unclear problem into a model I can inspect, a first version I can run, and an experiment that tells me what to change.</p>
                     <dl class="about-interests">
                         <div><dt>Working with</dt><dd>Python, ROS 2, FastAPI, MATLAB; basic C++</dd></div>
@@ -462,7 +505,8 @@
     <section id="skills" class="anchor-section py-20 bg-gradient-to-br from-tech-dark to-gray-900 relative overflow-hidden">
         <div class="absolute inset-0 tech-pattern opacity-50"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <p class="font-tech text-sm uppercase tracking-[0.18em] text-tech-cyan mb-4">toolbox</p>
                 <h2 class="text-4xl md:text-5xl font-black mb-6">
                     Technical <span class="gradient-text">Expertise</span>
                 </h2>
@@ -471,64 +515,60 @@
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Core Engineering -->
-                <div data-aos="fade-up" data-aos-delay="100"
-                    class="glass-effect rounded-2xl p-6 text-center hover-lift skill-glow group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">⚙️</div>
-                    <h3 class="text-xl font-bold text-tech-cyan mb-3">Control Systems</h3>
-                    <ul class="text-sm text-gray-300 space-y-1">
-                        <li>• Pure Pursuit</li>
-                        <li>• Stanley steering</li>
-                        <li>• Curvature-based PID</li>
-                        <li>• Vehicle dynamics</li>
+            <div class="skill-spec-grid">
+                <article class="skill-spec skill-spec-cyan">
+                    <header><span class="skill-spec-icon" aria-hidden="true"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"> <path d="M2 10h3.5M12.5 10H16M25 10h3M27.5 10v14H9v-7"/> <circle cx="9" cy="10" r="3.5"/> <path d="M6.6 7.6l4.8 4.8M11.4 7.6l-4.8 4.8" stroke-width="1.25"/> <rect x="16" y="5" width="9" height="10" rx="1.5"/> <path d="M30.5 10L28 8.2v3.6zM9 14l-1.8 2.5h3.6z" fill="currentColor" stroke-width="1"/> </svg></span><span class="skill-spec-index">01</span></header>
+                    <h3>Control systems</h3>
+                    <ul>
+                        <li>Pure Pursuit</li>
+                        <li>Stanley steering</li>
+                        <li>Curvature-based PID</li>
+                        <li>Vehicle dynamics</li>
                     </ul>
-                </div>
+                    <p class="skill-spec-proof">Proof: <a href="#lab-picker" data-lab-target="drive">BGR stack</a>, <a href="#lab-picker" data-lab-target="space">orbital LQI</a></p>
+                </article>
 
-                <!-- Autonomous Vehicles -->
-                <div data-aos="fade-up" data-aos-delay="200"
-                    class="glass-effect rounded-2xl p-6 text-center hover-lift skill-glow group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🚗</div>
-                    <h3 class="text-xl font-bold text-tech-purple mb-3">Autonomous Vehicles</h3>
-                    <ul class="text-sm text-gray-300 space-y-1">
-                        <li>• Path Planning</li>
-                        <li>• Ego-centric navigation</li>
-                        <li>• Simulation-driven tests</li>
-                        <li>• ROS 2 diagnostics</li>
+                <article class="skill-spec skill-spec-brass">
+                    <header><span class="skill-spec-icon" aria-hidden="true"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"> <path d="M4 28C11 28 9.5 19 15.5 18.5S21.5 14 23 11.5"/> <path d="M28.7 3.7L26.7 13.1 24.7 8.4 19.8 7.3Z"/> <circle cx="4" cy="28" r="1.4" fill="currentColor"/> <circle cx="15.5" cy="18.5" r="1.4" fill="currentColor"/> </svg></span><span class="skill-spec-index">02</span></header>
+                    <h3>Autonomous vehicles</h3>
+                    <ul>
+                        <li>Path planning</li>
+                        <li>Ego-centric navigation</li>
+                        <li>Simulation-driven tests</li>
+                        <li>ROS 2 diagnostics</li>
                     </ul>
-                </div>
+                    <p class="skill-spec-proof">Proof: <a href="#projects">BGR Formula Student</a>, <a href="cv.html#experience">UGV work</a></p>
+                </article>
 
-                <!-- Programming -->
-                <div data-aos="fade-up" data-aos-delay="300"
-                    class="glass-effect rounded-2xl p-6 text-center hover-lift skill-glow group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">💻</div>
-                    <h3 class="text-xl font-bold text-tech-green mb-3">Programming</h3>
-                    <ul class="text-sm text-gray-300 space-y-1">
-                        <li>• Python</li>
-                        <li>• MATLAB/Simulink</li>
-                        <li>• C++ (basic)</li>
-                        <li>• ROS2</li>
+                <article class="skill-spec skill-spec-green">
+                    <header><span class="skill-spec-icon" aria-hidden="true"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"> <rect x="3" y="5" width="26" height="22" rx="3"/> <path d="M3 10.5h26M8 15.5l4 3-4 3M15 22h7"/> </svg></span><span class="skill-spec-index">03</span></header>
+                    <h3>Programming</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>MATLAB / Simulink</li>
+                        <li>C++ (basic)</li>
+                        <li>ROS 2</li>
                     </ul>
-                </div>
+                    <p class="skill-spec-proof">Proof: <a href="https://github.com/grimgrimberg/github-repo-summarizer" target="_blank" rel="noopener noreferrer">repo summarizer ↗</a></p>
+                </article>
 
-                <!-- Machine Learning -->
-                <div data-aos="fade-up" data-aos-delay="400"
-                    class="glass-effect rounded-2xl p-6 text-center hover-lift skill-glow group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🧠</div>
-                    <h3 class="text-xl font-bold text-tech-cyan mb-3">Machine Learning</h3>
-                    <ul class="text-sm text-gray-300 space-y-1">
-                        <li>• VGGT / 3D reconstruction</li>
-                        <li>• Computer vision experiments</li>
-                        <li>• LangGraph / LLM APIs</li>
-                        <li>• Structured outputs / fallbacks</li>
+                <article class="skill-spec skill-spec-coral">
+                    <header><span class="skill-spec-icon" aria-hidden="true"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"> <path d="M5 9.5L16 4.5M5 9.5L16 16M5 9.5L16 27.5M5 22.5L16 4.5M5 22.5L16 16M5 22.5L16 27.5M16 4.5L27 16M16 16L27 16M16 27.5L27 16" stroke-width="1.25"/> <circle cx="5" cy="9.5" r="2" fill="currentColor"/><circle cx="5" cy="22.5" r="2" fill="currentColor"/><circle cx="16" cy="4.5" r="2" fill="currentColor"/><circle cx="16" cy="16" r="2" fill="currentColor"/><circle cx="16" cy="27.5" r="2" fill="currentColor"/><circle cx="27" cy="16" r="2" fill="currentColor"/> </svg></span><span class="skill-spec-index">04</span></header>
+                    <h3>Perception &amp; applied AI</h3>
+                    <ul>
+                        <li>VGGT / 3D reconstruction</li>
+                        <li>Computer vision experiments</li>
+                        <li>LangGraph / LLM APIs</li>
+                        <li>Structured outputs / fallbacks</li>
                     </ul>
-                </div>
+                    <p class="skill-spec-proof">Proof: <a href="#lab-picker" data-lab-target="reconstruction">FPV lab</a>, <a href="https://github.com/grimgrimberg/daily-movers-agent" target="_blank" rel="noopener noreferrer">movers agent ↗</a></p>
+                </article>
             </div>
 
             <!-- Tools & Technologies -->
-            <div class="mt-16" data-aos="fade-up">
-                <h3 class="text-2xl font-bold text-center mb-8 gradient-text">Tools & Technologies</h3>
-                <div class="flex flex-wrap justify-center gap-4">
+            <div class="mt-10" data-aos="fade-up">
+                <h3 class="font-tech text-sm uppercase tracking-[0.18em] text-gray-400 text-center mb-5">Also in the toolbox</h3>
+                <div class="flex flex-wrap justify-center gap-3">
                     <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">OpenCV</span>
                     <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-cyan/20">YOLO</span>
                     <span class="glass-effect px-4 py-2 rounded-full text-sm hover:bg-tech-green/20">Stable
@@ -555,27 +595,28 @@
                     Featured <span class="gradient-text">Projects</span>
                 </h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Projects that show the useful part: math, systems, code, and enough polish to inspect without a
-                    treasure map.
+                    Each one shows the useful part: the math, the system, the code, and enough polish that you can inspect it yourself.
                 </p>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-8">
                 <article class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group" data-aos="fade-up">
-                    <div class="project-visual project-visual-tool">
-                        <div class="project-visual-label">software development</div><div class="project-visual-icon">🛠️</div>
+                    <div class="project-visual project-visual-schematic" data-tone="green">
+                        <div class="project-visual-label">software development</div>
+                        <img class="project-visual-art" src="assets/images/projects/ugv-diagnostics.svg" alt="Schematic: four software components on a shared bus with a heartbeat trace and a watchdog timeout marker" width="640" height="240" loading="lazy" decoding="async">
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-tech-cyan mb-3">UGV Software &amp; Diagnostics</h3>
                         <p class="project-problem">Make commands, state and failures traceable across a robot’s software.</p>
-                        <p class="text-gray-300 mb-4">Full-time, July–September 2026. Developed a shared Python backend and operator interfaces for command handling, telemetry, and diagnostics. Added logging across four components, thread-timing diagnostics, watchdogs, and heartbeat handling.</p>
+                        <p class="text-gray-300 mb-4">Full-time, July–September 2026. I built a shared Python backend and operator interfaces for command handling, telemetry and diagnostics, then added logging across four components, thread-timing diagnostics, watchdogs and heartbeat handling.</p>
                         <a href="cv.html#experience" class="project-action-link touch-target text-tech-cyan">Read my contribution ↗</a>
                         <p class="text-sm text-gray-400 mt-3">Private defense project. Public description only.</p>
                     </div>
                 </article>
                 <article class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group" data-aos="fade-up">
-                    <div class="project-visual project-visual-orbit">
-                        <div class="project-visual-label">computer vision</div><div class="project-visual-icon">📷</div>
+                    <div class="project-visual project-visual-schematic" data-tone="brass">
+                        <div class="project-visual-label">computer vision</div>
+                        <img class="project-visual-art" src="assets/images/projects/fpv-reconstruction.svg" alt="Schematic: camera frustums along an FPV flight path above a sparse reconstructed point cloud" width="640" height="240" loading="lazy" decoding="async">
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-tech-purple mb-3">FPV Visual Geometry Lab</h3>
@@ -590,9 +631,9 @@
                 </article>
                 <article data-aos="fade-up" data-aos-delay="100"
                     class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group">
-                    <div class="project-visual project-visual-road">
+                    <div class="project-visual project-visual-schematic" data-tone="cyan">
                         <div class="project-visual-label">autonomy</div>
-                        <div class="project-visual-icon">🏎️</div>
+                        <img class="project-visual-art" src="assets/images/projects/bgr-path-planning.svg" alt="Schematic: planned path versus driven trail between blue and yellow cones, with a pure-pursuit lookahead arc" width="640" height="240" loading="lazy" decoding="async">
                     </div>
                     <div class="p-6">
                         <div class="flex items-start justify-between gap-4 mb-3">
@@ -600,7 +641,7 @@
                             <span class="repo-badge">FEATURED</span>
                         </div>
                         <p class="project-problem">A driverless race car needs a path it can actually follow.</p>
-                        <p class="text-gray-300 mb-4">I led the student planning and control team from 2023 to late 2025, sharing implementation of an adapted planner, Pure Pursuit, Stanley steering and curvature-based PID speed control. Our physical car drove approximately 50 metres autonomously; testing also included simulation-driven physical actuators.</p>
+                        <p class="text-gray-300 mb-4">I led five student developers from 2023 to late 2025 and co-wrote the stack: an adapted cone planner, Pure Pursuit and Stanley steering, and curvature-based PID speed control. We tested in simulation and on physical steering and wheel actuators; the car drove about 50 metres autonomously.</p>
                         <div class="flex justify-between items-center gap-4">
                             <a href="https://github.com/grimgrimberg/BGR_PathPlanning_Control" target="_blank"
                                 rel="noopener noreferrer"
@@ -615,16 +656,16 @@
 
                 <article data-aos="fade-up" data-aos-delay="160"
                     class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group">
-                    <div class="project-visual project-visual-orbit">
+                    <div class="project-visual project-visual-schematic" data-tone="brass">
                         <div class="project-visual-label">control</div>
-                        <div class="project-visual-icon">🛰️</div>
+                        <img class="project-visual-art" src="assets/images/projects/orbital-rendezvous.svg" alt="Schematic: a chaser spiralling toward its target in the LVLH frame with bounded thrust arrows and a keep-out circle" width="640" height="240" loading="lazy" decoding="async">
                     </div>
                     <div class="p-6">
                         <div class="flex items-start justify-between gap-4 mb-3">
                             <h3 class="text-2xl font-bold text-tech-purple">Orbital Rendezvous LQI</h3>
                         </div>
                         <p class="project-problem">Bring a chaser to its target while respecting limited thrust.</p>
-                        <p class="text-gray-300 mb-4">My orbital mechanics study pairs two-body propagation with CW rendezvous control, cached LQI and a constrained MPC comparison. A Streamlit viewer and reproducible plots make the trajectories inspectable.</p>
+                        <p class="text-gray-300 mb-4">Two-body propagation, Clohessy–Wiltshire rendezvous dynamics, and an LQI controller with Bayesian-optimised cost weights, compared against constrained MPC. A Streamlit viewer and reproducible plots make every trajectory inspectable.</p>
                         <div class="flex justify-between items-center gap-4">
                             <a href="https://github.com/grimgrimberg/orbital-rendezvous-lqi" target="_blank"
                                 rel="noopener noreferrer"
@@ -639,16 +680,16 @@
 
                 <article data-aos="fade-up" data-aos-delay="220"
                     class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group">
-                    <div class="project-visual project-visual-tool">
+                    <div class="project-visual project-visual-schematic" data-tone="green">
                         <div class="project-visual-label">tooling</div>
-                        <div class="project-visual-icon">🧰</div>
+                        <img class="project-visual-art" src="assets/images/projects/repo-summarizer.svg" alt="Schematic: a file tree feeding deterministic selection, shard bins and a JSON output, with a dashed provider fallback route" width="640" height="240" loading="lazy" decoding="async">
                     </div>
                     <div class="p-6">
                         <div class="flex items-start justify-between gap-4 mb-3">
                             <h3 class="text-2xl font-bold text-tech-green">GitHub Repo Summarizer</h3>
                         </div>
                         <p class="project-problem">Understand an unfamiliar repository without opening every file.</p>
-                        <p class="text-gray-300 mb-4">I built a FastAPI and CLI summarizer with deterministic file selection, adaptive sharding and strict JSON output. Provider fallback keeps failure handling part of the pipeline.</p>
+                        <p class="text-gray-300 mb-4">A FastAPI service and CLI with deterministic file selection, adaptive sharding and validated JSON output. Provider fallbacks and mocked API tests make failure handling part of the design, not an afterthought.</p>
                         <div class="flex justify-between items-center gap-4">
                             <a href="https://github.com/grimgrimberg/github-repo-summarizer" target="_blank"
                                 rel="noopener noreferrer"
@@ -663,16 +704,16 @@
 
                 <article data-aos="fade-up" data-aos-delay="280"
                     class="project-card glass-effect rounded-2xl overflow-hidden hover-lift group">
-                    <div class="project-visual project-visual-agent">
+                    <div class="project-visual project-visual-schematic" data-tone="cyan">
                         <div class="project-visual-label">agentic ai</div>
-                        <div class="project-visual-icon">📈</div>
+                        <img class="project-visual-art" src="assets/images/projects/daily-movers.svg" alt="Schematic: a four-stage fetch, analyze, fallback and report pipeline above a strip of market candles" width="640" height="240" loading="lazy" decoding="async">
                     </div>
                     <div class="p-6">
                         <div class="flex items-start justify-between gap-4 mb-3">
                             <h3 class="text-2xl font-bold text-tech-cyan">Daily Movers Agent</h3>
                         </div>
                         <p class="project-problem">Explain the market movers, beyond a ticker and a hot take.</p>
-                        <p class="text-gray-300 mb-4">I built a four-stage LangGraph workflow for HTML and Excel reports, with optional LLM analysis, deterministic fallbacks and tests. The published sample uses heuristic analysis.</p>
+                        <p class="text-gray-300 mb-4">A four-stage LangGraph workflow (researcher, analyst, critic, recommender) that produces HTML and Excel reports. LLM analysis is optional, with deterministic fallbacks and tests; the published sample uses the heuristic path.</p>
                         <div class="flex justify-between items-center gap-4">
                             <a href="https://github.com/grimgrimberg/daily-movers-agent" target="_blank"
                                 rel="noopener noreferrer"
@@ -851,10 +892,10 @@
                         Learning Archive, and Forks / References. Public categories, private scoring. Very civilized.
                     </p>
                 </div>
-                <button type="button" data-command-open
-                    class="inline-flex justify-center items-center gap-3 bg-tech-purple hover:bg-tech-cyan text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl">
-                    <span>Compare repos</span>
-                    <span class="font-tech">&gt; repos</span>
+                <button type="button" data-command-run="repos"
+                    class="inline-flex justify-center items-center gap-3 bg-tech-purple hover:bg-tech-cyan text-tech-dark font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl">
+                    <span>Browse every repo</span>
+                    <span class="font-tech opacity-70" aria-hidden="true">&gt;_ repos</span>
                 </button>
             </div>
         </div>
@@ -964,13 +1005,12 @@
             <div class="grid lg:grid-cols-3 gap-8 mb-12">
                 <!-- Photography Showcase -->
                 <div data-aos="fade-right"
-                    class="glass-effect rounded-2xl p-8 group hover:scale-105 transition-all duration-300">
+                    class="glass-effect rounded-2xl p-8 hover-lift">
                     <div class="text-center mb-6">
                         <div class="text-4xl mb-4">📸</div>
                         <h3 class="text-2xl font-bold text-tech-cyan mb-4">Travel Photography</h3>
                         <p class="text-gray-300 mb-6">A collection of moments captured from travels near and far. This
-                            is the world as I see it
-                            .</p>
+                            is the world as I see it.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-2 mb-4">
                         <img src="assets/images/optimized/DSC02477.jpg" alt="Travel photo gallery preview 1" width="1200"
@@ -995,7 +1035,7 @@
 
                 <!-- Interactive Goose Zone -->
                 <div data-aos="fade-up"
-                    class="glass-effect rounded-2xl p-8 text-center group hover:scale-105 transition-all duration-300">
+                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
                     <div class="text-4xl mb-4">🦆</div>
                     <h3 class="text-2xl font-bold text-tech-green mb-4">Meet Desk Goose</h3>
                     <p class="text-gray-300 mb-6">Helpful guide first, dumb joyful desk menace second. He is not
@@ -1011,7 +1051,7 @@
 
                     <div class="space-y-3">
                         <button id="goose-talk"
-                            class="touch-target bg-gradient-to-r from-tech-green to-tech-cyan hover:from-tech-cyan hover:to-tech-green text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            class="touch-target bg-gradient-to-r from-tech-green to-tech-cyan hover:from-tech-cyan hover:to-tech-green text-tech-dark font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">
                             Ask Goose for Advice
                         </button>
                         <button id="goose-terror-button" aria-pressed="false"
@@ -1024,22 +1064,22 @@
 
                 <!-- Easter Egg Zone -->
                 <div data-aos="fade-left"
-                    class="glass-effect rounded-2xl p-8 text-center group hover:scale-105 transition-all duration-300">
+                    class="glass-effect rounded-2xl p-8 text-center hover-lift">
                     <div class="text-4xl mb-4">🎮</div>
                     <h3 class="text-2xl font-bold text-tech-purple mb-4">Secret Features</h3>
                     <p class="text-gray-300 mb-6">Most of the site behaves. Some of it has opinions. That is called
                         range.</p>
 
                     <div class="space-y-4">
-                        <div class="text-sm text-gray-400">
-                            <p><kbd class="bg-gray-700 px-2 py-1 rounded">Command</kbd> - Explore projects and repos</p>
-                            <p><kbd class="bg-gray-700 px-2 py-1 rounded">Alt + Shift + C</kbd> - Summon Clippy</p>
-                            <p><kbd class="bg-gray-700 px-2 py-1 rounded">Click Counter</kbd> - Find the magic number
-                            </p>
-                        </div>
+                        <dl class="secret-key-map">
+                            <div><dt><kbd>/</kbd></dt><dd>Open the terminal from anywhere</dd></div>
+                            <div><dt><kbd>Alt</kbd> <kbd>Shift</kbd> <kbd>C</kbd></dt><dd>Summon Clippy</dd></div>
+                            <div><dt><kbd>goose terror</kbd></dt><dd>Type it in the terminal. You were warned.</dd></div>
+                            <div><dt><kbd>↑↑↓↓←→←→ B A</kbd></dt><dd>You know exactly what this is</dd></div>
+                        </dl>
 
                         <button id="click-me-button"
-                            class="touch-target bg-gradient-to-r from-tech-purple to-tech-pink hover:from-tech-pink hover:to-tech-purple text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 animate-pulse">
+                            class="touch-target bg-gradient-to-r from-tech-purple to-tech-pink hover:from-tech-pink hover:to-tech-purple text-tech-dark font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">
                             Click Me! <span id="click-count" class="text-xs">(0)</span>
                         </button>
 
@@ -1094,43 +1134,20 @@
                         Retro <span class="gradient-text">Classics</span>
                     </h2>
                     <p class="text-xl text-gray-300 max-w-3xl">
-                        Six old-school games that still explain timing, constraints, flow, and why children in the 90s
-                        developed suspiciously strong patience. No hosted binaries; only source pages.
+                        Games I would actually defend in a meeting. Six old-school classics that still explain timing,
+                        constraints, flow, and why children in the 90s developed suspiciously strong patience.
                     </p>
                 </div>
                 <aside class="retro-archive-note" aria-label="Retro archive access policy">
                     <span class="retro-source-pill">Source Links Only</span>
-                    <p>External pages may change. Verify availability and licensing before downloading anything. Nostalgia is charming; copyright law is not a side quest.</p>
+                    <p class="retro-ledger"><span><strong>6</strong> classics</span> · <span><strong>3</strong> protected favorites</span> ·
+                        <span><strong id="source-open-count">0</strong> source opens</span> · <span><strong>0</strong> hosted game files</span></p>
+                    <p>External pages may change. Verify licensing before downloading anything. Nostalgia is charming;
+                        copyright law is not a side quest.</p>
                 </aside>
             </div>
 
-            <div class="retro-policy-grid" data-aos="fade-up" data-aos-delay="80">
-                <div class="retro-policy-card">
-                    <span class="retro-policy-value">6</span>
-                    <span class="retro-policy-label">Curated Classics</span>
-                </div>
-                <div class="retro-policy-card">
-                    <span class="retro-policy-value">3</span>
-                    <span class="retro-policy-label">Protected Favorites</span>
-                </div>
-                <div class="retro-policy-card">
-                    <span class="retro-policy-value" id="source-open-count">0</span>
-                    <span class="retro-policy-label">Source Opens</span>
-                </div>
-                <div class="retro-policy-card">
-                    <span class="retro-policy-value">0</span>
-                    <span class="retro-policy-label">Hosted Game Files</span>
-                </div>
-            </div>
-
-            <div class="retro-section-title" data-aos="fade-up" data-aos-delay="110">
-                <div>
-                    <p class="font-tech text-sm uppercase tracking-[0.14em] text-tech-cyan">one shelf, no landfill</p>
-                    <h3>Games I would actually defend in a meeting</h3>
-                </div>
-                <p>Fast to understand, mechanically sharp, and still useful as tiny design lessons. Also: legally safer than hosting mystery ZIPs.</p>
-            </div>
-
+            <p class="retro-swipe-hint" aria-hidden="true">Swipe the shelf →</p>
             <div class="retro-game-grid retro-catalog-grid">
                 <article data-aos="fade-up" data-aos-delay="140" class="retro-game-card">
                     <div class="retro-card-topline">
@@ -1325,38 +1342,34 @@
                         <a href="https://github.com/grimgrimberg" target="_blank" rel="noopener noreferrer"
                             aria-label="Open GitHub profile"
                             class="footer-social-link touch-target text-gray-400 hover:text-tech-cyan transition-colors">
-                            <span aria-hidden="true" class="text-sm font-bold">GH</span>
+                            <svg aria-hidden="true" viewBox="0 0 16 16" width="20" height="20" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
                         </a>
                         <a href="https://www.linkedin.com/in/yuval-grimberg-ai-robotics/" target="_blank"
                             rel="noopener noreferrer" aria-label="Open LinkedIn profile"
                             class="footer-social-link touch-target text-gray-400 hover:text-tech-purple transition-colors">
-                            <span aria-hidden="true" class="text-sm font-bold">in</span>
+                            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
                         </a>
                         <a href="mailto:yuval.grimberg@gmail.com" aria-label="Send email to Yuval Grimberg"
                             class="footer-social-link touch-target text-gray-400 hover:text-tech-green transition-colors">
-                            <span aria-hidden="true" class="text-sm font-bold">@</span>
+                            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>
                         </a>
                     </div>
                 </div>
 
                 <div>
                     <h3 class="text-lg font-semibold text-white mb-4">Elsewhere on this site</h3>
-                    <ul class="space-y-2 footer-link-list">
-                        <li><a href="#retro-games" class="text-gray-400 hover:text-tech-cyan transition-colors">Retro games</a></li>
+                    <ul class="grid grid-cols-2 gap-x-6 footer-link-list">
                         <li><a href="#about" class="text-gray-400 hover:text-tech-cyan transition-colors">About</a></li>
                         <li><a href="#hire" class="text-gray-400 hover:text-tech-cyan transition-colors">Hire</a></li>
-                        <li><a href="#skills" class="text-gray-400 hover:text-tech-cyan transition-colors">Expertise</a>
-                        </li>
-                        <li><a href="#projects"
-                                class="text-gray-400 hover:text-tech-cyan transition-colors">Projects</a></li>
-                        <li><a href="#reviews"
-                                class="text-gray-400 hover:text-tech-cyan transition-colors">Reviews</a></li>
-                        <li><a href="#fun-zone" class="text-gray-400 hover:text-tech-cyan transition-colors">Fun
-                                Zone</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-tech-cyan transition-colors">Contact</a>
-                        </li>
-                        <li><a href="photo.html"
-                                class="text-gray-400 hover:text-tech-cyan transition-colors">Photography</a></li>
+                        <li><a href="#skills" class="text-gray-400 hover:text-tech-cyan transition-colors">Expertise</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-tech-cyan transition-colors">Projects</a></li>
+                        <li><a href="#lab-picker" class="text-gray-400 hover:text-tech-cyan transition-colors">Labs</a></li>
+                        <li><a href="#reviews" class="text-gray-400 hover:text-tech-cyan transition-colors">Reviews</a></li>
+                        <li><a href="#fun-zone" class="text-gray-400 hover:text-tech-cyan transition-colors">Fun zone</a></li>
+                        <li><a href="#retro-games" class="text-gray-400 hover:text-tech-cyan transition-colors">Retro games</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-tech-cyan transition-colors">Contact</a></li>
+                        <li><a href="cv.html" class="text-gray-400 hover:text-tech-cyan transition-colors">Public CV</a></li>
+                        <li><a href="photo.html" class="text-gray-400 hover:text-tech-cyan transition-colors">Photography</a></li>
                     </ul>
                 </div>
 
@@ -1373,20 +1386,15 @@
 
             <div class="border-t border-gray-800 mt-8 pt-8 text-center">
                 <p class="text-gray-400">
-                    &copy; 2025 Yuval Grimberg. All rights reserved. |
-                    <span class="text-tech-cyan">Ready to innovate together?</span>
+                    &copy; <span data-current-year>2026</span> Yuval Grimberg. Static site, real projects, one goose.
                 </p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="assets/js/site-shell.js?v=20260514-audit2" defer></script>
-    <script src="assets/vendor/clippyjs/jquery-3.7.1.min.js?v=20260514-audit2" defer></script>
-    <script src="assets/vendor/clippyjs/clippy.min.js?v=20260514-audit2" defer></script>
-    <script type="module" src="assets/js/path-playground.js?v=20260908" defer></script>
-    <script type="module" src="assets/js/portfolio-labs.js?v=20260908"></script>
-    <script type="module" src="assets/js/lab-experiments.js?v=20260908"></script>
-    <script src="assets/js/index-page.js?v=20260514-audit2" defer></script>
+    <script src="assets/js/site-shell.js?v=20261102" defer></script>
+    <script type="module" src="assets/js/portfolio-labs.js?v=20261102"></script>
+    <script src="assets/js/index-page.js?v=20261102" defer></script>
 </body>
 </html>

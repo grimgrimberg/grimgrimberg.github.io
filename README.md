@@ -8,12 +8,11 @@ Static personal site for [grimgrimberg.github.io](https://grimgrimberg.github.io
 - Primary maintained pages:
   - `index.html`
   - `photo.html`
-  - `thank-you.html`
   - `cv.html`
-- Legacy compatibility pages:
-  - `about.html`
-  - `projects.html`
-  - `vision.html`
+  - `404.html` (served by GitHub Pages for any missing path, so it uses root-absolute URLs)
+- Legacy URLs kept as `noindex` redirects into homepage sections:
+  - `about.html`, `projects.html`, `vision.html`, `thank-you.html`
+- Crawl and sharing files: `robots.txt`, `sitemap.xml`, `apple-touch-icon.png`, `assets/images/og-card.png`
 
 This repo is not React and is not driven by Jekyll templates in its current maintained flow.
 
@@ -30,12 +29,17 @@ This repo is not React and is not driven by Jekyll templates in its current main
 - Page-specific behavior lives in:
   - `assets/js/index-page.js`
   - `assets/js/photo-page.js`
-- Legacy standalone pages still use `assets/js/scripts.js`.
+- The interactive labs live in:
+  - `assets/js/portfolio-labs.js`: lab switching, plus a lazy loader that imports the scenes when a lab nears the viewport or the page goes idle
+  - `assets/js/path-playground.js` and `assets/js/lab-experiments.js`: the three.js scenes
+  - `assets/js/lab-models.mjs`: the pure simulation models, tested by `npm run test:models`
+- Clippy (jQuery + clippy.js, about 1.5 MB with the sprite sheet) is injected on demand: after page load on desktop, on the first Guide click on phones.
 
 ## CSS Story
 
 - `assets/css/styles.css` is the Tailwind v4 source-of-truth stylesheet.
-- `npm run build` produces the committed `assets/css/output.css` used by the maintained pages and legacy compatibility pages.
+- `npm run build` produces the committed `assets/css/output.css` used by every page. CI fails if it is stale.
+- `assets/css/original-plus-3d.css` holds hand-written overrides for the hero, nav, labs and goose, loaded after `output.css` on the homepage.
 - Primary pages no longer depend on the Tailwind CDN runtime.
 
 ## Local Development
@@ -56,12 +60,13 @@ npm run serve
 
 - [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 - [http://127.0.0.1:8000/photo.html](http://127.0.0.1:8000/photo.html)
-- [http://127.0.0.1:8000/thank-you.html](http://127.0.0.1:8000/thank-you.html)
+- [http://127.0.0.1:8000/cv.html](http://127.0.0.1:8000/cv.html)
 
 ## Commands
 
 ```bash
 npm run lint
+npm run test:models
 npm test
 npm run test:headed
 npm run build
@@ -70,7 +75,9 @@ npm run serve
 ```
 
 - `npm run lint` runs the repo-specific static and runtime hygiene checks.
+- `npm run test:models` checks the lab simulation models in plain Node.
 - `npm test` runs the maintained Playwright smoke suite.
+- `.github/workflows/site-checks.yml` runs the build check, lint, model tests and smoke suite on pushes to `dev` and on pull requests.
 - Use `npm run lint` and `npm test -- --reporter=line` as the default acceptance gates before pushing portfolio changes.
 - `npm run build` rebuilds the committed Tailwind CSS used by the site pages.
 - `npm run serve` launches the same local static server shape the smoke suite uses.
@@ -82,11 +89,23 @@ assets/
   css/
     styles.css
     output.css
+    original-plus-3d.css
+  data/
+    github-repos.json
+  images/
+    projects/        # line-art schematics for the project cards
+    icons/           # inline-ready skill icons
   js/
     index-page.js
     photo-page.js
     site-shell.js
-    scripts.js
+    portfolio-labs.js
+    path-playground.js
+    lab-experiments.js
+    lab-models.mjs
+  vendor/
+    clippyjs/
+    three/
 scripts/
   lint-site.mjs
   optimize-images.ps1
@@ -108,8 +127,10 @@ docs/
     REFACTORING_SUMMARY.md
 index.html
 photo.html
-thank-you.html
 cv.html
+404.html
+robots.txt
+sitemap.xml
 ```
 
 ## Notes

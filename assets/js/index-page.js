@@ -5,9 +5,9 @@
     const COPY_RESET_DELAY_MS = 1600;
     const MAILTO_DELAY_MS = 100;
     const EMAIL_ADDRESS = 'yuval.grimberg@gmail.com';
-    const CV_PUBLIC_PATH = ['cv', 'html'].join('.');
     const REPO_SNAPSHOT_URL = './assets/data/github-repos.json';
     const CLIPPY_AGENT_BASE_PATH = './assets/vendor/clippyjs/agents/';
+    const CLIPPY_SCRIPTS = ['./assets/vendor/clippyjs/jquery-3.7.1.min.js', './assets/vendor/clippyjs/clippy.min.js'];
 
     const FALLBACK_REPO_SNAPSHOT = {
         categories: {
@@ -50,6 +50,14 @@
                 language: 'Python',
                 tags: ['LangGraph', 'reports', 'agentic AI'],
                 pitch: 'Agentic market-movers pipeline with explainable digests.'
+            },
+            {
+                name: 'fpv-vggt-visual-geometry-lab',
+                category: 'featured',
+                url: 'https://github.com/grimgrimberg/fpv-vggt-visual-geometry-lab',
+                language: 'Python',
+                tags: ['computer vision', '3D reconstruction', 'VGGT'],
+                pitch: 'Offline FPV visual geometry lab with VGGT, experimental reconstruction methods and a WebGL viewer.'
             }
         ]
     };
@@ -102,21 +110,21 @@
             tools: 'Python, ROS2, OpenCV',
             mode: 'Build, test, iterate',
             bullets: [
-                'Developed shared Python backend and operator interfaces for command handling, telemetry and diagnostics on a full-time UGV engagement, July–September 2026. Added logging across four components, thread-timing diagnostics, watchdogs and heartbeat handling.',
-                'Led BGR planning/control from 2023 to late 2025, sharing implementation and contributing to approximately 50 metres of physical autonomous driving.',
+                'Built shared Python backend and operator interfaces for a UGV: command handling, telemetry, diagnostics, watchdogs and heartbeats (full-time, July–September 2026).',
+                'Led five student developers on BGR Formula Student planning and control, 2023 to late 2025; our car drove about 50 metres autonomously.',
                 'Useful when the job needs range, not a one-trick framework certificate.'
             ]
         },
         autonomy: {
             title: 'Autonomy / Controls Engineer',
             summary:
-                'Strong fit for path planning, control loops, estimation-adjacent work, and teams that need engineering judgment when the demo meets reality.',
+                'Path planning and control loops that still behave when the demo meets the real car, plus the judgment to tell which one is lying.',
             proof: 'Path planning + LQI',
             tools: 'Control, dynamics, Python',
             mode: 'Model, simulate, validate',
             bullets: [
-                'BGR shared implementation used an adapted planner, Pure Pursuit, Stanley steering and curvature-based PID speed control.',
-                'Orbital rendezvous work shows comfort with state-space thinking and controller comparison.',
+                'BGR: co-wrote an adapted cone planner, Pure Pursuit, Stanley steering and curvature-based PID speed control, tested in simulation and on physical actuators.',
+                'Orbital rendezvous: Clohessy–Wiltshire dynamics with LQI, compared against constrained MPC.',
                 'I like systems that can be explained, plotted, and debugged under pressure.'
             ]
         },
@@ -124,12 +132,12 @@
             title: 'Simulation / GNC Developer',
             summary:
                 'I can build the simulation scaffolding around a control idea, then keep it inspectable enough that other humans can trust it.',
-            proof: 'Orbital rendezvous LQI',
+            proof: 'Orbital LQI + GNC tracking sim',
             tools: 'SciPy, MATLAB, plotting',
             mode: 'Reproduce, compare, explain',
             bullets: [
-                'Built orbital propagation and rendezvous-control experiments with reproducible plots.',
-                'Comfortable moving between equations, code, and visual inspection.',
+                'Orbital study: two-body propagation, rendezvous control and reproducible plots.',
+                'GNC sim: Kalman line-of-sight tracking and a 3D intercept simulator (pure pursuit, predictive lead, proportional navigation) built around a real drone flight log.',
                 'Good fit for simulation work where correctness and communication both matter.'
             ]
         },
@@ -141,7 +149,7 @@
             tools: 'FastAPI, LangGraph, testing',
             mode: 'Ship useful tools',
             bullets: [
-                'GitHub repo summarizer shows product-shaped AI tooling, not just prompt confetti.',
+                'GitHub repo summarizer: deterministic file selection, sharding, validated JSON and provider fallbacks. Product-shaped AI tooling, not prompt confetti.',
                 'FPV: VGGT on another creator’s public dataset, experimental methods and 13 scene packages. Daily Movers: optional LLM analysis; the published sample is heuristic.',
                 'I care about deterministic structure, testability, and making tools usable by people.'
             ]
@@ -159,7 +167,7 @@
     const ROAST_LINES = [
         'Roast mode is opt-in, so here it is: some repos are polished, some are learning fossils, and one or two look like they escaped a lab notebook. Still useful. Still honest.',
         'Yuval has range. This is a strength until you ask him to name the one thing he does. Then the spreadsheet starts sweating.',
-        'The portfolio has a goose, a terminal, and a CV request flow. Subtle? No. Memorable? Unfortunately, yes.',
+        'The portfolio has a goose, a terminal, and a retro games shelf. Subtle? No. Memorable? Unfortunately, yes.',
         'He says "systems thinking" because "I keep pulling on threads until the machine confesses" sounds less LinkedIn-compliant.'
     ];
 
@@ -181,6 +189,9 @@
     let konamiSequence = [];
     let repoSnapshot = FALLBACK_REPO_SNAPSHOT;
     let commandHistory = [];
+    let commandPaletteWelcomed = false;
+    let commandPaletteOpener = null;
+    let modalCount = 0;
     const gooseTerrorState = {
         active: false,
         layer: null,
@@ -219,17 +230,6 @@
     function clearClippyTimers() {
         [realClippyHideTimer, realClippySpeechTimer, realClippyGoodbyeTimer].forEach(timer => window.clearTimeout(timer));
         realClippyHideTimer = realClippySpeechTimer = realClippyGoodbyeTimer = null;
-    }
-
-    function initAos() {
-        if (window.AOS && typeof window.AOS.init === 'function') {
-            window.AOS.init({
-                duration: 800,
-                easing: 'ease-in-out',
-                once: true,
-                mirror: false
-            });
-        }
     }
 
     function updateContactStatus(message) {
@@ -351,77 +351,6 @@
         return copied;
     }
 
-    function setCvGateStatus(message, isError = false) {
-        const status = document.getElementById('cv-gate-status');
-        if (!status) {
-            return;
-        }
-
-        status.textContent = message;
-        status.classList.toggle('text-tech-pink', isError);
-        status.classList.toggle('text-tech-green', !isError);
-    }
-
-    function revealPublicCv(announce = true) {
-        const panel = document.getElementById('cv-unlocked-panel');
-        const publicLink = document.getElementById('cv-public-link');
-
-        if (publicLink) {
-            publicLink.href = CV_PUBLIC_PATH;
-        }
-
-        if (panel) {
-            panel.hidden = false;
-        }
-
-        try {
-            window.sessionStorage.setItem('portfolioCvUnlocked', 'true');
-        } catch (error) {
-            // Session persistence is a convenience only.
-        }
-
-        setCvGateStatus('Human enough. Public CV unlocked.');
-        if (announce) {
-            showClippy('Public CV ready. The Master PDF is available from the resume page.', 18000);
-        }
-    }
-
-    function initCvGate() {
-        const answerInput = document.getElementById('cv-human-answer');
-        const unlockButton = document.getElementById('cv-unlock-button');
-
-        if (!answerInput || !unlockButton) {
-            return;
-        }
-
-        try {
-            if (window.sessionStorage.getItem('portfolioCvUnlocked') === 'true') {
-                revealPublicCv(false);
-            }
-        } catch (error) {
-            // Ignore storage failures and keep the gate interactive.
-        }
-
-        const verify = () => {
-            const answer = answerInput.value.trim();
-            if (answer === '13' || answer.toLowerCase() === 'thirteen') {
-                revealPublicCv();
-                return;
-            }
-
-            setCvGateStatus('Not quite. Hint: Clippy counted on his wire and got 13.', true);
-            answerInput.focus();
-        };
-
-        unlockButton.addEventListener('click', verify);
-        answerInput.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                verify();
-            }
-        });
-    }
-
     function renderContactSuccess(mailtoLink, previewText) {
         const formContainer = document.getElementById('simple-contact-form');
         if (!formContainer) {
@@ -441,7 +370,7 @@
             <h4 class="text-2xl font-bold text-tech-cyan mb-3">Email Draft Ready</h4>
             <p class="text-gray-300 mb-4">If your mail app did not open, use the link below or copy the draft. No backend, no pretend inbox, no nonsense.</p>
             <div class="space-y-4 max-w-xl mx-auto">
-                <a id="retry-mailto" class="inline-flex items-center space-x-2 bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300">
+                <a id="retry-mailto" class="inline-flex items-center space-x-2 bg-gradient-to-r from-tech-purple to-tech-cyan hover:from-tech-cyan hover:to-tech-purple text-tech-dark font-semibold py-3 px-6 rounded-lg transition-all duration-300">
                     <span aria-hidden="true">✉</span><span>Try Opening Email Again</span>
                 </a>
                 <div class="text-left bg-gray-800/60 border border-gray-700 rounded-lg p-4 overflow-y-auto max-h-56 text-sm font-mono whitespace-pre-wrap break-words" id="email-preview" aria-label="Email preview" tabindex="0"></div>
@@ -916,46 +845,77 @@
         clippyElement.dataset.hideTimer = String(timerId);
     }
 
+    function loadScript(src) {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+
     function initRealClippy() {
         if (realClippyLoadStarted) {
-            return;
+            return realClippyLoadStarted;
         }
 
-        realClippyLoadStarted = true;
         updateRealClippyGlobals();
+        realClippyLoadStarted = CLIPPY_SCRIPTS
+            .reduce((chain, src) => chain.then(() => loadScript(src)), Promise.resolve())
+            .then(() => new Promise((resolve) => {
+                if (!window.clippy || typeof window.clippy.load !== 'function' || !window.jQuery) {
+                    resolve(false);
+                    return;
+                }
 
-        if (!window.clippy || typeof window.clippy.load !== 'function' || !window.jQuery) {
+                window.clippy.BASE_PATH = CLIPPY_AGENT_BASE_PATH;
+                window.clippy.load(
+                    'Clippy',
+                    (agent) => {
+                        realClippyAgent = agent;
+                        realClippyLoaded = true;
+                        updateRealClippyGlobals();
+                        allowRealClippySoundAfterGesture(realClippyAgent);
+                        realClippyAgent.hide(true);
+                        resetRealClippyQueue(realClippyAgent);
+                        const close = document.createElement('button');
+                        close.id = 'real-clippy-dismiss'; close.className = 'clippy-visit-close'; close.type = 'button'; close.textContent = '×';
+                        close.setAttribute('aria-label', 'Dismiss Clippy for this visit');
+                        close.addEventListener('mousedown', event => event.stopPropagation());
+                        close.addEventListener('click', event => {event.stopPropagation();hideClippy(true);});
+                        document.querySelector('.clippy')?.appendChild(close);
+                        window.dispatchEvent(new CustomEvent('portfolio:clippy-ready'));
+                        resolve(true);
+                    },
+                    () => {
+                        realClippyLoaded = false;
+                        updateRealClippyGlobals();
+                        resolve(false);
+                    }
+                );
+            }))
+            .catch(() => {
+                realClippyLoaded = false;
+                updateRealClippyGlobals();
+                return false;
+            });
+        return realClippyLoadStarted;
+    }
+
+    function scheduleRealClippy() {
+        // The animated agent is ~1.5 MB. Phones and Save-Data get the text helper until someone asks for Clippy.
+        if (navigator.connection?.saveData || window.matchMedia('(max-width: 640px)').matches) {
             return;
         }
 
-        window.clippy.BASE_PATH = CLIPPY_AGENT_BASE_PATH;
-
-        try {
-            window.clippy.load(
-                'Clippy',
-                (agent) => {
-                    realClippyAgent = agent;
-                    realClippyLoaded = true;
-                    updateRealClippyGlobals();
-                    allowRealClippySoundAfterGesture(realClippyAgent);
-                    realClippyAgent.hide(true);
-                    resetRealClippyQueue(realClippyAgent);
-                    const close = document.createElement('button');
-                    close.id = 'real-clippy-dismiss'; close.className = 'clippy-visit-close'; close.type = 'button'; close.textContent = '×';
-                    close.setAttribute('aria-label', 'Dismiss Clippy for this visit');
-                    close.addEventListener('mousedown', event => event.stopPropagation());
-                    close.addEventListener('click', event => {event.stopPropagation();hideClippy(true);});
-                    document.querySelector('.clippy')?.appendChild(close);
-                    window.dispatchEvent(new CustomEvent('portfolio:clippy-ready'));
-                },
-                () => {
-                    realClippyLoaded = false;
-                    updateRealClippyGlobals();
-                }
-            );
-        } catch {
-            realClippyLoaded = false;
-            updateRealClippyGlobals();
+        const start = () => ('requestIdleCallback' in window
+            ? window.requestIdleCallback(() => initRealClippy(), { timeout: 3000 })
+            : window.setTimeout(initRealClippy, 1500));
+        if (document.readyState === 'complete') {
+            start();
+        } else {
+            window.addEventListener('load', start, { once: true });
         }
     }
 
@@ -1213,7 +1173,7 @@
 
             if (event.altKey && event.shiftKey && event.code === 'KeyC') {
                 event.preventDefault();
-                showClippy('Old-school Clippy activated. No third-party script, no clipboard drama, just one paperclip doing its job.', 18000);
+                showClippyGuide('Old-school Clippy activated. No third-party script, no clipboard drama, just one paperclip doing its job.');
             }
 
             konamiSequence.push(event.code);
@@ -1231,10 +1191,14 @@
 
             showClippy('Konami code activated. Ultimate easter egg unlocked.', 18000);
 
-            document.body.style.animation = 'rainbow 2s infinite';
-            window.setTimeout(() => {
-                document.body.style.animation = '';
-            }, 5000);
+            // Animate main, not body: a filter on body would re-anchor every fixed element for five seconds.
+            const stage = document.getElementById('main-content');
+            if (stage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                stage.style.animation = 'rainbow 2s infinite';
+                window.setTimeout(() => {
+                    stage.style.animation = '';
+                }, 5000);
+            }
             konamiSequence = [];
         });
     }
@@ -1402,6 +1366,7 @@ ${role.bullets.map((bullet) => `- ${escapeHtml(bullet)}`).join('\n')}`;
             const isActive = button.getAttribute('data-hire-role') === roleKey;
             button.classList.toggle('is-active', isActive);
             button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            button.tabIndex = isActive ? 0 : -1;
         });
 
         document.querySelectorAll('[data-command-run^="hire "]').forEach((button) => {
@@ -1412,9 +1377,28 @@ ${role.bullets.map((bullet) => `- ${escapeHtml(bullet)}`).join('\n')}`;
     }
 
     function initHireCommandCenter() {
-        document.querySelectorAll('[data-hire-role]').forEach((button) => {
+        const tabs = [...document.querySelectorAll('[data-hire-role]')];
+        tabs.forEach((button, index) => {
+            button.tabIndex = button.getAttribute('aria-selected') === 'true' ? 0 : -1;
             button.addEventListener('click', () => {
                 setHireRole(button.getAttribute('data-hire-role') || 'robotics');
+            });
+            // Standard tablist keys: arrows move between roles, Home/End jump to the ends.
+            button.addEventListener('keydown', (event) => {
+                const offsets = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+                let next = null;
+                if (event.key in offsets) {
+                    next = tabs[(index + offsets[event.key] + tabs.length) % tabs.length];
+                } else if (event.key === 'Home') {
+                    next = tabs[0];
+                } else if (event.key === 'End') {
+                    next = tabs[tabs.length - 1];
+                }
+                if (next) {
+                    event.preventDefault();
+                    next.focus();
+                    next.click();
+                }
             });
         });
     }
@@ -1424,7 +1408,21 @@ ${role.bullets.map((bullet) => `- ${escapeHtml(bullet)}`).join('\n')}`;
             message ||
             'Old Clippy reporting for duty. I can route you to hire fit, projects, repos, CV, contact, reviews, or the goose.';
 
-        pinClippyGuide(guideMessage);
+        if (realClippyLoaded || useTextHelper()) {
+            pinClippyGuide(guideMessage);
+            return;
+        }
+
+        // First explicit request fetches the agent, but nobody waits more than a beat for a paperclip.
+        let shown = false;
+        const show = () => {
+            if (!shown) {
+                shown = true;
+                pinClippyGuide(guideMessage);
+            }
+        };
+        initRealClippy().then(show);
+        window.setTimeout(show, 2500);
     }
 
     function getCommandResponse(rawCommand) {
@@ -1466,7 +1464,7 @@ clear             clear the terminal`;
 
         if (verb === 'projects') {
             scrollToSection('projects');
-            return 'Jumping to featured projects. The short version: BGR, orbital LQI, repo summarizer, daily movers agent.';
+            return 'Jumping to featured projects. The short version: UGV diagnostics, FPV visual geometry, BGR, orbital LQI, repo summarizer, daily movers agent.';
         }
 
         if (verb === 'hire' && args.length > 0) {
@@ -1582,13 +1580,17 @@ This is opt-in. Public surface remains hireable. The terminal is where the eyebr
         }
 
         if (verb === 'goose' && ['terror', 'release', 'attack', 'chaos', 'loose'].includes(args[0])) {
+            const alreadyLoose = gooseTerrorState.active;
             const started = startGooseTerror();
-            return started
-                ? `<strong>Goose terror mode released.</strong>
+            if (started) {
+                return `<strong>Goose terror mode released.</strong>
 It waddles, brings dumb notes, and leaves footprints like a tiny workplace liability. Tap the goose for another note.
 
-Stop it with \`goose stop\`, Esc, or the on-screen banish button.`
-                : 'Goose terror mode is already active. This is not a second goose economy.';
+Stop it with \`goose stop\`, Esc, or the on-screen banish button.`;
+            }
+            return alreadyLoose
+                ? 'Goose terror mode is already active. This is not a second goose economy.'
+                : 'The goose looked for a clear patch of screen and found none. Give it a bigger window and try again.';
         }
 
         if (verb === 'goose' && ['stop', 'banish', 'calm', 'enough', 'off'].includes(args[0])) {
@@ -1681,12 +1683,17 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
             return;
         }
 
+        if (palette.classList.contains('hidden')) {
+            commandPaletteOpener = document.activeElement;
+        }
+
         palette.classList.remove('hidden');
         document.querySelectorAll('[data-command-open]').forEach((button) => {
             button.setAttribute('aria-expanded', 'true');
         });
 
-        if (!commandHistory.length) {
+        if (!commandPaletteWelcomed) {
+            commandPaletteWelcomed = true;
             appendCommandOutput('welcome', 'Type `help`, `repos`, `projects`, `cv`, `contact`, or `goose`. This is a static GitHub Pages site, so the repo list comes from a baked-in snapshot.');
         }
 
@@ -1707,11 +1714,41 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
         document.querySelectorAll('[data-command-open]').forEach((button) => {
             button.setAttribute('aria-expanded', 'false');
         });
+
+        if (commandPaletteOpener?.isConnected && typeof commandPaletteOpener.focus === 'function') {
+            commandPaletteOpener.focus({ preventScroll: true });
+        }
+        commandPaletteOpener = null;
+    }
+
+    function trapFocus(container, event) {
+        if (event.key !== 'Tab') {
+            return;
+        }
+
+        const focusable = [...container.querySelectorAll('a[href], button, input')]
+            .filter((element) => !element.disabled && element.getClientRects().length);
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (!first) {
+            return;
+        }
+
+        if (!container.contains(document.activeElement) || (event.shiftKey && document.activeElement === first)) {
+            event.preventDefault();
+            (event.shiftKey ? last : first).focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
     }
 
     function initCommandPalette() {
         const form = document.getElementById('command-form');
         const input = document.getElementById('command-input');
+        const palette = document.getElementById('command-palette');
+
+        palette?.addEventListener('keydown', (event) => trapFocus(palette, event));
 
         document.querySelectorAll('[data-command-open]').forEach((button) => {
             button.addEventListener('click', () => openCommandPalette());
@@ -1745,7 +1782,7 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
         const clippyCloseButton = document.getElementById('clippy-close-button');
         const emailButton = document.getElementById('open-email-client-btn');
         const gameRequestButton = document.querySelector('[data-game-request]');
-        const copyButtons = [document.getElementById('copy-email-address'), document.getElementById('quick-copy-email')];
+        const copyButtons = [document.getElementById('copy-email-address')];
 
         clippyCloseButton?.addEventListener('click', () => hideClippy(true));
         emailButton?.addEventListener('click', openEmailClient);
@@ -1811,26 +1848,53 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
     }
 
     function buildModalShell(icon, title, bodyHtml) {
+        const opener = document.activeElement;
+        const titleId = `portfolio-modal-title-${++modalCount}`;
         const modal = document.createElement('div');
         modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
+        modal.setAttribute('aria-labelledby', titleId);
         modal.innerHTML = `
             <div class="bg-tech-dark border border-gray-600 rounded-2xl p-8 max-w-md mx-4 glass-effect">
                 <div class="text-center">
                     <div class="text-4xl mb-4">${icon}</div>
-                    <h3 class="text-2xl font-bold text-tech-cyan mb-4">${title}</h3>
+                    <h3 id="${titleId}" class="text-2xl font-bold text-tech-cyan mb-4">${title}</h3>
                     <div class="text-gray-300 mb-6">${bodyHtml}</div>
                     <div class="space-y-3" data-modal-actions></div>
                 </div>
             </div>
         `;
 
+        const onKeydown = (event) => {
+            if (event.key === 'Escape') {
+                modal.closeModal();
+            } else {
+                trapFocus(modal, event);
+            }
+        };
+
+        modal.closeModal = () => {
+            modal.remove();
+            document.removeEventListener('keydown', onKeydown);
+            if (opener?.isConnected && typeof opener.focus === 'function') {
+                opener.focus({ preventScroll: true });
+            }
+        };
+
         modal.addEventListener('click', (event) => {
             if (event.target === modal) {
-                modal.remove();
+                modal.closeModal();
             }
         });
+        document.addEventListener('keydown', onKeydown);
 
         return modal;
+    }
+
+    function showModal(modal) {
+        document.body.appendChild(modal);
+        modal.querySelector('[data-modal-actions] a, [data-modal-actions] button')?.focus({ preventScroll: true });
     }
 
     function appendModalButton(container, label, className, onClick, href) {
@@ -1862,8 +1926,8 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
         appendModalButton(
             actions,
             'Got It',
-            'w-full bg-gradient-to-r from-tech-cyan to-tech-green text-white font-bold py-3 px-6 rounded-lg',
-            () => modal.remove()
+            'w-full bg-gradient-to-r from-tech-cyan to-tech-green text-tech-dark font-bold py-3 px-6 rounded-lg',
+            () => modal.closeModal()
         );
 
         const note = document.createElement('div');
@@ -1871,7 +1935,7 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
         note.textContent = 'Use external game pages responsibly. Verify availability and licensing before downloading anything.';
         actions.appendChild(note);
 
-        document.body.appendChild(modal);
+        showModal(modal);
     }
 
     function showRetroGameRequest() {
@@ -1885,7 +1949,7 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
         appendModalButton(
             actions,
             'Send Request',
-            'block w-full bg-gradient-to-r from-tech-purple to-tech-pink text-white font-bold py-3 px-6 rounded-lg text-center',
+            'block w-full bg-gradient-to-r from-tech-purple to-tech-pink text-tech-dark font-bold py-3 px-6 rounded-lg text-center',
             null,
             'mailto:yuval.grimberg@gmail.com?subject=Retro Classics Nomination&body=Hi Yuval! I would nominate this retro game for the classics shelf:%0D%0A%0D%0ATitle:%0D%0ASource page:%0D%0AWhy it belongs:'
         );
@@ -1894,10 +1958,10 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
             actions,
             'Maybe Later',
             'w-full bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-lg',
-            () => modal.remove()
+            () => modal.closeModal()
         );
 
-        document.body.appendChild(modal);
+        showModal(modal);
     }
 
     function openGameSource(gameId) {
@@ -1958,14 +2022,12 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
     }
 
     function initPage() {
-        initAos();
-        initRealClippy();
+        scheduleRealClippy();
         loadRepoSnapshot();
         initProjectCardObserver();
         initFunZone();
         initGooseAnimation();
         initHireCommandCenter();
-        initCvGate();
         initCommandPalette();
         initGuideButtons();
         initKeyboardEasterEggs();

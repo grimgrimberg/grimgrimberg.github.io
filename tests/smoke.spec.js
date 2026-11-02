@@ -91,6 +91,8 @@ test.describe('maintained smoke suite', () => {
         for (const width of [508, 320]) {
             requests.length = 0;
             await page.setViewportSize({ width, height: width === 508 ? 642 : 568 });
+            // Same URL + same hash is an in-page jump, not a load; leave first so each width gets a real fresh load.
+            await page.goto('about:blank');
             await page.goto('/#reconstruction-lab', { waitUntil: 'networkidle' });
             const panel = page.locator('#reconstruction-lab');
             const iframe = panel.locator('iframe');
@@ -129,7 +131,7 @@ test.describe('maintained smoke suite', () => {
     test('primary pages use local generated CSS instead of Tailwind CDN', async ({ page }, testInfo) => {
         test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Static runtime check runs once on desktop');
 
-        for (const target of ['index.html', 'photo.html', 'thank-you.html']) {
+        for (const target of ['index.html', 'photo.html', 'cv.html']) {
             await page.goto(siteUrl(target), { waitUntil: 'domcontentloaded' });
             await expect(page.locator('script[src*="cdn.tailwindcss.com"]')).toHaveCount(0);
             await expect(page.locator('link[href="assets/css/output.css"]')).toHaveCount(1);
@@ -185,10 +187,12 @@ test.describe('maintained smoke suite', () => {
         await expect(page.locator('#reviews')).toContainText('Stephen Hawking');
         await expect(page.locator('#reviews')).toContainText('Doctor Strange');
         await expect(page.locator('#retro-games')).toContainText('Retro Classics');
-        await expect(page.locator('#retro-games')).toContainText('Hosted Game Files');
+        await expect(page.locator('#retro-games')).toContainText(/hosted game files/i);
         await expect(page.locator('#retro-games [data-game-source]')).toHaveCount(6);
         await expect(page.locator('#retro-games')).toContainText('Dangerous Dave');
         await expect(page.locator('#retro-games')).toContainText('SkyRoads');
+        // Clippy is fetched lazily (idle on desktop, first Guide click on phones), so ask once, wait, then ask again.
+        await page.locator('#clippy-guide-button').click();
         await page.waitForFunction(() => window.clippyLoaded === true && Boolean(window.clippyAgent), null, {
             timeout: 10000
         });

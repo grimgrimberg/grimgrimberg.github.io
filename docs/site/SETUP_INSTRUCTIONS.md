@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repo is a root-static GitHub Pages site. The maintained user-facing flow lives in `index.html`, `photo.html`, `thank-you.html`, and `cv.html`.
+This repo is a root-static GitHub Pages site. The maintained user-facing flow lives in `index.html`, `photo.html`, and `cv.html`, plus `404.html` for missing routes.
 
 ## Quick Start
 
@@ -22,7 +22,7 @@ npm run serve
 
 - [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 - [http://127.0.0.1:8000/photo.html](http://127.0.0.1:8000/photo.html)
-- [http://127.0.0.1:8000/thank-you.html](http://127.0.0.1:8000/thank-you.html)
+- [http://127.0.0.1:8000/cv.html](http://127.0.0.1:8000/cv.html)
 
 ## Optional CSS Build
 
@@ -36,11 +36,14 @@ Use this when you change Tailwind classes, theme tokens, or shared site styles. 
 
 ```bash
 npm run lint
+npm run test:models
 npm test
 ```
 
 - `npm run lint` runs the repo-specific static and runtime hygiene checks.
+- `npm run test:models` checks the lab simulation models in plain Node.
 - `npm test` runs the maintained Playwright smoke matrix aimed at the current live pages, not a broad cross-device lab.
+- `.github/workflows/site-checks.yml` runs all of the above, plus a check that `output.css` matches `styles.css`, on pushes to `dev` and on pull requests.
 
 ## Branching
 
@@ -49,4 +52,4 @@ npm test
 
 ## Legacy Pages
 
-`about.html`, `projects.html`, and `vision.html` remain in the repo for compatibility and reference, but they are not the primary maintained surfaces. Local harness pages live under `tests/fixtures/`.
+`about.html`, `projects.html`, `vision.html`, and `thank-you.html` are tiny `noindex` redirect pages into the matching homepage section, so old links still land somewhere useful. Local harness pages live under `tests/fixtures/`.
