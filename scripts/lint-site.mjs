@@ -13,7 +13,7 @@ const fixtureHtmlPages = existsSync(fixtureHtmlDirectory)
         .sort()
     : [];
 const checkedHtmlPages = [...rootHtmlPages, ...fixtureHtmlPages];
-const maintainedPages = ['index.html', 'photo.html', 'cv.html'];
+const maintainedPages = ['index.html', 'photo.html', 'cv.html', 'fly101.html'];
 const legacyRedirectPages = ['about.html', 'projects.html', 'vision.html', 'thank-you.html'];
 const failures = [];
 

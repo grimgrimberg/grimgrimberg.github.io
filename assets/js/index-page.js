@@ -1464,7 +1464,7 @@ clear             clear the terminal`;
 
         if (verb === 'projects') {
             scrollToSection('projects');
-            return 'Jumping to featured projects. The short version: UGV diagnostics, FPV visual geometry, BGR, orbital LQI, repo summarizer, daily movers agent.';
+            return 'Jumping to featured projects. The short version: UGV diagnostics, FPV visual geometry, BGR, orbital LQI, repo summarizer, daily movers agent, Fly101.';
         }
 
         if (verb === 'hire' && args.length > 0) {

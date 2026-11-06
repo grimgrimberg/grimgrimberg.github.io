@@ -4,6 +4,7 @@ const CHECKED_HTML_PAGES = [
     'index.html',
     'photo.html',
     'cv.html',
+    'fly101.html',
     '404.html',
     'tests/fixtures/mobile-nav-test.html'
 ];

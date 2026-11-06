@@ -9,6 +9,7 @@ Static personal site for [grimgrimberg.github.io](https://grimgrimberg.github.io
   - `index.html`
   - `photo.html`
   - `cv.html`
+  - `fly101.html` (project notes; the Fly101 repo is private, so never link to it or copy private paths)
   - `404.html` (served by GitHub Pages for any missing path, so it uses root-absolute URLs)
 - Legacy URLs kept as `noindex` redirects into homepage sections:
   - `about.html`, `projects.html`, `vision.html`, `thank-you.html`
@@ -93,6 +94,7 @@ assets/
   data/
     github-repos.json
   images/
+    fly101/          # renders of the connectome, fly and arm
     projects/        # line-art schematics for the project cards
     icons/           # inline-ready skill icons
   js/
@@ -103,6 +105,7 @@ assets/
     path-playground.js
     lab-experiments.js
     lab-models.mjs
+    fly-brain.js
   vendor/
     clippyjs/
     three/
@@ -128,6 +131,7 @@ docs/
 index.html
 photo.html
 cv.html
+fly101.html
 404.html
 robots.txt
 sitemap.xml
