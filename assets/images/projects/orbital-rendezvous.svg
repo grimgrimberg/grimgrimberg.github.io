@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" role="img">
+  <title>Orbital rendezvous in the LVLH frame: a chaser hops along the V-bar on Clohessy-Wiltshire arcs toward a target inside a dashed keep-out circle, with thrust arrows bounded by a maximum</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- earth limb -->
+    <path stroke="rgba(246,241,232,.18)" stroke-width="1.2" d="M-10 238Q320 172 650 238"/>
+    <!-- LVLH axes: x radial (R-bar, up), y along-track (V-bar, right) -->
+    <g stroke="rgba(246,241,232,.38)" stroke-width="1.2">
+      <path d="M14 92H370M438 92H500M404 210V176M404 140V104M404 80V22"/>
+      <path d="M30 89v6M70 89v6M110 89v6M150 89v6M190 89v6M230 89v6M270 89v6M310 89v6M350 89v6M470 89v6" stroke-width="1"/>
+    </g>
+    <path fill="rgba(246,241,232,.5)" d="M502 92l-8-4v8zM404 20l-4 8h8z"/>
+    <!-- keep-out zone -->
+    <circle cx="404" cy="92" r="40" stroke="#ff766d" stroke-opacity=".75" stroke-width="1.3" stroke-dasharray="4 4"/>
+    <!-- CW hops -->
+    <path stroke="#d8aa4f" stroke-width="1.8" d="M-6 92A88 44 0 0 0 170 92A53 26.5 0 0 0 276 92A30 15 0 0 0 336 92"/>
+    <!-- thrust vectors with |u| bound -->
+    <g stroke="rgba(216,170,79,.5)" stroke-width="1" stroke-dasharray="2 3"><circle cx="95.8" cy="135.5" r="12"/><circle cx="223" cy="118.5" r="12"/><circle cx="310.7" cy="106.8" r="12"/></g>
+    <path stroke="#f6f1e8" stroke-width="1.5" d="M95.8 135.5L102.3 130.9M223 118.5L227 118.5M310.7 106.8L303.7 106.8"/>
+    <path fill="#f6f1e8" d="M105.6 128.6L104 133.3 100.6 128.4ZM231 118.5L227 121.5 227 115.5ZM299.7 106.8L303.7 103.8 303.7 109.8Z"/>
+    <!-- target -->
+    <g stroke="#d8aa4f" stroke-width="1.5">
+      <rect x="396" y="84" width="16" height="16" rx="1"/>
+      <path d="M396 92h-5M412 92h5"/>
+      <rect x="373" y="87" width="18" height="10"/>
+      <rect x="417" y="87" width="18" height="10"/>
+    </g>
+    <!-- chaser -->
+    <g stroke="#f6f1e8" stroke-width="1.4">
+      <rect x="331" y="87" width="10" height="10"/>
+      <path d="M336 87v-3M336 97v3"/>
+      <rect x="332.5" y="73" width="7" height="11"/>
+      <rect x="332.5" y="100" width="7" height="11"/>
+    </g>
+    <!-- legend: thrust bound -->
+    <circle cx="530" cy="40" r="12" stroke="rgba(216,170,79,.5)" stroke-width="1" stroke-dasharray="2 3"/>
+    <path stroke="#f6f1e8" stroke-width="1.5" d="M530 40l5.7-5.7"/>
+  </g>
+  <path fill="#f6f1e8" d="M538.5 31.5l-5.2 1.4 3.8 3.8z"/>
+  
+  <g font-family="Cascadia Mono, JetBrains Mono, Consolas, monospace" font-size="10" letter-spacing="1" fill="rgba(246,241,232,.62)">
+    <text x="414" y="30">x R-BAR</text>
+    <text x="500" y="82" text-anchor="end">y V-BAR</text>
+    <text x="404" y="152" text-anchor="middle" fill="#ff766d">KEEP-OUT</text>
+    <text x="404" y="165" text-anchor="middle">(NO BOOPING)</text>
+    <text x="550" y="44">|u|≤umax</text>
+    <text x="550" y="64" fill="#d8aa4f">Δv 0.38 m/s</text>
+  </g>
+</svg>

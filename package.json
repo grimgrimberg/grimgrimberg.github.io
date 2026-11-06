@@ -1,10 +1,11 @@
 {
   "name": "grimgrimberg.github.io",
   "version": "1.0.0",
-  "description": "",
+  "description": "Static GitHub Pages portfolio for Yuval Grimberg.",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
+    "test:models": "node tests/lab-models.mjs",
     "lint": "npm run lint:static && npm run lint:runtime",
     "lint:static": "node scripts/lint-site.mjs",
     "lint:runtime": "playwright test --config=playwright.hygiene.config.js",

@@ -13,7 +13,8 @@ const fixtureHtmlPages = existsSync(fixtureHtmlDirectory)
         .sort()
     : [];
 const checkedHtmlPages = [...rootHtmlPages, ...fixtureHtmlPages];
-const maintainedPages = ['index.html', 'photo.html', 'thank-you.html', 'cv.html'];
+const maintainedPages = ['index.html', 'photo.html', 'cv.html', 'fly101.html'];
+const legacyRedirectPages = ['about.html', 'projects.html', 'vision.html', 'thank-you.html'];
 const failures = [];
 
 function read(filePath) {
@@ -95,6 +96,14 @@ for (const filePath of maintainedPages) {
         record(filePath, 'maintained page should not load cdn.tailwindcss.com');
     }
 }
+
+for (const filePath of legacyRedirectPages) {
+    const normalized = normalize(read(filePath));
+    requireMatch(filePath, normalized, /<meta[^>]+http-equiv=["']refresh["'][^>]+url=index\.html#/i, 'legacy page should redirect into index.html');
+    requireMatch(filePath, normalized, /<meta[^>]+name=["']robots["'][^>]+noindex/i, 'legacy redirect should be noindex');
+}
+
+requireMatch('404.html', normalize(read('404.html')), /href=["']\/assets\/css\/output\.css["']/i, '404 page must use root-absolute asset paths');
 
 for (const filePath of ['index.html', 'photo.html']) {
     const normalized = normalize(read(filePath));

@@ -1,0 +1,42 @@
+name: Site checks
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    # Pinned: Playwright 1.59 cannot install browsers on ubuntu-latest (26.04).
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # The Playwright web server runs scripts/serve.py.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: npm ci
+
+      - name: Committed CSS matches the Tailwind source
+        run: |
+          npm run build
+          git diff --exit-code assets/css/output.css
+
+      - run: npx playwright install --with-deps chromium
+
+      - run: npm run lint
+
+      - run: npm run test:models
+
+      - run: npm test -- --reporter=line
