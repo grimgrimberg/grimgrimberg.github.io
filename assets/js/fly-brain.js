@@ -1,15 +1,20 @@
-// Rotating point cloud of real MaleCNS neuron positions. The poster image stays if WebGL or the data is unavailable.
-const stage = document.getElementById('brain-stage');
-const canvas = document.getElementById('brain-canvas');
-
+// Rotating point cloud of real MaleCNS neuron positions, used by the Fly101 page and the homepage lab.
+// Anatomy only: no neural activity is simulated here. A poster or status line stays if WebGL or the data fails.
 const COLORS = [[0.85, 0.67, 0.31], [0.35, 0.78, 0.74], [0.62, 0.72, 0.7], [1, 0.46, 0.43]];
+const DATA_URL = new URL('../data/fly-brain-points.bin', import.meta.url);
 
-async function start() {
+const FRAMINGS = {
+    // Keeps the brain clear of the headline; the nerve cord falls away below it.
+    hero: (narrow) => ({ z: narrow ? 6.2 : 3, x: narrow ? 0 : 0.42, y: narrow ? 0.15 : -0.3, opacity: narrow ? 0.14 : 0.24 }),
+    panel: (narrow) => ({ z: narrow ? 3.9 : 2.9, x: 0, y: 0, opacity: narrow ? 0.13 : 0.2 })
+};
+
+export async function mountBrain({ stage, canvas, framing = 'hero' }) {
     const [THREE, response] = await Promise.all([
         import('../vendor/three/three.module.min.js'),
-        fetch('assets/data/fly-brain-points.bin')
+        fetch(DATA_URL)
     ]);
-    if (!response.ok) return;
+    if (!response.ok) throw new Error('Neuron positions failed to load');
     const buffer = await response.arrayBuffer();
     const count = buffer.byteLength / 7;
     const raw = new Int16Array(buffer, 0, count * 3);
@@ -25,7 +30,8 @@ async function start() {
 
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    const colorAttribute = new THREE.BufferAttribute(colors, 3);
+    geometry.setAttribute('color', colorAttribute);
     geometry.center();
     const material = new THREE.PointsMaterial({
         size: 1.4, sizeAttenuation: false, vertexColors: true,
@@ -37,7 +43,8 @@ async function start() {
     const scene = new THREE.Scene();
     scene.add(rig);
     const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 20);
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: 'low-power' });
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: 'low-power' });
+    renderer.setClearColor(0x05070a);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
     const state = { yaw: -0.35, pitch: 0.08, dragging: false, x: 0, y: 0, visible: true };
@@ -50,13 +57,13 @@ async function start() {
 
     const resize = () => {
         const { width, height } = stage.getBoundingClientRect();
+        if (!width || !height) return;
         renderer.setSize(width, height, false);
         camera.aspect = width / height;
-        const narrow = width / height < 1;
-        // Keep the brain clear of the headline; the nerve cord falls away below it.
-        camera.position.z = narrow ? 6.2 : 3;
-        rig.position.set(narrow ? 0 : 0.42, narrow ? 0.15 : -0.3, 0);
-        material.opacity = narrow ? 0.14 : 0.24;
+        const view = FRAMINGS[framing](width / height < 1);
+        camera.position.z = view.z;
+        rig.position.set(view.x, view.y, 0);
+        material.opacity = view.opacity;
         camera.updateProjectionMatrix();
         draw();
     };
@@ -82,21 +89,43 @@ async function start() {
     };
     canvas.addEventListener('pointerup', release);
     canvas.addEventListener('pointercancel', release);
+    canvas.addEventListener('keydown', (event) => {
+        const steps = { ArrowLeft: -0.15, ArrowRight: 0.15 };
+        if (!(event.key in steps)) return;
+        event.preventDefault();
+        state.yaw += steps[event.key];
+        draw();
+    });
     new IntersectionObserver((entries) => {
         state.visible = entries[0].isIntersecting;
     }).observe(stage);
 
     stage.classList.add('is-live');
-    if (reduced) return;
-    renderer.setAnimationLoop(() => {
-        if (!state.visible) return;
-        if (!state.dragging) state.yaw += 0.0022;
-        draw();
-    });
+    if (!reduced) {
+        renderer.setAnimationLoop(() => {
+            if (!state.visible) return;
+            if (!state.dragging) state.yaw += 0.0022;
+            draw();
+        });
+    }
+
+    return {
+        // Additive blending makes black points invisible, so a region can switch off without rebuilding anything.
+        setRegion(region, visible) {
+            const color = visible ? COLORS[region] : [0, 0, 0];
+            for (let i = 0; i < count; i++) {
+                if (regions[i] === region) colors.set(color, i * 3);
+            }
+            colorAttribute.needsUpdate = true;
+            draw();
+        }
+    };
 }
 
-if (stage && canvas && 'WebGL2RenderingContext' in window) {
-    const begin = () => start().catch(() => {});
+const heroStage = document.getElementById('brain-stage');
+const heroCanvas = document.getElementById('brain-canvas');
+if (heroStage && heroCanvas && 'WebGL2RenderingContext' in window) {
+    const begin = () => mountBrain({ stage: heroStage, canvas: heroCanvas }).catch(() => {});
     if (document.readyState === 'complete') begin();
     else window.addEventListener('load', begin, { once: true });
 }

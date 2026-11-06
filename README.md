@@ -34,6 +34,7 @@ This repo is not React and is not driven by Jekyll templates in its current main
   - `assets/js/portfolio-labs.js`: lab switching, plus a lazy loader that imports the scenes when a lab nears the viewport or the page goes idle
   - `assets/js/path-playground.js` and `assets/js/lab-experiments.js`: the three.js scenes
   - `assets/js/lab-models.mjs`: the pure simulation models, tested by `npm run test:models`
+  - `assets/js/fly-brain.js`: the connectome point cloud, shared by the `Connectome` lab and `fly101.html`
 - Clippy (jQuery + clippy.js, about 1.5 MB with the sprite sheet) is injected on demand: after page load on desktop, on the first Guide click on phones.
 
 ## CSS Story

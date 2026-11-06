@@ -128,6 +128,31 @@ test.describe('maintained smoke suite', () => {
         expect(errors).toEqual([]);
     });
 
+    test('connectome lab loads its data only on request and region switches work', async ({ page }, testInfo) => {
+        test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Lab lifecycle runs once on desktop');
+        const errors = [];
+        const dataRequests = [];
+        page.on('pageerror', (error) => errors.push(error.message));
+        page.on('request', (request) => {
+            if (request.url().includes('fly-brain-points.bin')) dataRequests.push(request.url());
+        });
+        await page.goto('/', { waitUntil: 'networkidle' });
+        await expect(page.locator('#brain-lab')).toBeHidden();
+        expect(dataRequests).toEqual([]);
+
+        await page.locator('[data-lab-mode="brain"]').click();
+        await expect(page.locator('#brain-lab')).toBeVisible();
+        await expect(page).toHaveURL(/#brain-lab$/);
+        await expect.poll(() => dataRequests.length).toBe(1);
+        const optic = page.locator('[data-brain-region="0"]');
+        await expect(optic).toBeEnabled({ timeout: 15000 });
+        await optic.click();
+        await expect(optic).toHaveAttribute('aria-pressed', 'false');
+        await page.locator('[data-lab-mode="drive"]').click();
+        await expect(page.locator('#brain-lab')).toBeHidden();
+        expect(errors).toEqual([]);
+    });
+
     test('primary pages use local generated CSS instead of Tailwind CDN', async ({ page }, testInfo) => {
         test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Static runtime check runs once on desktop');
 

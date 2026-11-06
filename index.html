@@ -735,10 +735,13 @@
                         <p class="project-wip">Research in simulation</p>
                         <p class="project-problem">Can a complete fly connectome guide a robot arm?</p>
                         <p class="text-gray-300 mb-4">I connected all 165,122 neurons of the MaleCNS connectome to a simulated SO-101 arm, with every synapse left as mapped and only a linear readout trained. In simulation, the arm follows a live human hand with a 17.8 mm median error.</p>
-                        <a href="fly101.html" class="project-action-link touch-target text-tech-purple hover:text-white transition-colors">
-                            <span>See the project</span>
-                            <span aria-hidden="true">→</span>
-                        </a>
+                        <div class="flex justify-between items-center gap-4">
+                            <a href="fly101.html" class="project-action-link touch-target text-tech-purple hover:text-white transition-colors">
+                                <span>See the project</span>
+                                <span aria-hidden="true">→</span>
+                            </a>
+                            <a href="#lab-picker" data-lab-target="brain" class="project-action-link project-demo-link touch-target">Explore the brain ↘</a>
+                        </div>
                     </div>
                 </article>
             </div>
@@ -751,6 +754,7 @@
                         <button type="button" data-lab-mode="space" aria-pressed="false">Space · rendezvous</button>
                         <button type="button" data-lab-mode="perception" aria-pressed="false">Perception · depth</button>
                         <button type="button" data-lab-mode="reconstruction" aria-pressed="false">Reconstruction · VGGT</button>
+                        <button type="button" data-lab-mode="brain" aria-pressed="false">Connectome · fly brain</button>
                     </div>
                 </div>
                 <article id="path-playground" class="path-playground" data-aos="fade-up" data-aos-delay="320"
@@ -899,6 +903,26 @@
                         <p id="reconstruction-status" class="path-status" role="status">Loads on request. On a phone, the full viewer gives the controls more room.</p>
                     </div>
                     <div id="reconstruction-frame-slot" hidden></div>
+                </article>
+                <article id="brain-lab" class="path-playground brain-lab" hidden aria-labelledby="brain-lab-title">
+                    <div class="path-playground-copy">
+                        <p class="path-section-label"><span class="path-signal" aria-hidden="true"></span>Connectome · real data</p>
+                        <h3 id="brain-lab-title">Walk around a brain.</h3>
+                        <p class="path-playground-intro">Every dot is a real neuron position from the MaleCNS fruit-fly connectome. Drag to turn it, then switch regions off to see how a nervous system is built.</p>
+                        <div class="path-scenario-buttons" role="group" aria-label="Show or hide brain regions">
+                            <button type="button" class="path-scenario is-active" data-brain-region="0" aria-pressed="true" disabled>Optic lobes · 103,270</button>
+                            <button type="button" class="path-scenario is-active" data-brain-region="1" aria-pressed="true" disabled>Central brain · 38,326</button>
+                            <button type="button" class="path-scenario is-active" data-brain-region="2" aria-pressed="true" disabled>Nerve cord · 22,196</button>
+                            <button type="button" class="path-scenario is-active" data-brain-region="3" aria-pressed="true" disabled>Descending · 1,330</button>
+                        </div>
+                        <p id="brain-lab-status" class="path-status" role="status">Loading neuron positions…</p>
+                        <p class="brain-lab-note">Showing a 42,000-neuron sample of the 165,122 in the connectome. Anatomy only: this view does not simulate activity.</p>
+                        <a href="fly101.html" class="path-related-link">See the Fly101 project →</a>
+                    </div>
+                    <div id="brain-lab-stage" class="brain-lab-stage">
+                        <img src="assets/images/fly101/cns.webp" width="900" height="960" alt="" loading="lazy" decoding="async">
+                        <canvas id="brain-lab-canvas" tabindex="0" role="img" aria-label="Rotating point cloud of real neuron positions in the fruit-fly nervous system. Drag or use the left and right arrow keys to turn it."></canvas>
+                    </div>
                 </article>
                 <div class="glass-effect rounded-2xl p-6">
                     <p class="font-tech text-sm uppercase tracking-[0.16em] text-tech-green mb-3">lab layer</p>
@@ -1411,7 +1435,7 @@
 
     <!-- Scripts -->
     <script src="assets/js/site-shell.js?v=20261102" defer></script>
-    <script type="module" src="assets/js/portfolio-labs.js?v=20261102"></script>
+    <script type="module" src="assets/js/portfolio-labs.js?v=20261106b"></script>
     <script src="assets/js/index-page.js?v=20261102" defer></script>
 </body>
 </html>
