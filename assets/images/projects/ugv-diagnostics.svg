@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" role="img">
+  <title>UGV diagnostics schematic: four software components on a shared bus, a heartbeat trace with a missed beat, and a watchdog timeout</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- shared bus with terminators -->
+    <g stroke="rgba(246,241,232,.32)" stroke-width="1.2">
+      <path d="M26 117H614M26 121H614"/>
+      <rect x="18" y="113" width="8" height="12"/>
+      <rect x="614" y="113" width="8" height="12"/>
+    </g>
+    <!-- four component blocks -->
+    <g stroke="#9bd66b" stroke-width="1.5">
+      <rect x="142" y="58" width="80" height="38" rx="3"/>
+      <rect x="234" y="58" width="80" height="38" rx="3"/>
+      <rect x="326" y="58" width="80" height="38" rx="3"/>
+      <rect x="418" y="58" width="80" height="38" rx="3"/>
+      <path d="M182 96v21M274 96v21M366 96v21M458 96v21" stroke-width="1.2"/>
+    </g>
+    <!-- heartbeat: four beats, a gap, the watchdog fires, beats resume -->
+    <path stroke="#9bd66b" stroke-width="1.6" d="M140 182h10l4-5 4 8 4-28 5 30 4-5h25l4-5 4 8 4-28 5 30 4-5h25l4-5 4 8 4-28 5 30 4-5h25l4-5 4 8 4-28 5 30 4-5h117l4-5 4 8 4-28 5 30 4-5h25l4-5 4 8 4-28 5 30 4-5h7"/>
+    <!-- missed beats (ghosted) -->
+    <path stroke="rgba(246,241,232,.22)" stroke-width="1.2" stroke-dasharray="2 3" d="M334 182l4-5 4 8 4-28 5 30 4-5M380 182l4-5 4 8 4-28 5 30 4-5"/>
+    <!-- watchdog ticks on the time axis -->
+    <path stroke="rgba(246,241,232,.28)" stroke-width="1" d="M150 200v4M196 200v4M242 200v4M288 200v4M334 200v4M380 200v4M426 200v4M472 200v4M140 204H500"/>
+    <!-- timeout window and marker -->
+    <path stroke="#ff766d" stroke-width="1.2" d="M300 140v6M300 143H410M410 140v6"/>
+    <path stroke="#ff766d" stroke-width="1.5" stroke-dasharray="3 3" d="M410 150V212"/>
+    <!-- thread timing (right) -->
+    <g stroke="rgba(246,241,232,.22)" stroke-width="1">
+      <path d="M520 158H622M520 176H622M520 194H622"/>
+      <path d="M604 146V202" stroke-dasharray="2 3" stroke="rgba(255,118,109,.6)"/>
+    </g>
+    <path stroke="#9bd66b" stroke-width="5" stroke-linecap="butt" d="M524 158h14M556 158h12M586 158h10M528 176h10M552 176h10M578 176h8M522 194h8"/>
+    <path stroke="#d8aa4f" stroke-width="5" stroke-linecap="butt" d="M540 194h72"/>
+    <!-- log stubs (left) -->
+    <path stroke="rgba(246,241,232,.22)" stroke-width="3" d="M86 149h34M86 165h26M86 181h30M86 197h18"/>
+    <path stroke="rgba(246,241,232,.16)" stroke-width="1" d="M12 134V218"/>
+  </g>
+  <!-- status LEDs and bus junctions -->
+  <g fill="#9bd66b">
+    <circle cx="212" cy="67" r="2.5"/><circle cx="304" cy="67" r="2.5"/>
+    <circle cx="396" cy="67" r="2.5"/><circle cx="488" cy="67" r="2.5"/>
+    <circle cx="182" cy="117" r="2.6"/><circle cx="274" cy="117" r="2.6"/>
+    <circle cx="366" cy="117" r="2.6"/><circle cx="458" cy="117" r="2.6"/>
+  </g>
+  <path fill="#ff766d" d="M410 150l-5-8h10z"/>
+  <g font-family="Cascadia Mono, JetBrains Mono, Consolas, monospace" font-size="10" letter-spacing="1" fill="#f6f1e8">
+    <g text-anchor="middle">
+      <text x="182" y="81">OPERATOR</text>
+      <text x="274" y="81">BACKEND</text>
+      <text x="366" y="81">TELEMETRY</text>
+      <text x="458" y="81">VEHICLE IO</text>
+      <text x="355" y="136" fill="#ff766d">250 MS</text>
+    </g>
+    <text x="140" y="134" fill="rgba(246,241,232,.55)">HEARTBEAT</text>
+    <text x="416" y="224" fill="#ff766d">WATCHDOG</text>
+    <text x="30" y="110" fill="rgba(246,241,232,.45)">BUS</text>
+    <text x="520" y="138" fill="rgba(246,241,232,.55)">THREADS</text>
+    <g fill="rgba(246,241,232,.6)">
+      <text x="20" y="152">hb  ok</text>
+      <text x="20" y="168">cmd ack</text>
+      <text x="20" y="184">tlm ok</text>
+      <text x="20" y="200" fill="#d8aa4f">hb  late</text>
+      <text x="20" y="216" fill="#ff766d">wdt bark</text>
+    </g>
+  </g>
+</svg>

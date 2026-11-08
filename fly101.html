@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fly101: a fruit-fly brain wired to a robot arm | Yuval Grimberg</title>
+    <meta name="description"
+        content="Fly101 connects the complete MaleCNS fruit-fly connectome to a simulated SO-101 robot arm that follows a live human hand.">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self'; font-src 'self' data:; img-src 'self' data:; connect-src 'self'; frame-src 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="theme-color" content="#05070a">
+    <link rel="canonical" href="https://grimgrimberg.github.io/fly101.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Yuval Grimberg">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:title" content="Fly101: a fruit-fly brain wired to a robot arm">
+    <meta property="og:description" content="165,122 simulated neurons, wired exactly as mapped, following a live human hand through a simulated SO-101 arm.">
+    <meta property="og:url" content="https://grimgrimberg.github.io/fly101.html">
+    <meta property="og:image" content="https://grimgrimberg.github.io/assets/images/fly101/fly101-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Point cloud of real neuron positions in the fruit-fly brain.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fly101: a fruit-fly brain wired to a robot arm">
+    <meta name="twitter:description" content="165,122 simulated neurons, wired exactly as mapped, following a live human hand through a simulated SO-101 arm.">
+    <meta name="twitter:image" content="https://grimgrimberg.github.io/assets/images/fly101/fly101-og.jpg">
+    <link rel="stylesheet" href="assets/css/output.css">
+</head>
+
+<body class="bg-tech-dark text-white font-display overflow-x-hidden">
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <nav class="doc-nav" aria-label="Site">
+        <a href="index.html" class="doc-nav-home">YG</a>
+        <div>
+            <a href="index.html#projects">Projects</a>
+            <a href="cv.html">CV</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <main id="main-content" class="doc-page">
+        <header id="brain-stage" class="doc-hero">
+            <img class="doc-hero-poster" src="assets/images/fly101/brain.webp" width="1800" height="900" alt="" fetchpriority="high">
+            <canvas id="brain-canvas" role="img" aria-label="Rotating point cloud of real neuron positions in the fruit-fly central nervous system. Drag to turn it."></canvas>
+            <div class="doc-hero-copy">
+                <p class="doc-eyebrow">Fly101 · research in simulation</p>
+                <h1>A fruit-fly brain, wired to a robot arm.</h1>
+                <p>The complete MaleCNS connectome, simulated neuron by neuron, follows a live human hand through a simulated SO-101 arm.</p>
+            </div>
+            <p class="doc-hero-note">Real neuron positions from the connectome. Drag to rotate.</p>
+        </header>
+
+        <div class="doc-body">
+            <dl class="doc-figures">
+                <div><dt>neurons, wired as mapped</dt><dd>165,122</dd></div>
+                <div><dt>closed-loop step</dt><dd>30 ms</dd></div>
+                <div><dt>median live tracking error</dt><dd>17.8 mm</dd></div>
+                <div><dt>synapses changed</dt><dd>0</dd></div>
+            </dl>
+
+            <section class="doc-split">
+                <div>
+                    <h2>The idea</h2>
+                    <p><em>MaleCNS</em> is a complete electron-microscopy map of a male fruit fly’s central nervous system: 165,122 neurons and 25.6 million connections. Fly101 runs every neuron as a spiking model on one laptop GPU, in a live loop, wired exactly as in the data.</p>
+                    <p>Nothing inside the brain is trained. Only a small linear readout learns, turning the activity of 250 neurons into commands for the arm.</p>
+                </div>
+                <figure>
+                    <img src="assets/images/fly101/cns.webp" width="900" height="960" loading="lazy" decoding="async" alt="The fruit-fly brain and ventral nerve cord, drawn from neuron positions.">
+                    <figcaption>The whole nervous system, drawn only from neuron positions. Optic lobes in brass, central brain in teal, nerve cord in grey.</figcaption>
+                </figure>
+            </section>
+
+            <section>
+                <h2>The loop</h2>
+                <ol class="doc-steps">
+                    <li><strong>A webcam tracks your hand</strong> and sets a target pose for the gripper.</li>
+                    <li><strong>The error reaches the fly’s eye</strong> as firing across 5,307 first-stage visual neurons.</li>
+                    <li><strong>The whole brain responds</strong> for 30 ms of simulated time.</li>
+                    <li><strong>A learned readout</strong> turns the activity into a motion command.</li>
+                    <li><strong>The arm moves</strong> in MuJoCo, under speed limits, and the loop repeats.</li>
+                </ol>
+                <div class="doc-pair">
+                    <figure>
+                        <img src="assets/images/fly101/fly.webp" width="1400" height="1000" loading="lazy" decoding="async" alt="Rendered model of a fruit fly with red eyes and spread wings.">
+                        <figcaption>The fly: the flybody model in MuJoCo.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="assets/images/fly101/arm.webp" width="1400" height="1000" loading="lazy" decoding="async" alt="Rendered SO-101 robot arm reaching forward.">
+                        <figcaption>The arm: a simulated SO-101.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section>
+                <h2>Results</h2>
+                <dl class="doc-results">
+                    <div><dt>Live human hand, 104 s</dt><dd>17.8 mm median</dd></div>
+                    <div><dt>Held-out recorded hand motion</dt><dd>20.05 mm median</dd></div>
+                    <div><dt>Gripper accuracy</dt><dd>100 %</dd></div>
+                    <div><dt>Live rate</dt><dd>32 updates/s</dd></div>
+                    <div><dt>Joint-speed or acceleration violations</dt><dd>0</dd></div>
+                </dl>
+                <p class="doc-note">Measured in simulation. The real SO-101 arms are calibrated and teleoperated, and hardware work is under way.</p>
+            </section>
+
+            <details class="doc-details">
+                <summary>Technical notes: full results, baselines and open questions</summary>
+                <div>
+                    <p class="doc-note">Status on 4 November 2026. No brain has driven the real arm yet, and these experiments are ongoing.</p>
+                    <section id="limits">
+                        <h3>Full test results</h3>
+                        <div class="doc-table-wrap">
+                            <table>
+                                <thead><tr><th scope="col">Test</th><th scope="col">Result</th><th scope="col">Bar</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Held-out hand motion</td><td>20.05 mm</td><td>≤ 25 mm</td></tr>
+                                    <tr><td>Same motion at 1.8× speed</td><td>43.2 mm</td><td>≤ 45 mm</td></tr>
+                                    <tr><td>Brain replaced by its average activity</td><td>177 mm</td><td>&gt; 50 mm</td></tr>
+                                    <tr><td>Live, 104 s (teacher on the same motion: 19.0 mm)</td><td>17.8 mm</td><td>None</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>These use an ideal simulated servo. With a 12 V motor model, median tracking rises to about 22–30 mm, 37–49 % worse. The readout is trained with ridge regression and DAgger, with a hand-written controller as the teacher.</p>
+                    </section>
+        <section id="signal" class="doc-section">
+            <h3>Where the signal lives</h3>
+            <p>I measured how well groups of 250 neurons predict the teacher’s commands (held-out R²), by their synaptic distance from the input. The whole brain sits within five synapses of the input, but the signal doesn’t get that far:</p>
+            <div class="doc-table-wrap">
+                <table>
+                    <thead><tr><th scope="col">Group</th><th scope="col">Most informative 250</th><th scope="col">Random 250</th></tr></thead>
+                    <tbody>
+                        <tr><td>1 synapse from input</td><td>0.776</td><td>0.546</td></tr>
+                        <tr><td>2 synapses</td><td>0.644</td><td>0.260</td></tr>
+                        <tr><td>3 synapses</td><td>0.052</td><td>0.017</td></tr>
+                        <tr><td>4 synapses</td><td>≈ 0</td><td>≈ 0</td></tr>
+                        <tr><td>Medulla (visual)</td><td>0.787</td><td>0.523</td></tr>
+                        <tr><td>Mushroom body, protocerebrum, GNG, VNC</td><td>≈ 0</td><td>≈ 0</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>With this input, the fly’s early visual system is the signal path: 240 of the best readout’s 250 neurons are in the medulla. The central brain and the descending neurons, which normally drive the fly’s body, carry almost none of it.</p>
+        </section>
+        <section id="wire-test" class="doc-section">
+            <h3>The wire test</h3>
+            <p>To steer an arm, a controller has to combine the error with the arm’s current posture: an error × posture product. So I gave the brain both signals and asked whether its descending neurons could produce the required joint rates. Then I compared them with a “wire”, a readout that skips the brain entirely.</p>
+            <div class="doc-table-wrap">
+                <table>
+                    <thead><tr><th scope="col">Readout</th><th scope="col">Joint-rate R² (held out)</th></tr></thead>
+                    <tbody>
+                        <tr><td>Brain, descending neurons</td><td>0.34</td></tr>
+                        <tr><td>Linear wire, raw inputs, no brain</td><td>0.65</td></tr>
+                        <tr><td>Bilinear wire, inputs plus error × angle products</td><td>0.92</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>The descending neurons do carry the errors (R² 0.67) and the joint angles (0.79), but not their product. A follow-up read from all 12,847 recorded neurons reached 0.54, and still added nothing beyond the linear wire. By the rule I had set before running it, that stage stopped there.</p>
+            <p>The later experiments point the same way:</p>
+            <ul class="doc-list">
+                <li><strong>Passing the bars isn’t proof.</strong> A linear wire with the motor model also tracks reasonably (32.8 mm), so tracking alone can’t show the brain does the inverse kinematics.</li>
+                <li><strong>A harder test separates controllers.</strong> On pan-heavy poses, linear controllers fail 59–72 % of the cases the teacher holds, and nonlinear ones about 13 %. The fixed brain with a linear readout fails like the linear wires.</li>
+                <li><strong>Real wiring versus rewired brains.</strong> The real graph first beat rewired controls on one joint, but on fresh targets the effect shrank and the winning joint changed. Silencing the candidate neurons did not remove what was left, so the preregistered reading is “not causal”.</li>
+                <li><strong>Neuron model.</strong> A conductance-synapse variant showed no useful gain (the test was inconclusive), and voltage floors ruled out one artefact explanation for the remaining pan interaction.</li>
+            </ul>
+            <p>Each stage has its success bar, stop rule and compute budget fixed before the run, which is what makes a “no” worth trusting.</p>
+        </section>
+        <section id="next" class="doc-section">
+            <h3>What comes next</h3>
+            <ul class="doc-list">
+                <li><strong>Path to the real arm.</strong> The brain drives a task-space readout, fixed analytical inverse kinematics maps it to joints, and LeRobot drives the hardware. The loop already runs through LeRobot’s simulated SO-101 interface; fitting the motor model to the real arm comes next.</li>
+                <li><strong>Can the brain form the product itself?</strong> The open research question is whether any input encoding gets a fixed connectome to compute error × posture, and whether the real wiring is what does it.</li>
+            </ul>
+        </section>
+                </div>
+            </details>
+
+            <section id="sources" class="doc-sources">
+                <h2>Sources and credits</h2>
+                <ul>
+                    <li><a href="https://male-cns.janelia.org/download/" target="_blank" rel="noopener noreferrer">MaleCNS v1.0 ↗</a> connectome (CC-BY), with regions from <a href="https://neuprint.janelia.org" target="_blank" rel="noopener noreferrer">neuPrint ↗</a>. The brain images are my renders of its neuron positions.</li>
+                    <li><a href="https://github.com/TuragaLab/flybody" target="_blank" rel="noopener noreferrer">flybody ↗</a> fly model by Google DeepMind and HHMI Janelia (Apache-2.0).</li>
+                    <li><a href="https://github.com/TheRobotStudio/SO-ARM100" target="_blank" rel="noopener noreferrer">SO-ARM100 ↗</a> robot model (Apache-2.0), with kinematics from LeRobot (Apache-2.0).</li>
+                    <li><a href="https://github.com/fruitflydev/flycoinrh" target="_blank" rel="noopener noreferrer">flycoinrh ↗</a> neural reference (MIT). GeNN, MuJoCo and MediaPipe run the simulation, physics and hand tracking.</li>
+                </ul>
+                <p>The repository is private for now. <a href="mailto:yuval.grimberg@gmail.com">Email me</a> for a walkthrough.</p>
+            </section>
+        </div>
+    </main>
+    <script type="module" src="assets/js/fly-brain.js?v=20261106b"></script>
+</body>
+
+</html>

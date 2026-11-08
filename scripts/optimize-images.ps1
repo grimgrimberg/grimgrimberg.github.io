@@ -4,8 +4,8 @@ Add-Type -AssemblyName System.Drawing
 $jpegQuality = 85
 
 # Path to your images
-$sourcePath = "c:\Users\yuval\grimgrimberg.github.io\assets\images"
-$destPath = "c:\Users\yuval\grimgrimberg.github.io\assets\images\optimized"
+$sourcePath = Join-Path $PSScriptRoot "..\assets\images"
+$destPath = Join-Path $sourcePath "optimized"
 
 # Ensure destination directory exists
 if (!(Test-Path -Path $destPath)) {

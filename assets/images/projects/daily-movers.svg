@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" role="img">
+  <title>Daily movers pipeline: fetch, analyze, deterministic fallback and report stages producing HTML and XLSX, above a strip of daily candles with one big gainer and one big loser</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- pipeline -->
+    <g stroke="#58c7bc" stroke-width="1.5">
+      <rect x="140" y="56" width="78" height="32" rx="3"/>
+      <rect x="234" y="56" width="78" height="32" rx="3"/>
+      <rect x="328" y="56" width="78" height="32" rx="3" stroke-dasharray="4 3"/>
+      <rect x="422" y="56" width="78" height="32" rx="3"/>
+      <path d="M218 72h9M312 72h9M406 72h9"/>
+      <path d="M461 88v10M441 98h40M441 98v4M481 98v4" stroke-width="1.2"/>
+    </g>
+    <!-- output tags -->
+    <g stroke="#58c7bc" stroke-width="1.2">
+      <path d="M425 102h26l6 6v12h-32Z"/>
+      <path d="M465 102h26l6 6v12h-32Z"/>
+    </g>
+    <!-- market data feeds FETCH -->
+    <path stroke="rgba(88,199,188,.6)" stroke-width="1.2" stroke-dasharray="3 3" d="M179 142V96"/>
+    <!-- candle strip -->
+    <path stroke="rgba(246,241,232,.14)" stroke-width="1" stroke-dasharray="2 4" d="M8 178H632"/>
+    <path stroke="rgba(246,241,232,.32)" stroke-width="1.2" d="M20 174V191M44 180V193M68 179V191M92 169V182M116 161V176M140 171V185M164 172V186M188 161V179M212 170V187M236 167V187M260 178V188M284 161V177M308 165V175M332 180V188M356 168V184M380 180V194M404 174V179M428 169V185M452 182V197M476 176V189M500 181V196M524 163V177M548 170V185M572 167V177M596 179V192M620 183V190"/>
+    <path stroke="rgba(246,241,232,.32)" stroke-width="9" stroke-linecap="butt" d="M20 180V184M44 182V189M68 186V188M92 173V177M116 165V169M140 177V183M164 174V180M188 168V173M212 174V182M236 173V180M260 182V185M284 165V172M308 169V172M332 184V186M356 175V182M380 182V188M404 176V178M428 172V180M452 186V193M476 178V183M500 183V189M524 168V171M548 175V182M572 170V175M596 181V189M620 187V189"/>
+    <path stroke="#9bd66b" stroke-width="1.4" d="M300 134V202"/>
+    <path stroke="#9bd66b" stroke-width="11" stroke-linecap="butt" d="M300 142V196"/>
+    <path stroke="#ff766d" stroke-width="1.4" d="M412 156V216"/>
+    <path stroke="#ff766d" stroke-width="11" stroke-linecap="butt" d="M412 162V208"/>
+  </g>
+  <path fill="#58c7bc" d="M234 72l-7-4v8zM328 72l-7-4v8zM422 72l-7-4v8zM179 90l-4 7h8z"/>
+  <g font-family="Cascadia Mono, JetBrains Mono, Consolas, monospace" font-size="10" letter-spacing="1" fill="#f6f1e8" text-anchor="middle">
+    <text x="179" y="76">FETCH</text>
+    <text x="273" y="76">ANALYZE</text>
+    <text x="367" y="76">FALLBACK</text>
+    <text x="461" y="76">REPORT</text>
+    <g font-size="9" fill="#58c7bc"><text x="440" y="115">HTML</text><text x="480" y="115">XLSX</text></g>
+    <text x="300" y="126" fill="#9bd66b">HONK +18.4%</text>
+    <text x="412" y="230" fill="#ff766d">−9.1%</text>
+  </g>
+</svg>

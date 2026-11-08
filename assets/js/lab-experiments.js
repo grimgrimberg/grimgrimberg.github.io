@@ -52,7 +52,7 @@ function replaceLine(object, positions) {
 }
 function label(text,position,color='#9eafab') {
     const c=document.createElement('canvas'); c.width=512;c.height=64;
-    const ctx=c.getContext('2d');ctx.font='28px Segoe UI';ctx.fillStyle=color;ctx.fillText(text,8,42);
+    const ctx=c.getContext('2d');ctx.font='28px "Segoe UI", system-ui, sans-serif';ctx.fillStyle=color;ctx.fillText(text,8,42);
     const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),depthTest:false,transparent:true}));
     sprite.position.copy(position);sprite.scale.set(5,.625,1);scene.add(sprite);
 }

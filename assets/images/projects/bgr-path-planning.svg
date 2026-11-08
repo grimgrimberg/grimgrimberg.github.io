@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" role="img">
+  <title>Pure pursuit on a Formula Student track: blue and yellow cone boundaries, the planned line, the slightly-off driven trail, the car, and the lookahead point at distance Ld with the steering arc to it</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- cones: blue (left) and yellow (right) -->
+    <g stroke="#58c7bc" stroke-width="1.4"><circle cx="10" cy="51" r="4.5"/><circle cx="50" cy="56" r="4.5"/><circle cx="89" cy="63" r="4.5"/><circle cx="129" cy="73" r="4.5"/><circle cx="168" cy="83" r="4.5"/><circle cx="207" cy="93" r="4.5"/><circle cx="246" cy="102" r="4.5"/><circle cx="285" cy="108" r="4.5"/><circle cx="326" cy="110" r="4.5"/><circle cx="366" cy="107" r="4.5"/><circle cx="406" cy="101" r="4.5"/><circle cx="445" cy="92" r="4.5"/><circle cx="484" cy="82" r="4.5"/><circle cx="523" cy="71" r="4.5"/><circle cx="562" cy="62" r="4.5"/><circle cx="602" cy="55" r="4.5"/><circle cx="642" cy="51" r="4.5"/></g>
+    <g stroke="#d8aa4f" stroke-width="1.4"><circle cx="11" cy="140" r="4.5"/><circle cx="51" cy="145" r="4.5"/><circle cx="90" cy="154" r="4.5"/><circle cx="129" cy="164" r="4.5"/><circle cx="168" cy="175" r="4.5"/><circle cx="207" cy="184" r="4.5"/><circle cx="247" cy="192" r="4.5"/><circle cx="287" cy="197" r="4.5"/><circle cx="327" cy="198" r="4.5"/><circle cx="368" cy="196" r="4.5"/><circle cx="447" cy="182" r="4.5"/><circle cx="486" cy="172" r="4.5"/><circle cx="525" cy="162" r="4.5"/><circle cx="564" cy="152" r="4.5"/><circle cx="604" cy="144" r="4.5"/><circle cx="644" cy="139" r="4.5"/></g>
+    <path stroke="#58c7bc" stroke-width="3" d="M10 51h0M50 56h0M89 63h0M129 73h0M168 83h0M207 93h0M246 102h0M285 108h0M326 110h0M366 107h0M406 101h0M445 92h0M484 82h0M523 71h0M562 62h0M602 55h0M642 51h0"/>
+    <path stroke="#d8aa4f" stroke-width="3" d="M11 140h0M51 145h0M90 154h0M129 164h0M168 175h0M207 184h0M247 192h0M287 197h0M327 198h0M368 196h0M447 182h0M486 172h0M525 162h0M564 152h0M604 144h0M644 139h0"/>
+    <!-- planned path and driven trail -->
+    <path stroke="#58c7bc" stroke-width="1.8" d="M-10 104L6 104.2 22 104.8 38 105.8 54 107.2 70 109 86 111.1 102 113.4 118 116 134 118.8 150 121.6 166 124.5 182 127.4 198 130.2 214 132.9 230 135.4 246 137.7 262 139.6 278 141.3 294 142.6 310 143.4 326 143.9 342 144 358 143.6 374 142.8 390 141.6 406 140.1 422 138.2 438 136 454 133.6 470 130.9 486 128.1 502 125.2 518 122.3 534 119.5 550 116.7 566 114.1 582 111.6 598 109.5 614 107.7 630 106.2 646 105 650 104.8"/>
+    <path stroke="#d8aa4f" stroke-width="1.4" stroke-opacity=".85" d="M-10 127.3L2 128.1 14 127.8 26 126.5 38 124.3 50 121.7 62 118.9 74 116.5 86 114.8 98 114.1 110 114.8 122 116.9 134 120.4 146 125.1 158 130.6 170 136.7 182 142.8 194 148.5 196 149.4"/>
+    <!-- pure pursuit: heading ray, steering arc, Ld dimension -->
+    <path stroke="rgba(246,241,232,.35)" stroke-width="1" stroke-dasharray="2 3" d="M196 149.4L260.2 177.2"/>
+    <path stroke="#58c7bc" stroke-width="1.4" stroke-dasharray="5 4" d="M196 149.4A152 152 0 0 0 327.9 143.9"/>
+    <path stroke="#f6f1e8" stroke-opacity=".7" stroke-width="1" d="M196 149.4L251 147.1M272.9 146.2L327.9 143.9M327.7 139l0.4 10"/>
+    <path stroke="#f6f1e8" stroke-opacity=".5" stroke-width="1" d="M221.7 160.5A28 28 0 0 0 224 148.2"/>
+    <circle cx="327.9" cy="143.9" r="7.5" stroke="#58c7bc" stroke-width="1.2"/>
+    <!-- car (top view) -->
+    <g transform="translate(196 149.4) rotate(23.4)">
+      <path stroke="#f6f1e8" stroke-width="1.5" d="M-6-5H14L22-1.5V1.5L14 5H-6ZM-8-8V8"/>
+      <path stroke="#f6f1e8" stroke-width="3.5" stroke-linecap="butt" d="M-4-9h7M-4 9h7M13-8.5h6M13 8.5h6"/>
+    </g>
+    <!-- the one that did not make it -->
+    <g transform="translate(414 220) rotate(-28)" stroke="#ff766d" stroke-width="1.4">
+      <path d="M-8-5L8-1.2V1.2L-8 5ZM-1-3.3V3.3"/><path d="M-10.5-7.5V7.5" stroke-width="2.4"/>
+    </g>
+  </g>
+  <circle cx="327.9" cy="143.9" r="3" fill="#58c7bc"/>
+  <g font-family="Cascadia Mono, JetBrains Mono, Consolas, monospace" font-size="10" letter-spacing="1" fill="rgba(246,241,232,.6)">
+    <text x="262" y="150.2" text-anchor="middle" font-size="11" fill="#f6f1e8">Ld</text>
+    <text x="235.3" y="160.7" text-anchor="middle" font-size="11">α</text>
+    <text x="394" y="224" text-anchor="end" fill="#ff766d">SACRIFICIAL</text>
+    <text x="626" y="30" text-anchor="end" fill="#58c7bc">κ = 2 sin α / Ld</text>
+    <g font-size="9"><path d="M18 212h16" stroke="#58c7bc" stroke-width="1.8"/><text x="40" y="215">PLAN</text>
+    <path d="M18 226h16" stroke="#d8aa4f" stroke-width="1.4"/><text x="40" y="229">DRIVEN</text></g>
+  </g>
+</svg>

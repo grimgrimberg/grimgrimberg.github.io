@@ -230,6 +230,7 @@ html {
 .project-action-link {
   display: inline-flex;
   align-items: center;
+  gap: 0.35rem;
   min-height: 44px;
   padding: 0.5rem 0.75rem;
   border-radius: 0.75rem;
@@ -1727,5 +1728,710 @@ html {
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+/* Scrolled nav stays near-opaque so section copy never reads through the menu. */
+#navbar.glass-effect {
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+  border-width: 0 0 1px;
+  box-shadow: 0 10px 30px rgba(2, 5, 8, 0.35);
+}
+
+/* Sections receive focus from skip links and in-page anchors; the scroll is the indicator. */
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* Desktop dock: icon buttons that name themselves on hover or focus, so they stop covering card links. */
+@media (min-width: 641px) {
+  .portfolio-fab {
+    min-width: 46px;
+    height: 46px;
+    padding: 0 0.85rem;
+    gap: 0;
+  }
+
+  .portfolio-fab span:last-child {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+
+  .portfolio-fab:hover span:last-child,
+  .portfolio-fab:focus-visible span:last-child {
+    max-width: 8rem;
+    margin-left: 0.5rem;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Technical expertise: a spec sheet, each column pointing at the work that proves it. */
+.skill-spec-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.skill-spec {
+  --skill-accent: #58c7bc;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(246, 241, 232, 0.12);
+  border-top: 2px solid var(--skill-accent);
+  border-radius: 0.5rem;
+  background: linear-gradient(180deg, rgba(246, 241, 232, 0.05), rgba(246, 241, 232, 0.015)), #0b1014;
+  padding: 1.25rem 1.25rem 1rem;
+}
+
+.skill-spec-cyan { --skill-accent: #58c7bc; }
+.skill-spec-brass { --skill-accent: #d8aa4f; }
+.skill-spec-green { --skill-accent: #9bd66b; }
+.skill-spec-coral { --skill-accent: #ff766d; }
+
+.skill-spec header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.skill-spec-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(246, 241, 232, 0.14);
+  border-radius: 0.4rem;
+  color: var(--skill-accent);
+}
+
+.skill-spec-icon svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.skill-spec-index {
+  font-family: 'Cascadia Mono', 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  color: #8a9894;
+}
+
+.skill-spec h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #f6f1e8;
+  margin-bottom: 0.6rem;
+}
+
+.skill-spec ul {
+  flex: 1;
+  margin-bottom: 0.9rem;
+}
+
+.skill-spec li {
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed rgba(246, 241, 232, 0.09);
+  color: #d4dbd6;
+  font-size: 0.95rem;
+}
+
+.skill-spec li::before {
+  content: "▸ ";
+  color: var(--skill-accent);
+}
+
+.skill-spec-proof {
+  font-size: 0.82rem;
+  color: #8a9894;
+}
+
+.skill-spec-proof a {
+  color: var(--skill-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(246, 241, 232, 0.25);
+}
+
+.skill-spec-proof a:hover {
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 640px) {
+  .skill-spec ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-spec li {
+    border: 1px solid rgba(246, 241, 232, 0.12);
+    border-radius: 9999px;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.82rem;
+  }
+
+  .skill-spec li::before {
+    content: none;
+  }
+}
+
+/* Retro shelf: one header, one ledger line, and a swipeable shelf on phones instead of six stacked cards. */
+.retro-archive-note p + p {
+  margin-top: 0.6rem;
+}
+
+.retro-ledger {
+  margin-top: 0.8rem;
+  color: #c7c9c6;
+  font-family: 'Cascadia Mono', 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.retro-ledger strong {
+  color: #f2b84b;
+}
+
+.retro-ledger span {
+  white-space: nowrap;
+}
+
+.retro-swipe-hint {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .retro-swipe-hint {
+    display: block;
+    margin: -1rem 0 0.75rem;
+    color: #8a9894;
+    font-family: 'Cascadia Mono', 'JetBrains Mono', Consolas, monospace;
+    font-size: 0.78rem;
+    text-align: right;
+  }
+
+  .retro-game-grid.retro-catalog-grid {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    margin-inline: -1rem;
+    padding: 0.25rem 1rem 1rem;
+    scrollbar-width: thin;
+  }
+
+  .retro-catalog-grid .retro-game-card {
+    flex: 0 0 84%;
+    scroll-snap-align: center;
+  }
+
+  .retro-catalog-grid .retro-game-card:hover,
+  .retro-catalog-grid .retro-game-card:focus-within {
+    transform: none;
+  }
+}
+
+.secret-key-map {
+  display: grid;
+  gap: 0.55rem;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.secret-key-map div {
+  display: grid;
+  grid-template-columns: minmax(0, auto) 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px dashed rgba(246, 241, 232, 0.09);
+}
+
+.secret-key-map dd {
+  color: #b8c0bc;
+}
+
+.secret-key-map kbd {
+  display: inline-block;
+  min-width: 1.6rem;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid rgba(246, 241, 232, 0.2);
+  border-bottom-width: 2px;
+  border-radius: 0.3rem;
+  background: rgba(5, 7, 10, 0.6);
+  color: #f6f1e8;
+  font-family: 'Cascadia Mono', 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.75rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Project cards: line-art schematics of the real mechanism on a dark bench, tinted per discipline. */
+.project-visual-schematic {
+  --tone: 88, 199, 188;
+  background:
+    radial-gradient(120% 140% at 50% 0%, rgba(var(--tone), 0.12), transparent 62%),
+    #0b1014;
+}
+
+.project-visual-schematic[data-tone="brass"] { --tone: 216, 170, 79; }
+.project-visual-schematic[data-tone="green"] { --tone: 155, 214, 107; }
+
+.project-visual-schematic::before {
+  opacity: 0.16;
+}
+
+.project-visual-art {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-visual-art {
+  transform: scale(1.03);
+}
+
+.project-visual-schematic .project-visual-label {
+  z-index: 2;
+}
+
+/* Wide project card: art beside the copy, so an odd card closes the two-column grid. */
+@media (min-width: 1024px) {
+  .project-card-wide {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+}
+
+.project-visual-photo {
+  background: #05070a;
+}
+
+/* Connectome lab: same two-column frame as the other labs, with a black bench for the point cloud. */
+.brain-lab-stage {
+  position: relative;
+  min-height: 34rem;
+  overflow: hidden;
+  background: #05070a;
+}
+
+.brain-lab-stage img,
+.brain-lab-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.brain-lab-stage img {
+  object-fit: contain;
+  transition: opacity 0.4s ease;
+}
+
+.brain-lab-stage.is-live img {
+  opacity: 0;
+}
+
+.brain-lab-stage canvas {
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.brain-lab-stage canvas:active {
+  cursor: grabbing;
+}
+
+.brain-lab-note {
+  color: #9eafab;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.path-related-link {
+  color: #d8aa4f;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .brain-lab-stage {
+    min-height: 26rem;
+  }
+}
+
+/* Project notes pages: quiet type, one accent, the imagery does the work. */
+.doc-page {
+  background: #05070a;
+}
+
+.doc-nav {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem clamp(1rem, 4vw, 3rem);
+  font-size: 0.875rem;
+}
+
+.doc-nav div {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.doc-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #c7cfcb;
+}
+
+.doc-nav a:hover {
+  color: #f6f1e8;
+}
+
+.doc-nav .doc-nav-home {
+  color: #d8aa4f;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.doc-hero {
+  position: relative;
+  display: flex;
+  min-height: min(100svh, 56rem);
+  align-items: flex-end;
+  overflow: hidden;
+  background: #05070a;
+}
+
+.doc-hero-poster,
+#brain-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.doc-hero-poster {
+  object-fit: contain;
+  transition: opacity 0.6s ease;
+}
+
+#brain-canvas {
+  opacity: 0;
+  cursor: grab;
+  touch-action: pan-y;
+  transition: opacity 0.6s ease;
+}
+
+#brain-canvas:active {
+  cursor: grabbing;
+}
+
+.doc-hero.is-live #brain-canvas {
+  opacity: 1;
+}
+
+.doc-hero.is-live .doc-hero-poster {
+  opacity: 0;
+}
+
+.doc-hero::after {
+  content: "";
+  position: absolute;
+  inset: 40% 0 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent, rgba(5, 7, 10, 0.95) 70%);
+  pointer-events: none;
+}
+
+.doc-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 40rem;
+  padding: 0 clamp(1rem, 4vw, 3rem) clamp(3.5rem, 8vh, 5rem);
+  pointer-events: none;
+}
+
+.doc-eyebrow {
+  margin-bottom: 0.9rem;
+  color: #9eafab;
+  font-size: 0.9rem;
+}
+
+.doc-hero-copy h1 {
+  margin-bottom: 0.9rem;
+  color: #f6f1e8;
+  font-size: clamp(2.25rem, 5.5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.doc-hero-copy p:last-child {
+  color: #d4dbd6;
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.doc-hero-note {
+  position: absolute;
+  right: clamp(1rem, 4vw, 3rem);
+  bottom: 1.25rem;
+  z-index: 2;
+  color: #8a9894;
+  font-size: 0.78rem;
+}
+
+.doc-body {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 3rem clamp(1rem, 4vw, 2rem) 4rem;
+}
+
+.doc-body > section,
+.doc-details {
+  margin-top: 4.5rem;
+}
+
+.doc-figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(246, 241, 232, 0.12);
+}
+
+.doc-figures div {
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-figures dd {
+  color: #f6f1e8;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.doc-figures dt {
+  order: 1;
+  color: #9eafab;
+  font-size: 0.875rem;
+}
+
+.doc-body h2 {
+  margin-bottom: 1rem;
+  color: #f6f1e8;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.doc-body h3 {
+  margin: 2rem 0 0.75rem;
+  color: #f6f1e8;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.doc-body p,
+.doc-body li {
+  color: #cdd5d1;
+  line-height: 1.7;
+}
+
+.doc-body p {
+  margin-bottom: 0.9rem;
+}
+
+.doc-body strong {
+  color: #f6f1e8;
+  font-weight: 600;
+}
+
+.doc-body a {
+  color: #8fd4cc;
+  text-decoration: underline;
+  text-decoration-color: rgba(143, 212, 204, 0.35);
+  text-underline-offset: 3px;
+}
+
+.doc-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.doc-body figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+  background: #05070a;
+}
+
+.doc-body figcaption {
+  margin-top: 0.6rem;
+  color: #8a9894;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.doc-steps {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 44rem;
+  margin-bottom: 2rem;
+  padding-left: 1.3rem;
+  list-style: decimal;
+}
+
+.doc-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.doc-results div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(246, 241, 232, 0.1);
+}
+
+.doc-results dt {
+  color: #cdd5d1;
+}
+
+.doc-results dd {
+  color: #f6f1e8;
+  font-weight: 600;
+  text-align: right;
+}
+
+.doc-body .doc-note {
+  margin-top: 0.9rem;
+  color: #9eafab;
+  font-size: 0.92rem;
+}
+
+.doc-details {
+  border-top: 1px solid rgba(246, 241, 232, 0.12);
+  border-bottom: 1px solid rgba(246, 241, 232, 0.12);
+}
+
+.doc-details summary {
+  display: flex;
+  align-items: center;
+  min-height: 3.5rem;
+  color: #d4dbd6;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.doc-details summary::before {
+  content: "+";
+  margin-right: 0.6rem;
+  color: #9eafab;
+}
+
+.doc-details[open] summary::before {
+  content: "\2212";
+}
+
+.doc-details > div {
+  padding-bottom: 2rem;
+}
+
+.doc-details ul,
+.doc-details ol {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  padding-left: 1.3rem;
+  list-style: disc;
+}
+
+.doc-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.doc-table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.doc-table-wrap th,
+.doc-table-wrap td {
+  padding: 0.55rem 0.75rem 0.55rem 0;
+  border-bottom: 1px solid rgba(246, 241, 232, 0.1);
+  color: #cdd5d1;
+  text-align: left;
+}
+
+.doc-table-wrap th {
+  color: #f6f1e8;
+  font-weight: 600;
+}
+
+.doc-body .doc-sources {
+  font-size: 0.9rem;
+}
+
+.doc-sources h2 {
+  font-size: 1.1rem;
+}
+
+.doc-sources ul {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 760px) {
+  .doc-split,
+  .doc-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .doc-split {
+    gap: 1.5rem;
+  }
+
+  .doc-hero-note {
+    display: none;
   }
 }

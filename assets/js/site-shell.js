@@ -1,5 +1,6 @@
 (function () {
-    const NAV_ACTIVE_BACKGROUND = 'rgba(10, 15, 28, 0.8)';
+    const NAV_ACTIVE_BACKGROUND = 'rgba(7, 10, 13, 0.94)';
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     function initNavbarBackground() {
         const navbar = document.getElementById('navbar');
@@ -36,12 +37,27 @@
 
                 event.preventDefault();
                 target.scrollIntoView({
-                    behavior: 'smooth',
+                    behavior: reducedMotion.matches ? 'auto' : 'smooth',
                     block: 'start'
                 });
+                // Keep the URL shareable and move keyboard focus with the scroll, so skip links actually skip.
+                if (!anchor.hasAttribute('data-lab-target')) {
+                    history.pushState(null, '', anchor.getAttribute('href'));
+                }
+                if (!target.matches('a[href], button, input, select, textarea, [tabindex]')) {
+                    target.setAttribute('tabindex', '-1');
+                }
+                target.focus({ preventScroll: true });
             });
 
             anchor.dataset.anchorReady = 'true';
+        });
+    }
+
+    function initCurrentYear() {
+        const year = String(new Date().getFullYear());
+        document.querySelectorAll('[data-current-year]').forEach((element) => {
+            element.textContent = year;
         });
     }
 
@@ -186,5 +202,6 @@
         initNavbarBackground();
         initMobileMenu();
         initSmoothAnchors();
+        initCurrentYear();
     });
 })();

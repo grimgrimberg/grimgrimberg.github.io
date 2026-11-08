@@ -1,6 +1,6 @@
 {
   "source": "https://api.github.com/users/grimgrimberg/repos?per_page=100&sort=updated",
-  "snapshotDate": "2026-05-13",
+  "snapshotDate": "2026-11-02",
   "categories": {
     "featured": {
       "label": "Featured",
@@ -59,6 +59,14 @@
       "language": "Python",
       "tags": ["LangGraph", "agentic AI", "reports", "observability"],
       "pitch": "Agentic market-movers pipeline with explainable HTML, Excel, and email digests plus deterministic fallbacks."
+    },
+    {
+      "name": "fpv-vggt-visual-geometry-lab",
+      "category": "featured",
+      "url": "https://github.com/grimgrimberg/fpv-vggt-visual-geometry-lab",
+      "language": "Python",
+      "tags": ["computer vision", "3D reconstruction", "VGGT", "WebGL"],
+      "pitch": "Offline FPV visual geometry lab: VGGT on another creator's public dataset, experimental reconstruction methods, smoothing, and 13 published scene packages."
     },
     {
       "name": "gnc-tracking-intercept-sim",
@@ -243,6 +251,46 @@
       "language": "",
       "tags": ["formula student", "simulator"],
       "pitch": "Forked simulator reference for Formula Student Driverless."
+    },
+    {
+      "name": "LSD_Thesis",
+      "category": "lab",
+      "url": "https://github.com/grimgrimberg/LSD_Thesis",
+      "language": "Python",
+      "tags": ["explainable AI", "surrogate models", "dashboard"],
+      "pitch": "Thesis dashboard built around transparent surrogate models and explainable-AI evidence loops."
+    },
+    {
+      "name": "neetcode-gpt",
+      "category": "learning",
+      "url": "https://github.com/grimgrimberg/neetcode-gpt",
+      "language": "Python",
+      "tags": ["transformers", "from scratch", "ML course"],
+      "pitch": "A GPT built from scratch, assembled from my NeetCode ML course submissions."
+    },
+    {
+      "name": "neetcode-submissions",
+      "category": "learning",
+      "url": "https://github.com/grimgrimberg/neetcode-submissions",
+      "language": "Python",
+      "tags": ["algorithms", "practice"],
+      "pitch": "NeetCode problem submissions: algorithm practice in public."
+    },
+    {
+      "name": "lerobot",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/lerobot",
+      "language": "Python",
+      "tags": ["robot learning", "Hugging Face"],
+      "pitch": "Fork of Hugging Face LeRobot for end-to-end robot learning reference."
+    },
+    {
+      "name": "rosbridge_suite",
+      "category": "forks",
+      "url": "https://github.com/grimgrimberg/rosbridge_suite",
+      "language": "Python",
+      "tags": ["ROS", "rosbridge", "integration"],
+      "pitch": "Fork of the rosbridge v2 protocol servers, kept as ROS integration context."
     }
   ]
 }

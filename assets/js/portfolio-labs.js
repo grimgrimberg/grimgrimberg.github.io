@@ -2,6 +2,7 @@
 const driving = document.getElementById('path-playground');
 const experiments = document.getElementById('experiment-playground');
 const reconstruction = document.getElementById('reconstruction-lab');
+const brainLab = document.getElementById('brain-lab');
 const frameSlot = document.getElementById('reconstruction-frame-slot');
 const loadViewer = document.getElementById('reconstruction-load');
 const closeViewer = document.getElementById('reconstruction-close');
@@ -38,24 +39,59 @@ closeViewer?.addEventListener('click', () => {
 document.addEventListener('portfolio:lab-visibility', () => {
     document.body.classList.toggle('path-scene-near', labReading.size > 0 || [driving, experiments].some(panel => panel && !panel.hidden && panel.dataset.nearViewport === 'true'));
 });
+// The connectome data and three.js load only when someone opens this lab.
+let brainRequested = false;
+function openBrainLab() {
+    if (brainRequested) return;
+    brainRequested = true;
+    const status = document.getElementById('brain-lab-status');
+    if (!('WebGL2RenderingContext' in window)) {
+        status.textContent = 'This view needs WebGL. The picture shows the same neurons.';
+        return;
+    }
+    import('./fly-brain.js?v=20261106b')
+        .then(({ mountBrain }) => mountBrain({
+            stage: document.getElementById('brain-lab-stage'),
+            canvas: document.getElementById('brain-lab-canvas'),
+            framing: 'panel'
+        }))
+        .then((brain) => {
+            status.textContent = 'Drag to rotate. Switch a region off to look inside.';
+            document.querySelectorAll('[data-brain-region]').forEach((button) => {
+                button.disabled = false;
+                button.addEventListener('click', () => {
+                    const visible = button.getAttribute('aria-pressed') !== 'true';
+                    button.setAttribute('aria-pressed', String(visible));
+                    button.classList.toggle('is-active', visible);
+                    brain.setRegion(Number(button.dataset.brainRegion), visible);
+                });
+            });
+        })
+        .catch(() => {
+            brainRequested = false;
+            status.textContent = 'The neuron data did not load. Reopen this lab to try again.';
+        });
+}
 function selectLab(mode, updateHash = false) {
-    if (!['drive','space','perception','reconstruction'].includes(mode)) return;
+    if (!['drive','space','perception','reconstruction','brain'].includes(mode)) return;
     if (mode !== 'reconstruction') unloadReconstruction();
     if (driving) driving.hidden = mode !== 'drive';
     if (experiments) experiments.hidden = !['space','perception'].includes(mode);
     if (reconstruction) reconstruction.hidden = mode !== 'reconstruction';
+    if (brainLab) brainLab.hidden = mode !== 'brain';
+    if (mode === 'brain') openBrainLab();
     document.querySelectorAll('[data-lab-mode]').forEach(button => {
         button.setAttribute('aria-pressed', String(button.dataset.labMode === mode));
     });
     document.querySelectorAll('[data-experiment-copy]').forEach(el => el.hidden = el.dataset.experimentCopy !== mode);
     document.body.dataset.activeLab = mode;
     document.dispatchEvent(new CustomEvent('portfolio:lab-change', { detail: mode }));
-    if (updateHash) history.replaceState(null, '', '#' + ({drive:'path-playground',space:'space-lab',perception:'perception-lab',reconstruction:'reconstruction-lab'}[mode]));
+    if (updateHash) history.replaceState(null, '', '#' + ({drive:'path-playground',space:'space-lab',perception:'perception-lab',reconstruction:'reconstruction-lab',brain:'brain-lab'}[mode]));
 }
 document.querySelectorAll('[data-lab-mode]').forEach(button => button.addEventListener('click', () => selectLab(button.dataset.labMode, true)));
 document.querySelectorAll('[data-lab-target]').forEach(link => link.addEventListener('click', () => selectLab(link.dataset.labTarget, true), {capture:true}));
 function readHash() {
-    const mode = {'#path-playground':'drive','#space-lab':'space','#perception-lab':'perception','#reconstruction-lab':'reconstruction'}[location.hash];
+    const mode = {'#path-playground':'drive','#space-lab':'space','#perception-lab':'perception','#reconstruction-lab':'reconstruction','#brain-lab':'brain'}[location.hash];
     if (mode) { selectLab(mode); requestAnimationFrame(() => document.getElementById('lab-picker')?.scrollIntoView({block:'start',behavior:'instant'})); }
 }
 window.addEventListener('hashchange', readHash);
@@ -83,6 +119,23 @@ const readingObserver = new IntersectionObserver(entries => {
     document.dispatchEvent(new Event('portfolio:lab-visibility'));
 }, {rootMargin:'-80px 0px -35% 0px'});
 document.querySelectorAll('#hero, #about, #contact, #lab-picker, .path-playground').forEach(el => readingObserver.observe(el));
+
+// three.js is ~750 KB, so the scenes load when a lab gets close or the page goes idle, never before first paint.
+let labScenesRequested = false;
+function loadLabScenes() {
+    if (labScenesRequested) return;
+    labScenesRequested = true;
+    labLoadObserver.disconnect();
+    Promise.all([import('./path-playground.js?v=20261102'), import('./lab-experiments.js?v=20261102')])
+        .catch(() => document.querySelectorAll('#path-status, #experiment-status').forEach(el => { el.textContent = 'Lab failed to load. Refresh to try again.'; }));
+}
+const labLoadObserver = new IntersectionObserver(entries => {
+    if (entries.some(entry => entry.isIntersecting)) loadLabScenes();
+}, {rootMargin:'1200px 0px'});
+document.querySelectorAll('#lab-picker, .path-playground').forEach(el => labLoadObserver.observe(el));
+const scheduleIdleLoad = () => ('requestIdleCallback' in window ? requestIdleCallback(loadLabScenes, {timeout:4000}) : setTimeout(loadLabScenes, 2500));
+if (document.readyState === 'complete') scheduleIdleLoad();
+else window.addEventListener('load', scheduleIdleLoad, {once:true});
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) unloadReconstruction('Viewer closed while this tab was hidden. Load it again to continue.');
 });
