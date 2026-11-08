@@ -27,6 +27,7 @@ This repo is not React and is not driven by Jekyll templates in its current main
 
 - `index.html` and `photo.html` are the main live surfaces.
 - Shared shell behavior lives in `assets/js/site-shell.js`.
+- Interactive state lives in explicit state machines (`assets/js/state-machine.js`), mirrored to `<html data-<name>-state>`. See `docs/site/STATE.md` for the full table and the rules.
 - Page-specific behavior lives in:
   - `assets/js/index-page.js`
   - `assets/js/photo-page.js`
@@ -107,6 +108,7 @@ assets/
     lab-experiments.js
     lab-models.mjs
     fly-brain.js
+    state-machine.js
   vendor/
     clippyjs/
     three/

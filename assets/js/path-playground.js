@@ -57,10 +57,30 @@ import { createDrive, stepDrive, DRIVE_DEFAULTS, canSaveDriveRun, saveDriveRun, 
         }
     });
 
+    // Machines (docs/site/STATE.md). drive-scene: can WebGL draw it? drive-run: is the car moving?
+    const sceneMachine = window.PortfolioState.define('drive-scene', {
+        initial: 'uninitialized',
+        states: {
+            uninitialized: { ready: 'ready', fail: 'unavailable' },
+            ready: { fail: 'unavailable' },
+            unavailable: {}
+        }
+    });
+    const runMachine = window.PortfolioState.define('drive-run', {
+        initial: 'stopped',
+        states: {
+            stopped: { play: 'running' },
+            running: { pause: 'stopped', finish: 'complete' },
+            complete: { play: 'running', reset: 'stopped' }
+        }
+    });
+
     const state = {
         scenario: 'slalom',
         initialized: false,
-        playing: false,
+        get playing() {
+            return runMachine.is('running');
+        },
         progress: 0,
         lastTime: 0,
         azimuth: -0.68,
@@ -514,7 +534,7 @@ import { createDrive, stepDrive, DRIVE_DEFAULTS, canSaveDriveRun, saveDriveRun, 
         state.progress = simulation.nearest / (routeSamples.length-1);
         if (simulation.time-lastSample >= 0.1) sampleSimulation();
         if (simulation.done) {
-            state.playing = false;
+            runMachine.send('finish');
             stopLoop();
             setStatus(simulation.reason+'. Reset the route to compare gains.');
         }
@@ -536,7 +556,8 @@ import { createDrive, stepDrive, DRIVE_DEFAULTS, canSaveDriveRun, saveDriveRun, 
         renderer?.dispose();
         renderer = null;
         state.initialized = false;
-        state.playing = false;
+        sceneMachine.send('fail');
+        runMachine.send('pause');
         setControlsEnabled(false);
         stage?.classList.remove('is-ready');
         stage?.setAttribute('data-webgl', 'unavailable');
@@ -569,6 +590,10 @@ import { createDrive, stepDrive, DRIVE_DEFAULTS, canSaveDriveRun, saveDriveRun, 
     function initScene() {
         if (state.initialized) {
             return true;
+        }
+        // WebGL failed once already; retrying on every scroll only rewrites the same fallback message.
+        if (sceneMachine.is('unavailable')) {
+            return false;
         }
 
         try {
@@ -609,6 +634,7 @@ import { createDrive, stepDrive, DRIVE_DEFAULTS, canSaveDriveRun, saveDriveRun, 
             state.distance = getFramingDistance();
             updateCamera();
             state.initialized = true;
+            sceneMachine.send('ready');
             root.dataset.pathReady = 'true';
             stage?.setAttribute('data-webgl', 'available');
             stage?.classList.add('is-ready');
@@ -634,7 +660,7 @@ import { createDrive, stepDrive, DRIVE_DEFAULTS, canSaveDriveRun, saveDriveRun, 
         }
 
         state.scenario = key;
-        state.playing = false;
+        stopRun();
         stopLoop();
         updateScenarioButtons();
 
@@ -660,7 +686,11 @@ import { createDrive, stepDrive, DRIVE_DEFAULTS, canSaveDriveRun, saveDriveRun, 
             updateVehicle();
         }
 
-        state.playing = !state.playing;
+        if (runMachine.is('running')) {
+            runMachine.send('pause');
+        } else {
+            runMachine.send('play');
+        }
         if (state.playing) {
             setStatus(`${currentScenario().label} running. Gains update live.`);
             startLoop();
@@ -672,8 +702,26 @@ import { createDrive, stepDrive, DRIVE_DEFAULTS, canSaveDriveRun, saveDriveRun, 
         updateReadout();
     }
 
+    // Any state to stopped: the transition a scenario change or reset needs.
+    function stopRun() {
+        if (!runMachine.send('pause')) {
+            runMachine.send('reset');
+        }
+    }
+
+    // Pauses that the visitor did not ask for (lab switch, hidden tab, scrolled away) must say so,
+    // otherwise the status line keeps claiming the route is running.
+    function pauseFor(reason) {
+        if (!runMachine.send('pause')) {
+            return;
+        }
+        stopLoop();
+        setStatus(`${currentScenario().label} paused ${reason}. Press play to resume.`);
+        updateReadout();
+    }
+
     function resetRoute() {
-        state.playing = false;
+        stopRun();
         state.progress = 0;
         stopLoop();
         resetSimulation();
@@ -805,13 +853,13 @@ import { createDrive, stepDrive, DRIVE_DEFAULTS, canSaveDriveRun, saveDriveRun, 
         });
         document.addEventListener('portfolio:lab-change', event => {
             if (event.detail !== 'drive') {
-                state.playing = false; stopLoop(); updateReadout();
+                pauseFor('while another lab is open');
                 root.dataset.nearViewport = 'false';
                 document.dispatchEvent(new Event('portfolio:lab-visibility'));
             }
         });
         document.addEventListener('visibilitychange', () => {
-            if (document.hidden) { state.playing = false; stopLoop(); updateReadout(); }
+            if (document.hidden) pauseFor('while the tab was hidden');
         });
         scenarioButtons.forEach((button) => {
             button.addEventListener('click', () => setScenario(button.dataset.pathScenario));
@@ -843,11 +891,8 @@ import { createDrive, stepDrive, DRIVE_DEFAULTS, canSaveDriveRun, saveDriveRun, 
             document.dispatchEvent(new Event('portfolio:lab-visibility'));
             if (entry.isIntersecting) {
                 initScene();
-            } else if (state.playing) {
-                state.playing = false;
-                stopLoop();
-                setStatus(`${currentScenario().label} paused offscreen. Press play to resume.`);
-                updateReadout();
+            } else {
+                pauseFor('offscreen');
             }
         }, { rootMargin: '240px 0px' });
         intersectionObserver.observe(stage);

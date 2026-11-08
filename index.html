@@ -228,7 +228,7 @@
         <div class="clippy-assistant">
             <button type="button" class="clippy-close" id="clippy-close-button" aria-label="Dismiss Clippy message">×</button>
             <div class="clippy-icon" aria-hidden="true">📎</div>
-            <div class="clippy-message" id="clippy-text">
+            <div class="clippy-message" id="clippy-text" role="status">
                 Hey there! Looking to hire an awesome engineer? I'm here to help.
             </div>
         </div>
@@ -427,18 +427,18 @@
                         Recruiters shouldn’t need a treasure map. Pick the role you’re hiring for and I’ll line up the projects, the tools and the honest reason I fit.
                     </p>
                     <div class="hire-role-tabs" role="tablist" aria-label="Role fit selector">
-                        <button type="button" class="hire-role-tab is-active" data-hire-role="robotics" role="tab"
+                        <button type="button" class="hire-role-tab is-active" id="hire-tab-robotics" data-hire-role="robotics" role="tab" aria-controls="hire-role-panel"
                             aria-selected="true">Robotics</button>
-                        <button type="button" class="hire-role-tab" data-hire-role="autonomy" role="tab"
+                        <button type="button" class="hire-role-tab" id="hire-tab-autonomy" data-hire-role="autonomy" role="tab" aria-controls="hire-role-panel"
                             aria-selected="false">Autonomy</button>
-                        <button type="button" class="hire-role-tab" data-hire-role="simulation" role="tab"
+                        <button type="button" class="hire-role-tab" id="hire-tab-simulation" data-hire-role="simulation" role="tab" aria-controls="hire-role-panel"
                             aria-selected="false">Simulation</button>
-                        <button type="button" class="hire-role-tab" data-hire-role="ai" role="tab"
+                        <button type="button" class="hire-role-tab" id="hire-tab-ai" data-hire-role="ai" role="tab" aria-controls="hire-role-panel"
                             aria-selected="false">AI Tooling</button>
                     </div>
                 </div>
 
-                <div class="hire-console" data-aos="fade-left" aria-live="polite">
+                <div class="hire-console" id="hire-role-panel" role="tabpanel" aria-labelledby="hire-tab-robotics" data-aos="fade-left">
                     <div class="hire-console-header">
                         <span class="font-tech text-tech-green">FIT_PACKET</span>
                         <span class="hire-status-dot" aria-hidden="true"></span>
@@ -1434,8 +1434,9 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="assets/js/site-shell.js?v=20261102" defer></script>
-    <script type="module" src="assets/js/portfolio-labs.js?v=20261106b"></script>
-    <script src="assets/js/index-page.js?v=20261102" defer></script>
+    <script src="assets/js/state-machine.js?v=20261108" defer></script>
+    <script src="assets/js/site-shell.js?v=20261108" defer></script>
+    <script type="module" src="assets/js/portfolio-labs.js?v=20261108"></script>
+    <script src="assets/js/index-page.js?v=20261108" defer></script>
 </body>
 </html>

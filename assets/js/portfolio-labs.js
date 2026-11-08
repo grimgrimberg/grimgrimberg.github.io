@@ -1,4 +1,9 @@
 // Navigation and visibility only; each demo owns its model and renderer.
+// Machines (see docs/site/STATE.md): lab, reconstruction, lab-drive, lab-experiments, brain-lab.
+const { defineChoice, define, defineLoader } = window.PortfolioState;
+const LAB_MODES = ['drive', 'space', 'perception', 'reconstruction', 'brain'];
+const LAB_HASHES = { drive: 'path-playground', space: 'space-lab', perception: 'perception-lab', reconstruction: 'reconstruction-lab', brain: 'brain-lab' };
+
 const driving = document.getElementById('path-playground');
 const experiments = document.getElementById('experiment-playground');
 const reconstruction = document.getElementById('reconstruction-lab');
@@ -9,16 +14,30 @@ const closeViewer = document.getElementById('reconstruction-close');
 const viewerStatus = document.getElementById('reconstruction-status');
 const labReading = new Set();
 
+const lab = defineChoice('lab', LAB_MODES);
+// A cross-origin iframe cannot report that its scene rendered, so "open" means requested and holding WebGL.
+const viewer = define('reconstruction', {
+    initial: 'closed',
+    states: { closed: { open: 'open' }, open: { close: 'closed' } }
+});
+const driveScene = defineLoader('lab-drive');
+const experimentScene = defineLoader('lab-experiments');
+const brainScene = defineLoader('brain-lab');
+// Once a visitor picks a lab, the page's late load event must not snap them back to the URL's lab.
+let labChosenByVisitor = false;
+
 function unloadReconstruction(message = 'Viewer closed. Load it again whenever you like.') {
-    if (!frameSlot?.firstChild) return;
+    if (!viewer.send('close')) return;
+    const focusWasOnClose = closeViewer.contains(document.activeElement);
     frameSlot.replaceChildren(); // Removing the browsing context stops its WebGL, media and requests.
     frameSlot.hidden = true;
     loadViewer.hidden = false;
     closeViewer.hidden = true;
     viewerStatus.textContent = message;
+    if (focusWasOnClose && !reconstruction.hidden) loadViewer.focus({preventScroll:true});
 }
 loadViewer?.addEventListener('click', () => {
-    if (frameSlot.firstChild) return;
+    if (!viewer.send('open')) return;
     const frame = document.createElement('iframe');
     frame.title = 'FPV reconstruction: point cloud, camera path and method comparison';
     frame.referrerPolicy = 'no-referrer';
@@ -29,33 +48,41 @@ loadViewer?.addEventListener('click', () => {
     loadViewer.hidden = true;
     closeViewer.hidden = false;
     closeViewer.focus({preventScroll:true});
-    // A cross-origin iframe load event cannot prove that its scene rendered.
     viewerStatus.textContent = 'Viewer requested below. If it stays blank or reports an error, open the full viewer. Close releases the scene.';
 });
 closeViewer?.addEventListener('click', () => {
     unloadReconstruction();
     loadViewer.focus({preventScroll:true});
 });
+// Release the scene's WebGL once the panel is fully off screen. The reading observer below uses a shrunken
+// root, so it fires while the panel is still partly visible and cannot make this call.
+if (reconstruction) {
+    new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) unloadReconstruction('Viewer closed offscreen. Load it again to continue.');
+    }).observe(reconstruction);
+}
 document.addEventListener('portfolio:lab-visibility', () => {
     document.body.classList.toggle('path-scene-near', labReading.size > 0 || [driving, experiments].some(panel => panel && !panel.hidden && panel.dataset.nearViewport === 'true'));
 });
+
 // The connectome data and three.js load only when someone opens this lab.
-let brainRequested = false;
 function openBrainLab() {
-    if (brainRequested) return;
-    brainRequested = true;
+    if (!brainScene.send('load')) return;
     const status = document.getElementById('brain-lab-status');
     if (!('WebGL2RenderingContext' in window)) {
+        brainScene.send('reject');
         status.textContent = 'This view needs WebGL. The picture shows the same neurons.';
         return;
     }
-    import('./fly-brain.js?v=20261106b')
+    status.textContent = 'Loading neuron positions…';
+    import('./fly-brain.js?v=20261108')
         .then(({ mountBrain }) => mountBrain({
             stage: document.getElementById('brain-lab-stage'),
             canvas: document.getElementById('brain-lab-canvas'),
             framing: 'panel'
         }))
         .then((brain) => {
+            brainScene.send('resolve');
             status.textContent = 'Drag to rotate. Switch a region off to look inside.';
             document.querySelectorAll('[data-brain-region]').forEach((button) => {
                 button.disabled = false;
@@ -68,12 +95,14 @@ function openBrainLab() {
             });
         })
         .catch(() => {
-            brainRequested = false;
+            brainScene.send('reject');
             status.textContent = 'The neuron data did not load. Reopen this lab to try again.';
         });
 }
+
 function selectLab(mode, updateHash = false) {
-    if (!['drive','space','perception','reconstruction','brain'].includes(mode)) return;
+    if (!LAB_MODES.includes(mode)) return;
+    lab.send(mode);
     if (mode !== 'reconstruction') unloadReconstruction();
     if (driving) driving.hidden = mode !== 'drive';
     if (experiments) experiments.hidden = !['space','perception'].includes(mode);
@@ -86,16 +115,22 @@ function selectLab(mode, updateHash = false) {
     document.querySelectorAll('[data-experiment-copy]').forEach(el => el.hidden = el.dataset.experimentCopy !== mode);
     document.body.dataset.activeLab = mode;
     document.dispatchEvent(new CustomEvent('portfolio:lab-change', { detail: mode }));
-    if (updateHash) history.replaceState(null, '', '#' + ({drive:'path-playground',space:'space-lab',perception:'perception-lab',reconstruction:'reconstruction-lab',brain:'brain-lab'}[mode]));
+    if (updateHash) history.replaceState(null, '', '#' + LAB_HASHES[mode]);
 }
-document.querySelectorAll('[data-lab-mode]').forEach(button => button.addEventListener('click', () => selectLab(button.dataset.labMode, true)));
-document.querySelectorAll('[data-lab-target]').forEach(link => link.addEventListener('click', () => selectLab(link.dataset.labTarget, true), {capture:true}));
+const chooseLab = (mode) => {
+    labChosenByVisitor = true;
+    selectLab(mode, true);
+};
+document.querySelectorAll('[data-lab-mode]').forEach(button => button.addEventListener('click', () => chooseLab(button.dataset.labMode)));
+document.querySelectorAll('[data-lab-target]').forEach(link => link.addEventListener('click', () => chooseLab(link.dataset.labTarget), {capture:true}));
 function readHash() {
-    const mode = {'#path-playground':'drive','#space-lab':'space','#perception-lab':'perception','#reconstruction-lab':'reconstruction','#brain-lab':'brain'}[location.hash];
+    const mode = Object.keys(LAB_HASHES).find(key => '#' + LAB_HASHES[key] === location.hash);
     if (mode) { selectLab(mode); requestAnimationFrame(() => document.getElementById('lab-picker')?.scrollIntoView({block:'start',behavior:'instant'})); }
 }
 window.addEventListener('hashchange', readHash);
-window.addEventListener('load', readHash);
+window.addEventListener('load', () => {
+    if (!labChosenByVisitor) readHash();
+});
 selectLab('drive');
 readHash();
 
@@ -107,10 +142,6 @@ const readingObserver = new IntersectionObserver(entries => {
         else if (entry.target.matches('#lab-picker, .path-playground')) {
             if (entry.isIntersecting) labReading.add(entry.target);
             else labReading.delete(entry.target);
-            if (entry.target === reconstruction && !entry.isIntersecting) {
-                const bounds = reconstruction.getBoundingClientRect();
-                if (bounds.bottom <= 0 || bounds.top >= innerHeight) unloadReconstruction('Viewer closed offscreen. Load it again to continue.');
-            }
         }
         else if (entry.isIntersecting) quietSections.add(entry.target);
         else quietSections.delete(entry.target);
@@ -121,13 +152,20 @@ const readingObserver = new IntersectionObserver(entries => {
 document.querySelectorAll('#hero, #about, #contact, #lab-picker, .path-playground').forEach(el => readingObserver.observe(el));
 
 // three.js is ~750 KB, so the scenes load when a lab gets close or the page goes idle, never before first paint.
-let labScenesRequested = false;
+// Each scene has its own loader, so one failure no longer reports the other as broken, and a failed one retries.
+function loadScene(loader, path, statusId) {
+    if (!loader.send('load')) return;
+    import(path)
+        .then(() => loader.send('resolve'))
+        .catch(() => {
+            loader.send('reject');
+            const status = document.getElementById(statusId);
+            if (status) status.textContent = 'This lab failed to load. Scroll back here or refresh to try again.';
+        });
+}
 function loadLabScenes() {
-    if (labScenesRequested) return;
-    labScenesRequested = true;
-    labLoadObserver.disconnect();
-    Promise.all([import('./path-playground.js?v=20261102'), import('./lab-experiments.js?v=20261102')])
-        .catch(() => document.querySelectorAll('#path-status, #experiment-status').forEach(el => { el.textContent = 'Lab failed to load. Refresh to try again.'; }));
+    loadScene(driveScene, './path-playground.js?v=20261108', 'path-status');
+    loadScene(experimentScene, './lab-experiments.js?v=20261108', 'experiment-status');
 }
 const labLoadObserver = new IntersectionObserver(entries => {
     if (entries.some(entry => entry.isIntersecting)) loadLabScenes();

@@ -102,8 +102,17 @@
 
         const mobileMenuButtonParent = mobileMenuButton.parentElement;
         const mobileMenuButtonNextSibling = mobileMenuButton.nextSibling;
-        const hamburgerIcon = mobileMenuButton.querySelector('i');
         let closeTimer = null;
+        // opening and closing are the 300 ms slide; the panel only takes input in open.
+        const menu = window.PortfolioState.define('menu', {
+            initial: 'closed',
+            states: {
+                closed: { open: 'opening' },
+                opening: { opened: 'open', close: 'closing' },
+                open: { close: 'closing' },
+                closing: { closed: 'closed', open: 'opening' }
+            }
+        });
 
         cloneDesktopLinks(mobileNavList, desktopNav);
         initSmoothAnchors();
@@ -124,37 +133,51 @@
             }
         };
 
-        const closeMobileMenu = () => {
+        // returnFocus is false when a nav link closes the drawer: the anchor handler has already moved focus to the section.
+        const closeMobileMenu = (returnFocus = true) => {
+            if (!menu.send('close')) {
+                return;
+            }
+            window.PortfolioState.overlays.remove('menu');
             mobileMenuPanel.classList.add('translate-x-full');
             mobileMenu.classList.add('pointer-events-none');
             mobileMenuButton.classList.remove('mobile-menu-button-open');
             mobileMenuButton.setAttribute('aria-expanded', 'false');
-            hamburgerIcon?.classList.replace('fa-times', 'fa-bars');
             restoreMobileMenuButton();
-            mobileMenuButton.focus({preventScroll:true});
+            if (returnFocus) {
+                mobileMenuButton.focus({ preventScroll: true });
+            }
 
             window.clearTimeout(closeTimer);
             closeTimer = window.setTimeout(() => {
+                closeTimer = null;
+                if (!menu.send('closed')) {
+                    return;
+                }
                 mobileMenu.classList.add('hidden');
                 mobileMenu.classList.remove('pointer-events-none');
                 document.body.style.overflow = '';
-                closeTimer = null;
             }, 300);
         };
 
         const openMobileMenu = () => {
+            if (!menu.send('open')) {
+                return;
+            }
             window.clearTimeout(closeTimer);
             mobileMenu.classList.remove('pointer-events-none');
             mobileMenu.classList.remove('hidden');
             mobileMenuButton.classList.add('mobile-menu-button-open');
             mobileMenuButton.setAttribute('aria-expanded', 'true');
             document.body.appendChild(mobileMenuButton);
+            window.PortfolioState.overlays.open('menu', { close: () => closeMobileMenu(), container: mobileMenuPanel });
 
             requestAnimationFrame(() => {
-                if (mobileMenuButton.getAttribute('aria-expanded') !== 'true') return;
+                if (!menu.send('opened')) {
+                    return;
+                }
                 mobileMenuPanel.classList.remove('translate-x-full');
-                hamburgerIcon?.classList.replace('fa-bars', 'fa-times');
-                mobileMenuClose?.focus({preventScroll:true});
+                mobileMenuClose?.focus({ preventScroll: true });
             });
 
             document.body.style.overflow = 'hidden';
@@ -162,8 +185,7 @@
 
         mobileMenuButton.addEventListener('click', (event) => {
             event.preventDefault();
-            const isOpen = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            if (isOpen) {
+            if (menu.is('open', 'opening')) {
                 closeMobileMenu();
             } else {
                 openMobileMenu();
@@ -175,23 +197,16 @@
             closeMobileMenu();
         });
 
-        mobileMenuBackdrop?.addEventListener('click', closeMobileMenu);
+        mobileMenuBackdrop?.addEventListener('click', () => closeMobileMenu());
 
         mobileMenu.querySelectorAll('.mobile-nav-link').forEach((link) => {
-            link.addEventListener('click', closeMobileMenu);
+            link.addEventListener('click', () => closeMobileMenu(false));
         });
 
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Tab' && mobileMenuButton.getAttribute('aria-expanded') === 'true') {
-                const focusable = [...mobileMenuPanel.querySelectorAll('a[href], button, summary')].filter(el => !el.disabled && el.getClientRects().length && !el.matches('details:not([open]) a'));
-                const first = focusable[0], last = focusable[focusable.length - 1];
-                if (first && (!mobileMenuPanel.contains(document.activeElement) || (event.shiftKey && document.activeElement === first) || (!event.shiftKey && document.activeElement === last))) {
-                    event.preventDefault();
-                    (event.shiftKey ? last : first).focus();
-                }
-            }
-            if (event.key === 'Escape' && mobileMenuButton.getAttribute('aria-expanded') === 'true') {
-                closeMobileMenu();
+        // The drawer only exists below md; widening the window must not leave its overlay or scroll lock behind.
+        window.matchMedia('(min-width: 768px)').addEventListener('change', (event) => {
+            if (event.matches) {
+                closeMobileMenu(false);
             }
         });
 
