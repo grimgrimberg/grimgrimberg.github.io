@@ -128,6 +128,79 @@ test.describe('maintained smoke suite', () => {
         expect(errors).toEqual([]);
     });
 
+    test('interactive state is explicit and survives layered overlays, double clicks and drafts', async ({ page }, testInfo) => {
+        test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'State contract runs once on desktop');
+        const errors = [];
+        page.on('pageerror', (error) => errors.push(error.message));
+        await page.addInitScript(() => {
+            window.__portfolioMailtoHandler = () => {};
+            Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async () => {} } });
+        });
+        await page.goto('/', { waitUntil: 'domcontentloaded' });
+        const html = page.locator('html');
+
+        // docs/site/STATE.md: every machine is listed by PortfolioState.snapshot() and mirrored on <html>.
+        const snapshot = await page.evaluate(() => window.PortfolioState.snapshot());
+        for (const name of ['menu', 'palette', 'dialog', 'goose', 'clippy', 'helper', 'contact', 'email-copy', 'hire', 'lab', 'reconstruction', 'lab-drive', 'lab-experiments', 'brain-lab']) {
+            expect(snapshot, `machine ${name}`).toHaveProperty(name);
+        }
+        expect(snapshot).toMatchObject({ menu: 'closed', palette: 'closed', goose: 'idle', lab: 'drive', hire: 'robotics', contact: 'editing' });
+
+        // Escape closes only the top overlay: the palette first, then the goose under it.
+        // Any scroll ends a goose visit by design, so scroll first, then release it.
+        const gooseButton = page.locator('#goose-terror-button');
+        await gooseButton.scrollIntoViewIfNeeded();
+        await page.waitForTimeout(300);
+        await gooseButton.click();
+        await expect(html).toHaveAttribute('data-goose-state', 'loose');
+        await page.keyboard.press('/');
+        await expect(html).toHaveAttribute('data-palette-state', 'open');
+        await expect(html).toHaveAttribute('data-overlay-top', 'palette');
+        await page.keyboard.press('Escape');
+        await expect(html).toHaveAttribute('data-palette-state', 'closed');
+        await expect(html).toHaveAttribute('data-goose-state', 'loose');
+        await page.keyboard.press('Escape');
+        await expect(html).toHaveAttribute('data-goose-state', 'idle');
+        await expect(html).not.toHaveAttribute('data-overlay-top', /.+/);
+
+        await page.locator('[data-hire-role="ai"]').click();
+        await expect(html).toHaveAttribute('data-hire-state', 'ai');
+        await expect(page.locator('#hire-role-panel')).toHaveAttribute('aria-labelledby', 'hire-tab-ai');
+
+        // A double click used to leave "Copied Email" on the button for good.
+        const copyEmail = page.locator('#copy-email-address');
+        const baseLabel = (await copyEmail.innerText()).trim();
+        await copyEmail.click();
+        await copyEmail.click();
+        await expect(copyEmail).toHaveText(baseLabel, { timeout: 5000 });
+        await expect(html).toHaveAttribute('data-email-copy-state', 'idle');
+
+        // "Build another draft" returns to the form with what was typed.
+        const fields = await fillContactForm(page, { name: 'State Tester' });
+        await expect(html).toHaveAttribute('data-contact-state', 'drafted');
+        await page.locator('#contact-edit-draft').click();
+        await expect(html).toHaveAttribute('data-contact-state', 'editing');
+        await expect(page.locator('#contact-name')).toHaveValue(fields.name);
+        await expect(page.locator('#contact-name')).toBeFocused();
+
+        await page.locator('[data-lab-mode="space"]').click();
+        await expect(html).toHaveAttribute('data-lab-state', 'space');
+
+        // Drawer: explicit states, Escape closes it, and a nav link leaves focus on the section it jumped to.
+        await page.setViewportSize({ width: 390, height: 844 });
+        await page.locator('#mobile-menu-button').click();
+        await expect(html).toHaveAttribute('data-menu-state', 'open');
+        await page.keyboard.press('Escape');
+        await expect(html).toHaveAttribute('data-menu-state', 'closed');
+        await page.locator('#mobile-menu-button').click();
+        await expect(html).toHaveAttribute('data-menu-state', 'open');
+        await page.locator('#mobile-menu .mobile-nav-link[href="#about"]').first().click();
+        await expect(html).toHaveAttribute('data-menu-state', 'closed');
+        await expect(page.locator('#about')).toBeFocused();
+
+        expect(errors).toEqual([]);
+    });
+
     test('connectome lab loads its data only on request and region switches work', async ({ page }, testInfo) => {
         test.skip(testInfo.project.name !== DESKTOP_PROJECT, 'Lab lifecycle runs once on desktop');
         const errors = [];

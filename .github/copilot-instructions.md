@@ -14,6 +14,7 @@
 - Homepage behavior: `assets/js/index-page.js`
 - Photography page behavior: `assets/js/photo-page.js`
 - Lab loader and navigation: `assets/js/portfolio-labs.js` (lazy-imports `path-playground.js` and `lab-experiments.js`, which pull in three.js)
+- Interactive state: `assets/js/state-machine.js`. Every interactive part is an explicit machine mirrored to `<html data-<name>-state>`; `PortfolioState.snapshot()` returns them all. Read and extend the table in `docs/site/STATE.md` instead of adding booleans, timers or your own Escape/focus-trap handlers.
 
 ## CSS Layout
 

@@ -188,18 +188,60 @@
     let sourceOpenCount = 0;
     let konamiSequence = [];
     let repoSnapshot = FALLBACK_REPO_SNAPSHOT;
-    let commandHistory = [];
     let commandPaletteWelcomed = false;
     let commandPaletteOpener = null;
     let modalCount = 0;
+    let konamiTimer = null;
+
+    // Explicit machines (assets/js/state-machine.js). Each mirrors to <html data-<name>-state>; docs/site/STATE.md lists them.
+    const { define, defineLoader, defineChoice, overlays } = window.PortfolioState;
+    const paletteMachine = define('palette', {
+        initial: 'closed',
+        states: { closed: { open: 'open' }, open: { close: 'closed' } }
+    });
+    const dialogMachine = define('dialog', {
+        initial: 'closed',
+        states: { closed: { open: 'open' }, open: { close: 'closed' } }
+    });
+    const gooseMachine = define('goose', {
+        initial: 'idle',
+        states: { idle: { release: 'loose' }, loose: { stop: 'idle' } }
+    });
+    const clippyLoader = defineLoader('clippy');
+    // Which helper is on screen: the text bubble, the animated agent, or nothing.
+    const helperMachine = define('helper', {
+        initial: 'hidden',
+        states: {
+            hidden: { showText: 'text', showAgent: 'agent' },
+            text: { hide: 'hidden', showText: 'text', showAgent: 'agent' },
+            agent: { hide: 'hidden', showText: 'text', showAgent: 'agent' }
+        }
+    });
+    const contactMachine = define('contact', {
+        initial: 'editing',
+        states: { editing: { draft: 'drafted' }, drafted: { edit: 'editing' } }
+    });
+    const emailCopyMachine = define('email-copy', {
+        initial: 'idle',
+        states: {
+            idle: { copy: 'copying' },
+            copying: { succeed: 'copied', fail: 'failed' },
+            copied: { copy: 'copying', reset: 'idle' },
+            failed: { copy: 'copying', reset: 'idle' }
+        }
+    });
+    const hireMachine = defineChoice('hire', ['robotics', 'autonomy', 'simulation', 'ai']);
+    // Bumped by every show or hide, so a deferred show that lost the race can tell it is stale.
+    let helperRequest = 0;
+
     const gooseTerrorState = {
-        active: false,
+        get active() {
+            return gooseMachine.is('loose');
+        },
         layer: null,
         goose: null,
         moveTimer: null,
         noteTimer: null,
-        footTimer: null,
-        keyHandler: null,
         resizeHandler: null,
         x: 24,
         y: 120
@@ -211,7 +253,7 @@
     }
     let realClippyAgent = null;
     let realClippyLoaded = false;
-    let realClippyLoadStarted = false;
+    let realClippyLoad = null;
     let realClippyHideTimer = null;
     let realClippySpeechTimer = null;
     let realClippyGoodbyeTimer = null;
@@ -239,11 +281,16 @@
         }
     }
 
+    const flashTimers = new WeakMap();
     function flashInvalidFields(fields) {
-        fields.forEach((field) => field.classList.add('ring-2', 'ring-red-500'));
-        window.setTimeout(() => {
-            fields.forEach((field) => field.classList.remove('ring-2', 'ring-red-500'));
-        }, 1500);
+        fields.forEach((field) => {
+            window.clearTimeout(flashTimers.get(field));
+            field.classList.add('ring-2', 'ring-red-500');
+            flashTimers.set(field, window.setTimeout(() => {
+                field.classList.remove('ring-2', 'ring-red-500');
+                flashTimers.delete(field);
+            }, 1500));
+        });
     }
 
     function buildEmailPreviewText(formData) {
@@ -332,32 +379,39 @@
         });
     }
 
+    let emailCopyTimer = null;
     async function copyEmailAddress(button) {
-        const copied = await copyTextToClipboard(EMAIL_ADDRESS);
-        const status = document.getElementById('copy-email-status');
-        const originalHtml = button?.innerHTML;
+        if (!emailCopyMachine.send('copy')) {
+            return false;
+        }
+        button.dataset.baseLabel ??= button.innerHTML;
+        window.clearTimeout(emailCopyTimer);
 
+        const copied = await copyTextToClipboard(EMAIL_ADDRESS);
+        emailCopyMachine.send(copied ? 'succeed' : 'fail');
+        const status = document.getElementById('copy-email-status');
         if (status) {
             status.textContent = copied ? 'Email copied. Now go make something happen.' : `Copy failed. Email: ${EMAIL_ADDRESS}`;
         }
 
-        if (button) {
-            button.innerHTML = copied ? '<span>Copied Email</span>' : `<span>${EMAIL_ADDRESS}</span>`;
-            window.setTimeout(() => {
-                button.innerHTML = originalHtml || 'Copy Email Address';
-            }, COPY_RESET_DELAY_MS);
-        }
+        button.innerHTML = copied ? '<span>Copied Email</span>' : `<span>${EMAIL_ADDRESS}</span>`;
+        emailCopyTimer = window.setTimeout(() => {
+            emailCopyMachine.send('reset');
+            button.innerHTML = button.dataset.baseLabel;
+        }, COPY_RESET_DELAY_MS);
 
         return copied;
     }
 
+    let parkedContactForm = null;
     function renderContactSuccess(mailtoLink, previewText) {
         const formContainer = document.getElementById('simple-contact-form');
-        if (!formContainer) {
+        if (!formContainer || !contactMachine.send('draft')) {
             return;
         }
 
-        formContainer.innerHTML = '';
+        parkedContactForm = document.createDocumentFragment();
+        parkedContactForm.append(...formContainer.childNodes);
 
         const successContainer = document.createElement('div');
         successContainer.className = 'text-center py-8';
@@ -375,7 +429,7 @@
                 </a>
                 <div class="text-left bg-gray-800/60 border border-gray-700 rounded-lg p-4 overflow-y-auto max-h-56 text-sm font-mono whitespace-pre-wrap break-words" id="email-preview" aria-label="Email preview" tabindex="0"></div>
                 <button type="button" id="copy-email-content" class="w-full bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition-colors">Copy Message to Clipboard</button>
-                <a href="index.html#contact" class="text-tech-cyan hover:text-tech-purple text-sm inline-block">Build another draft</a>
+                <button type="button" id="contact-edit-draft" class="text-tech-cyan hover:text-tech-purple text-sm inline-block underline underline-offset-4">Build another draft</button>
             </div>
             <div id="contact-status" class="sr-only" aria-live="polite"></div>
         `;
@@ -394,6 +448,15 @@
         formContainer.appendChild(successContainer);
         updateContactStatus('Email client ready. Use the copy button if your mail app did not open.');
         bindCopyButton();
+        successContainer.querySelector('#contact-edit-draft')?.addEventListener('click', () => {
+            if (!contactMachine.send('edit')) {
+                return;
+            }
+            successContainer.remove();
+            formContainer.append(parkedContactForm);
+            parkedContactForm = null;
+            document.getElementById('contact-name')?.focus();
+        });
     }
 
     function openEmailClient() {
@@ -655,7 +718,10 @@
         note.style.visibility='';
         note.style.left = `${point.x}px`;
         note.style.top = `${point.y}px`;
-        note.querySelector('button')?.addEventListener('click', () => note.remove());
+        note.querySelector('button')?.addEventListener('click', () => {
+            note.remove();
+            gooseTerrorState.goose?.focus({ preventScroll: true });
+        });
 
         gooseTerrorState.layer.appendChild(note);
         gooseTerrorState.carried=note;
@@ -679,7 +745,6 @@
         layer.id = 'goose-terror-layer';
         layer.className = 'goose-terror-layer';
         layer.dataset.gooseTerror = 'active';
-        layer.setAttribute('aria-live', 'polite');
         layer.innerHTML = `
             <div class="goose-terror-toolbar">
                 <span>Desk Goose · tap for mischief</span>
@@ -696,7 +761,8 @@
         layer.appendChild(goose);
         document.body.appendChild(layer);
 
-        gooseTerrorState.active = true;
+        gooseMachine.send('release');
+        gooseTerrorState.opener = document.activeElement;
         gooseTerrorState.layer = layer;
         gooseTerrorState.goose = goose;
         gooseTerrorState.reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -714,11 +780,7 @@
             spawnGooseNote();
             if(!gooseTerrorState.reduced) gooseTerrorState.target=getGoosePoint(82,76);
         });
-        gooseTerrorState.keyHandler = (event) => {
-            if (event.key === 'Escape') {
-                stopGooseTerror('escape');
-            }
-        };
+        overlays.open('goose', { close: () => stopGooseTerror('escape') });
         gooseTerrorState.resizeHandler = () => stopGooseTerror('navigation');
         gooseTerrorState.pointerHandler = event => {
             if(event.pointerType!=='mouse' || gooseTerrorState.reduced || event.target.closest('a,button,input,textarea,select,summary')) return;
@@ -732,7 +794,6 @@
             if(event.type!=='click' || event.target.closest('a[href]')) stopGooseTerror('navigation');
         };
 
-        document.addEventListener('keydown', gooseTerrorState.keyHandler);
         window.addEventListener('resize', gooseTerrorState.resizeHandler);
         document.addEventListener('pointermove',gooseTerrorState.pointerHandler);
         document.addEventListener('click',gooseTerrorState.navigationHandler);
@@ -758,15 +819,12 @@
             return false;
         }
 
-        [gooseTerrorState.moveTimer, gooseTerrorState.footTimer, gooseTerrorState.noteTimer].forEach((timer) => {
+        [gooseTerrorState.moveTimer, gooseTerrorState.noteTimer].forEach((timer) => {
             if (timer) {
                 window.clearInterval(timer);
             }
         });
-
-        if (gooseTerrorState.keyHandler) {
-            document.removeEventListener('keydown', gooseTerrorState.keyHandler);
-        }
+        overlays.remove('goose');
 
         if (gooseTerrorState.resizeHandler) {
             window.removeEventListener('resize', gooseTerrorState.resizeHandler);
@@ -781,19 +839,23 @@
         gooseTerrorState.pointerHandler=null;gooseTerrorState.navigationHandler=null;
         gooseTerrorState.target=null;gooseTerrorState.carried=null;
 
+        const focusWasInside = gooseTerrorState.layer?.contains(document.activeElement);
         gooseTerrorState.layer?.remove();
-        gooseTerrorState.active = false;
+        gooseMachine.send('stop');
         gooseTerrorState.layer = null;
         gooseTerrorState.goose = null;
         gooseTerrorState.moveTimer = null;
-        gooseTerrorState.footTimer = null;
         gooseTerrorState.noteTimer = null;
-        gooseTerrorState.keyHandler = null;
         gooseTerrorState.resizeHandler = null;
         updateGooseTerrorButton();
+        if (focusWasInside) {
+            const opener = gooseTerrorState.opener?.isConnected ? gooseTerrorState.opener : document.getElementById('goose-terror-button');
+            opener?.focus({ preventScroll: true });
+        }
+        gooseTerrorState.opener = null;
 
         if (reason !== 'silent') {
-            hideClippy(true);
+            hideClippy();
             const wisdom = document.getElementById('goose-wisdom');
             if (wisdom) wisdom.textContent = 'Goose banished. The page is safe. Suspiciously safe.';
         }
@@ -815,6 +877,9 @@
             }
             clippyElement.classList.remove('show');
         }
+        if (helperMachine.is('text')) {
+            helperMachine.send('hide');
+        }
     }
 
     function showFallbackClippy(message, durationMs = 12000) {
@@ -829,6 +894,7 @@
         }
 
         clippyElement.classList.add('show');
+        helperMachine.send('showText');
 
         if (clippyElement.dataset.hideTimer) {
             window.clearTimeout(Number(clippyElement.dataset.hideTimer));
@@ -839,8 +905,10 @@
             return;
         }
 
+        // Expiry is not a new request, so it hides only the bubble and leaves a pending Guide request alive.
         const timerId = window.setTimeout(() => {
-            hideClippy();
+            delete clippyElement.dataset.hideTimer;
+            hideFallbackClippy();
         }, durationMs);
         clippyElement.dataset.hideTimer = String(timerId);
     }
@@ -856,12 +924,13 @@
     }
 
     function initRealClippy() {
-        if (realClippyLoadStarted) {
-            return realClippyLoadStarted;
+        if (clippyLoader.is('ready', 'loading')) {
+            return realClippyLoad;
         }
 
+        clippyLoader.send('load');
         updateRealClippyGlobals();
-        realClippyLoadStarted = CLIPPY_SCRIPTS
+        realClippyLoad = CLIPPY_SCRIPTS
             .reduce((chain, src) => chain.then(() => loadScript(src)), Promise.resolve())
             .then(() => new Promise((resolve) => {
                 if (!window.clippy || typeof window.clippy.load !== 'function' || !window.jQuery) {
@@ -885,6 +954,7 @@
                         close.addEventListener('mousedown', event => event.stopPropagation());
                         close.addEventListener('click', event => {event.stopPropagation();hideClippy(true);});
                         document.querySelector('.clippy')?.appendChild(close);
+                        clippyLoader.send('resolve');
                         window.dispatchEvent(new CustomEvent('portfolio:clippy-ready'));
                         resolve(true);
                     },
@@ -895,12 +965,17 @@
                     }
                 );
             }))
-            .catch(() => {
-                realClippyLoaded = false;
-                updateRealClippyGlobals();
-                return false;
+            .catch(() => false)
+            .then((loaded) => {
+                // Failure is a real state now, and the next explicit request retries instead of reusing a dead promise.
+                if (!loaded) {
+                    realClippyLoaded = false;
+                    updateRealClippyGlobals();
+                    clippyLoader.send('reject');
+                }
+                return loaded;
             });
-        return realClippyLoadStarted;
+        return realClippyLoad;
     }
 
     function scheduleRealClippy() {
@@ -1020,6 +1095,7 @@
                 : Math.max(76, window.innerHeight - 240);
             realClippyAgent.moveTo(left, top);
             realClippyAgent.show(true);
+            helperMachine.send('showAgent');
 
             const selectedAnimation = selectClippyAnimation(animation);
             if (selectedAnimation) {
@@ -1046,10 +1122,12 @@
                         realClippyGoodbyeTimer = window.setTimeout(() => {
                             realClippyAgent?.hide(true);
                             resetRealClippyQueue(realClippyAgent);
+                            helperMachine.send('hide');
                         }, 1200);
                     } else {
                         realClippyAgent.hide(true);
                         resetRealClippyQueue(realClippyAgent);
+                        helperMachine.send('hide');
                     }
                 }, durationMs);
             }
@@ -1062,6 +1140,7 @@
 
     function showClippy(message, durationMs = 12000) {
         hideClippy();
+        helperRequest += 1;
         rememberHelperAppearance();
         if (useTextHelper()) { showFallbackClippy(message, durationMs); return; }
         if (summonRealClippy(message, 'GetAttention', durationMs)) {
@@ -1086,6 +1165,7 @@
 
     function pinClippyGuide(message) {
         hideClippy();
+        helperRequest += 1;
         rememberHelperAppearance();
         if (useTextHelper()) {
             showFallbackClippy(message, 0);
@@ -1105,6 +1185,7 @@
             try { sessionStorage.setItem('portfolioHelperDismissed', 'true'); } catch {}
         }
         clearClippyTimers();
+        helperRequest += 1;
 
         if (realClippyAgent && realClippyLoaded) {
             realClippyAgent.hide(true);
@@ -1113,6 +1194,9 @@
         }
 
         hideFallbackClippy();
+        if (helperMachine.is('agent')) {
+            helperMachine.send('hide');
+        }
     }
 
     function scheduleClippyIntro() {
@@ -1123,8 +1207,7 @@
                 return;
             }
 
-            const clippyElement = document.getElementById('custom-clippy');
-            if (clippyElement?.classList.contains('show') || document.querySelector('.clippy-balloon:not([style*="display: none"])')) {
+            if (!helperMachine.is('hidden')) {
                 return;
             }
 
@@ -1167,10 +1250,6 @@
                 }
             }
 
-            if (event.key === 'Escape') {
-                closeCommandPalette();
-            }
-
             if (event.altKey && event.shiftKey && event.code === 'KeyC') {
                 event.preventDefault();
                 showClippyGuide('Old-school Clippy activated. No third-party script, no clipboard drama, just one paperclip doing its job.');
@@ -1194,8 +1273,9 @@
             // Animate main, not body: a filter on body would re-anchor every fixed element for five seconds.
             const stage = document.getElementById('main-content');
             if (stage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                window.clearTimeout(konamiTimer);
                 stage.style.animation = 'rainbow 2s infinite';
-                window.setTimeout(() => {
+                konamiTimer = window.setTimeout(() => {
                     stage.style.animation = '';
                 }, 5000);
             }
@@ -1362,11 +1442,15 @@ ${role.bullets.map((bullet) => `- ${escapeHtml(bullet)}`).join('\n')}`;
             );
         }
 
+        hireMachine.send(roleKey);
         document.querySelectorAll('[data-hire-role]').forEach((button) => {
-            const isActive = button.getAttribute('data-hire-role') === roleKey;
+            const isActive = button.getAttribute('data-hire-role') === hireMachine.state;
             button.classList.toggle('is-active', isActive);
             button.setAttribute('aria-selected', isActive ? 'true' : 'false');
             button.tabIndex = isActive ? 0 : -1;
+            if (isActive) {
+                document.getElementById('hire-role-panel')?.setAttribute('aria-labelledby', button.id);
+            }
         });
 
         document.querySelectorAll('[data-command-run^="hire "]').forEach((button) => {
@@ -1414,9 +1498,11 @@ ${role.bullets.map((bullet) => `- ${escapeHtml(bullet)}`).join('\n')}`;
         }
 
         // First explicit request fetches the agent, but nobody waits more than a beat for a paperclip.
+        // If anything else shows or hides the helper meanwhile, this request is stale and must not reappear.
+        const request = ++helperRequest;
         let shown = false;
         const show = () => {
-            if (!shown) {
+            if (!shown && request === helperRequest) {
                 shown = true;
                 pinClippyGuide(guideMessage);
             }
@@ -1655,9 +1741,7 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
     }
 
     function runCommand(command) {
-        const response = getCommandResponse(command);
-        commandHistory.push(command);
-        appendCommandOutput(command, response);
+        appendCommandOutput(command, getCommandResponse(command));
     }
 
     async function loadRepoSnapshot() {
@@ -1683,8 +1767,9 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
             return;
         }
 
-        if (palette.classList.contains('hidden')) {
+        if (paletteMachine.send('open')) {
             commandPaletteOpener = document.activeElement;
+            overlays.open('palette', { close: closeCommandPalette, container: palette.querySelector('.command-shell') });
         }
 
         palette.classList.remove('hidden');
@@ -1706,10 +1791,11 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
 
     function closeCommandPalette() {
         const palette = document.getElementById('command-palette');
-        if (!palette || palette.classList.contains('hidden')) {
+        if (!palette || !paletteMachine.send('close')) {
             return;
         }
 
+        overlays.remove('palette');
         palette.classList.add('hidden');
         document.querySelectorAll('[data-command-open]').forEach((button) => {
             button.setAttribute('aria-expanded', 'false');
@@ -1721,34 +1807,9 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
         commandPaletteOpener = null;
     }
 
-    function trapFocus(container, event) {
-        if (event.key !== 'Tab') {
-            return;
-        }
-
-        const focusable = [...container.querySelectorAll('a[href], button, input')]
-            .filter((element) => !element.disabled && element.getClientRects().length);
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (!first) {
-            return;
-        }
-
-        if (!container.contains(document.activeElement) || (event.shiftKey && document.activeElement === first)) {
-            event.preventDefault();
-            (event.shiftKey ? last : first).focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-            event.preventDefault();
-            first.focus();
-        }
-    }
-
     function initCommandPalette() {
         const form = document.getElementById('command-form');
         const input = document.getElementById('command-input');
-        const palette = document.getElementById('command-palette');
-
-        palette?.addEventListener('keydown', (event) => trapFocus(palette, event));
 
         document.querySelectorAll('[data-command-open]').forEach((button) => {
             button.addEventListener('click', () => openCommandPalette());
@@ -1866,17 +1927,14 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
             </div>
         `;
 
-        const onKeydown = (event) => {
-            if (event.key === 'Escape') {
-                modal.closeModal();
-            } else {
-                trapFocus(modal, event);
-            }
-        };
-
+        const overlayName = `dialog-${modalCount}`;
         modal.closeModal = () => {
+            if (!modal.isConnected) {
+                return;
+            }
             modal.remove();
-            document.removeEventListener('keydown', onKeydown);
+            overlays.remove(overlayName);
+            dialogMachine.send('close');
             if (opener?.isConnected && typeof opener.focus === 'function') {
                 opener.focus({ preventScroll: true });
             }
@@ -1887,13 +1945,17 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
                 modal.closeModal();
             }
         });
-        document.addEventListener('keydown', onKeydown);
+        modal.overlayName = overlayName;
 
         return modal;
     }
 
     function showModal(modal) {
+        document.querySelectorAll('[role="dialog"][data-portfolio-dialog]').forEach((open) => open.closeModal?.());
+        modal.dataset.portfolioDialog = 'true';
         document.body.appendChild(modal);
+        dialogMachine.send('open');
+        overlays.open(modal.overlayName, { close: modal.closeModal, container: modal });
         modal.querySelector('[data-modal-actions] a, [data-modal-actions] button')?.focus({ preventScroll: true });
     }
 
@@ -2021,8 +2083,17 @@ The flex is not perfection. The flex is range, follow-through, and enough taste 
         document.head.appendChild(style);
     }
 
+    function syncHelperWithReadingMode() {
+        document.addEventListener('portfolio:lab-visibility', () => {
+            if (helperMachine.is('agent') && useTextHelper()) {
+                hideClippy();
+            }
+        });
+    }
+
     function initPage() {
         scheduleRealClippy();
+        syncHelperWithReadingMode();
         loadRepoSnapshot();
         initProjectCardObserver();
         initFunZone();

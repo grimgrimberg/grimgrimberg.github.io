@@ -15,12 +15,24 @@ const orbitOptions={thrust:1,target:0,guided:true};
 const perception={coherence:1,depth:0};
 const setStatus = text => status.textContent=text;
 const read = id => document.getElementById(id);
+// Machines (docs/site/STATE.md): experiment-scene for WebGL, experiment-run for playback.
+const sceneMachine = window.PortfolioState.define('experiment-scene', {
+    initial: 'uninitialized',
+    states: { uninitialized: { ready: 'ready', fail: 'unavailable' }, ready: {}, unavailable: {} }
+});
+const runMachine = window.PortfolioState.define('experiment-run', {
+    initial: 'paused',
+    states: { paused: { play: 'playing' }, playing: { pause: 'paused' } }
+});
 
 function pause(message) {
     playing=false;
+    runMachine.send('pause');
     renderer?.setAnimationLoop(null);
     play.textContent='Play'; play.setAttribute('aria-pressed','false');
     if(message) setStatus(message);
+    // The HUD clock reads "Rotating" or "Paused", so it has to follow every pause, not just the next frame.
+    if(initialized) updateReadout();
 }
 function disposeScene() {
     scene?.traverse(obj => {
@@ -162,17 +174,18 @@ function configure(nextMode) {
     updateReadout();resize();
 }
 function initialize() {
-    if(initialized)return;
+    // After one WebGL failure, scrolling past again must not rebuild the fallback and rewrite the status.
+    if(initialized||sceneMachine.is('unavailable'))return;
     try {
         const context=canvas.getContext('webgl2',{antialias:true});
         if(!context)throw new Error('WebGL2 unavailable');
         renderer=new THREE.WebGLRenderer({canvas,context,antialias:true,powerPreference:'low-power'});
         renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
         renderer.outputColorSpace=THREE.SRGBColorSpace;
-        initialized=true;canvas.hidden=false;read('experiment-fallback').hidden=true;root.dataset.webgl='available';
+        initialized=true;sceneMachine.send('ready');canvas.hidden=false;read('experiment-fallback').hidden=true;root.dataset.webgl='available';
         configure(mode);
     } catch {
-        controls.forEach(el=>el.disabled=true);root.dataset.webgl='unavailable';
+        sceneMachine.send('fail');controls.forEach(el=>el.disabled=true);root.dataset.webgl='unavailable';
         canvas.hidden=true;read('experiment-fallback').hidden=false;
         setStatus('WebGL unavailable. The explanation remains readable; simulation controls are disabled.');
     }
@@ -198,7 +211,7 @@ function togglePlay() {
     if(!initialized||root.hidden)return;
     if(playing){pause('Paused. Adjust a control or choose Play.');return;}
     if(orbit.done&&mode==='space'){setStatus('Reset the completed run before playing.');return;}
-    playing=true;lastTime=0;play.textContent='Pause';play.setAttribute('aria-pressed','true');
+    playing=true;runMachine.send('play');lastTime=0;play.textContent='Pause';play.setAttribute('aria-pressed','true');
     setStatus(mode==='space'?'Running at 40× simulated time.':'Rotating slowly. Pause whenever you like.');
     renderer.setAnimationLoop(tick);
 }
@@ -239,8 +252,8 @@ document.addEventListener('portfolio:lab-change',event=>{
 new IntersectionObserver(entries=>{
     visible=entries[0].isIntersecting&&!root.hidden;
     root.dataset.nearViewport=String(visible);document.dispatchEvent(new Event('portfolio:lab-visibility'));
-    if(visible)initialize();else pause('Paused offscreen. Choose Play to continue.');
+    if(visible)initialize();else if(playing)pause('Paused offscreen. Choose Play to continue.');
 },{rootMargin:'120px 0px'}).observe(stage);
 new ResizeObserver(resize).observe(stage);
-document.addEventListener('visibilitychange',()=>{if(document.hidden)pause('Paused while the tab was hidden.');});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing)pause('Paused while the tab was hidden.');});
 if(['space','perception'].includes(document.body.dataset.activeLab))mode=document.body.dataset.activeLab;

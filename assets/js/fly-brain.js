@@ -96,18 +96,34 @@ export async function mountBrain({ stage, canvas, framing = 'hero' }) {
         state.yaw += steps[event.key];
         draw();
     });
-    new IntersectionObserver((entries) => {
-        state.visible = entries[0].isIntersecting;
-    }).observe(stage);
-
-    stage.classList.add('is-live');
-    if (!reduced) {
-        renderer.setAnimationLoop(() => {
-            if (!state.visible) return;
+    // The loop runs only while the stage is on screen and the GPU context is alive; off screen it costs nothing.
+    let contextLost = false;
+    const syncLoop = () => {
+        const spin = !reduced && state.visible && !contextLost;
+        renderer.setAnimationLoop(spin ? () => {
             if (!state.dragging) state.yaw += 0.0022;
             draw();
-        });
-    }
+        } : null);
+    };
+    new IntersectionObserver((entries) => {
+        state.visible = entries[0].isIntersecting;
+        syncLoop();
+    }).observe(stage);
+    canvas.addEventListener('webglcontextlost', (event) => {
+        event.preventDefault();
+        contextLost = true;
+        syncLoop();
+        stage.classList.remove('is-live');
+    });
+    canvas.addEventListener('webglcontextrestored', () => {
+        contextLost = false;
+        stage.classList.add('is-live');
+        draw();
+        syncLoop();
+    });
+
+    stage.classList.add('is-live');
+    syncLoop();
 
     return {
         // Additive blending makes black points invisible, so a region can switch off without rebuilding anything.
@@ -125,7 +141,14 @@ export async function mountBrain({ stage, canvas, framing = 'hero' }) {
 const heroStage = document.getElementById('brain-stage');
 const heroCanvas = document.getElementById('brain-canvas');
 if (heroStage && heroCanvas && 'WebGL2RenderingContext' in window) {
-    const begin = () => mountBrain({ stage: heroStage, canvas: heroCanvas }).catch(() => {});
+    // On fly101.html the poster image is the fallback, so failure only needs to be visible to tests and agents.
+    const hero = window.PortfolioState?.defineLoader('brain-hero');
+    const begin = () => {
+        hero?.send('load');
+        mountBrain({ stage: heroStage, canvas: heroCanvas })
+            .then(() => hero?.send('resolve'))
+            .catch(() => hero?.send('reject'));
+    };
     if (document.readyState === 'complete') begin();
     else window.addEventListener('load', begin, { once: true });
 }
